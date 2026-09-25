@@ -1,2 +1,8 @@
+User-agent: facebookexternalhit
+User-agent: meta-externalagent
+User-agent: facebookcatalog
+Allow: /advon-social/
+Disallow: /
+
 User-agent: *
 Disallow: /

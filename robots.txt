@@ -4,5 +4,7 @@ User-agent: facebookcatalog
 Allow: /advon-social/
 Disallow: /
 
+# advon-social/ = Advon Media's own public Instagram/Facebook/TikTok media: every fetcher may read it (TikTok pulls posts from here)
 User-agent: *
+Allow: /advon-social/
 Disallow: /

@@ -148,7 +148,7 @@ h2{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute)
 
   function pick(){
     var h=decodeURIComponent((location.hash||'').slice(1)), P=data.posts;
-    var byHash=P.find(function(p){return p.date===h||p.id===h});
+    var byHash=h&&P.find(function(p){return (p.date&&p.date===h)||p.id===h});
     if(byHash)return byHash;
     P=P.filter(function(p){return !p.extra});
     var t=P.find(function(p){return p.date===TODAY});

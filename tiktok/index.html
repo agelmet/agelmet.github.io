@@ -117,13 +117,13 @@ h2{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute)
   }
 
   function card(p){
-    var d=done()[p.id], past=p.date<TODAY, n=p.type==='photos'?p.photos.length:0;
-    var status=d?'<span class="tag done">Posted ✓</span>':past?'<span class="tag miss">Not posted</span>':'<span class="tag">'+(p.type==='video'?'Reel':'Photo post')+'</span>';
+    var d=done()[p.id], past=!p.extra&&p.date<TODAY, n=p.type==='photos'?p.photos.length:0;
+    var status=d?'<span class="tag done">Posted ✓</span>':p.extra?'<span class="tag miss">Repost</span>':past?'<span class="tag miss">Not posted</span>':'<span class="tag">'+(p.type==='video'?'Reel':'Photo post')+'</span>';
     var media=p.type==='video'
       ?'<video src="'+esc(p.video)+'#t=0.1" poster="'+esc(p.cover)+'" controls playsinline preload="metadata"></video>'
       :'<img src="'+esc(p.cover)+'" alt=""><span class="n">'+n+' photos</span>';
     return '<section class="hero" id="card">'+
-      '<div class="when"><b>'+esc(rel(p.date))+' · '+esc(p.time)+'</b>'+status+'</div>'+
+      '<div class="when"><b>'+(p.extra?'Repost · any time':esc(rel(p.date))+' · '+esc(p.time))+'</b>'+status+'</div>'+
       '<div class="media">'+media+'</div>'+
       '<h1>'+esc(p.title)+'</h1>'+
       '<button class="btn b1" id="bCopy"><span class="k">1</span>Copy caption</button>'+
@@ -143,24 +143,27 @@ h2{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute)
 
   function row(p,cur){
     var d=done()[p.id];
-    return '<a class="it'+(cur?' cur':'')+'" href="#'+p.date+'"><img loading="lazy" src="'+esc(p.cover)+'" alt=""><div class="t"><b>'+esc(rel(p.date))+' · '+esc(p.time)+(d?' · posted ✓':'')+'</b><span>'+esc(p.title)+'</span></div></a>';
+    return '<a class="it'+(cur?' cur':'')+'" href="#'+(p.extra?p.id:p.date)+'"><img loading="lazy" src="'+esc(p.cover)+'" alt=""><div class="t"><b>'+(p.extra?'Repost · any time':esc(rel(p.date))+' · '+esc(p.time))+(d?' · posted ✓':'')+'</b><span>'+esc(p.title)+'</span></div></a>';
   }
 
   function pick(){
-    var h=(location.hash||'').slice(1), P=data.posts;
+    var h=decodeURIComponent((location.hash||'').slice(1)), P=data.posts;
     var byHash=P.find(function(p){return p.date===h||p.id===h});
     if(byHash)return byHash;
+    P=P.filter(function(p){return !p.extra});
     var t=P.find(function(p){return p.date===TODAY});
     if(t)return t;
     return P.find(function(p){return p.date>TODAY})||P[P.length-1];
   }
 
   function render(){
-    var P=data.posts, cur=pick(), dn=done();
+    var ALL=data.posts, P=ALL.filter(function(p){return !p.extra}), cur=pick(), dn=done();
+    var reps=ALL.filter(function(p){return p.extra&&!dn[p.id]&&p!==cur});
     if(!cur){$('#app').innerHTML='<p class="empty">Nothing planned yet.</p>';return}
     var missed=P.filter(function(p){return p.date<TODAY&&p.date>=iso(new Date(Date.now()-4*864e5))&&!dn[p.id]&&p!==cur});
     var next=P.filter(function(p){return p.date>=TODAY&&p!==cur}).slice(0,14);
     var h=card(cur);
+    if(reps.length)h+='<h2>Repost these (any time)</h2><div class="list">'+reps.map(function(p){return row(p)}).join('')+'</div>';
     if(missed.length)h+='<h2>Not posted yet</h2><div class="list">'+missed.map(function(p){return row(p)}).join('')+'</div>';
     if(next.length)h+='<h2>Coming up</h2><div class="list">'+next.map(function(p){return row(p)}).join('')+'</div>';
     $('#app').innerHTML=h;
@@ -186,7 +189,7 @@ h2{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute)
       }else{toast('This phone cannot share the files — use Download');}
     };
     $('#bDone').onclick=function(){var was=!!done()[p.id];setDone(p.id,!was);toast(was?'Marked as not posted':'Nice — marked as posted');render()};
-    $('#bNext').onclick=function(){var P=data.posts,i=P.indexOf(p);var n=P[i+1];if(n){location.hash=n.date}else toast('That is the last one planned')};
+    $('#bNext').onclick=function(){var P=data.posts.filter(function(x){return !x.extra});var n=p.extra?P.find(function(x){return x.date>=TODAY}):P[P.indexOf(p)+1];if(n){location.hash=n.date}else toast('That is the last one planned')};
     if(p.type==='photos'){$('#bSave').onclick=function(ev){if(canShare&&blobs[p.id]){ev.preventDefault();navigator.share({files:blobs[p.id]}).catch(function(){})}}}
   }
 

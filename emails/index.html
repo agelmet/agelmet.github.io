@@ -1,0 +1,678 @@
+<!doctype html>
+<html lang="el">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Advon Μηνύματα Πελατών</title>
+<link rel="icon" href="icon-32.png?v=1" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v=1">
+<link rel="manifest" href="site.webmanifest?v=1">
+<meta name="apple-mobile-web-app-title" content="Μηνύματα">
+<meta name="theme-color" content="#0B0E12">
+<link rel="preload" href="assets/fonts/manrope-greek-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<style id="advon-fonts">
+@font-face{font-family:'Manrope';font-style:normal;font-display:swap;font-weight:400;src:url(assets/fonts/manrope-greek-400-normal.woff2) format('woff2');unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF}
+@font-face{font-family:'Manrope';font-style:normal;font-display:swap;font-weight:400;src:url(assets/fonts/manrope-latin-400-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Manrope';font-style:normal;font-display:swap;font-weight:600;src:url(assets/fonts/manrope-greek-600-normal.woff2) format('woff2');unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF}
+@font-face{font-family:'Manrope';font-style:normal;font-display:swap;font-weight:600;src:url(assets/fonts/manrope-latin-600-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Manrope';font-style:normal;font-display:swap;font-weight:700;src:url(assets/fonts/manrope-greek-700-normal.woff2) format('woff2');unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF}
+@font-face{font-family:'Manrope';font-style:normal;font-display:swap;font-weight:700;src:url(assets/fonts/manrope-latin-700-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'GFS Didot';font-style:normal;font-display:swap;font-weight:400;src:url(assets/fonts/gfs-didot-greek-400-normal.woff2) format('woff2');unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF}
+@font-face{font-family:'GFS Didot';font-style:normal;font-display:swap;font-weight:400;src:url(assets/fonts/gfs-didot-latin-400-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-display:swap;font-weight:400;src:url(assets/fonts/jetbrains-mono-greek-400-normal.woff2) format('woff2');unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-display:swap;font-weight:400;src:url(assets/fonts/jetbrains-mono-latin-400-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-display:swap;font-weight:600;src:url(assets/fonts/jetbrains-mono-greek-600-normal.woff2) format('woff2');unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-display:swap;font-weight:600;src:url(assets/fonts/jetbrains-mono-latin-600-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+</style>
+<style>html,body{margin:0}body{margin:0}img{max-width:100%}[hidden]{display:none!important}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style>
+<style>
+/* Layout: command bar on top (type shorthand → fills + jumps), then a sticky letter index beside
+   the client journey, grouped in the four real stages A → L. Advon warm-black ground, logo blue accent. */
+:root{
+  --bg:#F6F4EF; --surface:#FFFFFF; --sunk:#EFECE5; --fg:#15191F; --muted:#5D6570; --line:#DEDAD1;
+  --accent:#1D63C9; --accent-soft:#E3ECFA; --on-accent:#FFFFFF;
+  --fill:#E7F0FD; --fill-fg:#0F4A9E; --miss:#FFF1D6; --miss-fg:#8A5300; --ok:#1F7A4A;
+  --f-display:"GFS Didot", "Literata", Georgia, serif;
+  --f-body:"Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono:"JetBrains Mono", ui-monospace, Menlo, monospace;
+  --r:14px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0B0E12; --surface:#141A21; --sunk:#0F1419; --fg:#F2EEE6; --muted:#9AA3AE; --line:#232C36;
+  --accent:#5AA2FF; --accent-soft:#16263D; --on-accent:#08111D;
+  --fill:#162A45; --fill-fg:#A9CCFF; --miss:#3A2A0E; --miss-fg:#F5C66B; --ok:#5BD08E; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0B0E12; --surface:#141A21; --sunk:#0F1419; --fg:#F2EEE6; --muted:#9AA3AE; --line:#232C36;
+  --accent:#5AA2FF; --accent-soft:#16263D; --on-accent:#08111D;
+  --fill:#162A45; --fill-fg:#A9CCFF; --miss:#3A2A0E; --miss-fg:#F5C66B; --ok:#5BD08E; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:15px/1.55 var(--f-body);-webkit-font-smoothing:antialiased}
+button,input,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1240px;margin:0 auto;padding-inline:16px}
+
+/* ---------- command bar ---------- */
+.bar{background:var(--surface);border-bottom:1px solid var(--line);padding-block:18px 16px}
+.brand{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.brand h1{font:400 30px/1.1 var(--f-display);margin:0;letter-spacing:.2px}
+.brand span{color:var(--muted);font-size:13px}
+.cmd{display:flex;gap:10px;flex-wrap:wrap;align-items:stretch}
+.cmd input{flex:1 1 320px;min-width:0;padding:13px 16px;border-radius:12px;border:1.5px solid var(--line);background:var(--sunk);font-size:17px}
+.cmd input:focus{border-color:var(--accent);outline:none}
+.match{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:10px;min-height:34px;font-size:14px;color:var(--muted)}
+.match .pill{display:inline-flex;align-items:center;gap:8px;background:var(--accent-soft);color:var(--fg);padding:5px 12px 5px 5px;border-radius:999px;font-weight:600;cursor:pointer;border:0}
+.match .pill b{display:grid;place-items:center;min-width:26px;height:26px;padding:0 6px;border-radius:999px;background:var(--accent);color:var(--on-accent);font:700 13px var(--f-mono)}
+.fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin-top:12px}
+.field{display:flex;flex-direction:column;gap:4px;min-width:0}
+.field label{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.field input,.field textarea{padding:9px 11px;border-radius:10px;border:1px solid var(--line);background:var(--sunk);min-width:0;width:100%}
+.field input:focus,.field textarea:focus{border-color:var(--accent);outline:none}
+.seg{display:flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--sunk)}
+.seg button{flex:1;padding:9px 6px;border:0;background:transparent;cursor:pointer;font-weight:600;color:var(--muted)}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--on-accent)}
+.hint{font-size:12px;color:var(--muted)}
+.hint.warn{color:var(--miss-fg)}
+.tools{display:flex;gap:8px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-top:10px}
+.ghost{background:transparent;border:1px solid var(--line);border-radius:10px;padding:7px 12px;cursor:pointer;color:var(--muted);font-size:13px;font-weight:600}
+.ghost:hover{color:var(--fg);border-color:var(--muted)}
+.changes-field{grid-column:1/-1}
+
+/* ---------- layout ---------- */
+.main{display:grid;grid-template-columns:1fr;gap:28px;padding-block:26px 60px}
+@media (min-width:960px){.main{grid-template-columns:250px minmax(0,1fr)}}
+.index{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px}
+@media (min-width:960px){.index{flex-direction:column;overflow:visible;position:sticky;top:calc(env(safe-area-inset-top,0px) + 16px);align-self:start;max-height:calc(100vh - 32px);overflow-y:auto}}
+.index a{display:flex;gap:10px;align-items:center;text-decoration:none;color:var(--fg);padding:6px 10px 6px 6px;border-radius:10px;white-space:nowrap;font-size:13.5px;flex-shrink:0}
+.index a:hover{background:var(--surface)}
+.index a b{display:grid;place-items:center;min-width:30px;height:26px;border-radius:8px;background:var(--surface);border:1px solid var(--line);font:700 12.5px var(--f-mono);color:var(--accent)}
+.index .stage-l{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:700;padding:12px 6px 4px;display:none}
+@media (min-width:960px){.index .stage-l{display:block}.index .stage-l:first-child{padding-top:0}}
+
+.stage{display:flex;flex-direction:column;gap:16px;margin-bottom:34px}
+.stage-h{display:flex;align-items:baseline;gap:12px;border-bottom:1px solid var(--line);padding-bottom:8px}
+.stage-h .n{font:600 13px var(--f-mono);color:var(--accent)}
+.stage-h h2{font:400 24px/1.2 var(--f-display);margin:0}
+.stage-grid{display:grid;grid-template-columns:1fr;gap:16px}
+@media (min-width:1180px){.stage-grid.two{grid-template-columns:1fr 1fr}}
+
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);display:flex;flex-direction:column;min-width:0;scroll-margin-top:18px;transition:box-shadow .25s,border-color .25s}
+.card.hit{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft),0 12px 30px -12px rgba(0,0,0,.25)}
+.card-h{display:flex;gap:14px;align-items:flex-start;padding:16px 18px 12px}
+.letter{flex-shrink:0;display:grid;place-items:center;min-width:46px;height:46px;padding:0 8px;border-radius:12px;background:var(--accent);color:var(--on-accent);font:700 20px var(--f-mono)}
+.card.ref .letter{background:var(--sunk);color:var(--muted);border:1px solid var(--line)}
+.card-h h3{margin:0;font-size:16.5px;line-height:1.3;font-weight:700;text-wrap:balance}
+.card-h p{margin:3px 0 0;color:var(--muted);font-size:13.5px}
+.say{display:inline-block;margin-top:7px;font:500 12px var(--f-mono);color:var(--muted);background:var(--sunk);border:1px solid var(--line);border-radius:6px;padding:2px 7px}
+.msg{margin:0 18px;padding:14px 16px;background:var(--sunk);border-radius:10px;white-space:pre-wrap;word-break:break-word;font:14.5px/1.6 var(--f-body)}
+.msg .v{background:var(--fill);color:var(--fill-fg);border-radius:4px;padding:0 3px;font-weight:600}
+.msg .m{background:var(--miss);color:var(--miss-fg);border-radius:4px;padding:0 4px;font:600 12.5px var(--f-mono)}
+.card-f{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:12px 18px 16px}
+.card-f .miss{font-size:12.5px;color:var(--miss-fg);min-width:0}
+.card-f .miss.ok{color:var(--ok)}
+.btns{display:flex;gap:8px;margin-left:auto}
+.copy{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:var(--on-accent);border:0;border-radius:10px;padding:10px 18px;font-weight:700;cursor:pointer;font-size:14px}
+.copy:hover{filter:brightness(1.08)}
+.copy.done{background:var(--ok)}
+.copy svg{width:16px;height:16px}
+.pdfbtn svg{width:18px;height:18px;flex-shrink:0}
+
+/* ---------- K extras ---------- */
+.kx{margin:14px 18px 0;display:flex;flex-direction:column;gap:12px}
+.kx h4{margin:0;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.vals{display:grid;gap:8px}
+.val{display:grid;grid-template-columns:62px minmax(0,1fr) auto;gap:10px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:8px 8px 8px 12px}
+.val .k{font:700 12.5px var(--f-mono);color:var(--accent)}
+.val code{font:13px var(--f-mono);word-break:break-all}
+.small{background:var(--sunk);border:1px solid var(--line);border-radius:8px;padding:6px 10px;cursor:pointer;font-weight:600;font-size:12.5px}
+.small.done{color:var(--ok);border-color:var(--ok)}
+.pdfrow{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.pdfbtn{text-decoration:none;display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--accent);color:var(--accent);background:transparent;border-radius:10px;padding:9px 14px;font-weight:700;cursor:pointer}
+details.steps{border:1px solid var(--line);border-radius:10px}
+details.steps summary{cursor:pointer;padding:10px 12px;font-weight:700;font-size:14px}
+.step-list{list-style:none;margin:0;padding:4px 12px 14px;display:grid;gap:14px;counter-reset:s}
+.step-list li{display:grid;grid-template-columns:30px minmax(0,1fr);gap:10px}
+.step-list .sn{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--accent);color:var(--on-accent);font:700 13px var(--f-mono)}
+.step-list p{margin:3px 0 8px}
+.step-list img{display:block;width:100%;max-width:640px;height:auto;border-radius:8px;border:1px solid var(--line)}
+.step-list code{font:12.5px var(--f-mono);background:var(--fill);color:var(--fill-fg);padding:1px 5px;border-radius:4px;word-break:break-all}
+
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);opacity:0;background:var(--fg);color:var(--bg);padding:10px 18px;border-radius:999px;font-weight:600;font-size:14px;transition:.2s;pointer-events:none;z-index:50}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+@media (min-width:960px){.index a{white-space:normal;align-items:flex-start;line-height:1.35}.index a b{flex-shrink:0}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+
+</head>
+<body>
+<header class="bar" id="bar" lang="el">
+  <div class="wrap">
+    <div class="brand"><h1>Μηνύματα πελατών</h1><span>Advon Media · γράψε όνομα + κατάσταση, αντέγραψε, στείλε</span></div>
+    <div class="cmd">
+      <input id="cmd" type="text" autocomplete="off" spellcheck="false" placeholder="π.χ. Πεφάνης επιβεβαίωση, έχει στοιχεία" aria-label="Γρήγορη εντολή">
+    </div>
+    <div class="match" id="match">Γράψε το επώνυμο και τι έγινε. Τα πεδία συμπληρώνονται μόνα τους.</div>
+
+    <div class="fields">
+      <div class="field"><label for="name">Επώνυμο</label><input id="name" type="text" placeholder="π.χ. Πεφάνης"></div>
+      <div class="field"><label>Φύλο</label>
+        <div class="seg" role="group" aria-label="Φύλο">
+          <button type="button" id="gF" aria-pressed="true">Κυρία</button>
+          <button type="button" id="gM" aria-pressed="false">Κύριος</button>
+        </div>
+      </div>
+      <div class="field"><label for="voc">Προσφώνηση</label><input id="voc" type="text" placeholder="αυτόματα"><span class="hint" id="vocHint">&nbsp;</span></div>
+      <div class="field"><label for="code">Κωδικός site (repo)</label><input id="code" type="text" placeholder="π.χ. PEFANIS"></div>
+      <div class="field"><label for="domain">Domain</label><input id="domain" type="text" placeholder="π.χ. pefanis.gr"></div>
+      <div class="field"><label for="netlify">Netlify (για K)</label><input id="netlify" type="text" placeholder="π.χ. pefanis"></div>
+      <div class="field"><label for="time">Ώρα (SMS)</label><input id="time" type="text" placeholder="π.χ. 15:00"></div>
+      <div class="field changes-field"><label for="changes">Τι αλλάξαμε (μπαίνει στο F και G)</label><textarea id="changes" rows="1" placeholder="π.χ. αλλάξαμε τα χρώματα στο μενού, προσθέσαμε τις φωτογραφίες που στείλατε και διορθώσαμε το τηλέφωνο στο footer"></textarea></div>
+    </div>
+    <div class="tools"><span class="hint">Κίτρινο = λείπει ακόμα. Μπλε = συμπληρώθηκε.</span><button class="ghost" id="clear" type="button">Καθαρισμός για νέο πελάτη</button></div>
+  </div>
+</header>
+
+<div class="wrap main" lang="el">
+  <nav class="index" id="index" aria-label="Καταστάσεις"></nav>
+  <main id="list"></main>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+const SIG = "Άγγελος Μετρίδης\nadvonmedia.com\nAdvon Media";
+const STRIPE = "https://buy.stripe.com/9B68wP37b6doajUc1Q3cc06";
+const REVIEW = "https://g.co/kgs/wXBAZWP";
+const TXT = "google-site-verification=OpJHF2sSvIQtLYeG46OYUpiVtTH_zXGog6H4TjjhT-g";
+
+/* Tokens: {FULL} κυρία/κύριε + name, {SHORT} κα/κ. + name, {CODE} {DOMAIN} {DOMAINW} {NETLIFY} {TIME} {CHANGES} */
+const STAGES = [
+ {n:"1", t:"Πρώτη επαφή", ids:["A","SMS"]},
+ {n:"2", t:"Μετά τη συνάντηση", ids:["B","C","B1","C1","D"]},
+ {n:"3", t:"Πρώτη εικόνα & αλλαγές", ids:["E","F","G","L"]},
+ {n:"4", t:"Ανέβηκε · αξιολόγηση & σύνδεση", ids:["H","I","J","K"]},
+];
+
+const T = {
+A:{title:"Άγνωστος — μιλήσαμε στο τηλέφωνο", when:"Πρώτο γραπτό μήνυμα μετά το τηλεφώνημα.", say:"Παπαβασιλείου τηλέφωνο",
+text:`Καλησπέρα {FULL},
+
+είμαι ο Άγγελος Μετρίδης που μιλήσαμε και τηλεφωνικώς για να σας κατασκευάσουμε μια ιστοσελίδα εντελώς δωρεάν, μπορείτε να με βρείτε και στο Linkedin με το βιογραφικό μου.
+
+Αρχικά μπορείτε να διαβάσετε πάνω από 120 5-αστέρων μόνο, κριτικές για εμάς στη Google ψάχνοντας “Advon Media” ή εδώ: ${REVIEW}
+
+Μπορείτε επίσης να διαβάσετε όλες τις πληροφορίες αναλυτικά για το πως δουλεύουμε και να δείτε πάνω από 100 δουλείες μας στο πορτφόλιο στο website μας εδώ advonmedia.com
+
+Κάποιες ιστοσελίδες που παραδώσαμε και μπορείτε άμεσα να δείτε:
+
+https://marthaplessa-psychotherapy.gr/
+
+allsmiles.gr
+
+https://rhodesdentist.gr/gr
+
+Σαν κόστος κατασκευής ενώ όπως θα γνωρίζετε στην αγορά κυμαίνεται από 500-2000€+, εμείς την κάνουμε εντελώς δωρεάν (0€)!
+
+Για να υπάρχει μια ιστοσελίδα στο ίντερνετ πρέπει παρολ’αυτά να φιλοξενείται σε έναν σέρβερ (το λεγόμενο hosting) και πρέπει να συνδεθεί και ένα domain name (το πχ. www.επωνυμο-επάγγελμα.gr), που και τα 2 μαζί μπορούμε να τα παρέχουμε με 130€ το χρόνο με πληρωμή όταν σας παραδώσουμε το πρώτο draft (άρα θεωρητικά 10.83€/μήνα)
+
+Μπορείτε να απαντήσετε εδώ ή να καλέσετε στο 6934088046 ώστε να κλείσουμε ένα δωρεάν ραντεβού μέσα στην εβδομάδα να γνωριστούμε και να σας δείξουμε και άλλες δουλειές που έχουμε ολοκληρώσει, ώστε να αρχίσουμε την κατασκευή της δίκης σας ιστοσελίδας!
+
+Επειδή καταλαβαίνουμε ότι μπορεί να έχετε περιορισμένο  χρόνο τα αναλαμβάνουμε σχεδόν όλα εμείς για να χρειαστεί απο εσάς όσο λιγότερος χρόνος γίνεται,
+
+χρειαζόμαστε ελάχιστα στοιχεία από εσάς που μπορείτε να τις βρείτε στο website μας αναλυτικά.
+
+Ευχαριστούμε πολύ`},
+
+SMS:{ref:true, title:"SMS υπενθύμιση meeting", when:"Φεύγει αυτόματα από το Zoho 1 ώρα πριν. Εδώ μόνο για αναφορά.", say:"Αυτόματο στο Zoho",
+text:`Καλησπέρα {SHORT},
+
+μπορείτε να συνδεθείτε στο ραντεβού μας στις {TIME} με τη πρόσκληση που σας στείλαμε στο email σας, αλλά θα σας ξαναστείλουμε πρόσκληση την ώρα του ραντεβού
+
+Ευχαριστώ`},
+
+B:{title:"Μετά το meeting — ΕΧΕΙ στοιχεία online", when:"Θέλει να το σκεφτεί, αλλά τα έχουμε ήδη όλα (doctoranytime, Facebook, παλιό site).", say:"Πεφάνης επιβεβαίωση, έχει στοιχεία",
+text:`Καλησπέρα {FULL},
+
+μπορούμε να ξεκινήσουμε να κατασκευάζουμε την ιστοσελίδα σας σαν δομή-σκελετό, χρώματα και κάποια βασικά κείμενα αλλά περιμένουμε επιβεβαίωση από εσας!
+
+Όπως συζητήσαμε και στη συνάντηση μας από εσάς τα έχουμε όλα όσα χρειαζόμαστε
+
+Αν θέλετε μπορείτε να μας στείλετε κάποια κατεύθυνση που θα θέλατε να ακολουθήσουμε, αλλίως μπορείτε να το αφήσετε πάνω μας!
+
+Γράφουμε τα κείμενα και στήνουμε όλη τη σελίδα σας, σας στέλνουμε μια ολοκληρωμένη καλή πρώτη εικόνα σε 5-10 ημέρες και μας λέτε ό,τι αλλαγές θα θέλατε να κάνουμε ώστε να γίνει ακριβώς όπως την έχετε στο μυαλό σας!
+
+Είμαστε στη διάθεση σας για ότι χρειαστείτε
+
+Ευχαριστούμε
+
+Άγγελος
+advonmedia.com
+Advon Media`},
+
+C:{title:"Μετά το meeting — ΔΕΝ έχει στοιχεία online", when:"Θέλει να το σκεφτεί και δεν έχουμε υλικό. Στέλνουμε τη λίστα με τα 7.", say:"Πεφάνης επιβεβαίωση, δεν έχει στοιχεία",
+text:`Καλησπέρα {FULL},
+
+μπορούμε να ξεκινήσουμε να κατασκευάζουμε την ιστοσελίδα σας σαν δομή-σκελετό, χρώματα και κάποια βασικά κείμενα αλλά περιμένουμε επιβεβαίωση από εσας!
+
+Όπως συζητήσαμε και στη συνάντηση μας από εσάς χρειαζόμαστε
+
+1. Μια φωτογραφία δίκη σας επαγγελματική (έως όσες θέλετε)
+2. Φωτογραφίες του χώρου σας (αν δεν έχετε μπορούμε να βάλουμε εμείς μια γενική σχετική με το επάγγελμα σας)
+3. Το βιογραφικό σας ή 2-3 προτάσεις για εσάς (πχ που σπουδάσατε κλπ)
+4. Τις υπηρεσίες σας μονολεκτικά (αλλιώς θα γράψουμε εμείς ένα γενικό κείμενο)
+5. Το λογότυπο σας (αλλιώς σας φτιάχνουμε ένα εμείς)
+6. Στοιχεία επικοινωνίας (τηλέφωνο, email, διεύθυνση, και ό,τι άλλο θέλετε και αν έχετε συγκεκριμένο ωράριο λειτουργίας αλλιώς κατόπιν ραντεβού)
+7. Αν θέλετε να μας δώσετε κάποια συγκεκριμένη κατεύθυνση ή να το αφήσετε πάνω μας (πχ. παλέτα χρωμάτων, γραμματοσειρά, κάποια συγκεκριμένη σελίδα που σας άρεσε με αντίστοιχες οδηγίες για το τι σας άρεσε κλπ)
+
+Όλα τα υπόλοιπα τα αναλαμβάνουμε εμείς και γράφουμε τα κείμενα, σας στέλνουμε μια ολοκληρωμένη καλή πρώτη εικόνα και μας λέτε ό,τι αλλαγές θα θέλατε να κάνουμε
+
+Είμαστε στη διάθεση σας για ότι χρειαστείτε
+
+Ευχαριστούμε
+
+${SIG}`},
+
+B1:{title:"Follow-up στο B", when:"Στείλαμε το B και δεν απάντησε.", say:"Πεφάνης follow up",
+text:`Καλησπέρα και πάλι {SHORT},
+
+Αναμένουμε από εσάς απάντηση ώστε να ξεκινήσουμε να κατασκευάζουμε την ιστοσελίδα σας και να μας στείλετε ότι θέλετε από υλικό ή οδηγίες στη συνέχεια!
+
+Ευχαριστούμε
+
+${SIG}`},
+
+C1:{title:"Follow-up στο C", when:"Στείλαμε το C και δεν απάντησε. Ίδιο κείμενο με το B1.", say:"Πεφάνης follow up (μετά το C)",
+text:`Καλησπέρα και πάλι {SHORT},
+
+Αναμένουμε από εσάς απάντηση ώστε να ξεκινήσουμε να κατασκευάζουμε την ιστοσελίδα σας και να μας στείλετε ότι θέλετε από υλικό ή οδηγίες στη συνέχεια!
+
+Ευχαριστούμε
+
+${SIG}`},
+
+D:{title:"Υπενθύμιση να στείλει τα στοιχεία", when:"Είπε ναι, ξεκινήσαμε, αλλά το υλικό δεν ήρθε ποτέ.", say:"Φασούλα υπενθύμιση",
+text:`Καλησπέρα {SHORT}
+
+έχουμε ήδη ξεκινήσει την κατασκευή της ιστοσελίδας σας.
+
+Σας στέλνω μια υπενθύμιση όταν μπορείτε να στείλετε τα προαναφερόμενα για να τα επεξεργαστούμε και να τα προσθέσουμε,
+
+ώστε να σας στείλουμε ένα πρώτο draft της ιστοσελίδας σας μέσα στις επόμενες ημέρες!
+
+Ευχαριστώ
+
+${SIG}`},
+
+E:{title:"Πρώτη εικόνα ιστοσελίδας", when:"Το πρώτο draft είναι έτοιμο. Ζητάμε αλλαγές, domain και πληρωμή.", say:"Γουβιώτου πρώτη εικόνα",
+text:`Καλημέρα σας {SHORT},
+
+εργαστήκαμε αρκετά με τη δική σας ιστοσελίδα και οι 4 μας, και καταφέραμε μόλις να ολοκληρώσουμε την κατασκευή μιας καλής πρώτης εικόνας της ιστοσελίδας σας και μπορείτε να τη δείτε εδώ:
+https://drafts.advonmedia.com/{CODE}/
+
+Μπορείτε επίσης να την ανοίξετε και από υπολογιστή να δείτε πως φαίνεται και εκεί.
+
+Πείτε μας εννοείται για τυχόν αλλαγές που θα θέλατε να κάνουμε, ώστε να προχωρήσουμε σιγά σιγά να την ανεβάσουμε
+
+και πείτε μας ποιο domain name θέλετε να σας αγοράσουμε για να το συνδέσουμε στην ιστοσελίδα σας όταν ολοκληρώσουμε με τις αλλαγές.
+
+(domain name - πχ.  www.επώνυμο-επάγγελμα.gr)
+
+Για τη μεταφορά (για τη φιλοξενία και το domain name μαζί για 365 ημέρες, που μετράνε από τη μέρα που θα ολοκληρώσουμε)που γίνεται κανονικά κατα τη παραδοση του πρωτου draft,
+
+αν ΔΕΝ θελετε αποδειξη τιμολογιο μπορειτε να μπειτε εδω:
+
+${STRIPE}
+
+Αλλιώς θα χρειαστούμε το ΑΦΜ σας και θα προστεθεί ΦΠΑ (+24%)
+
+Ευχαριστούμε πολύ!
+
+${SIG}`},
+
+F:{title:"Ολοκλήρωση αλλαγών — ΕΧΕΙ πληρώσει", when:"Τελείωσε ένας γύρος αλλαγών και έχει ήδη πληρώσει.", say:"Δηλανάς αλλαγές, πλήρωσε",
+text:`Καλησπέρα {FULL},
+
+ολοκληρώσαμε με όλες τις αλλαγές που μας ζητήσατε
+
+{CHANGES}
+
+Αν μπορείτε να τις ελέγξετε για να προχωρήσουμε, να ανεβάσουμε την ιστοσελίδα σας και να σας αγοράσουμε και το domain name ({DOMAINW})
+
+Ευχαριστούμε πολύ`},
+
+G:{title:"Ολοκλήρωση αλλαγών — ΔΕΝ έχει πληρώσει", when:"Τελείωσε ένας γύρος αλλαγών, η πληρωμή εκκρεμεί.", say:"Αρανίτου αλλαγές, δεν πλήρωσε",
+text:`Καλημέρα {SHORT} σας, ελπίζω να είστε καλά!
+
+Νομίζω πως ολοκληρώσαμε με τις αλλαγές αλλά δείτε και εσείς αν είναι όλα οκ και όπως τα θέλετε.
+
+{CHANGES}
+
+https://drafts.advonmedia.com/{CODE}/
+
+Αν μας δώσετε το "οκ" προχωράμε και στην αγορά του domain name που θα θέλατε για να το συνδέσουμε με την ιστοσελίδα σας και να ανέβει.
+
+Ευχαριστούμε!`},
+
+L:{title:"Χρωστάει αλλαγές ΚΑΙ πληρωμή", when:"Περιμένουμε και τις τελικές αλλαγές και τη μεταφορά.", say:"Αρανίτου χρωστάει αλλαγές και λεφτά",
+text:`Καλησπέρα σας {SHORT},  ελπίζω να είστε καλά!
+Αναμένουμε από εσας τις τελικες αλλαγές που θα θέλατε ώστε να ολοκληρώσουμε, καθώς και να κάνετε τη μεταφορά το νωρίτερο δυνατόν. Για τη μεταφορα που γίνεται κανονικά κατά τη παράδοση του πρώτου draft, αν δεν θελετε αποδειξη τιμολογιο μπορειτε να μπειτε εδω: ${STRIPE}
+Αλλιως θα χρειαστουμε το ΑΦΜ σας και θα προστεθει ΦΠΑ.
+Σας ευχαριστώ πολύ`},
+
+H:{title:"Συνδέθηκε το domain + αξιολόγηση", when:"Αγοράσαμε και συνδέσαμε το domain, το site είναι live.", say:"Δίτσα ανέβηκε το domain",
+text:`Καλησπέρα {SHORT},
+
+συνδέθηκε και το domain name με την ιστοσελίδα σας οπότε μπορείτε πλέον να τη βλέπετε εδώ: {DOMAIN} .
+
+Θα μας βοηθούσε πάρα πολύ αν μπορούσατε να μας αφήσετε μια πολύ σύντομη αξιολόγηση (αν θέλετε και με το επώνυμο-επάγγελμα σας στο τέλος).
+
+Για την αξιολόγηση μπορείτε να μπείτε εδώ:
+
+${REVIEW}
+
+Και αν έχετε άλλους γνωστούς ελεύθερους επαγγελματιες ή ανθρώπους με μικρές επιχειρησεις που μπορεί να ενδιαφέρονταν με τις ίδιες συνθήκες μπορείτε να τους στείλετε τα στοιχεία μου
+
+Ευχαριστούμε πολύ για την άψογη συνεργασία 🙏
+Στη διάθεσή σας για ό,τι χρειαστείτε`},
+
+I:{title:"Μόνο αίτημα αξιολόγησης", when:"Όλα είναι ήδη live, ζητάμε μόνο την κριτική.", say:"Δίτσα αξιολόγηση",
+text:`Καλησπέρα {SHORT}, μια θερμή παράκληση μόνο.
+
+Θα μας βοηθούσε πάρα πολύ αν μπορούσατε να μας αφήσετε μια πολύ σύντομη αξιολόγηση (αν θέλετε και με το επώνυμο-επάγγελμα σας στο τέλος).
+
+Για την αξιολόγηση μπορείτε να μπείτε εδώ:
+
+${REVIEW}
+
+Και αν έχετε άλλους γνωστούς ελεύθερους επαγγελματιες ή ανθρώπους με μικρές επιχειρησεις που μπορεί να ενδιαφέρονταν με τις ίδιες συνθήκες μπορείτε να τους στείλετε τα στοιχεία μου
+
+Ευχαριστούμε πολύ για την άψογη συνεργασία 🙏
+Στη διάθεσή σας για ό,τι χρειαστείτε`},
+
+J:{title:"Σύνδεση με Google Business Profile", when:"Θέλει το site στο προφίλ της επιχείρησης στη Google.", say:"Παπαδοπούλου google business",
+text:`Καλησπέρα,
+
+για να τη συνδέσετε στο Google Business profile σας, θα πρέπει να γκουγκλάρετε «η επιχείρηση μου», έχοντας πρώτα συνδεθεί στο λογαριασμό σας της Google (που μπορεί να είναι αυτόματα συνδεδεμένος ήδη)
+
+να πατήσετε προσθήκη ιστότοπου και να κάνετε επικόλληση το σύνδεσμο της ιστοσελίδας σας
+
+Δυστυχώς δεν μπορούμε να το κάνουμε εμείς αυτό γιατί δεν έχουμε τον κωδικό του Google profile σας και του gmail σας
+
+Είμαστε στη διάθεση σας για ό,τι χρειαστείτε
+
+Ευχαριστούμε`},
+
+K:{title:"Έχει δικό του/της domain (papaki)", when:"Ο πελάτης έχει ήδη το domain και το συνδέει μόνος του. Στείλε το μήνυμα + το PDF + την τιμή για το βήμα 9.", say:"Δίτσα έχει δικό της domain",
+text:`Καλησπέρα {SHORT},
+
+σας στέλνω συνημμένο έναν αναλυτικό οδηγό βήμα προς βήμα με φωτογραφίες, για να συνδέσετε το domain name σας με την ιστοσελίδα.
+
+Είναι πολύ απλό, δεν χρειάζεται καμία προηγούμενη εμπειρία — απλά ακολουθήστε τα βήματα με τη σειρά.
+
+Αν κολλήσετε κάπου, πείτε μου και το βλέπουμε μαζί.
+
+Ευχαριστούμε`},
+};
+
+const STEPS = [
+ [1,"Συνδεθείτε στον λογαριασμό σας στο papaki και πατήστε πάνω αριστερά στο όνομά σας.","step1.jpg"],
+ [2,"Πατήστε στο domain name σας και μετά στο εικονίδιο <b>DOMAIN &amp; DNS</b> (το «σπιτάκι»).","step2.jpg"],
+ [3,"Πατήστε <b>ΔΙΑΜΟΡΦΩΣΗ DNS</b>.",null],
+ [4,"Πατήστε <b>EMAIL</b>. Θα σας έρθει ένας 6ψήφιος κωδικός στο email σας, γράψτε τον εκεί που σας ζητείται.","step4.jpg"],
+ [5,"Πατήστε <b>ΕΠΕΞΕΡΓΑΣΙΑ ΖΩΝΗΣ DNS</b>.","step5.jpg"],
+ [6,"Στη γραμμή <b>A</b>, δεξιά, σβήστε ό,τι υπάρχει και γράψτε ακριβώς <code>75.2.60.5</code>","step6.jpg"],
+ [7,`Στη γραμμή <b>TXT</b>, δεξιά, σβήστε ό,τι υπάρχει και γράψτε ακριβώς <code>${TXT}</code>`,"step7.jpg"],
+ [8,"Σκρολάρετε προς τα κάτω και πηγαίνετε στη 2η σελίδα.","step8.jpg"],
+ [9,"Στη γραμμή <b>CNAME</b>, δεξιά, σβήστε ό,τι υπάρχει και γράψτε ακριβώς <code class=\"cn\">…netlify.app</code>","step9.jpg"],
+ [10,"Τέλος πατήστε <b>ΑΠΟΘΗΚΕΥΣΗ</b> κάτω δεξιά.",null],
+];
+
+/* ---------------- helpers ---------------- */
+const $ = s => document.querySelector(s);
+const esc = s => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const norm = s => s.normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase().replace(/ς/g,"σ");
+const state = {gender:"F", vocManual:false};
+
+function syllables(w){ return (norm(w).match(/(αι|ει|οι|υι|ου|αυ|ευ|[αεηιουω])/g)||[]).length }
+function accentPos(w){ // 1 = last syllable, 2 = penultimate ...
+  const groups = w.match(/(αι|ει|οι|υι|ου|αυ|ευ|[αεηιουωάέήίόύώϊϋΐΰ]|α[ίύ]|ε[ίύ]|ο[ίύ])/gi)||[];
+  for(let i=groups.length-1;i>=0;i--){ if(/[άέήίόύώΐΰ]/.test(groups[i])) return groups.length-i }
+  return 0;
+}
+function vocative(name, g){
+  const n = name.trim(); if(!n) return "";
+  if(g!=="M") return n;
+  if(/ής$/.test(n)) return n.slice(0,-1);          // Αργυρής → Αργυρή
+  if(/[ηή]ς$/.test(n)) return n.slice(0,-1);       // Πεφάνης → Πεφάνη
+  if(/[αά]ς$/.test(n)) return n.slice(0,-1);       // Δηλανάς → Δηλανά
+  if(/ούς$/.test(n)) return n.slice(0,-1);
+  if(/ός$/.test(n)) return n.slice(0,-2)+"έ";      // Αργυρός → Αργυρέ
+  if(/ος$/.test(n)){                               // Παπαδόπουλος → Παπαδόπουλε, Θάνος → Θάνο
+    return (syllables(n)===2 && accentPos(n)===2) ? n.slice(0,-2)+"ο" : n.slice(0,-2)+"ε";
+  }
+  return n;
+}
+function guessGender(name){
+  const w = norm(name.trim());
+  if(!w) return null;
+  if(/(ησ|ασ|οσ|ουσ|εσ)$/.test(w)) return "M";
+  if(/(α|η|ου|ω|ι)$/.test(w)) return "F";
+  return null;
+}
+
+function vals(){
+  const name = $("#name").value.trim();
+  const voc = $("#voc").value.trim() || vocative(name, state.gender);
+  const dom = $("#domain").value.trim().replace(/^https?:\/\//,"").replace(/\/$/,"");
+  const domBare = dom.replace(/^www\./,"");
+  const code = $("#code").value.trim();
+  const net = $("#netlify").value.trim().replace(/\.netlify\.app$/,"");
+  return {
+    FULL: voc ? (state.gender==="M"?"κύριε ":"κυρία ")+voc : null,
+    SHORT: voc ? (state.gender==="M"?"κ. ":"κα ")+voc : null,
+    CODE: code || null,
+    DOMAIN: domBare || null,
+    DOMAINW: domBare ? "www."+domBare : null,
+    NETLIFY: net ? net+".netlify.app" : null,
+    TIME: $("#time").value.trim() || null,
+    CHANGES: $("#changes").value.trim() || null,
+  };
+}
+const LABEL = {FULL:"Επώνυμο",SHORT:"Επώνυμο",CODE:"Κωδικός site",DOMAIN:"Domain",DOMAINW:"Domain",NETLIFY:"Netlify όνομα",TIME:"Ώρα",CHANGES:"Τι αλλάξαμε"};
+const PH = {FULL:"κ/κα {Επώνυμο}",SHORT:"κ/κα {Επώνυμο}",CODE:"{ΚΩΔΙΚΟΣ}",DOMAIN:"{domain}",DOMAINW:"www.—.gr",NETLIFY:"{όνομα}.netlify.app",TIME:"{ώρα}"};
+const OPTIONAL = new Set(["CHANGES"]);
+
+/* returns {plain, html, missing[]} */
+function fill(id){
+  const v = vals(); let src = T[id].text; const missing = new Set();
+  // optional paragraph: drop cleanly when empty
+  if(!v.CHANGES) src = src.replace(/\n\n\{CHANGES\}/,"");
+  let plain="", html="", last=0;
+  src.replace(/\{(FULL|SHORT|CODE|DOMAIN|DOMAINW|NETLIFY|TIME|CHANGES)\}/g,(m,k,off)=>{
+    const before = src.slice(last,off); plain += before; html += esc(before); last = off+m.length;
+    if(v[k]){ plain += v[k]; html += `<span class="v">${esc(v[k])}</span>`; }
+    else { missing.add(LABEL[k]); plain += PH[k]; html += `<span class="m">${esc(PH[k])}</span>`; }
+    return m;
+  });
+  plain += src.slice(last); html += esc(src.slice(last));
+  return {plain, html, missing:[...missing]};
+}
+
+/* ---------------- render ---------------- */
+const ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>';
+function build(){
+  const idx = $("#index"), list = $("#list");
+  STAGES.forEach(st=>{
+    idx.insertAdjacentHTML("beforeend",`<div class="stage-l">${st.n} · ${st.t}</div>`);
+    const sec = document.createElement("section"); sec.className="stage";
+    sec.innerHTML = `<div class="stage-h"><span class="n">${st.n}</span><h2>${st.t}</h2></div><div class="stage-grid"></div>`;
+    const grid = sec.querySelector(".stage-grid");
+    st.ids.forEach(id=>{
+      const t = T[id];
+      idx.insertAdjacentHTML("beforeend",`<a href="#s-${id}" data-go="${id}"><b>${id}</b>${esc(t.title.split(" — ")[0])}${t.title.includes(" — ")?" · "+esc(t.title.split(" — ")[1]):""}</a>`);
+      const card = document.createElement("article");
+      card.className = "card"+(t.ref?" ref":""); card.id = "s-"+id;
+      card.innerHTML = `
+        <div class="card-h"><div class="letter">${id}</div><div><h3>${esc(t.title)}</h3><p>${esc(t.when)}</p><span class="say">${t.ref?"":"γράψε: "}«${esc(t.say)}»</span></div></div>
+        <pre class="msg" data-msg="${id}"></pre>
+        ${id==="K"?kExtras():""}
+        <div class="card-f"><span class="miss" data-miss="${id}"></span>
+          <div class="btns">${id==="K"?`<button class="ghost" data-copyk type="button">Αντιγραφή K + τιμή CNAME</button>`:""}<button class="copy" data-copy="${id}" type="button">${ICON}<span>Αντιγραφή ${id}</span></button></div></div>`;
+      grid.appendChild(card);
+    });
+    list.appendChild(sec);
+  });
+}
+function kExtras(){
+  return `<div class="kx">
+    <h4>Τιμές που γράφει ο πελάτης στο papaki</h4>
+    <div class="vals">
+      <div class="val"><span class="k">A</span><code>75.2.60.5</code><button class="small" data-val="75.2.60.5" type="button">Αντιγραφή</button></div>
+      <div class="val"><span class="k">TXT</span><code>${TXT}</code><button class="small" data-val="${TXT}" type="button">Αντιγραφή</button></div>
+      <div class="val"><span class="k">CNAME</span><code id="cnameV"></code><button class="small" data-val="@cname" type="button">Αντιγραφή</button></div>
+    </div>
+    <span class="hint">Το PDF γράφει «todomainsas.netlify.app» ως παράδειγμα. Στείλε και τη γραμμή CNAME του πελάτη μαζί.</span>
+    <div class="pdfrow"><a class="pdfbtn" href="papaki-domain-odigos.pdf" download="Οδηγός σύνδεσης domain - papaki.pdf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12m0 0l-5-5m5 5l5-5M4 19h16"/></svg>Κατέβασε τον οδηγό PDF</a>
+      <button class="small" type="button" data-val="https://drafts.advonmedia.com/emails/papaki-domain-odigos.pdf">Αντιγραφή συνδέσμου PDF</button>
+      <span class="hint">Ο σύνδεσμος ανοίγει τον οδηγό και στο κινητό του πελάτη, χωρίς συνημμένο.</span></div>
+    <details class="steps"><summary>Δες τα 10 βήματα με τις εικόνες</summary>
+      <ol class="step-list">${STEPS.map(([n,t,img])=>`<li><span class="sn">${n}</span><div><p>${t}</p>${img?`<img src="img/${img}" alt="Βήμα ${n} στο papaki" loading="lazy" width="1000">`:""}</div></li>`).join("")}</ol>
+    </details>
+  </div>`;
+}
+
+function refresh(){
+  Object.keys(T).forEach(id=>{
+    const r = fill(id);
+    document.querySelector(`[data-msg="${id}"]`).innerHTML = r.html;
+    const m = document.querySelector(`[data-miss="${id}"]`);
+    const miss = r.missing.filter(x=>x!=="Τι αλλάξαμε");
+    m.className = "miss"+(miss.length?"":" ok");
+    m.textContent = miss.length ? "Λείπει: "+[...new Set(miss)].join(", ") : "Έτοιμο για αποστολή";
+  });
+  const v = vals();
+  const cn = $("#cnameV"); if(cn){ cn.textContent = v.NETLIFY || "{όνομα}.netlify.app"; }
+  document.querySelectorAll(".step-list .cn").forEach(c=>c.textContent = v.NETLIFY || "{όνομα}.netlify.app");
+  const name = $("#name").value.trim();
+  $("#vocHint").textContent = name ? (state.gender==="M"?"κύριε ":"κυρία ")+($("#voc").value.trim()||vocative(name,state.gender)) : " ";
+  $("#voc").placeholder = name ? vocative(name,state.gender) : "αυτόματα";
+}
+
+function setGender(g, fromUser){
+  state.gender = g;
+  $("#gF").setAttribute("aria-pressed", g==="F"); $("#gM").setAttribute("aria-pressed", g==="M");
+  if(!state.vocManual) $("#voc").value = "";
+  refresh();
+}
+
+/* ---------------- copy ---------------- */
+function toast(t){ const el=$("#toast"); el.textContent=t; el.classList.add("on"); clearTimeout(toast.h); toast.h=setTimeout(()=>el.classList.remove("on"),1600); }
+async function copyText(text, btn, label){
+  let ok=false;
+  try{ await navigator.clipboard.writeText(text); ok=true; }catch(e){
+    const ta=document.createElement("textarea"); ta.value=text; ta.style.position="fixed"; ta.style.opacity="0";
+    document.body.appendChild(ta); ta.select(); try{ ok=document.execCommand("copy"); }catch(_){} ta.remove();
+  }
+  if(ok){ toast(label+" αντιγράφηκε"); if(btn){ btn.classList.add("done"); setTimeout(()=>btn.classList.remove("done"),1400); } }
+  else toast("Δεν έγινε αντιγραφή. Επίλεξε το κείμενο με το χέρι.");
+}
+
+/* ---------------- shorthand ---------------- */
+const RULES = [
+  ["L",  w=>/χρωστ/.test(w) || (/αλλαγ/.test(w) && /(λεφτα|πληρωμ|χρηματ)/.test(w))],
+  ["G",  w=>/αλλαγ/.test(w) && /(δεν\s*(εχει\s*)?πληρω|απληρωτ|χωρισ\s*πληρω)/.test(w)],
+  ["F",  w=>/αλλαγ/.test(w) && /πληρω/.test(w)],
+  ["C1", w=>/(follow|φολοου|ξανα)/.test(w) && /\bc\b|δεν\s*εχει/.test(w)],
+  ["B1", w=>/(follow|φολοου|ξανα)/.test(w)],
+  ["C",  w=>/δεν\s*εχει\s*(στοιχει|υλικ|πληροφορ|τιποτα)/.test(w)],
+  ["B",  w=>/(εχει\s*(στοιχει|υλικ|πληροφορ)|επιβεβαιωσ|doctoranytime)/.test(w)],
+  ["K",  w=>/(δικο\s*(του|τησ)?\s*domain|εχει\s*domain|papaki|παπακι)/.test(w)],
+  ["H",  w=>/domain/.test(w) && /(ανεβηκε|συνδεθηκε|live|ανεβασαμε|συνδεσαμε)/.test(w)],
+  ["I",  w=>/(αξιολογ|κριτικ|review)/.test(w)],
+  ["J",  w=>/(business|επιχειρηση\s*μου|google\s*profile|προφιλ)/.test(w)],
+  ["D",  w=>/υπενθυμ/.test(w)],
+  ["E",  w=>/(πρωτη\s*εικονα|πρωτο\s*draft|draft|ετοιμο\s*το\s*site)/.test(w)],
+  ["G",  w=>/αλλαγ/.test(w)],
+  ["SMS",w=>/(sms|ραντεβου|meeting)/.test(w)],
+  ["A",  w=>/(τηλεφων|αγνωστ|cold|πρωτη\s*επαφη|μιλησαμε)/.test(w)],
+];
+const STOP = new Set(["επιβεβαιωση","εχει","δεν","στοιχεια","follow","up","υπενθυμιση","πρωτη","εικονα","αλλαγεσ","πληρωσε","ανεβηκε","domain","αξιολογηση","google","business","δικο","τησ","του","χρωσταει","και","λεφτα","sms","draft","κα","κοσ","κυρια","κυριοσ","κ","papaki","υλικο","τηλεφωνο","meeting","ραντεβου","δικο","live","οκ"]);
+
+function parse(raw){
+  const w = norm(raw);
+  let id = null; for(const [k,f] of RULES){ if(f(w)){ id=k; break; } }
+  // gender prefix
+  let g = null;
+  if(/(^|[\s,])(κα|κυρια|κ\/α)[\s.]/.test(w+" ")) g="F";
+  if(/(^|[\s,])(κ|κοσ|κυριοσ|κυριε)[\s.]/.test(w+" ")) g = g || "M";
+  // name = capitalised words that are not keywords
+  const words = raw.split(/[\s,.;:!]+/).filter(Boolean);
+  const cand = words.filter(x=>/^[Α-ΩΆΈΉΊΌΎΏA-Z]/.test(x) && x.length>2 && !STOP.has(norm(x)));
+  let name = cand.length ? cand[cand.length-1] : null;
+  if(!name){ // lowercase fallback: first word that isn't a keyword
+    const stem=/^(αλλαγ|πληρω|επιβεβ|υπενθ|αξιολ|στοιχ|follow|χρωστ|ανεβ|συνδε|κριτικ|δικ|πρωτ|εικον|λεφτ|υλικ|τηλεφ|domain|google|busin|draft|δεν|εχει|και|up$)/;
+    const f = words.find(x=>x.length>2 && /^[α-ωάέήίόύώϊϋΐΰa-z]/i.test(x) && !STOP.has(norm(x)) && !stem.test(norm(x)));
+    if(f) name = f.charAt(0).toUpperCase()+f.slice(1);
+  }
+  return {id, name, g};
+}
+
+let lastHit=null;
+function onCmd(){
+  const raw = $("#cmd").value; const box = $("#match");
+  if(!raw.trim()){ box.textContent="Γράψε το επώνυμο και τι έγινε. Τα πεδία συμπληρώνονται μόνα τους."; clearHit(); return; }
+  const p = parse(raw);
+  if(p.name && p.name!==$("#name").value){
+    $("#name").value = p.name; state.vocManual=false; $("#voc").value="";
+    const gg = p.g || guessGender(p.name); if(gg) setGender(gg);
+  } else if(p.g && p.g!==state.gender) setGender(p.g);
+  refresh();
+  if(!p.id){ box.textContent = "Δεν βρήκα κατάσταση. Δοκίμασε π.χ. «επιβεβαίωση», «follow up», «πρωτη εικόνα», «αλλαγές, πλήρωσε»."; clearHit(); return; }
+  const t = T[p.id];
+  const extra = p.id==="F"||p.id==="G" ? ' <span class="hint">(αν δεν ξέρεις αν πλήρωσε: F = πλήρωσε, G = δεν πλήρωσε)</span>' : (p.id==="B1"?' <span class="hint">(ίδιο κείμενο με C1)</span>':"");
+  box.innerHTML = `<button class="pill" type="button" data-go="${p.id}"><b>${p.id}</b>${esc(t.title)}</button>
+    <button class="copy" type="button" data-copy="${p.id}">${ICON}<span>Αντιγραφή ${p.id}</span></button>${extra}`;
+  hit(p.id, false);
+}
+function clearHit(){ if(lastHit){ lastHit.classList.remove("hit"); lastHit=null; } }
+function hit(id, scroll){
+  clearHit(); const c = document.getElementById("s-"+id); if(!c) return;
+  c.classList.add("hit"); lastHit=c;
+  if(scroll) c.scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth", block:"start"});
+}
+let cmdTimer;
+$("#cmd").addEventListener("input", ()=>{ clearTimeout(cmdTimer); cmdTimer=setTimeout(onCmd,120); });
+$("#cmd").addEventListener("keydown", e=>{ if(e.key==="Enter"){ e.preventDefault(); onCmd(); const p=parse($("#cmd").value); if(p.id) hit(p.id,true); }});
+
+/* ---------------- events ---------------- */
+document.addEventListener("click", e=>{
+  const c = e.target.closest("[data-copy]");
+  if(c){ const id=c.dataset.copy; copyText(fill(id).plain, c, "Μήνυμα "+id); return; }
+  const k2 = e.target.closest("[data-copyk]");
+  if(k2){ const n=vals().NETLIFY; if(!n){ toast("Γράψε πρώτα το Netlify όνομα"); $("#netlify").focus(); return; }
+    copyText(fill("K").plain.replace(/\n\nΕυχαριστούμε$/, `\n\nΣτο βήμα 9 (CNAME) γράψτε ακριβώς: ${n}\n\nΕυχαριστούμε`), k2, "Μήνυμα K"); return; }
+  const v = e.target.closest("[data-val]");
+  if(v){ const val = v.dataset.val==="@cname" ? (vals().NETLIFY || "") : v.dataset.val;
+    if(!val){ toast("Γράψε πρώτα το Netlify όνομα"); $("#netlify").focus(); return; }
+    copyText(val, v, "Η τιμή"); return; }
+  const g = e.target.closest("[data-go]");
+  if(g){ e.preventDefault(); hit(g.dataset.go, true); return; }
+  const x = e.target.closest("[data-expand]");
+  if(x){ const card=document.getElementById("s-"+x.dataset.expand); const o=card.classList.toggle("open"); x.textContent=o?"Λιγότερο":"Όλο το κείμενο"; }
+});
+$("#gF").addEventListener("click",()=>setGender("F",true));
+$("#gM").addEventListener("click",()=>setGender("M",true));
+$("#name").addEventListener("input",()=>{ state.vocManual=false; $("#voc").value=""; const gg=guessGender($("#name").value); if(gg && gg!==state.gender) setGender(gg); else refresh(); });
+$("#voc").addEventListener("input",()=>{ state.vocManual=!!$("#voc").value.trim(); refresh(); });
+["#code","#domain","#netlify","#time","#changes"].forEach(s=>$(s).addEventListener("input",refresh));
+$("#code").addEventListener("blur",()=>{ $("#code").value=$("#code").value.trim().toUpperCase(); refresh(); });
+$("#changes").addEventListener("input",e=>{ e.target.style.height="auto"; e.target.style.height=e.target.scrollHeight+"px"; });
+$("#clear").addEventListener("click",()=>{
+  ["#cmd","#name","#voc","#code","#domain","#netlify","#time","#changes"].forEach(s=>$(s).value="");
+  state.vocManual=false; setGender("F"); $("#match").textContent="Γράψε το επώνυμο και τι έγινε. Τα πεδία συμπληρώνονται μόνα τους."; clearHit(); $("#cmd").focus();
+});
+
+build(); refresh();
+</script>
+</body>
+</html>

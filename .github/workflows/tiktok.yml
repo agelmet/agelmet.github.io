@@ -1,0 +1,44 @@
+# TikTok phone-page videos (Advon Media, 29 Sept 2026).
+# Builds tiktok/v/<id>.mp4 from the plan reels already in this repo (advon-social/…/reels/NAME.mp4) with the first
+# 0.9 s cut, so the first frame is the title card — the same command .advon/social/tiktok/phone.py runs on the Mac.
+# Runs when tiktok/make.txt changes (one line per video: "<source path> <target path>"); only missing targets are made.
+name: tiktok-videos
+on:
+  push:
+    branches: [main]
+    paths: ['tiktok/make.txt']
+  workflow_dispatch:
+permissions:
+  contents: write
+  pages: write
+jobs:
+  make:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      - name: encode
+        run: |
+          set -e
+          n=0
+          while read -r src dst; do
+            [ -z "$src" ] && continue
+            [ -f "$dst" ] && continue
+            mkdir -p "$(dirname "$dst")"
+            ffmpeg -nostdin -loglevel error -y -ss 0.9 -i "$src" -c:v libx264 -preset medium -crf 23 -profile:v high -pix_fmt yuv420p -r 30 -c:a aac -b:a 160k -movflags +faststart "$dst"
+            n=$((n+1)); echo "made $dst"
+          done < tiktok/make.txt
+          echo "N=$n" >> $GITHUB_ENV
+      - name: commit
+        if: env.N != '0'
+        run: |
+          git config user.name "agelmet"
+          git config user.email "agelmet@users.noreply.github.com"
+          git add tiktok/v
+          git commit -m "tiktok: ${N} phone-page videos made by the workflow"
+          git push
+      - name: rebuild pages
+        if: env.N != '0'
+        run: |
+          curl -sS -X POST -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" -H "Accept: application/vnd.github+json" \
+            https://api.github.com/repos/${{ github.repository }}/pages/builds || true

@@ -92,6 +92,8 @@ h2{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute)
   }
   function flush(){var q=pending();Object.keys(q).forEach(function(id){send(id,q[id].on,q[id].at).then(function(){var q2=pending();delete q2[id];savePending(q2)},function(){})})}
   function syncDone(){
+    // first visit with this version: send up every mark this phone made before (they lived only here)
+    try{if(!localStorage.getItem('advon-tt-v2')){var q0=pending(),d0=done();Object.keys(d0).forEach(function(id){if(!q0[id])q0[id]={on:true,at:d0[id]}});savePending(q0);localStorage.setItem('advon-tt-v2','1')}}catch(e){}
     return fetch(API,{cache:'no-store'}).then(function(r){return r.json()}).then(function(j){
       if(!j||!j.ok)return;var d=j.done||{},q=pending();
       Object.keys(q).forEach(function(id){if(q[id].on)d[id]=q[id].at;else delete d[id]});   // not sent yet → this phone wins

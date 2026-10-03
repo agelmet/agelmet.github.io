@@ -10,7 +10,7 @@
 <link rel="manifest" href="site.webmanifest?v=1">
 <meta name="apple-mobile-web-app-title" content="Μηνύματα">
 <meta name="theme-color" content="#0B0E12">
-<script>try{var t=localStorage.getItem("advon-msg-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+<script>document.documentElement.setAttribute("data-theme","light");try{localStorage.removeItem("advon-msg-theme")}catch(e){}</script>
 <link rel="preload" href="assets/fonts/manrope-greek-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <style id="advon-fonts">
 @font-face{font-family:'Manrope';font-style:normal;font-display:swap;font-weight:400;src:url(assets/fonts/manrope-greek-400-normal.woff2) format('woff2');unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF}
@@ -157,32 +157,14 @@ details.steps summary{cursor:pointer;padding:10px 12px;font-weight:700;font-size
 
 </head>
 <body>
-<header class="bar" id="bar" lang="el">
-  <div class="wrap">
-    <div class="brand"><h1>Μηνύματα πελατών</h1><span>Advon Media · γράψε όνομα + κατάσταση, αντέγραψε, στείλε</span><button class="theme" id="theme" type="button" aria-label="Αλλαγή εμφάνισης"></button></div>
-    <div class="cmd">
-      <input id="cmd" type="text" autocomplete="off" spellcheck="false" placeholder="π.χ. Πεφάνης επιβεβαίωση, έχει στοιχεία" aria-label="Γρήγορη εντολή">
-    </div>
-    <div class="match" id="match">Γράψε το επώνυμο και τι έγινε. Τα πεδία συμπληρώνονται μόνα τους.</div>
-
-    <div class="fields">
-      <div class="field"><label for="name">Επώνυμο</label><input id="name" type="text" placeholder="π.χ. Πεφάνης"></div>
-      <div class="field"><label>Φύλο</label>
-        <div class="seg" role="group" aria-label="Φύλο">
-          <button type="button" id="gF" aria-pressed="true">Κυρία</button>
-          <button type="button" id="gM" aria-pressed="false">Κύριος</button>
-        </div>
-      </div>
-      <div class="field"><label for="voc">Προσφώνηση</label><input id="voc" type="text" placeholder="αυτόματα"><span class="hint" id="vocHint">&nbsp;</span></div>
-      <div class="field"><label for="code">Κωδικός site (repo)</label><input id="code" type="text" placeholder="π.χ. PEFANIS"></div>
-      <div class="field"><label for="domain">Domain</label><input id="domain" type="text" placeholder="π.χ. pefanis.gr"></div>
-      <div class="field"><label for="netlify">Netlify (για K)</label><input id="netlify" type="text" placeholder="π.χ. pefanis"></div>
-      <div class="field"><label for="time">Ώρα (SMS)</label><input id="time" type="text" placeholder="π.χ. 15:00"></div>
-      <div class="field changes-field"><label for="changes">Τι αλλάξαμε (μπαίνει στο F και G)</label><textarea id="changes" rows="1" placeholder="π.χ. αλλάξαμε τα χρώματα στο μενού, προσθέσαμε τις φωτογραφίες που στείλατε και διορθώσαμε το τηλέφωνο στο footer"></textarea></div>
-    </div>
-    <div class="tools"><span class="hint">Όλα τα πεδία είναι προαιρετικά. Μπορείς να γράψεις και κατευθείαν μέσα σε κάθε κείμενο.</span><button class="ghost" id="clear" type="button">Καθαρισμός για νέο πελάτη</button></div>
-  </div>
-</header>
+<div id="bar" hidden aria-hidden="true">
+  <button id="theme" type="button" tabindex="-1"></button>
+  <input id="cmd" type="text" tabindex="-1"><div id="match"></div>
+  <input id="name" type="text" tabindex="-1"><button type="button" id="gF" aria-pressed="true" tabindex="-1"></button><button type="button" id="gM" aria-pressed="false" tabindex="-1"></button>
+  <input id="voc" type="text" tabindex="-1"><span id="vocHint"></span>
+  <input id="code" type="text" tabindex="-1"><input id="domain" type="text" tabindex="-1"><input id="netlify" type="text" tabindex="-1"><input id="time" type="text" tabindex="-1">
+  <textarea id="changes" tabindex="-1"></textarea><button id="clear" type="button" tabindex="-1"></button>
+</div>
 
 <div class="wrap main" lang="el">
   <nav class="index" id="index" aria-label="Καταστάσεις"></nav>
@@ -703,7 +685,7 @@ const SUN='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-wid
 const MOON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>';
 function isDark(){ const t=document.documentElement.getAttribute("data-theme"); return t ? t==="dark" : matchMedia("(prefers-color-scheme: dark)").matches; }
 function paintThemeBtn(){ const b=$("#theme"); b.innerHTML = isDark() ? SUN+"<span>Μέρα</span>" : MOON+"<span>Νύχτα</span>"; }
-try{ const t=localStorage.getItem("advon-msg-theme"); if(t) document.documentElement.setAttribute("data-theme",t); }catch(_){}
+document.documentElement.setAttribute("data-theme","light");
 $("#theme").addEventListener("click",()=>{ const t=isDark()?"light":"dark"; document.documentElement.setAttribute("data-theme",t); try{localStorage.setItem("advon-msg-theme",t)}catch(_){} paintThemeBtn(); });
 matchMedia("(prefers-color-scheme: dark)").addEventListener?.("change",paintThemeBtn);
 paintThemeBtn();

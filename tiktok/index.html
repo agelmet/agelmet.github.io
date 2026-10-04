@@ -219,7 +219,7 @@ h2{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute)
   window.addEventListener('hashchange',function(){render();window.scrollTo(0,0)});
   var S='../advon-social/';
   function salesItems(){return fetch(S+'sales.json',{cache:'no-cache'}).then(function(r){return r.json()}).then(function(j){
-    return (j.posts||[]).filter(function(x){return x.media&&x.media[0]}).map(function(x){return {id:x.id,date:'',time:'',extra:true,sales:true,type:'video',title:String(x.title||'').replace(/[«»]/g,''),caption:x.tiktok||x.caption||'',video:S+x.media[0],cover:x.cover?S+x.cover:''}})
+    return (j.posts||[]).filter(function(x){return x.media&&x.media[0]&&x.group!=='old'}).map(function(x){return {id:x.id,date:'',time:'',extra:true,sales:true,type:'video',title:String(x.title||'').replace(/[«»]/g,''),caption:x.tiktok||x.caption||'',video:S+x.media[0],cover:x.cover?S+x.cover:''}})
   },function(){return []})}
   Promise.all([fetch('posts.json',{cache:'no-cache'}).then(function(r){return r.json()}),salesItems(),syncDone()]).then(function(r){
     var d=r[0];d.posts=(d.posts||[]).concat(r[1]);data=d;render();flush();

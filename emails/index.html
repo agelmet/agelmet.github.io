@@ -129,6 +129,25 @@ button,input,textarea{font:inherit;color:inherit}
 .copy svg{width:16px;height:16px}
 .pdfbtn svg{width:18px;height:18px;flex-shrink:0}
 
+
+/* ---------- phone script (top) ---------- */
+.script{background:var(--surface);border:1.5px solid var(--accent);border-radius:18px;margin-bottom:38px;box-shadow:0 18px 40px -26px rgba(29,99,201,.45);scroll-margin-top:18px}
+.script.hit{box-shadow:0 0 0 3px var(--accent-soft),0 18px 40px -26px rgba(29,99,201,.45)}
+.sc-h{display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;padding:30px 20px 22px;border-bottom:1px solid var(--line)}
+.sc-h .tag{font:700 11px var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--accent);background:var(--accent-soft);padding:4px 10px;border-radius:999px}
+.sc-h h2{font:400 32px/1.15 var(--f-display);margin:6px 0 0}
+.sc-h p{margin:0;color:var(--muted);font-size:14px}
+.sc-h .copy{margin-top:12px}
+.sc-body{max-width:720px;margin:0 auto;padding:34px 22px 40px;display:flex;flex-direction:column;gap:30px;counter-reset:b}
+.sc-beat{display:grid;grid-template-columns:38px minmax(0,1fr);gap:16px;align-items:start;margin:0;font-size:18px;line-height:1.75;color:var(--fg)}
+.sc-beat::before{counter-increment:b;content:counter(b);display:grid;place-items:center;width:34px;height:34px;margin-top:3px;border-radius:50%;background:var(--sunk);border:1px solid var(--line);color:var(--accent);font:700 13px var(--f-mono)}
+.sc-beat b{font-weight:700;color:var(--fg);background:linear-gradient(transparent 62%,var(--accent-soft) 62%)}
+.sc-beat.ask{background:var(--accent-soft);border-radius:14px;padding:18px 18px 18px 14px;margin-inline:-14px}
+.sc-beat.ask::before{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+.sc-beat.ask b{background:none;color:var(--fill-fg)}
+.sc-sep{height:1px;background:var(--line);margin:2px 0 2px 54px}
+@media (max-width:560px){.sc-h h2{font-size:26px}.sc-body{padding:26px 16px 30px;gap:24px}.sc-beat{font-size:17px;grid-template-columns:30px minmax(0,1fr);gap:12px}.sc-beat::before{width:28px;height:28px;font-size:12px}.sc-sep{margin-left:42px}}
+
 /* ---------- K extras ---------- */
 .kx{margin:14px 18px 0;display:flex;flex-direction:column;gap:12px}
 .kx h4{margin:0;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
@@ -167,8 +186,31 @@ details.steps summary{cursor:pointer;padding:10px 12px;font-weight:700;font-size
 </div>
 
 <div class="wrap main" lang="el">
-  <nav class="index" id="index" aria-label="Καταστάσεις"></nav>
-  <main id="list"></main>
+  <nav class="index" id="index" aria-label="Καταστάσεις"><div class="stage-l">0 · Τηλέφωνο</div><a href="#s-SCRIPT" data-go="SCRIPT"><b>☎</b>Σενάριο κλήσης</a></nav>
+  <main id="list">
+  <section class="script" id="s-SCRIPT" aria-labelledby="scT">
+    <div class="sc-h"><span class="tag">Τηλέφωνο</span><h2 id="scT">Σενάριο κλήσης</h2><p>Διάβασέ το ήρεμα, με μικρή παύση ανάμεσα στα σημεία.</p>
+      <button class="copy" data-script type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg><span>Αντιγραφή σεναρίου</span></button></div>
+    <div class="sc-body">
+    <p class="sc-beat"><span>Γεια σας, είμαι ο Άγγελος και με μια ομάδα συμφοιτητών μου από το <b>King’s College του Λονδίνου</b> έχουμε φτιάξει μια εταιρεία</span></p>
+    <p class="sc-beat"><span>και μπορούμε να κατασκευάσουμε για εσάς ένα website <b>εντελώς δωρεάν</b>.</span></p>
+    <div class="sc-sep" aria-hidden="true"></div>
+    <p class="sc-beat"><span>Το κάνουμε αυτό εδώ και <b>2,5 χρόνια</b>, χτίζοντας ένα πορτφόλιο με <b>πάνω από 200 websites</b> για μερικούς από τους καλύτερους οδοντιάτρους στην Ελλάδα, αλλά και για πολλά άλλα επαγγέλματα.</span></p>
+    <p class="sc-beat"><span>Με <b>πάνω από 120 αξιολογήσεις στη Google</b>, όπου όλες είναι <b>5 αστέρων</b>, είμαστε στην 1η θέση στην Ελλάδα,</span></p>
+    <p class="sc-beat"><span>και τα αναλαμβάνουμε όλα εμείς: κατασκευή, κείμενα, χρώματα, design. Χρειάζεται <b>ελάχιστος χρόνος</b> επένδυσης από εσάς.</span></p>
+    <div class="sc-sep" aria-hidden="true"></div>
+    <p class="sc-beat"><span>Όπως θα γνωρίζετε, κάτι τέτοιο κανονικά κοστίζει <b>από 500 έως και 5.000 ευρώ</b>. Εμείς το κάνουμε τόσα χρόνια δωρεάν,</span></p>
+    <p class="sc-beat"><span>με το μόνο έξοδο που πρέπει να καλύψετε, <b>αφού σας κατασκευάσουμε την ιστοσελίδα</b>, τη φιλοξενία του site στο διαδίκτυο και το domain name, που ανέρχονται μαζί στα <b>10 ευρώ τον μήνα</b> — κάτι που πληρώνουν όλοι όσοι έχουν websites παγκοσμίως.</span></p>
+    <p class="sc-beat"><span>Δεν υπάρχει δηλαδή <b>καμία προκαταβολή</b>, <b>κανένα κρυφό κόστος</b>.</span></p>
+    <p class="sc-beat"><span>Αυτά τα 10 ευρώ τον μήνα είναι <b>αφού κατασκευάσουμε την ιστοσελίδα σας</b>, σας αρέσει και κάνουμε τις αλλαγές ώστε να γίνει όπως ακριβώς τη θέλετε.</span></p>
+    <div class="sc-sep" aria-hidden="true"></div>
+    <p class="sc-beat ask"><span>Έχετε <b>15 λεπτάκια αύριο ή μέσα στην εβδομάδα</b> να κλείσουμε ένα ραντεβού, που το κάνουμε συνήθως online, να σας δείξουμε κάποιες δουλειές μας και το πώς δουλεύουμε;</span></p>
+    <p class="sc-beat"><span>Σας προωθώ και τα στοιχεία μου και της εταιρείας με το που κλείσουμε.</span></p>
+    <div class="sc-sep" aria-hidden="true"></div>
+    <p class="sc-beat"><span>Και το κάνουμε ώστε να έχετε μια <b>επαγγελματική παρουσία online</b> και να εμφανίζεστε <b>στα πρώτα αποτελέσματα της Google</b> (όταν κάποιος αναζητά οδοντιάτρους στη γύρω περιοχή).</span></p>
+    </div>
+  </section>
+  </main>
 </div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
@@ -639,6 +681,8 @@ $("#cmd").addEventListener("keydown", e=>{ if(e.key==="Enter"){ e.preventDefault
 
 /* ---------------- events ---------------- */
 document.addEventListener("click", e=>{
+  const sc = e.target.closest("[data-script]");
+  if(sc){ copyText([...document.querySelectorAll(".sc-beat")].map(p=>p.textContent.trim()).join("\n\n"), sc, "Το σενάριο"); return; }
   const c = e.target.closest("[data-copy]");
   if(c){ const id=c.dataset.copy; copyText(msgText(id), c, "Μήνυμα "+id); return; }
   const k2 = e.target.closest("[data-copyk]");

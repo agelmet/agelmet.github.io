@@ -77,6 +77,8 @@ tr.me td{background:var(--hl);font-weight:600}
 .val{position:absolute;right:8px;top:0;line-height:28px;font-weight:700;font-size:13px;font-variant-numeric:tabular-nums}
 @media (max-width:540px){.bar{grid-template-columns:1fr}}
   .facts.f3{grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr))}
+  .nw{white-space:nowrap}
+  @media (max-width:560px){th,td{padding:8px 7px;font-size:13.5px} .tblwrap{margin-inline:-6px}}
 footer{font-size:13px;color:var(--muted);display:flex;flex-direction:column;gap:8px;border-top:1px solid var(--line);padding-top:18px}
 </style>
 </head>
@@ -89,6 +91,7 @@ footer{font-size:13px;color:var(--muted);display:flex;flex-direction:column;gap:
   <div class="lang" role="group" aria-label="Language"><button id="btn-el" type="button" aria-pressed="true">Ελληνικά</button><button id="btn-en" type="button" aria-pressed="false">English</button></div>
  </div>
  <h1>Radisson Residences, Al Reem Island<br><span lang="el">2 υπνοδωμάτια + δωμάτιο βοηθού</span><span lang="en">2 bedrooms + maid's room</span></h1>
+ <a class="btn" style="align-self:flex-start" href="simple/"><span lang="el">Δες την απλή εκδοχή (για όλους) →</span><span lang="en">See the simple version (for everyone) →</span></a>
  <p class="muted"><span lang="el">Όλα τα ποσά σε AED και σε ευρώ με ισοτιμία 1 € = 4.12 AED (6 Οκτ 2026). Όλα τα εμβαδά σε ft² και m².</span><span lang="en">All amounts in AED and in euro at 1 € = 4.12 AED (6 Oct 2026). All areas in ft² and m².</span></p>
 </header>
 
@@ -147,10 +150,10 @@ footer{font-size:13px;color:var(--muted);display:flex;flex-direction:column;gap:
    <tr><td><span lang="el">Τέλος μεταβίβασης 2% (ADM)</span><span lang="en">Transfer fee 2% (ADM)</span></td><td><span lang="el">Τώρα</span><span lang="en">Now</span></td><td class="n">51,760</td><td class="n">€12,563</td></tr>
    <tr><td><span lang="el">NOC (άδεια κατασκευαστικής)</span><span lang="en">NOC (developer consent)</span></td><td><span lang="el">Τώρα</span><span lang="en">Now</span></td><td class="n">5,250</td><td class="n">€1,274</td></tr>
    <tr class="sum"><td><span lang="el">Σύνολο πρώτης μέρας</span><span lang="en">Day-one total</span></td><td></td><td class="n">1,109,114</td><td class="n">€269,202</td></tr>
-   <tr><td><span lang="el">Δόση 5%</span><span lang="en">Instalment 5%</span></td><td>31 Dec 2026</td><td class="n">100,752</td><td class="n">€24,454</td></tr>
-   <tr><td><span lang="el">Δόση 5%</span><span lang="en">Instalment 5%</span></td><td>30 Apr 2027</td><td class="n">100,752</td><td class="n">€24,454</td></tr>
-   <tr><td><span lang="el">Δόση 7,5%</span><span lang="en">Instalment 7.5%</span></td><td>30 Sep 2027</td><td class="n">151,128</td><td class="n">€36,682</td></tr>
-   <tr><td><span lang="el">Παράδοση 60%</span><span lang="en">Handover 60%</span></td><td>31 Dec 2027</td><td class="n">1,209,024</td><td class="n">€293,452</td></tr>
+   <tr><td><span lang="el">Δόση 5%</span><span lang="en">Instalment 5%</span></td><td class="nw">31 Dec 2026</td><td class="n">100,752</td><td class="n">€24,454</td></tr>
+   <tr><td><span lang="el">Δόση 5%</span><span lang="en">Instalment 5%</span></td><td class="nw">30 Apr 2027</td><td class="n">100,752</td><td class="n">€24,454</td></tr>
+   <tr><td><span lang="el">Δόση 7,5%</span><span lang="en">Instalment 7.5%</span></td><td class="nw">30 Sep 2027</td><td class="n">151,128</td><td class="n">€36,682</td></tr>
+   <tr><td><span lang="el">Παράδοση 60%</span><span lang="en">Handover 60%</span></td><td class="nw">31 Dec 2027</td><td class="n">1,209,024</td><td class="n">€293,452</td></tr>
    <tr class="sum"><td><span lang="el">Συνολικό κόστος</span><span lang="en">Total cost</span></td><td></td><td class="n">2,670,770</td><td class="n">€648,245</td></tr>
   </tbody></table></div>
  <p class="muted"><span lang="el">Πηγή: το σημείωμα τιμής και η σύμβαση κράτησης στον φάκελό σου (σελ. 7 και 30). Το AED είναι κλειδωμένο στο δολάριο, οπότε το ποσό σε ευρώ αλλάζει όταν αλλάζει το ευρώ/δολάριο.</span><span lang="en">Source: the price note and the reservation agreement in your folder (pages 7 and 30). The dirham is pegged to the US dollar, so the euro amount changes when euro/dollar moves.</span></p>
@@ -164,112 +167,112 @@ footer{font-size:13px;color:var(--muted);display:flex;flex-direction:column;gap:
   <thead><tr><th>#</th><th><span lang="el">Πύργος</span><span lang="en">Tower</span></th><th><span lang="el">Θέα / σημειώσεις</span><span lang="en">View / notes</span></th><th class="n"><span lang="el">Μέγεθος</span><span lang="en">Size</span></th><th class="n"><span lang="el">Τιμή AED</span><span lang="en">Price AED</span></th><th class="n"><span lang="el">AED ανά m²</span><span lang="en">AED per m²</span></th><th><span lang="el">Μεσίτης · από</span><span lang="en">Agency · since</span></th><th></th></tr></thead>
   <tbody>
 <tr>
-<td>1</td><td>Tower 2</td><td><span lang="el">Θάλασσα</span><span lang="en">Sea</span></td>
+<td>1</td><td class="nw">Tower 2</td><td><span lang="el">Θάλασσα</span><span lang="en">Sea</span></td>
 <td class="n">1,663<span class="sub">154.5 m²</span></td>
 <td class="n">2,249,990<span class="sub">€546,114</span></td>
 <td class="n">14,563<span class="sub">€3,535</span></td>
 <td>Al Zaeem<span class="sub">2 Oct</span></td>
 <td><a href="https://www.propertyfinder.ae/en/plp/buy/apartment-for-sale-abu-dhabi-al-reem-island-city-of-lights-radisson-residences-radisson-residences-tower-2-153297866.html" target="_blank" rel="noopener"><span lang="el">Αγγελία</span><span lang="en">Listing</span> ↗</a></td></tr>
 <tr>
-<td>2</td><td>Tower 2</td><td><span lang="el">Θάλασσα, ψηλός όροφος</span><span lang="en">Sea, high floor</span></td>
+<td>2</td><td class="nw">Tower 2</td><td><span lang="el">Θάλασσα, ψηλός όροφος</span><span lang="en">Sea, high floor</span></td>
 <td class="n">1,661<span class="sub">154.3 m²</span></td>
 <td class="n">2,280,000<span class="sub">€553,398</span></td>
 <td class="n">14,775<span class="sub">€3,586</span></td>
 <td>Metropolitan Capital<span class="sub">4 Sep</span></td>
 <td><a href="https://www.propertyfinder.ae/en/plp/buy/apartment-for-sale-abu-dhabi-al-reem-island-city-of-lights-radisson-residences-radisson-residences-tower-2-140145791.html" target="_blank" rel="noopener"><span lang="el">Αγγελία</span><span lang="en">Listing</span> ↗</a></td></tr>
 <tr>
-<td>3</td><td>?</td><td><span lang="el">Θάλασσα</span><span lang="en">Sea</span></td>
+<td>3</td><td class="nw">?</td><td><span lang="el">Θάλασσα</span><span lang="en">Sea</span></td>
 <td class="n">1,664<span class="sub">154.6 m²</span></td>
 <td class="n">2,299,000<span class="sub">€558,010</span></td>
 <td class="n">14,872<span class="sub">€3,610</span></td>
 <td>Finger Print Properties<span class="sub">24 Jul</span></td>
 <td><a href="https://www.propertyfinder.ae/en/plp/buy/apartment-for-sale-abu-dhabi-al-reem-island-city-of-lights-radisson-residences-120644333.html" target="_blank" rel="noopener"><span lang="el">Αγγελία</span><span lang="en">Listing</span> ↗</a></td></tr>
 <tr>
-<td>4</td><td>Tower 1</td><td><span lang="el">Μαγκρόβια</span><span lang="en">Mangrove</span></td>
+<td>4</td><td class="nw">Tower 1</td><td><span lang="el">Μαγκρόβια</span><span lang="en">Mangrove</span></td>
 <td class="n">1,648<span class="sub">153.1 m²</span></td>
 <td class="n">2,349,990<span class="sub">€570,386</span></td>
 <td class="n">15,349<span class="sub">€3,725</span></td>
 <td>One Location<span class="sub">28 Sep</span></td>
 <td><a href="https://www.propertyfinder.ae/en/plp/buy/apartment-for-sale-abu-dhabi-al-reem-island-city-of-lights-radisson-residences-radisson-residences-tower-1-151375298.html" target="_blank" rel="noopener"><span lang="el">Αγγελία</span><span lang="en">Listing</span> ↗</a></td></tr>
 <tr>
-<td>5</td><td>Tower 1</td><td><span lang="el">—</span><span lang="en">—</span></td>
+<td>5</td><td class="nw">Tower 1</td><td><span lang="el">—</span><span lang="en">—</span></td>
 <td class="n">1,663<span class="sub">154.5 m²</span></td>
 <td class="n">2,400,000<span class="sub">€582,524</span></td>
 <td class="n">15,534<span class="sub">€3,770</span></td>
 <td>Al Mira<span class="sub">3 Oct</span></td>
 <td><a href="https://www.propertyfinder.ae/en/plp/buy/apartment-for-sale-abu-dhabi-al-reem-island-city-of-lights-radisson-residences-radisson-residences-tower-1-153741095.html" target="_blank" rel="noopener"><span lang="el">Αγγελία</span><span lang="en">Listing</span> ↗</a></td></tr>
 <tr>
-<td>6</td><td>Tower 1</td><td><span lang="el">—</span><span lang="en">—</span></td>
+<td>6</td><td class="nw">Tower 1</td><td><span lang="el">—</span><span lang="en">—</span></td>
 <td class="n">1,663<span class="sub">154.5 m²</span></td>
 <td class="n">2,450,000<span class="sub">€594,660</span></td>
 <td class="n">15,858<span class="sub">€3,849</span></td>
 <td>Mirage Capital<span class="sub">9 Sep</span></td>
 <td><a href="https://www.propertyfinder.ae/en/plp/buy/apartment-for-sale-abu-dhabi-al-reem-island-city-of-lights-radisson-residences-radisson-residences-tower-1-142360313.html" target="_blank" rel="noopener"><span lang="el">Αγγελία</span><span lang="en">Listing</span> ↗</a></td></tr>
 <tr>
-<td>7</td><td>Tower 2</td><td><span lang="el">Μαγκρόβια, ψηλός όροφος</span><span lang="en">Mangrove, high floor</span></td>
+<td>7</td><td class="nw">Tower 2</td><td><span lang="el">Μαγκρόβια, ψηλός όροφος</span><span lang="en">Mangrove, high floor</span></td>
 <td class="n">1,661<span class="sub">154.3 m²</span></td>
 <td class="n">2,450,000<span class="sub">€594,660</span></td>
 <td class="n">15,877<span class="sub">€3,854</span></td>
 <td>Reach Home<span class="sub">29 Apr</span></td>
 <td><a href="https://www.propertyfinder.ae/en/plp/buy/apartment-for-sale-abu-dhabi-al-reem-island-city-of-lights-radisson-residences-radisson-residences-tower-2-82812695.html" target="_blank" rel="noopener"><span lang="el">Αγγελία</span><span lang="en">Listing</span> ↗</a></td></tr>
 <tr>
-<td>8</td><td>Tower 2</td><td><span lang="el">Κανάλι, ψηλός όροφος</span><span lang="en">Canal, high floor</span></td>
+<td>8</td><td class="nw">Tower 2</td><td><span lang="el">Κανάλι, ψηλός όροφος</span><span lang="en">Canal, high floor</span></td>
 <td class="n">1,647<span class="sub">153.0 m²</span></td>
 <td class="n">2,450,000<span class="sub">€594,660</span></td>
 <td class="n">16,012<span class="sub">€3,886</span></td>
 <td>SQF Realty<span class="sub">1 Oct</span></td>
 <td><a href="https://www.propertyfinder.ae/en/plp/buy/apartment-for-sale-abu-dhabi-al-reem-island-city-of-lights-radisson-residences-radisson-residences-tower-2-152862624.html" target="_blank" rel="noopener"><span lang="el">Αγγελία</span><span lang="en">Listing</span> ↗</a></td></tr>
 <tr>
-<td>9</td><td>Tower 2</td><td><span lang="el">—</span><span lang="en">—</span></td>
+<td>9</td><td class="nw">Tower 2</td><td><span lang="el">—</span><span lang="en">—</span></td>
 <td class="n">1,647<span class="sub">153.0 m²</span></td>
 <td class="n">2,478,600<span class="sub">€601,602</span></td>
 <td class="n">16,199<span class="sub">€3,932</span></td>
 <td>Nationwide Middle East<span class="sub">21 Jul</span></td>
 <td><a href="https://www.propertyfinder.ae/en/plp/buy/apartment-for-sale-abu-dhabi-al-reem-island-city-of-lights-radisson-residences-radisson-residences-tower-2-119035970.html" target="_blank" rel="noopener"><span lang="el">Αγγελία</span><span lang="en">Listing</span> ↗</a></td></tr>
 <tr>
-<td>10</td><td>Tower 2</td><td><span lang="el">—</span><span lang="en">—</span></td>
+<td>10</td><td class="nw">Tower 2</td><td><span lang="el">—</span><span lang="en">—</span></td>
 <td class="n">1,623<span class="sub">150.8 m²</span></td>
 <td class="n">2,526,000<span class="sub">€613,107</span></td>
 <td class="n">16,753<span class="sub">€4,066</span></td>
 <td>Mirage Capital<span class="sub">5 Sep</span></td>
 <td><a href="https://www.propertyfinder.ae/en/plp/buy/apartment-for-sale-abu-dhabi-al-reem-island-city-of-lights-radisson-residences-radisson-residences-tower-2-140590620.html" target="_blank" rel="noopener"><span lang="el">Αγγελία</span><span lang="en">Listing</span> ↗</a></td></tr>
 <tr>
-<td>11</td><td>Tower 2</td><td><span lang="el">Θάλασσα, ψηλός όροφος</span><span lang="en">Sea, high floor</span></td>
+<td>11</td><td class="nw">Tower 2</td><td><span lang="el">Θάλασσα, ψηλός όροφος</span><span lang="en">Sea, high floor</span></td>
 <td class="n">1,647<span class="sub">153.0 m²</span></td>
 <td class="n">2,528,000<span class="sub">€613,592</span></td>
 <td class="n">16,522<span class="sub">€4,010</span></td>
 <td>Eliva<span class="sub">29 Aug</span></td>
 <td><a href="https://www.propertyfinder.ae/en/plp/buy/apartment-for-sale-abu-dhabi-al-reem-island-city-of-lights-radisson-residences-radisson-residences-tower-2-137439787.html" target="_blank" rel="noopener"><span lang="el">Αγγελία</span><span lang="en">Listing</span> ↗</a></td></tr>
 <tr>
-<td>12</td><td>Tower 2</td><td><span lang="el">Θάλασσα, γωνιακό, 3 μπαλκόνια</span><span lang="en">Full sea, corner, 3 balconies</span></td>
+<td>12</td><td class="nw">Tower 2</td><td><span lang="el">Θάλασσα, γωνιακό, 3 μπαλκόνια</span><span lang="en">Full sea, corner, 3 balconies</span></td>
 <td class="n">1,647<span class="sub">153.0 m²</span></td>
 <td class="n">2,550,000<span class="sub">€618,932</span></td>
 <td class="n">16,665<span class="sub">€4,045</span></td>
 <td>Metropolitan Capital<span class="sub">30 Sep</span></td>
 <td><a href="https://www.propertyfinder.ae/en/plp/buy/apartment-for-sale-abu-dhabi-al-reem-island-city-of-lights-radisson-residences-radisson-residences-tower-2-152357548.html" target="_blank" rel="noopener"><span lang="el">Αγγελία</span><span lang="en">Listing</span> ↗</a></td></tr>
 <tr>
-<td>13</td><td>Tower 2</td><td><span lang="el">Μαγκρόβια, γωνιακό, 3 μπαλκόνια</span><span lang="en">Full mangrove, corner, 3 balconies</span></td>
+<td>13</td><td class="nw">Tower 2</td><td><span lang="el">Μαγκρόβια, γωνιακό, 3 μπαλκόνια</span><span lang="en">Full mangrove, corner, 3 balconies</span></td>
 <td class="n">1,647<span class="sub">153.0 m²</span></td>
 <td class="n">2,550,000<span class="sub">€618,932</span></td>
 <td class="n">16,665<span class="sub">€4,045</span></td>
 <td>PSI<span class="sub">17 Jun</span></td>
 <td><a href="https://www.propertyfinder.ae/en/plp/buy/apartment-for-sale-abu-dhabi-al-reem-island-city-of-lights-radisson-residences-radisson-residences-tower-2-103686107.html" target="_blank" rel="noopener"><span lang="el">Αγγελία</span><span lang="en">Listing</span> ↗</a></td></tr>
 <tr class="me">
-<td>14</td><td>Tower 1</td><td><span lang="el">Μαγκρόβια</span><span lang="en">Mangrove</span><br><strong><span lang="el">← η δική σου πρόταση</span><span lang="en">← your offer</span></strong></td>
+<td>14</td><td class="nw">Tower 1</td><td><span lang="el">Μαγκρόβια</span><span lang="en">Mangrove</span><br><strong><span lang="el">← η δική σου πρόταση</span><span lang="en">← your offer</span></strong></td>
 <td class="n">1,649<span class="sub">153.2 m²</span></td>
 <td class="n">2,560,000<span class="sub">€621,359</span></td>
 <td class="n">16,710<span class="sub">€4,056</span></td>
 <td>Al Zaeem<span class="sub">9 Sep</span></td>
 <td><a href="https://www.propertyfinder.ae/en/plp/buy/apartment-for-sale-abu-dhabi-al-reem-island-city-of-lights-radisson-residences-radisson-residences-tower-1-142385986.html" target="_blank" rel="noopener"><span lang="el">Αγγελία</span><span lang="en">Listing</span> ↗</a></td></tr>
 <tr>
-<td>15</td><td>Tower 1</td><td><span lang="el">Νερό</span><span lang="en">Water</span></td>
+<td>15</td><td class="nw">Tower 1</td><td><span lang="el">Νερό</span><span lang="en">Water</span></td>
 <td class="n">1,654<span class="sub">153.7 m²</span></td>
 <td class="n">2,700,000<span class="sub">€655,340</span></td>
 <td class="n">17,571<span class="sub">€4,265</span></td>
 <td>Huspy<span class="sub">25 Aug</span></td>
 <td><a href="https://www.propertyfinder.ae/en/plp/buy/apartment-for-sale-abu-dhabi-al-reem-island-city-of-lights-radisson-residences-radisson-residences-tower-1-135610666.html" target="_blank" rel="noopener"><span lang="el">Αγγελία</span><span lang="en">Listing</span> ↗</a></td></tr>
 <tr>
-<td>16</td><td>Tower 1</td><td><span lang="el">Μαγκρόβια, ψηλός όροφος, ημιεπιπλωμένο</span><span lang="en">Mangrove, high floor, semi-furnished</span></td>
+<td>16</td><td class="nw">Tower 1</td><td><span lang="el">Μαγκρόβια, ψηλός όροφος, ημιεπιπλωμένο</span><span lang="en">Mangrove, high floor, semi-furnished</span></td>
 <td class="n">1,663<span class="sub">154.5 m²</span></td>
 <td class="n">2,850,000<span class="sub">€691,748</span></td>
 <td class="n">18,447<span class="sub">€4,477</span></td>

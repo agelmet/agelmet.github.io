@@ -81,6 +81,18 @@ li{max-width:62ch}
 .w{background:var(--card);border:1px solid var(--line);padding:16px;border-radius:4px;display:flex;flex-direction:column;gap:4px}
 .w b{font-size:17px}
 .w span{font-size:15.5px;color:var(--ink)}
+.wfall{display:flex;flex-direction:column;border:1px solid var(--line)}
+.wf{display:flex;justify-content:space-between;gap:12px;padding:10px 14px;border-bottom:1px solid var(--line);font-size:16px}
+.wf:last-child{border-bottom:0}
+.v2{font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.v2.g{color:var(--good)} .v2.r{color:var(--bad)}
+.wf.sum{background:#F1F4F2;font-weight:700} .wf.total{background:var(--mangrove);color:#fff;font-weight:700;font-size:18px}
+.sc .gb{grid-column:1/-1;display:flex;flex-direction:column;gap:6px;margin-top:6px}
+.gbar{position:relative;height:16px;background:rgba(0,0,0,.07);border-radius:2px}
+.gfill{position:absolute;inset:0 auto 0 0;background:var(--tide);border-radius:2px}
+.sc.vb .gfill{background:var(--bad)} .sc.b .gfill{background:var(--mid)} .sc.gd .gfill{background:var(--good)}
+.gmark{position:absolute;top:-5px;bottom:-5px;width:3px;background:var(--ink)}
+.gl{font-size:14px;font-weight:600;color:var(--muted)}
 .back{display:inline-block;font-weight:700;text-decoration:none;background:var(--card);border:1px solid var(--line);padding:10px 16px;border-radius:999px}
 footer{font-size:14px;color:var(--muted);border-top:1px solid var(--line);padding-top:18px;display:flex;flex-direction:column;gap:8px}
 </style>
@@ -101,14 +113,14 @@ footer{font-size:14px;color:var(--muted);border-top:1px solid var(--line);paddin
 <section>
  <div class="answer">
   <span class="step" style="color:#BFE3D4"><span lang="el">Η σύντομη απάντηση</span><span lang="en">The short answer</span></span>
-  <span class="big"><span lang="el">Καλό διαμέρισμα. Λάθος τιμή.</span><span lang="en">Good apartment. Wrong price.</span></span>
-  <p><span lang="el">Αξίζει για 10 χρόνια, αλλά όχι στα €621.000 που ζητάνε. Υπάρχει σχεδόν ίδιο διαμέρισμα, στο ίδιο κτίριο, στα €570.000. Ή αγοράζεις αυτό, ή ζητάς την ίδια τιμή για το δικό σου.</span><span lang="en">Worth it for 10 years, but not at the €621,000 they ask. There is a nearly identical apartment in the same building for €570,000. Either buy that one, or ask the same price for yours.</span></p>
+  <span class="big"><span lang="el">Καλό διαμέρισμα. Ακριβή τιμή. Κερδίζεις μόνο αν οι τιμές συνεχίσουν να ανεβαίνουν.</span><span lang="en">Good apartment. High price. You only win if prices keep rising.</span></span>
+  <p><span lang="el">Αφού βάλουμε τα πραγματικά έξοδα (άδειοι μήνες, επισκευές, διαχείριση) και τον ελληνικό φόρο, το ενοίκιο αφήνει λίγα χρήματα. Το κέρδος σου θα έρθει σχεδόν όλο από την άνοδο της τιμής. Αν θέλεις να το κάνεις, μην πληρώσεις €621.000. Υπάρχει σχεδόν ίδιο στο ίδιο κτίριο στα €570.000.</span><span lang="en">Once we add the real costs (empty months, repairs, management) and Greek tax, the rent leaves little money. Your profit will come almost entirely from the price going up. If you go ahead, do not pay €621,000. There is a nearly identical one in the same building for €570,000.</span></p>
  </div>
  <div class="light">
-  <div class="lt"><span class="dot g"><span lang="el">Περιοχή</span><span lang="en">Area</span></span><span><span lang="el">Από τις καλύτερες του Άμπου Ντάμπι. Πολλοί θέλουν να μένουν εκεί.</span><span lang="en">One of the best in Abu Dhabi. Many people want to live there.</span></span></div>
-  <div class="lt"><span class="dot g"><span lang="el">Διαμέρισμα</span><span lang="en">Apartment</span></span><span><span lang="el">Μεγάλο, καλή διαρρύθμιση, γνωστό όνομα (Radisson).</span><span lang="en">Big, good layout, famous name (Radisson).</span></span></div>
-  <div class="lt"><span class="dot r"><span lang="el">Τιμή</span><span lang="en">Price</span></span><span><span lang="el">Ακριβή. Πληρώνεις €51.000 παραπάνω από ένα σχεδόν ίδιο.</span><span lang="en">Too high. You pay €51,000 more than a nearly identical one.</span></span></div>
-  <div class="lt"><span class="dot y"><span lang="el">Ρίσκο</span><span lang="en">Risk</span></span><span><span lang="el">Μεσαίο. Δεν έχει χτιστεί ακόμα και έρχονται πολλά νέα κτίρια.</span><span lang="en">Medium. It is not built yet and many new buildings are coming.</span></span></div>
+  <div class="lt"><span class="dot g"><span lang="el">Περιοχή & σπίτι</span><span lang="en">Area & home</span></span><span><span lang="el">Μεγάλο, καλό διαμέρισμα σε από τις καλύτερες περιοχές του Άμπου Ντάμπι.</span><span lang="en">A big, good apartment in one of Abu Dhabi's best areas.</span></span></div>
+  <div class="lt"><span class="dot r"><span lang="el">Τιμή</span><span lang="en">Price</span></span><span><span lang="el">Ακριβή. €51.000 παραπάνω από ένα σχεδόν ίδιο.</span><span lang="en">Too high. €51,000 more than a nearly identical one.</span></span></div>
+  <div class="lt"><span class="dot y"><span lang="el">Ενοίκιο</span><span lang="en">Rent</span></span><span><span lang="el">Μετά από έξοδα και φόρο, μένουν περίπου €11.700 τον χρόνο (1,8%).</span><span lang="en">After costs and tax, about €11,700 a year is left (1.8%).</span></span></div>
+  <div class="lt"><span class="dot y"><span lang="el">Ρίσκο</span><span lang="en">Risk</span></span><span><span lang="el">Μεσαίο. Δεν έχει χτιστεί και έρχονται πολλά νέα κτίρια.</span><span lang="en">Medium. Not built yet and many new buildings are coming.</span></span></div>
  </div>
 </section>
 
@@ -165,43 +177,56 @@ footer{font-size:14px;color:var(--muted);border-top:1px solid var(--line);paddin
 
 <section>
  <span class="step">4 · <span lang="el">Πόσα βγάζει</span><span lang="en">What it earns</span></span>
- <h2><span lang="el">Αν το νοικιάσεις: περίπου €27.500 τον χρόνο</span><span lang="en">If you rent it out: about €27,500 a year</span></h2>
- <div class="money">
-  <div class="num"><span class="k"><span lang="el">Ο ενοικιαστής σου δίνει</span><span lang="en">The tenant pays you</span></span><span class="v g">+€41.262</span><span class="aed"><span lang="el">τον χρόνο · AED 170,000</span><span lang="en">a year · AED 170,000</span></span></div>
-  <div class="num"><span class="k"><span lang="el">Κοινόχρηστα + διαχείριση</span><span lang="en">Building fees + manager</span></span><span class="v r">−€13.713</span><span class="aed"><span lang="el">τον χρόνο · AED 56,500</span><span lang="en">a year · AED 56,500</span></span></div>
-  <div class="num"><span class="k"><span lang="el">Μένουν σε σένα</span><span lang="en">Left for you</span></span><span class="v">€27.549</span><span class="aed"><span lang="el">τον χρόνο · πριν τον φόρο</span><span lang="en">a year · before tax</span></span></div>
- </div>
+ <h2><span lang="el">Από το ενοίκιο μένουν περίπου €11.700 τον χρόνο</span><span lang="en">The rent leaves about €11,700 a year</span></h2>
  <div class="card">
-  <p><span lang="el">Είναι σαν να έβαζες τα χρήματα σε λογαριασμό που σου δίνει περίπου <b>4% τον χρόνο</b>. Κάθε €100 που βάζεις φέρνει περίπου €4 τον χρόνο.</span><span lang="en">It is like putting the money in an account that pays about <b>4% a year</b>. Every €100 you put in brings about €4 a year.</span></p>
-  <p><span lang="el"><b>«Θα πάρω τα χρήματά μου πίσω σε 7–10 χρόνια;»</b> Μόνο από το ενοίκιο, όχι. Χρειάζονται περίπου 20 χρόνια. Αν όμως πουλήσεις σε 7–10 χρόνια, στις περισσότερες περιπτώσεις παίρνεις πίσω όλα τα χρήματα και κάτι παραπάνω.</span><span lang="en"><b>«Will I get my money back in 7–10 years?»</b> From rent alone, no. That takes about 20 years. But if you sell after 7–10 years, in most cases you get all your money back plus extra.</span></p>
-  <p class="muted"><span lang="el">Το ενοίκιο και τα κοινόχρηστα είναι δικές μου εκτιμήσεις από τις τιμές της περιοχής. Ο φόρος στην Ελλάδα δεν έχει αφαιρεθεί.</span><span lang="en">Rent and building fees are my estimates from area prices. Greek tax is not taken off.</span></p>
+  <p><span lang="el">Έτσι «λιώνει» το ενοίκιο ενός χρόνου μέχρι να φτάσει στην τσέπη σου:</span><span lang="en">This is how one year of rent shrinks before it reaches your pocket:</span></p>
+  <div class="wfall">
+<div class="wf"><span><span lang="el">Ο ενοικιαστής πληρώνει (12 μήνες)</span><span lang="en">The tenant pays (12 months)</span></span><span class="v2 g">+€41.262</span></div>
+<div class="wf"><span><span lang="el">1 μήνας άδειο ανάμεσα σε ενοικιαστές</span><span lang="en">1 month empty between tenants</span></span><span class="v2 r">−€3.301</span></div>
+<div class="wf"><span><span lang="el">Κοινόχρηστα κτιρίου</span><span lang="en">Building fees</span></span><span class="v2 r">−€11.650</span></div>
+<div class="wf"><span><span lang="el">Διαχειριστής (7%)</span><span lang="en">Manager (7%)</span></span><span class="v2 r">−€2.657</span></div>
+<div class="wf"><span><span lang="el">Επισκευές και ασφάλεια</span><span lang="en">Repairs and insurance</span></span><span class="v2 r">−€2.913</span></div>
+<div class="wf sum"><span><span lang="el">Μένουν πριν τον φόρο</span><span lang="en">Left before tax</span></span><span class="v2 ">€20.741</span></div>
+<div class="wf"><span><span lang="el">Ελληνικός φόρος (εκτίμηση)</span><span lang="en">Greek tax (estimate)</span></span><span class="v2 r">−€9.029</span></div>
+<div class="wf total"><span><span lang="el">Μένουν στην τσέπη σου</span><span lang="en">Left in your pocket</span></span><span class="v2 ">€11.712</span></div>
+  </div>
+  <p><span lang="el">Είναι σαν να έβαζες τα χρήματα σε λογαριασμό που δίνει <b>περίπου 1,8% τον χρόνο</b>. Κάθε €100 που βάζεις φέρνει λιγότερο από €2 τον χρόνο. Ο φόρος παίρνει σχεδόν τα μισά.</span><span lang="en">It is like an account paying <b>about 1.8% a year</b>. Every €100 you put in brings under €2 a year. Tax takes almost half.</span></p>
+  <p><span lang="el"><b>«Θα πάρω τα χρήματά μου πίσω σε 7–10 χρόνια;»</b> Από το ενοίκιο, όχι. Σε 10 χρόνια το ενοίκιο σου γυρίζει μόνο περίπου το 16% όσων έβαλες. Τα χρήματα γυρίζουν όταν πουλήσεις, και τότε μετράει πόσο αξίζει το σπίτι.</span><span lang="en"><b>«Will I get my money back in 7–10 years?»</b> From rent, no. In 10 years rent returns only about 16% of what you put in. The money comes back when you sell, and then what matters is what the home is worth.</span></p>
+  <p class="muted"><span lang="el">Το ενοίκιο, τα έξοδα και ο φόρος είναι δικές μου εκτιμήσεις. Ο λογιστής σου πρέπει να επιβεβαιώσει τον φόρο. Υποθέτω ότι το νοικιάζεις χωρίς έπιπλα.</span><span lang="en">Rent, costs and tax are my estimates. Your accountant must confirm the tax. I assume you rent it unfurnished.</span></p>
  </div>
 </section>
 
 <section>
  <span class="step">5 · <span lang="el">Τι μπορεί να γίνει σε 10 χρόνια</span><span lang="en">What could happen in 10 years</span></span>
  <h2><span lang="el">Από το χειρότερο στο καλύτερο</span><span lang="en">From worst to best</span></h2>
- <p><span lang="el">Το νοικιάζεις 2028–2037 και το πουλάς στο τέλος. Αυτό είναι το συνολικό σου κέρδος ή ζημιά, μαζί με όλα τα ενοίκια:</span><span lang="en">You rent it 2028–2037 and sell at the end. This is your total gain or loss, rent included:</span></p>
+ <p><span lang="el">Το νοικιάζεις 2028–2037 και το πουλάς στο τέλος. Με όλα τα έξοδα και τον φόρο. Η μαύρη γραμμή είναι όσα έβαλες. Αν η μπάρα την περνάει, κέρδισες.</span><span lang="en">You rent it 2028–2037 and sell at the end. All costs and tax included. The black line is what you put in. If the bar passes it, you made money.</span></p>
  <div class="scen">
-  <div class="sc vb"><span class="t"><span lang="el">Πολύ κακό σενάριο</span><span lang="en">Very bad case</span></span><span class="d"><span lang="el">Μένει άδειο 2 χρόνια, το ενοίκιο είναι χαμηλό και η αξία πέφτει 30%.</span><span lang="en">It sits empty 2 years, rent is low and the value falls 30%.</span></span><span class="res">−€73.000<small><span lang="el">χάνεις χρήματα</span><span lang="en">you lose money</span></small></span></div>
-  <div class="sc b"><span class="t"><span lang="el">Κακό σενάριο</span><span lang="en">Bad case</span></span><span class="d"><span lang="el">Η αξία πέφτει λίγο κάθε χρόνο και το ενοίκιο είναι χαμηλό.</span><span lang="en">The value drops a little every year and rent is low.</span></span><span class="res">+€56.000<small><span lang="el">≈ 1% τον χρόνο</span><span lang="en">≈ 1% a year</span></small></span></div>
-  <div class="sc m"><span class="t"><span lang="el">Μεσαίο σενάριο</span><span lang="en">Middle case</span></span><span class="d"><span lang="el">Η αξία μένει ίδια, κανονικό ενοίκιο.</span><span lang="en">The value stays the same, normal rent.</span></span><span class="res">+€262.000<small><span lang="el">≈ 4% τον χρόνο</span><span lang="en">≈ 4% a year</span></small></span></div>
-  <div class="sc gd"><span class="t"><span lang="el">Καλό σενάριο</span><span lang="en">Good case</span></span><span class="d"><span lang="el">Η αξία ανεβαίνει 3% τον χρόνο, κανονικό ενοίκιο.</span><span lang="en">The value rises 3% a year, normal rent.</span></span><span class="res">+€503.000<small><span lang="el">≈ 6% τον χρόνο</span><span lang="en">≈ 6% a year</span></small></span></div>
-  <div class="sc gd"><span class="t"><span lang="el">Πολύ καλό σενάριο</span><span lang="en">Very good case</span></span><span class="d"><span lang="el">Η αξία ανεβαίνει 5% τον χρόνο, κανονικό ενοίκιο.</span><span lang="en">The value rises 5% a year, normal rent.</span></span><span class="res">+€708.000<small><span lang="el">≈ 8% τον χρόνο</span><span lang="en">≈ 8% a year</span></small></span></div>
+  <div class="sc vb"><span class="t"><span lang="el">Πολύ κακό σενάριο</span><span lang="en">Very bad case</span></span><span class="d"><span lang="el">Η αξία πέφτει 30%, μένει άδειο 2 χρόνια, χαμηλό ενοίκιο, ακριβές επισκευές.</span><span lang="en">Value falls 30%, empty 2 years, low rent, costly repairs.</span></span><span class="res">−€253.778<small><span lang="el">χάνεις 39% · −4,4% τον χρόνο</span><span lang="en">you lose 39% · −4.4% a year</span></small></span>
+   <div class="gb"><div class="gbar"><div class="gfill" style="width:34.9%"></div><div class="gmark" style="left:57.3%"></div></div><span class="gl"><span lang="el">Έβαλες €648.245 → παίρνεις πίσω €394.467</span><span lang="en">You put in €648,245 → you get back €394,467</span></span></div></div>
+  <div class="sc b"><span class="t"><span lang="el">Κακό σενάριο</span><span lang="en">Bad case</span></span><span class="d"><span lang="el">Η αξία πέφτει λίγο κάθε χρόνο (−2%), χαμηλότερο ενοίκιο.</span><span lang="en">The value drops a little each year (−2%), lower rent.</span></span><span class="res">−€115.114<small><span lang="el">χάνεις 18% · −1,9% τον χρόνο</span><span lang="en">you lose 18% · −1.9% a year</span></small></span>
+   <div class="gb"><div class="gbar"><div class="gfill" style="width:47.1%"></div><div class="gmark" style="left:57.3%"></div></div><span class="gl"><span lang="el">Έβαλες €648.245 → παίρνεις πίσω €533.131</span><span lang="en">You put in €648,245 → you get back €533,131</span></span></div></div>
+  <div class="sc m"><span class="t"><span lang="el">Μεσαίο σενάριο</span><span lang="en">Middle case</span></span><span class="d"><span lang="el">Η αξία μένει όση είναι σήμερα, κανονικό ενοίκιο.</span><span lang="en">The value stays where it is today, normal rent.</span></span><span class="res">+€44.095<small><span lang="el">κερδίζεις 7% · 0,7% τον χρόνο</span><span lang="en">you gain 7% · 0.7% a year</span></small></span>
+   <div class="gb"><div class="gbar"><div class="gfill" style="width:61.2%"></div><div class="gmark" style="left:57.3%"></div></div><span class="gl"><span lang="el">Έβαλες €648.245 → παίρνεις πίσω €692.340</span><span lang="en">You put in €648,245 → you get back €692,340</span></span></div></div>
+  <div class="sc gd"><span class="t"><span lang="el">Καλό σενάριο</span><span lang="en">Good case</span></span><span class="d"><span lang="el">Η αξία ανεβαίνει 3% τον χρόνο.</span><span lang="en">The value rises 3% a year.</span></span><span class="res">+€275.339<small><span lang="el">κερδίζεις 42% · 3,6% τον χρόνο</span><span lang="en">you gain 42% · 3.6% a year</span></small></span>
+   <div class="gb"><div class="gbar"><div class="gfill" style="width:81.7%"></div><div class="gmark" style="left:57.3%"></div></div><span class="gl"><span lang="el">Έβαλες €648.245 → παίρνεις πίσω €923.584</span><span lang="en">You put in €648,245 → you get back €923,584</span></span></div></div>
+  <div class="sc gd"><span class="t"><span lang="el">Πολύ καλό σενάριο</span><span lang="en">Very good case</span></span><span class="d"><span lang="el">Η αξία ανεβαίνει 5% τον χρόνο, το ενοίκιο 3% τον χρόνο.</span><span lang="en">The value rises 5% a year, rent 3% a year.</span></span><span class="res">+€482.585<small><span lang="el">κερδίζεις 74% · 5,7% τον χρόνο</span><span lang="en">you gain 74% · 5.7% a year</span></small></span>
+   <div class="gb"><div class="gbar"><div class="gfill" style="width:100.0%"></div><div class="gmark" style="left:57.3%"></div></div><span class="gl"><span lang="el">Έβαλες €648.245 → παίρνεις πίσω €1.130.830</span><span lang="en">You put in €648,245 → you get back €1,130,830</span></span></div></div>
  </div>
  <div class="card">
-  <p><span lang="el"><b>Τι σημαίνει:</b> στα περισσότερα σενάρια κερδίζεις. Χάνεις μόνο αν πάνε πολλά στραβά μαζί. Το ενοίκιο είναι το «μαξιλάρι» σου: ακόμα κι αν πέσει η τιμή, τα ενοίκια καλύπτουν μεγάλο μέρος της ζημιάς.</span><span lang="en"><b>What it means:</b> in most cases you make money. You only lose if many things go wrong together. Rent is your «cushion»: even if the price falls, the rent covers a big part of the loss.</span></p>
-  <p class="muted"><span lang="el">Όλα πριν από τον φόρο στην Ελλάδα και με την τιμή που ζητάνε (€621.000). Αν πληρώσεις €570.000, όλα τα ποσά βγαίνουν λίγο καλύτερα.</span><span lang="en">All before Greek tax and at the asking price (€621,000). If you pay €570,000, every case comes out a bit better.</span></p>
+  <p><span lang="el"><b>Τι σημαίνει:</b> αν οι τιμές μείνουν ίδιες, μετά από 10 χρόνια παίρνεις πίσω τα χρήματά σου και λίγα παραπάνω. Κερδίζεις καλά μόνο αν οι τιμές ανεβαίνουν 3% τον χρόνο ή περισσότερο. Αν πέσουν, χάνεις.</span><span lang="en"><b>What it means:</b> if prices stay the same, after 10 years you get your money back and a little more. You only do well if prices rise 3% a year or more. If they fall, you lose.</span></p>
+  <p><span lang="el"><b>Αν το κρατήσεις αντί να το πουλήσεις:</b> έχεις το σπίτι και συνεχίζεις να παίρνεις περίπου €12.000 τον χρόνο από το ενοίκιο. Τα ποσοστά βγαίνουν σχεδόν ίδια.</span><span lang="en"><b>If you keep it instead of selling:</b> you own the home and keep getting about €12,000 a year from rent. The percentages come out almost the same.</span></p>
+  <p class="muted"><span lang="el">Στην τιμή που ζητάνε (€621.000). Αν πληρώσεις €570.000, κάθε σενάριο βγαίνει περίπου €53.000 καλύτερο. Όλοι οι υπολογισμοί είναι στην αναλυτική εκδοχή.</span><span lang="en">At the asking price (€621,000). If you pay €570,000, every case comes out about €53,000 better. All calculations are in the detailed version.</span></p>
  </div>
 </section>
 
 <section>
  <span class="step">6 · <span lang="el">Τι μπορεί να πάει στραβά</span><span lang="en">What could go wrong</span></span>
- <h2><span lang="el">Τα 5 πράγματα που πρέπει να ξέρεις</span><span lang="en">The 5 things to know</span></h2>
+ <h2><span lang="el">Τα 6 πράγματα που πρέπει να ξέρεις</span><span lang="en">The 6 things to know</span></h2>
  <div class="card"><ul>
   <li><span lang="el"><b>Δεν έχει χτιστεί ακόμα.</b> Μπορεί να αργήσει. Η εταιρεία είναι καινούρια (2025), αλλά ανήκει σε μεγάλο όμιλο και τα χρήματα φυλάσσονται σε κρατικά ελεγχόμενο λογαριασμό.</span><span lang="en"><b>It is not built yet.</b> It could be late. The company is new (2025), but it belongs to a big group and the money is held in a state-controlled account.</span></li>
   <li><span lang="el"><b>Έρχονται πολλά νέα διαμερίσματα.</b> Περίπου 50% περισσότερα σπίτια στο νησί έως το 2030. Περισσότερη προσφορά μπορεί να φρενάρει τιμές και ενοίκια.</span><span lang="en"><b>Many new apartments are coming.</b> About 50% more homes on the island by 2030. More supply can slow prices and rents.</span></li>
   <li><span lang="el"><b>Οι τιμές ανέβηκαν ήδη πολύ.</b> +20% μέσα σε έναν χρόνο. Μετά από τόση άνοδο, συχνά ακολουθεί ηρεμία.</span><span lang="en"><b>Prices already rose a lot.</b> +20% in one year. After such a jump, a calmer period often follows.</span></li>
+  <li><span lang="el"><b>Άδειοι μήνες και ζημιές.</b> Ένα σπίτι δεν είναι πάντα νοικιασμένο και κάτι χαλάει πάντα. Τον 1ο χρόνο μετά την παράδοση ο κατασκευαστής συνήθως διορθώνει τα ελαττώματα, και στα Εμιράτα ευθύνεται 10 χρόνια για τα δομικά. Τις καθημερινές φθορές (κλιματιστικά, βάψιμο, συσκευές) τις πληρώνεις εσύ. Τα έχω βάλει όλα στους υπολογισμούς.</span><span lang="en"><b>Empty months and damage.</b> A home is not always rented and something always breaks. In the first year after handover the developer usually fixes defects, and in the UAE it is liable for 10 years for structural problems. Everyday wear (air-conditioning, paint, appliances) is on you. All of this is in the numbers.</span></li>
   <li><span lang="el"><b>Νόμισμα.</b> Το ντιράμ ακολουθεί το δολάριο. Αν το ευρώ ανέβει, τα χρήματά σου σε ευρώ αξίζουν λιγότερα (και αντίστροφα).</span><span lang="en"><b>Currency.</b> The dirham follows the US dollar. If the euro goes up, your money is worth less in euro (and the other way round).</span></li>
   <li><span lang="el"><b>Φόρος στην Ελλάδα.</b> Ως κάτοικος Ελλάδας δηλώνεις εδώ τα ενοίκια και το κέρδος. Αυτό μπορεί να μειώσει αρκετά τα παραπάνω νούμερα.</span><span lang="en"><b>Greek tax.</b> As a Greek resident you declare the rent and the profit here. That can reduce the numbers above quite a bit.</span></li>
  </ul></div>
@@ -209,8 +234,9 @@ footer{font-size:14px;color:var(--muted);border-top:1px solid var(--line);paddin
 
 <section>
  <span class="step">7 · <span lang="el">Τι προτείνω</span><span lang="en">What I suggest</span></span>
- <h2><span lang="el">Τα επόμενα 4 βήματα</span><span lang="en">The next 4 steps</span></h2>
+ <h2><span lang="el">Τα επόμενα 5 βήματα</span><span lang="en">The next 5 steps</span></h2>
  <ol class="do">
+  <li><span lang="el"><b>Αποφάσισε πρώτα ένα πράγμα:</b> πιστεύεις ότι οι τιμές στο Άμπου Ντάμπι θα ανεβαίνουν 3% τον χρόνο για 10 χρόνια; Αν όχι, αυτή δεν είναι καλή επένδυση για σένα.</span><span lang="en"><b>Decide one thing first:</b> do you believe Abu Dhabi prices will rise 3% a year for 10 years? If not, this is not a good investment for you.</span></li>
   <li><span lang="el"><b>Μην πληρώσεις €621.000.</b> Είναι πάνω από τη μέση τιμή της αγοράς.</span><span lang="en"><b>Do not pay €621,000.</b> It is above the market's middle price.</span></li>
   <li><span lang="el"><b>Δώσε προσφορά γύρω στα €570.000</b> (AED 2.350.000). Δείξε στον μεσίτη το ίδιο διαμέρισμα στον ίδιο πύργο σε αυτή την τιμή. Ο πωλητής ακόμα κερδίζει πάνω από €80.000, άρα έχει περιθώριο.</span><span lang="en"><b>Offer around €570,000</b> (AED 2,350,000). Show the agent the same apartment in the same tower at that price. The seller still makes over €80,000, so he has room.</span></li>
   <li><span lang="el"><b>Αν πει όχι, ζήτα να δεις τα φθηνότερα.</b> Το €570.000 στον Πύργο 1 ή το €546.000 στον Πύργο 2 (το έχει το ίδιο μεσιτικό).</span><span lang="en"><b>If he says no, ask to see the cheaper ones.</b> The €570,000 one in Tower 1 or the €546,000 one in Tower 2 (the same agency has it).</span></li>
@@ -237,7 +263,7 @@ footer{font-size:14px;color:var(--muted);border-top:1px solid var(--line);paddin
 </div>
 <script>
 (function(){var el=document.getElementById('btn-el'),en=document.getElementById('btn-en');
-var nums=[].slice.call(document.querySelectorAll('.v,.val,.res'));nums.forEach(function(e){var t=e.firstChild;if(t&&t.nodeType===3){e._el=t.nodeValue;e._en=t.nodeValue.replace(/(\d)\.(\d{3})/g,'$1,$2');}});
+var nums=[].slice.call(document.querySelectorAll('.v,.val,.res,.v2'));nums.forEach(function(e){var t=e.firstChild;if(t&&t.nodeType===3){e._el=t.nodeValue;e._en=t.nodeValue.replace(/(\d)\.(\d{3})/g,'$1,$2');}});
 function set(l){nums.forEach(function(e){if(e._el!=null)e.firstChild.nodeValue=(l==='en'?e._en:e._el)});document.body.classList.toggle('en',l==='en');document.documentElement.lang=l;el.setAttribute('aria-pressed',l==='el');en.setAttribute('aria-pressed',l==='en');try{localStorage.setItem('rad-lang',l)}catch(e){}}
 el.addEventListener('click',function(){set('el')});en.addEventListener('click',function(){set('en')});
 var s=null;try{s=localStorage.getItem('rad-lang')}catch(e){}set(s==='en'?'en':'el');})();

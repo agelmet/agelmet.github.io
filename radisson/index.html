@@ -79,6 +79,36 @@ tr.me td{background:var(--hl);font-weight:600}
   .facts.f3{grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr))}
   .nw{white-space:nowrap}
   @media (max-width:560px){th,td{padding:8px 7px;font-size:13.5px} .tblwrap{margin-inline:-6px}}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:12px}
+.kpis>div,.minis>div{display:flex;flex-direction:column;gap:2px;min-width:0}
+.kpis>div{background:var(--card);border:1px solid var(--line);padding:16px}
+.mk{font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.mv{font-size:22px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.2}
+.ma{font-size:12.5px;color:var(--muted);font-weight:600}
+.mv.neg,.scn-res.neg{color:var(--risk)} .scn-res.pos{color:var(--good)}
+.taxsw{display:inline-flex;align-self:flex-start;border:1px solid var(--line);background:var(--card);border-radius:999px;overflow:hidden;flex-wrap:wrap}
+.taxsw button{font:inherit;font-weight:700;font-size:14px;padding:9px 16px;border:0;background:transparent;color:var(--muted);cursor:pointer}
+.taxsw button[aria-pressed="true"]{background:var(--ink);color:#fff}
+body.pre .t-post{display:none} body:not(.pre) .t-pre{display:none}
+.legend{font-size:13px;color:var(--muted);display:flex;gap:6px 14px;align-items:center;flex-wrap:wrap}
+.lg{display:inline-block;width:14px;height:10px;margin-right:-8px}
+.lg.sv{background:var(--tide)} .lg.sr{background:#7FC4A1} .lg.mk2{width:3px;height:14px;background:var(--ink)}
+.scns{display:flex;flex-direction:column;gap:14px}
+.scn{background:var(--card);border:1px solid var(--line);border-left:6px solid var(--line)}
+.scn.vb{border-left-color:var(--risk)} .scn.b{border-left-color:#C98A1B} .scn.m{border-left-color:#8A9A93} .scn.gd{border-left-color:var(--good)}
+.scn-body{padding:18px;display:flex;flex-direction:column;gap:14px}
+.scn-top{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.scn-name{font-weight:700;font-size:18px} .scn-desc{font-size:14.5px;color:var(--muted);max-width:56ch}
+.scn-res{font-size:28px;font-weight:700;font-variant-numeric:tabular-nums;text-align:right;line-height:1.1}
+.scn-res small{display:block;font-size:13px;color:var(--muted);font-weight:600;margin-top:4px}
+.stack{position:relative;height:30px;background:#EDF1EF;display:flex;margin-top:26px}
+.seg{height:100%;position:relative;overflow:visible} .seg.sv{background:var(--tide)} .seg.sr{background:#7FC4A1}
+.seg.sv>span{position:absolute;left:8px;top:0;line-height:30px;color:#fff;font-size:12.5px;font-weight:700;white-space:nowrap}
+.mark{position:absolute;top:-16px;bottom:-4px;width:3px;background:var(--ink)}
+.mark>span{position:absolute;bottom:100%;left:50%;transform:translateX(-50%);font-size:11.5px;font-weight:700;white-space:nowrap;color:var(--ink);background:var(--card);padding:0 4px}
+.minis{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,135px),1fr));gap:12px 16px;border-top:1px solid var(--line);padding-top:12px}
+.minis .mv{font-size:19px}
+@media (max-width:540px){.scn-res{text-align:left} .taxsw{border-radius:8px} .taxsw button{flex:1 1 100%;text-align:left}}
 footer{font-size:13px;color:var(--muted);display:flex;flex-direction:column;gap:8px;border-top:1px solid var(--line);padding-top:18px}
 </style>
 </head>
@@ -103,13 +133,13 @@ footer{font-size:13px;color:var(--muted);display:flex;flex-direction:column;gap:
    <li><span lang="el"><strong>Τι είναι:</strong> διαμέρισμα 153,5 m² (1.653 ft²) στον 9ο όροφο του Πύργου 1, στο Άμπου Ντάμπι. Χτίζεται ακόμα και παραδίδεται τέλος 2027. Το αγοράζεις από ιδιώτη που το έκλεισε τον Δεκέμβριο 2025 στα <span class="aed">AED 2,015,040</span> <span class="eur">≈ €489,087</span> και τώρα ζητά <span class="aed">AED 2,560,000</span> <span class="eur">≈ €621,359</span>.</span><span lang="en"><strong>What it is:</strong> a 153.5 m² (1,653 ft²) apartment on the 9th floor of Tower 1 in Abu Dhabi. It is still being built and is handed over at the end of 2027. You buy it from a private owner who reserved it in December 2025 at <span class="aed">AED 2,015,040</span> <span class="eur">≈ €489,087</span> and now asks <span class="aed">AED 2,560,000</span> <span class="eur">≈ €621,359</span>.</span></li>
    <li><span lang="el"><strong>Πόσα βάζεις:</strong> συνολικά <span class="aed">AED 2,670,770</span> <span class="eur">≈ €648,245</span>. Από αυτά <span class="aed">AED 1,109,114</span> <span class="eur">≈ €269,202</span> την πρώτη μέρα και <span class="aed">AED 1,209,024</span> <span class="eur">≈ €293,452</span> στην παράδοση.</span><span lang="en"><strong>What you put in:</strong> <span class="aed">AED 2,670,770</span> <span class="eur">≈ €648,245</span> in total. Of that, <span class="aed">AED 1,109,114</span> <span class="eur">≈ €269,202</span> on day one and <span class="aed">AED 1,209,024</span> <span class="eur">≈ €293,452</span> at handover.</span></li>
    <li><span lang="el"><strong>Είναι ακριβό;</strong> Λίγο. Υπάρχουν 16 αγγελίες στο ίδιο μέγεθος. Η δική σου είναι η 14η φθηνότερη από τις 16. Στον ίδιο πύργο, με ίδια θέα και ίδιο μέγεθος, υπάρχει αγγελία 210.010 AED (≈ €51.000) φθηνότερη.</span><span lang="en"><strong>Is it expensive?</strong> Somewhat. There are 16 listings of the same size. Yours is the 14th cheapest of 16. In the same tower, with the same view and size, there is a listing AED 210,010 (≈ €51,000) cheaper.</span></li>
-   <li><span lang="el"><strong>Για το πλάνο σου (κράτημα 10 χρόνια):</strong> με λογικές παραδοχές βγάζεις περίπου 4% έως 8% τον χρόνο, πριν από τον ελληνικό φόρο. Το ενοίκιο μόνο του σου επιστρέφει περίπου τα μισά χρήματα σε 10 χρόνια. Τα υπόλοιπα και το κέρδος έρχονται όταν πουλήσεις.</span><span lang="en"><strong>For your plan (hold 10 years):</strong> with reasonable assumptions you earn roughly 4% to 8% a year, before Greek tax. Rent alone returns about half your money in 10 years. The rest and the profit come when you sell.</span></li>
+   <li><span lang="el"><strong>Για το πλάνο σου (κράτημα 10 χρόνια):</strong> με όλα τα πραγματικά έξοδα και τον ελληνικό φόρο, το ενοίκιο αποδίδει λίγο (περίπου 1,8% τον χρόνο). Το αν θα κερδίσεις κρίνεται από το αν ανέβουν οι τιμές. Με +3% τον χρόνο κερδίζεις περίπου 42% σε 10 χρόνια. Αν μείνουν ίδιες, περίπου 7%. Αν πέσουν, χάνεις.</span><span lang="en"><strong>For your plan (hold 10 years):</strong> with all real costs and Greek tax, the rent earns little (about 1.8% a year). Whether you win depends on prices rising. At +3% a year you gain about 42% over 10 years. Flat prices give about 7%. If they fall, you lose.</span></li>
   </ul>
  </div>
  <div class="verdict">
   <span class="eyebrow"><span lang="el">Η γνώμη μου</span><span lang="en">My opinion</span></span>
-  <span class="big"><span lang="el">Για μακροπρόθεσμο κράτημα είναι μια λογική επένδυση σε καλό σημείο. Όχι όμως σε αυτή την τιμή. Δώσε προσφορά γύρω στα 2.350.000 AED ή πάρε την αγγελία Νο 1 παρακάτω.</span><span lang="en">For a long-term hold it is a sensible investment in a good location. But not at this price. Offer around AED 2,350,000, or go for option no. 1 below.</span></span>
-  <p><span lang="el">Η διαφορά των 210.000 AED (≈ €51.000) δεν θα σε καταστρέψει σε βάθος 10 ετών. Είναι όμως χρήματα που χαρίζεις χωρίς λόγο, αφού υπάρχει σχεδόν ίδιο διαμέρισμα στον ίδιο πύργο φθηνότερα.</span><span lang="en">The AED 210,000 difference (≈ €51,000) will not ruin a 10-year plan. But it is money given away for nothing, since a nearly identical apartment in the same tower is listed for less.</span></p>
+  <span class="big"><span lang="el">Καλό διαμέρισμα σε καλό σημείο, αλλά ως επένδυση είναι στοίχημα ότι οι τιμές θα συνεχίσουν να ανεβαίνουν. Αν το κάνεις, μην πληρώσεις 2.560.000. Δώσε προσφορά γύρω στα 2.350.000 AED ή πάρε την αγγελία Νο 1, και μίλα πρώτα με λογιστή για τον φόρο.</span><span lang="en">A good apartment in a good place, but as an investment it is a bet that prices keep rising. If you go ahead, do not pay 2,560,000. Offer around AED 2,350,000 or take option no. 1, and talk to an accountant about tax first.</span></span>
+  <p><span lang="el">Με τα πραγματικά έξοδα και τον φόρο, στο μεσαίο σενάριο κερδίζεις λιγότερο από 1% τον χρόνο. Βγαίνει καλή επένδυση μόνο αν οι τιμές ανεβαίνουν 3% τον χρόνο ή παραπάνω.</span><span lang="en">With real costs and tax, the middle case earns under 1% a year. It is a good investment only if prices rise 3% a year or more.</span></p>
  </div>
 </section>
 
@@ -339,29 +369,212 @@ footer{font-size:13px;color:var(--muted);display:flex;flex-direction:column;gap:
  </div>
 </section>
 
-<section>
+<section id="plan">
  <span class="eyebrow"><span lang="el">Το πλάνο σου</span><span lang="en">Your plan</span></span>
- <h2><span lang="el">Κράτημα 10 χρόνια: τι μπορεί να γίνει</span><span lang="en">Holding 10 years: what could happen</span></h2>
- <p><span lang="el">Υποθέτω ότι το νοικιάζεις από το 2028 για 10 χρόνια και το πουλάς τέλος 2037. Ενοίκιο <span class="aed">AED 170,000</span> <span class="eur">≈ €41,262</span> τον χρόνο, που ανεβαίνει 2% τον χρόνο. Κοινόχρηστα <span class="aed">AED 48,000</span> <span class="eur">≈ €11,650</span> τον χρόνο (≈ 29 AED ανά ft²) και 5% για διαχείριση. Καθαρό τον πρώτο χρόνο ≈ <span class="aed">AED 113,500</span> <span class="eur">≈ €27,549</span>, δηλαδή 4,3% του κόστους. Αυτά είναι δικές μου εκτιμήσεις από τις τιμές της περιοχής, όχι προσφορά ενοικίου.</span><span lang="en">I assume you rent it from 2028 for 10 years and sell at the end of 2037. Rent <span class="aed">AED 170,000</span> <span class="eur">≈ €41,262</span> a year, rising 2% a year. Service charge <span class="aed">AED 48,000</span> <span class="eur">≈ €11,650</span> a year (≈ AED 29 per ft²) and 5% for management. First-year net ≈ <span class="aed">AED 113,500</span> <span class="eur">≈ €27,549</span>, which is 4.3% of the cost. These are my estimates from area prices, not a rent offer.</span></p>
- <div class="tblwrap"><table>
-  <thead><tr><th><span lang="el">Αν η αξία…</span><span lang="en">If the value…</span></th><th class="n"><span lang="el">Αξία 2037</span><span lang="en">Value 2037</span></th><th class="n"><span lang="el">Ενοίκια 10 ετών</span><span lang="en">10 years of rent</span></th><th class="n"><span lang="el">Συνολικό κέρδος</span><span lang="en">Total profit</span></th><th class="n"><span lang="el">Ανά χρόνο</span><span lang="en">Per year</span></th><th class="n"><span lang="el">Ανά χρόνο αν πληρώσεις 2,35εκ.</span><span lang="en">Per year if you pay 2.35M</span></th></tr></thead>
-  <tbody>
-<tr><td><span lang="el">Πέφτει 2% τον χρόνο</span><span lang="en">Falls 2% a year</span></td><td class="n">1,998,754<span class="sub">€485,134</span></td><td class="n">1,242,793<span class="sub">€301,649</span></td><td class="n pos">+571,338<span class="sub">€138,674</span></td><td class="n"><strong>2.2%</strong></td><td class="n">2.7%</td></tr>
-<tr><td><span lang="el">Μένει ίδια</span><span lang="en">Stays flat</span></td><td class="n">2,508,800<span class="sub">€608,932</span></td><td class="n">1,242,793<span class="sub">€301,649</span></td><td class="n pos">+1,081,383<span class="sub">€262,472</span></td><td class="n"><strong>3.8%</strong></td><td class="n">4.3%</td></tr>
-<tr><td><span lang="el">Ανεβαίνει 3% τον χρόνο</span><span lang="en">Rises 3% a year</span></td><td class="n">3,498,524<span class="sub">€849,156</span></td><td class="n">1,242,793<span class="sub">€301,649</span></td><td class="n pos">+2,071,107<span class="sub">€502,696</span></td><td class="n"><strong>6.4%</strong></td><td class="n">6.8%</td></tr>
-<tr><td><span lang="el">Ανεβαίνει 5% τον χρόνο</span><span lang="en">Rises 5% a year</span></td><td class="n">4,343,558<span class="sub">€1,054,262</span></td><td class="n">1,242,793<span class="sub">€301,649</span></td><td class="n pos">+2,916,142<span class="sub">€707,801</span></td><td class="n"><strong>8.2%</strong></td><td class="n">8.5%</td></tr>
-  </tbody></table></div>
- <p class="muted"><span lang="el">Η «αξία 2037» είναι μετά από 2% έξοδα πώλησης. Το «ανά χρόνο» είναι σαν επιτόκιο λογαριασμού: πόσο σου απέδωσαν τα χρήματα κάθε χρόνο κατά μέσο όρο. Όλα πριν από τον ελληνικό φόρο στα ενοίκια και την υπεραξία. Ρώτα τον λογιστή σου, γιατί ο φόρος μπορεί να πάρει σημαντικό κομμάτι.</span><span lang="en">The «value 2037» is after 2% selling costs. «Per year» works like an account interest rate: how much your money earned each year on average. All before Greek tax on rent and gains. Ask your accountant, because the tax can take a big share.</span></p>
+ <h2><span lang="el">Κράτημα 10 χρόνια: τι μένει στα χέρια σου</span><span lang="en">Holding 10 years: what ends up in your hands</span></h2>
+ <p><span lang="el">Το νοικιάζεις από το 2028 έως το 2037 και στο τέλος είτε το πουλάς είτε το κρατάς. Σε αυτή την έκδοση έβαλα και τα έξοδα της πραγματικής ζωής: μήνες που μένει άδειο, επισκευές, διαχείριση, ασφάλεια και τον ελληνικό φόρο.</span><span lang="en">You rent it from 2028 to 2037 and at the end you either sell or keep it. In this version I added the real-life costs: months it sits empty, repairs, management, insurance and Greek tax.</span></p>
+ <div class="kpis">
+  <div><span class="mk"><span lang="el">Βάζεις συνολικά</span><span lang="en">You put in</span></span><span class="mv">€648,245</span><span class="ma">AED 2,670,770</span></div>
+  <div><span class="mk"><span lang="el">Καθαρό ενοίκιο 1ου χρόνου, πριν τον φόρο</span><span lang="en">Year-one net rent, before tax</span></span><span class="mv">€20,741</span><span class="ma">AED 85,452 · 3.2%</span></div>
+  <div><span class="mk"><span lang="el">…και μετά τον ελληνικό φόρο</span><span lang="en">…and after Greek tax</span></span><span class="mv">€11,712</span><span class="ma">AED 48,255 · 1.8%</span></div>
+ </div>
+ <div class="taxsw" role="group" aria-label="Tax view">
+  <button id="tx-post" type="button" aria-pressed="true"><span lang="el">Μετά τον ελληνικό φόρο (εκτίμηση)</span><span lang="en">After Greek tax (estimate)</span></button>
+  <button id="tx-pre" type="button" aria-pressed="false"><span lang="el">Πριν τον φόρο</span><span lang="en">Before tax</span></button>
+ </div>
+ <p class="legend"><span class="lg sv"></span><span lang="el">αξία σπιτιού</span><span lang="en">home value</span> <span class="lg sr"></span><span lang="el">ενοίκια στην τσέπη</span><span lang="en">rent in your pocket</span> <span class="lg mk2"></span><span lang="el">όσα έβαλες</span><span lang="en">what you put in</span></p>
+ <div class="scns">
+<article class="scn vb"><div class="scn-body t-post">
+  <div class="scn-top"><div><div class="scn-name"><span lang="el">Πολύ κακό σενάριο</span><span lang="en">Very bad case</span></div><div class="scn-desc"><span lang="el">Η αξία πέφτει 30%, μένει άδειο τα 2 πρώτα χρόνια, χαμηλό ενοίκιο, ακριβές επισκευές.</span><span lang="en">Value falls 30%, empty for the first 2 years, low rent, costly repairs.</span></div></div>
+   <div class="scn-res neg">−€253,778<small><span lang="el">ζημιά αν πουλήσεις · −39%</span><span lang="en">loss if you sell · −39%</span></small></div></div>
+  <div class="stack" role="img" aria-label="value plus rent versus money put in">
+   <div class="seg sv" style="width:31.8%"><span><span lang="el">σπίτι</span><span lang="en">home</span> €419k</span></div><div class="seg sr" style="width:0.0%"></div>
+   <div class="mark" style="left:49.3%"><span><span lang="el">έβαλες</span><span lang="en">you put in</span> €648k</span></div>
+  </div>
+  <div class="minis">
+   <div><span class="mk"><span lang="el">Αξία σπιτιού 2037</span><span lang="en">Home value 2037</span></span><span class="mv">€418,692</span><span class="ma">AED 1,725,010</span></div>
+   <div><span class="mk"><span lang="el">Ενοίκια στην τσέπη (10 χρ.)</span><span lang="en">Rent in your pocket (10 yrs)</span></span><span class="mv">−€15,851</span><span class="ma">−AED 65,305 · <span lang="el">−2% όσων έβαλες</span><span lang="en">−2% of what you put in</span></span></div>
+   <div><span class="mk"><span lang="el">Αν πουλήσεις 2037, παίρνεις</span><span lang="en">If you sell in 2037 you get</span></span><span class="mv">€394,467</span><span class="ma">AED 1,625,205 · −39%</span></div>
+   <div><span class="mk"><span lang="el">Αν το κρατήσεις, έχεις</span><span lang="en">If you keep it you have</span></span><span class="mv">€402,841</span><span class="ma"><span lang="el">σπίτι + ενοίκια</span><span lang="en">home + rent</span> · −38%</span></div>
+   <div><span class="mk"><span lang="el">Απόδοση ανά χρόνο</span><span lang="en">Return per year</span></span><span class="mv neg"><span lang="el">-4,4%</span><span lang="en">-4.4%</span></span><span class="ma"><span lang="el">σαν επιτόκιο λογαριασμού</span><span lang="en">like an account interest rate</span></span></div>
+  </div>
+ </div>
+<div class="scn-body t-pre">
+  <div class="scn-top"><div><div class="scn-name"><span lang="el">Πολύ κακό σενάριο</span><span lang="en">Very bad case</span></div><div class="scn-desc"><span lang="el">Η αξία πέφτει 30%, μένει άδειο τα 2 πρώτα χρόνια, χαμηλό ενοίκιο, ακριβές επισκευές.</span><span lang="en">Value falls 30%, empty for the first 2 years, low rent, costly repairs.</span></div></div>
+   <div class="scn-res neg">−€195,418<small><span lang="el">ζημιά αν πουλήσεις · −30%</span><span lang="en">loss if you sell · −30%</span></small></div></div>
+  <div class="stack" role="img" aria-label="value plus rent versus money put in">
+   <div class="seg sv" style="width:31.8%"><span><span lang="el">σπίτι</span><span lang="en">home</span> €419k</span></div><div class="seg sr" style="width:3.2%"></div>
+   <div class="mark" style="left:49.3%"><span><span lang="el">έβαλες</span><span lang="en">you put in</span> €648k</span></div>
+  </div>
+  <div class="minis">
+   <div><span class="mk"><span lang="el">Αξία σπιτιού 2037</span><span lang="en">Home value 2037</span></span><span class="mv">€418,692</span><span class="ma">AED 1,725,010</span></div>
+   <div><span class="mk"><span lang="el">Ενοίκια στην τσέπη (10 χρ.)</span><span lang="en">Rent in your pocket (10 yrs)</span></span><span class="mv">€42,510</span><span class="ma">AED 175,139 · <span lang="el">7% όσων έβαλες</span><span lang="en">7% of what you put in</span></span></div>
+   <div><span class="mk"><span lang="el">Αν πουλήσεις 2037, παίρνεις</span><span lang="en">If you sell in 2037 you get</span></span><span class="mv">€452,827</span><span class="ma">AED 1,865,649 · −30%</span></div>
+   <div><span class="mk"><span lang="el">Αν το κρατήσεις, έχεις</span><span lang="en">If you keep it you have</span></span><span class="mv">€461,201</span><span class="ma"><span lang="el">σπίτι + ενοίκια</span><span lang="en">home + rent</span> · −29%</span></div>
+   <div><span class="mk"><span lang="el">Απόδοση ανά χρόνο</span><span lang="en">Return per year</span></span><span class="mv neg"><span lang="el">-3,3%</span><span lang="en">-3.3%</span></span><span class="ma"><span lang="el">σαν επιτόκιο λογαριασμού</span><span lang="en">like an account interest rate</span></span></div>
+  </div>
+ </div></article>
+<article class="scn b"><div class="scn-body t-post">
+  <div class="scn-top"><div><div class="scn-name"><span lang="el">Κακό σενάριο</span><span lang="en">Bad case</span></div><div class="scn-desc"><span lang="el">Η αξία πέφτει 2% τον χρόνο, χαμηλότερο ενοίκιο, 1 μήνας+ άδειο κάθε χρόνο.</span><span lang="en">Value falls 2% a year, lower rent, over 1 month empty every year.</span></div></div>
+   <div class="scn-res neg">−€115,114<small><span lang="el">ζημιά αν πουλήσεις · −18%</span><span lang="en">loss if you sell · −18%</span></small></div></div>
+  <div class="stack" role="img" aria-label="value plus rent versus money put in">
+   <div class="seg sv" style="width:36.2%"><span><span lang="el">σπίτι</span><span lang="en">home</span> €477k</span></div><div class="seg sr" style="width:5.0%"></div>
+   <div class="mark" style="left:49.3%"><span><span lang="el">έβαλες</span><span lang="en">you put in</span> €648k</span></div>
+  </div>
+  <div class="minis">
+   <div><span class="mk"><span lang="el">Αξία σπιτιού 2037</span><span lang="en">Home value 2037</span></span><span class="mv">€476,529</span><span class="ma">AED 1,963,301</span></div>
+   <div><span class="mk"><span lang="el">Ενοίκια στην τσέπη (10 χρ.)</span><span lang="en">Rent in your pocket (10 yrs)</span></span><span class="mv">€66,132</span><span class="ma">AED 272,465 · <span lang="el">10% όσων έβαλες</span><span lang="en">10% of what you put in</span></span></div>
+   <div><span class="mk"><span lang="el">Αν πουλήσεις 2037, παίρνεις</span><span lang="en">If you sell in 2037 you get</span></span><span class="mv">€533,131</span><span class="ma">AED 2,196,500 · −18%</span></div>
+   <div><span class="mk"><span lang="el">Αν το κρατήσεις, έχεις</span><span lang="en">If you keep it you have</span></span><span class="mv">€542,662</span><span class="ma"><span lang="el">σπίτι + ενοίκια</span><span lang="en">home + rent</span> · −16%</span></div>
+   <div><span class="mk"><span lang="el">Απόδοση ανά χρόνο</span><span lang="en">Return per year</span></span><span class="mv neg"><span lang="el">-1,9%</span><span lang="en">-1.9%</span></span><span class="ma"><span lang="el">σαν επιτόκιο λογαριασμού</span><span lang="en">like an account interest rate</span></span></div>
+  </div>
+ </div>
+<div class="scn-body t-pre">
+  <div class="scn-top"><div><div class="scn-name"><span lang="el">Κακό σενάριο</span><span lang="en">Bad case</span></div><div class="scn-desc"><span lang="el">Η αξία πέφτει 2% τον χρόνο, χαμηλότερο ενοίκιο, 1 μήνας+ άδειο κάθε χρόνο.</span><span lang="en">Value falls 2% a year, lower rent, over 1 month empty every year.</span></div></div>
+   <div class="scn-res neg">−€37,128<small><span lang="el">ζημιά αν πουλήσεις · −6%</span><span lang="en">loss if you sell · −6%</span></small></div></div>
+  <div class="stack" role="img" aria-label="value plus rent versus money put in">
+   <div class="seg sv" style="width:36.2%"><span><span lang="el">σπίτι</span><span lang="en">home</span> €477k</span></div><div class="seg sr" style="width:10.9%"></div>
+   <div class="mark" style="left:49.3%"><span><span lang="el">έβαλες</span><span lang="en">you put in</span> €648k</span></div>
+  </div>
+  <div class="minis">
+   <div><span class="mk"><span lang="el">Αξία σπιτιού 2037</span><span lang="en">Home value 2037</span></span><span class="mv">€476,529</span><span class="ma">AED 1,963,301</span></div>
+   <div><span class="mk"><span lang="el">Ενοίκια στην τσέπη (10 χρ.)</span><span lang="en">Rent in your pocket (10 yrs)</span></span><span class="mv">€144,118</span><span class="ma">AED 593,767 · <span lang="el">22% όσων έβαλες</span><span lang="en">22% of what you put in</span></span></div>
+   <div><span class="mk"><span lang="el">Αν πουλήσεις 2037, παίρνεις</span><span lang="en">If you sell in 2037 you get</span></span><span class="mv">€611,117</span><span class="ma">AED 2,517,803 · −6%</span></div>
+   <div><span class="mk"><span lang="el">Αν το κρατήσεις, έχεις</span><span lang="en">If you keep it you have</span></span><span class="mv">€620,648</span><span class="ma"><span lang="el">σπίτι + ενοίκια</span><span lang="en">home + rent</span> · −4%</span></div>
+   <div><span class="mk"><span lang="el">Απόδοση ανά χρόνο</span><span lang="en">Return per year</span></span><span class="mv neg"><span lang="el">-0,6%</span><span lang="en">-0.6%</span></span><span class="ma"><span lang="el">σαν επιτόκιο λογαριασμού</span><span lang="en">like an account interest rate</span></span></div>
+  </div>
+ </div></article>
+<article class="scn m"><div class="scn-body t-post">
+  <div class="scn-top"><div><div class="scn-name"><span lang="el">Μεσαίο σενάριο</span><span lang="en">Middle case</span></div><div class="scn-desc"><span lang="el">Η αξία μένει όση είναι σήμερα, κανονικό ενοίκιο, 1 μήνας άδειο τον χρόνο.</span><span lang="en">Value stays where it is today, normal rent, 1 month empty a year.</span></div></div>
+   <div class="scn-res pos">+€44,095<small><span lang="el">κέρδος αν πουλήσεις · +7%</span><span lang="en">gain if you sell · +7%</span></small></div></div>
+  <div class="stack" role="img" aria-label="value plus rent versus money put in">
+   <div class="seg sv" style="width:45.4%"><span><span lang="el">σπίτι</span><span lang="en">home</span> €598k</span></div><div class="seg sr" style="width:8.1%"></div>
+   <div class="mark" style="left:49.3%"><span><span lang="el">έβαλες</span><span lang="en">you put in</span> €648k</span></div>
+  </div>
+  <div class="minis">
+   <div><span class="mk"><span lang="el">Αξία σπιτιού 2037</span><span lang="en">Home value 2037</span></span><span class="mv">€598,131</span><span class="ma">AED 2,464,300</span></div>
+   <div><span class="mk"><span lang="el">Ενοίκια στην τσέπη (10 χρ.)</span><span lang="en">Rent in your pocket (10 yrs)</span></span><span class="mv">€106,171</span><span class="ma">AED 437,426 · <span lang="el">16% όσων έβαλες</span><span lang="en">16% of what you put in</span></span></div>
+   <div><span class="mk"><span lang="el">Αν πουλήσεις 2037, παίρνεις</span><span lang="en">If you sell in 2037 you get</span></span><span class="mv">€692,340</span><span class="ma">AED 2,852,440 · +7%</span></div>
+   <div><span class="mk"><span lang="el">Αν το κρατήσεις, έχεις</span><span lang="en">If you keep it you have</span></span><span class="mv">€704,302</span><span class="ma"><span lang="el">σπίτι + ενοίκια</span><span lang="en">home + rent</span> · +9%</span></div>
+   <div><span class="mk"><span lang="el">Απόδοση ανά χρόνο</span><span lang="en">Return per year</span></span><span class="mv "><span lang="el">0,7%</span><span lang="en">0.7%</span></span><span class="ma"><span lang="el">σαν επιτόκιο λογαριασμού</span><span lang="en">like an account interest rate</span></span></div>
+  </div>
+ </div>
+<div class="scn-body t-pre">
+  <div class="scn-top"><div><div class="scn-name"><span lang="el">Μεσαίο σενάριο</span><span lang="en">Middle case</span></div><div class="scn-desc"><span lang="el">Η αξία μένει όση είναι σήμερα, κανονικό ενοίκιο, 1 μήνας άδειο τον χρόνο.</span><span lang="en">Value stays where it is today, normal rent, 1 month empty a year.</span></div></div>
+   <div class="scn-res pos">+€149,791<small><span lang="el">κέρδος αν πουλήσεις · +23%</span><span lang="en">gain if you sell · +23%</span></small></div></div>
+  <div class="stack" role="img" aria-label="value plus rent versus money put in">
+   <div class="seg sv" style="width:45.4%"><span><span lang="el">σπίτι</span><span lang="en">home</span> €598k</span></div><div class="seg sr" style="width:16.1%"></div>
+   <div class="mark" style="left:49.3%"><span><span lang="el">έβαλες</span><span lang="en">you put in</span> €648k</span></div>
+  </div>
+  <div class="minis">
+   <div><span class="mk"><span lang="el">Αξία σπιτιού 2037</span><span lang="en">Home value 2037</span></span><span class="mv">€598,131</span><span class="ma">AED 2,464,300</span></div>
+   <div><span class="mk"><span lang="el">Ενοίκια στην τσέπη (10 χρ.)</span><span lang="en">Rent in your pocket (10 yrs)</span></span><span class="mv">€211,868</span><span class="ma">AED 872,895 · <span lang="el">33% όσων έβαλες</span><span lang="en">33% of what you put in</span></span></div>
+   <div><span class="mk"><span lang="el">Αν πουλήσεις 2037, παίρνεις</span><span lang="en">If you sell in 2037 you get</span></span><span class="mv">€798,036</span><span class="ma">AED 3,287,909 · +23%</span></div>
+   <div><span class="mk"><span lang="el">Αν το κρατήσεις, έχεις</span><span lang="en">If you keep it you have</span></span><span class="mv">€809,999</span><span class="ma"><span lang="el">σπίτι + ενοίκια</span><span lang="en">home + rent</span> · +25%</span></div>
+   <div><span class="mk"><span lang="el">Απόδοση ανά χρόνο</span><span lang="en">Return per year</span></span><span class="mv "><span lang="el">2,2%</span><span lang="en">2.2%</span></span><span class="ma"><span lang="el">σαν επιτόκιο λογαριασμού</span><span lang="en">like an account interest rate</span></span></div>
+  </div>
+ </div></article>
+<article class="scn gd"><div class="scn-body t-post">
+  <div class="scn-top"><div><div class="scn-name"><span lang="el">Καλό σενάριο</span><span lang="en">Good case</span></div><div class="scn-desc"><span lang="el">Η αξία ανεβαίνει 3% τον χρόνο, κανονικό ενοίκιο.</span><span lang="en">Value rises 3% a year, normal rent.</span></div></div>
+   <div class="scn-res pos">+€275,339<small><span lang="el">κέρδος αν πουλήσεις · +42%</span><span lang="en">gain if you sell · +42%</span></small></div></div>
+  <div class="stack" role="img" aria-label="value plus rent versus money put in">
+   <div class="seg sv" style="width:63.4%"><span><span lang="el">σπίτι</span><span lang="en">home</span> €834k</span></div><div class="seg sr" style="width:8.1%"></div>
+   <div class="mark" style="left:49.3%"><span><span lang="el">έβαλες</span><span lang="en">you put in</span> €648k</span></div>
+  </div>
+  <div class="minis">
+   <div><span class="mk"><span lang="el">Αξία σπιτιού 2037</span><span lang="en">Home value 2037</span></span><span class="mv">€834,094</span><span class="ma">AED 3,436,468</span></div>
+   <div><span class="mk"><span lang="el">Ενοίκια στην τσέπη (10 χρ.)</span><span lang="en">Rent in your pocket (10 yrs)</span></span><span class="mv">€106,171</span><span class="ma">AED 437,426 · <span lang="el">16% όσων έβαλες</span><span lang="en">16% of what you put in</span></span></div>
+   <div><span class="mk"><span lang="el">Αν πουλήσεις 2037, παίρνεις</span><span lang="en">If you sell in 2037 you get</span></span><span class="mv">€923,584</span><span class="ma">AED 3,805,165 · +42%</span></div>
+   <div><span class="mk"><span lang="el">Αν το κρατήσεις, έχεις</span><span lang="en">If you keep it you have</span></span><span class="mv">€940,266</span><span class="ma"><span lang="el">σπίτι + ενοίκια</span><span lang="en">home + rent</span> · +45%</span></div>
+   <div><span class="mk"><span lang="el">Απόδοση ανά χρόνο</span><span lang="en">Return per year</span></span><span class="mv "><span lang="el">3,6%</span><span lang="en">3.6%</span></span><span class="ma"><span lang="el">σαν επιτόκιο λογαριασμού</span><span lang="en">like an account interest rate</span></span></div>
+  </div>
+ </div>
+<div class="scn-body t-pre">
+  <div class="scn-top"><div><div class="scn-name"><span lang="el">Καλό σενάριο</span><span lang="en">Good case</span></div><div class="scn-desc"><span lang="el">Η αξία ανεβαίνει 3% τον χρόνο, κανονικό ενοίκιο.</span><span lang="en">Value rises 3% a year, normal rent.</span></div></div>
+   <div class="scn-res pos">+€381,035<small><span lang="el">κέρδος αν πουλήσεις · +59%</span><span lang="en">gain if you sell · +59%</span></small></div></div>
+  <div class="stack" role="img" aria-label="value plus rent versus money put in">
+   <div class="seg sv" style="width:63.4%"><span><span lang="el">σπίτι</span><span lang="en">home</span> €834k</span></div><div class="seg sr" style="width:16.1%"></div>
+   <div class="mark" style="left:49.3%"><span><span lang="el">έβαλες</span><span lang="en">you put in</span> €648k</span></div>
+  </div>
+  <div class="minis">
+   <div><span class="mk"><span lang="el">Αξία σπιτιού 2037</span><span lang="en">Home value 2037</span></span><span class="mv">€834,094</span><span class="ma">AED 3,436,468</span></div>
+   <div><span class="mk"><span lang="el">Ενοίκια στην τσέπη (10 χρ.)</span><span lang="en">Rent in your pocket (10 yrs)</span></span><span class="mv">€211,868</span><span class="ma">AED 872,895 · <span lang="el">33% όσων έβαλες</span><span lang="en">33% of what you put in</span></span></div>
+   <div><span class="mk"><span lang="el">Αν πουλήσεις 2037, παίρνεις</span><span lang="en">If you sell in 2037 you get</span></span><span class="mv">€1,029,280</span><span class="ma">AED 4,240,634 · +59%</span></div>
+   <div><span class="mk"><span lang="el">Αν το κρατήσεις, έχεις</span><span lang="en">If you keep it you have</span></span><span class="mv">€1,045,962</span><span class="ma"><span lang="el">σπίτι + ενοίκια</span><span lang="en">home + rent</span> · +61%</span></div>
+   <div><span class="mk"><span lang="el">Απόδοση ανά χρόνο</span><span lang="en">Return per year</span></span><span class="mv "><span lang="el">5,0%</span><span lang="en">5.0%</span></span><span class="ma"><span lang="el">σαν επιτόκιο λογαριασμού</span><span lang="en">like an account interest rate</span></span></div>
+  </div>
+ </div></article>
+<article class="scn gd"><div class="scn-body t-post">
+  <div class="scn-top"><div><div class="scn-name"><span lang="el">Πολύ καλό σενάριο</span><span lang="en">Very good case</span></div><div class="scn-desc"><span lang="el">Η αξία ανεβαίνει 5% τον χρόνο, το ενοίκιο ανεβαίνει 3% τον χρόνο.</span><span lang="en">Value rises 5% a year, rent rises 3% a year.</span></div></div>
+   <div class="scn-res pos">+€482,585<small><span lang="el">κέρδος αν πουλήσεις · +74%</span><span lang="en">gain if you sell · +74%</span></small></div></div>
+  <div class="stack" role="img" aria-label="value plus rent versus money put in">
+   <div class="seg sv" style="width:78.7%"><span><span lang="el">σπίτι</span><span lang="en">home</span> €1,036k</span></div><div class="seg sr" style="width:8.8%"></div>
+   <div class="mark" style="left:49.3%"><span><span lang="el">έβαλες</span><span lang="en">you put in</span> €648k</span></div>
+  </div>
+  <div class="minis">
+   <div><span class="mk"><span lang="el">Αξία σπιτιού 2037</span><span lang="en">Home value 2037</span></span><span class="mv">€1,035,562</span><span class="ma">AED 4,266,514</span></div>
+   <div><span class="mk"><span lang="el">Ενοίκια στην τσέπη (10 χρ.)</span><span lang="en">Rent in your pocket (10 yrs)</span></span><span class="mv">€115,979</span><span class="ma">AED 477,834 · <span lang="el">18% όσων έβαλες</span><span lang="en">18% of what you put in</span></span></div>
+   <div><span class="mk"><span lang="el">Αν πουλήσεις 2037, παίρνεις</span><span lang="en">If you sell in 2037 you get</span></span><span class="mv">€1,130,830</span><span class="ma">AED 4,659,018 · +74%</span></div>
+   <div><span class="mk"><span lang="el">Αν το κρατήσεις, έχεις</span><span lang="en">If you keep it you have</span></span><span class="mv">€1,151,541</span><span class="ma"><span lang="el">σπίτι + ενοίκια</span><span lang="en">home + rent</span> · +78%</span></div>
+   <div><span class="mk"><span lang="el">Απόδοση ανά χρόνο</span><span lang="en">Return per year</span></span><span class="mv "><span lang="el">5,7%</span><span lang="en">5.7%</span></span><span class="ma"><span lang="el">σαν επιτόκιο λογαριασμού</span><span lang="en">like an account interest rate</span></span></div>
+  </div>
+ </div>
+<div class="scn-body t-pre">
+  <div class="scn-top"><div><div class="scn-name"><span lang="el">Πολύ καλό σενάριο</span><span lang="en">Very good case</span></div><div class="scn-desc"><span lang="el">Η αξία ανεβαίνει 5% τον χρόνο, το ενοίκιο ανεβαίνει 3% τον χρόνο.</span><span lang="en">Value rises 5% a year, rent rises 3% a year.</span></div></div>
+   <div class="scn-res pos">+€596,625<small><span lang="el">κέρδος αν πουλήσεις · +92%</span><span lang="en">gain if you sell · +92%</span></small></div></div>
+  <div class="stack" role="img" aria-label="value plus rent versus money put in">
+   <div class="seg sv" style="width:78.7%"><span><span lang="el">σπίτι</span><span lang="en">home</span> €1,036k</span></div><div class="seg sr" style="width:17.5%"></div>
+   <div class="mark" style="left:49.3%"><span><span lang="el">έβαλες</span><span lang="en">you put in</span> €648k</span></div>
+  </div>
+  <div class="minis">
+   <div><span class="mk"><span lang="el">Αξία σπιτιού 2037</span><span lang="en">Home value 2037</span></span><span class="mv">€1,035,562</span><span class="ma">AED 4,266,514</span></div>
+   <div><span class="mk"><span lang="el">Ενοίκια στην τσέπη (10 χρ.)</span><span lang="en">Rent in your pocket (10 yrs)</span></span><span class="mv">€230,020</span><span class="ma">AED 947,681 · <span lang="el">35% όσων έβαλες</span><span lang="en">35% of what you put in</span></span></div>
+   <div><span class="mk"><span lang="el">Αν πουλήσεις 2037, παίρνεις</span><span lang="en">If you sell in 2037 you get</span></span><span class="mv">€1,244,870</span><span class="ma">AED 5,128,865 · +92%</span></div>
+   <div><span class="mk"><span lang="el">Αν το κρατήσεις, έχεις</span><span lang="en">If you keep it you have</span></span><span class="mv">€1,265,581</span><span class="ma"><span lang="el">σπίτι + ενοίκια</span><span lang="en">home + rent</span> · +95%</span></div>
+   <div><span class="mk"><span lang="el">Απόδοση ανά χρόνο</span><span lang="en">Return per year</span></span><span class="mv "><span lang="el">7,0%</span><span lang="en">7.0%</span></span><span class="ma"><span lang="el">σαν επιτόκιο λογαριασμού</span><span lang="en">like an account interest rate</span></span></div>
+  </div>
+ </div></article>
+ </div>
+ <div class="two">
+  <div class="col plus">
+   <h3><span lang="el">Τι έχω υπολογίσει</span><span lang="en">What I included</span></h3>
+   <ul>
+    <li><span lang="el">Ενοίκιο <span class="aed">AED 170,000</span> <span class="eur">≈ €41,262</span> τον χρόνο, +2% τον χρόνο (στο κακό σενάριο <span class="aed">AED 150,000</span> <span class="eur">≈ €36,408</span>).</span><span lang="en">Rent <span class="aed">AED 170,000</span> <span class="eur">≈ €41,262</span> a year, +2% a year (bad case <span class="aed">AED 150,000</span> <span class="eur">≈ €36,408</span>).</span></li>
+    <li><span lang="el">Άδειο 1 μήνα κάθε χρόνο (8%), 10% στα κακά σενάρια, 2 ολόκληρα χρόνια στο πολύ κακό.</span><span lang="en">Empty 1 month every year (8%), 10% in the bad cases, 2 full years in the very bad one.</span></li>
+    <li><span lang="el">Κοινόχρηστα <span class="aed">AED 48,000</span> <span class="eur">≈ €11,650</span> τον χρόνο, +3% τον χρόνο.</span><span lang="en">Building fees <span class="aed">AED 48,000</span> <span class="eur">≈ €11,650</span> a year, +3% a year.</span></li>
+    <li><span lang="el">Διαχειριστής 7% του ενοικίου (βρίσκει ενοικιαστή, κανονίζει βλάβες).</span><span lang="en">A manager at 7% of rent (finds tenants, handles repairs).</span></li>
+    <li><span lang="el">Επισκευές <span class="aed">AED 10,000</span> <span class="eur">≈ €2,427</span> τον χρόνο και ανακαίνιση <span class="aed">AED 40,000</span> <span class="eur">≈ €9,709</span> το 2033 (βάψιμο, κλιματιστικά, συσκευές). Διπλάσιες στο πολύ κακό σενάριο.</span><span lang="en">Repairs <span class="aed">AED 10,000</span> <span class="eur">≈ €2,427</span> a year and a refresh of <span class="aed">AED 40,000</span> <span class="eur">≈ €9,709</span> in 2033 (paint, AC, appliances). Double in the very bad case.</span></li>
+    <li><span lang="el">Ασφάλεια <span class="aed">AED 2,000</span> <span class="eur">≈ €485</span> τον χρόνο και 2% έξοδα όταν πουλήσεις.</span><span lang="en">Insurance <span class="aed">AED 2,000</span> <span class="eur">≈ €485</span> a year and 2% costs when you sell.</span></li>
+    <li><span lang="el">Αξία εκκίνησης = η μέση ζητούμενη τιμή των 16 ίδιων αγγελιών (<span class="aed">AED 2,464,300</span> <span class="eur">≈ €598,131</span>), όχι η τιμή που πληρώνεις.</span><span lang="en">Starting value = the middle asking price of the 16 same-size listings (<span class="aed">AED 2,464,300</span> <span class="eur">≈ €598,131</span>), not the price you pay.</span></li>
+    <li><span lang="el">Ελληνικός φόρος ενοικίων 15% / 25% / 35% / 45% (κλίμακα 2026), στο ενοίκιο μείον 5%. Αυτό πρέπει να το επιβεβαιώσει ο λογιστής σου.</span><span lang="en">Greek rent tax 15% / 25% / 35% / 45% (2026 scale), on rent minus 5%. Your accountant must confirm this.</span></li>
+   </ul>
+  </div>
+  <div class="col minus">
+   <h3><span lang="el">Τι ΔΕΝ έχω υπολογίσει</span><span lang="en">What I did NOT include</span></h3>
+   <ul>
+    <li><span lang="el">Έπιπλα. Υποθέτω ότι το νοικιάζεις χωρίς έπιπλα. Επιπλωμένο θέλει περίπου €10.000–15.000.</span><span lang="en">Furniture. I assume you rent it unfurnished. Furnished needs roughly €10,000–15,000.</span></li>
+    <li><span lang="el">Τις αλλαγές ευρώ/δολαρίου. Όλα είναι σε ντιράμ, που ακολουθεί το δολάριο.</span><span lang="en">Euro/dollar moves. Everything is in dirham, which follows the dollar.</span></li>
+    <li><span lang="el">Φόρο στο κέρδος της πώλησης στην Ελλάδα, αν ισχύει το 2037.</span><span lang="en">Greek tax on the sale profit, if it applies in 2037.</span></li>
+    <li><span lang="el">Καθυστέρηση της παράδοσης ή πτώχευση της κατασκευαστικής.</span><span lang="en">A late handover or the developer going bust.</span></li>
+    <li><span lang="el">Τον πληθωρισμό: €1 το 2037 θα αγοράζει λιγότερα από σήμερα.</span><span lang="en">Inflation: €1 in 2037 will buy less than today.</span></li>
+   </ul>
+  </div>
+ </div>
+ <div class="box">
+  <h3><span lang="el">Και αν πληρώσεις 2.350.000 αντί για 2.560.000;</span><span lang="en">And if you pay 2,350,000 instead of 2,560,000?</span></h3>
+  <div class="tblwrap"><table><thead><tr><th><span lang="el">Σενάριο</span><span lang="en">Case</span></th><th class="n"><span lang="el">Στα 2.560.000</span><span lang="en">At 2,560,000</span></th><th class="n"><span lang="el">Στα 2.350.000</span><span lang="en">At 2,350,000</span></th><th class="n"><span lang="el">Επιπλέον για σένα</span><span lang="en">Extra for you</span></th></tr></thead><tbody><tr><td><span lang="el">Πολύ κακό</span><span lang="en">Very bad</span></td><td class="n">−39%</td><td class="n">−34%</td><td class="n">+€53,197</td></tr><tr><td><span lang="el">Κακό</span><span lang="en">Bad</span></td><td class="n">−18%</td><td class="n">−10%</td><td class="n">+€53,197</td></tr><tr><td><span lang="el">Μεσαίο</span><span lang="en">Middle</span></td><td class="n">+7%</td><td class="n">+16%</td><td class="n">+€53,197</td></tr><tr><td><span lang="el">Καλό</span><span lang="en">Good</span></td><td class="n">+42%</td><td class="n">+55%</td><td class="n">+€53,197</td></tr><tr><td><span lang="el">Πολύ καλό</span><span lang="en">Very good</span></td><td class="n">+74%</td><td class="n">+90%</td><td class="n">+€53,197</td></tr></tbody></table></div>
+  <p class="muted"><span lang="el">Ποσοστό κέρδους ή ζημιάς αν πουλήσεις το 2037, μετά τον φόρο. Η χαμηλότερη τιμή αφήνει περίπου €53.000 παραπάνω σε σένα σε κάθε σενάριο και ανεβάζει το μεσαίο σενάριο από 0,7% σε 1,6% τον χρόνο. Βοηθά, αλλά δεν αλλάζει την εικόνα.</span><span lang="en">Gain or loss if you sell in 2037, after tax. The lower price leaves about €53,000 more with you in every case and lifts the middle case from 0.7% to 1.6% a year. It helps, but it does not change the picture.</span></p>
+ </div>
  <div class="two">
   <div class="col">
    <h3><span lang="el">«Να πάρω πίσω τα χρήματα σε 7–10 χρόνια»</span><span lang="en">«Get my money back in 7–10 years»</span></h3>
-   <p><span lang="el">Μόνο από το ενοίκιο, όχι. Σε 10 χρόνια το ενοίκιο σου επιστρέφει περίπου <span class="aed">AED 1,242,793</span> <span class="eur">≈ €301,649</span>, δηλαδή λίγο λιγότερο από τα μισά. Για να βγουν όλα μόνο από ενοίκια θέλει περίπου 20 χρόνια.</span><span lang="en">From rent alone, no. In 10 years rent returns about <span class="aed">AED 1,242,793</span> <span class="eur">≈ €301,649</span>, a bit under half. Getting it all back from rent alone takes about 20 years.</span></p>
-   <p><span lang="el">Με πώληση, ναι. Αν πουλήσεις μετά από 7 χρόνια ενοικίου (2035) και η αξία ανέβει 3% τον χρόνο, παίρνεις πίσω όλα τα χρήματα συν περίπου <span class="aed">AED 1,374,666</span> <span class="eur">≈ €333,657</span> κέρδος. Αν η αξία μείνει ίδια, το κέρδος είναι περίπου <span class="aed">AED 681,821</span> <span class="eur">≈ €165,491</span>.</span><span lang="en">With a sale, yes. If you sell after 7 years of renting (2035) and the value rises 3% a year, you get all your money back plus about <span class="aed">AED 1,374,666</span> <span class="eur">≈ €333,657</span> profit. If the value stays flat, the profit is about <span class="aed">AED 681,821</span> <span class="eur">≈ €165,491</span>.</span></p>
+   <p><span lang="el">Από το ενοίκιο μόνο, όχι. Μετά από όλα τα έξοδα και τον φόρο, σε 10 χρόνια το ενοίκιο σου επιστρέφει περίπου το 16% όσων έβαλες. Τα χρήματα γυρίζουν κυρίως όταν πουλήσεις.</span><span lang="en">From rent alone, no. After all costs and tax, in 10 years rent returns about 16% of what you put in. The money comes back mainly when you sell.</span></p>
+   <p><span lang="el">Με πώληση το 2037 παίρνεις πίσω όλα τα χρήματα και κάτι παραπάνω μόνο αν η αξία μείνει ίδια ή ανέβει. Αν πέσει, χάνεις.</span><span lang="en">Selling in 2037 gives you all your money back plus some only if the value stays the same or rises. If it falls, you lose.</span></p>
   </div>
   <div class="col">
    <h3><span lang="el">Τι σημαίνει για σένα</span><span lang="en">What it means for you</span></h3>
-   <p><span lang="el">Σε όλα τα σενάρια, ακόμα και αν η τιμή πέφτει 2% τον χρόνο, δεν χάνεις χρήματα μετά από 10 χρόνια, γιατί το ενοίκιο καλύπτει τη ζημιά. Αυτό ισχύει μόνο αν το νοικιάζεις σταθερά και αν η παράδοση γίνει κανονικά.</span><span lang="en">In every scenario, even if the price falls 2% a year, you do not lose money after 10 years, because rent covers the loss. That holds only if it stays rented and handover happens as planned.</span></p>
-   <p><span lang="el">Αν πληρώσεις 2.350.000 αντί για 2.560.000, κερδίζεις περίπου μισή μονάδα τον χρόνο. Δεν είναι τεράστιο, αλλά είναι ≈ €51.000 που μένουν σε σένα από την πρώτη μέρα.</span><span lang="en">If you pay 2,350,000 instead of 2,560,000, you gain about half a point a year. Not huge, but it is ≈ €51,000 that stays with you from day one.</span></p>
+   <p><span lang="el">Η πρώτη μου έκδοση ήταν πολύ αισιόδοξη. Δεν είχε άδειους μήνες, επισκευές ούτε φόρο. Με αυτά μέσα, το ενοίκιο μόνο του αποδίδει λίγο. Ο φόρος στην Ελλάδα παίρνει περίπου το μισό του καθαρού ενοικίου.</span><span lang="en">My first version was too optimistic. It had no empty months, no repairs and no tax. With those included, the rent on its own earns little. Greek tax takes about half of the net rent.</span></p>
+   <p><span lang="el">Άρα αυτή η επένδυση κρίνεται σχεδόν όλη από ένα πράγμα: αν οι τιμές στο Άμπου Ντάμπι συνεχίσουν να ανεβαίνουν. Αν ανέβουν 3% τον χρόνο ή παραπάνω, βγαίνει καλή. Αν μείνουν ίδιες, βγάζεις ελάχιστα. Αν πέσουν, χάνεις.</span><span lang="en">So this investment depends almost entirely on one thing: whether Abu Dhabi prices keep rising. If they rise 3% a year or more, it works out well. If they stay flat, you make very little. If they fall, you lose.</span></p>
   </div>
  </div>
 </section>
@@ -420,7 +633,8 @@ footer{font-size:13px;color:var(--muted);display:flex;flex-direction:column;gap:
 (function(){var el=document.getElementById('btn-el'),en=document.getElementById('btn-en');
 function set(l){document.body.classList.toggle('en',l==='en');document.documentElement.lang=l;el.setAttribute('aria-pressed',l==='el');en.setAttribute('aria-pressed',l==='en');try{localStorage.setItem('rad-lang',l)}catch(e){}}
 el.addEventListener('click',function(){set('el')});en.addEventListener('click',function(){set('en')});
-var s=null;try{s=localStorage.getItem('rad-lang')}catch(e){}set(s==='en'?'en':'el');})();
+var s=null;try{s=localStorage.getItem('rad-lang')}catch(e){}set(s==='en'?'en':'el');
+var tp=document.getElementById('tx-post'),tr=document.getElementById('tx-pre');function tx(p){document.body.classList.toggle('pre',p);tp.setAttribute('aria-pressed',!p);tr.setAttribute('aria-pressed',p);}tp.addEventListener('click',function(){tx(false)});tr.addEventListener('click',function(){tx(true)});})();
 </script>
 </body>
 </html>

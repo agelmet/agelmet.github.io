@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="el">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>What I Would Choose</title>
+<style>
+@font-face{font-family:'Manrope';font-weight:400;font-display:swap;src:url(../assets/fonts/manrope-latin-400-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2190-2199,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Manrope';font-weight:600;font-display:swap;src:url(../assets/fonts/manrope-latin-600-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2190-2199,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Manrope';font-weight:700;font-display:swap;src:url(../assets/fonts/manrope-latin-700-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2190-2199,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Manrope';font-weight:400;font-display:swap;src:url(../assets/fonts/manrope-greek-400-normal.woff2) format('woff2');unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF}
+@font-face{font-family:'Manrope';font-weight:600;font-display:swap;src:url(../assets/fonts/manrope-greek-600-normal.woff2) format('woff2');unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF}
+@font-face{font-family:'Manrope';font-weight:700;font-display:swap;src:url(../assets/fonts/manrope-greek-700-normal.woff2) format('woff2');unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF}
+/* Light only. Decision first, comparison second, plan last. */
+:root{color-scheme:light only;--paper:#F3F6F4;--card:#FFFFFF;--ink:#13231F;--muted:#58675F;--line:#D6DED9;--mangrove:#1D5B4A;--tide:#2A7488;--good:#1D7A4C;--goodbg:#E3F3EA;--bad:#B23A2C;--badbg:#F8E4E0;--f:"Manrope","Helvetica Neue",Arial,sans-serif}
+*{box-sizing:border-box} html{background:var(--paper)}
+body{background:var(--paper);color:var(--ink);font-family:var(--f);font-size:17px;line-height:1.55;margin:0;padding-inline:16px;padding-block:22px 72px}
+.wrap{max-width:980px;margin:0 auto;display:flex;flex-direction:column;gap:48px}
+body:not(.en) [lang="en"]{display:none} body.en [lang="el"]{display:none}
+h1,h2,h3{margin:0;line-height:1.15;text-wrap:balance} h1{font-size:clamp(30px,6vw,46px)} h2{font-size:clamp(23px,3.8vw,30px)} h3{font-size:18px}
+p{margin:0;max-width:68ch} a{color:var(--tide)}
+.step{font-size:13px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--mangrove)}
+.muted{color:var(--muted);font-size:14.5px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.nav{display:flex;gap:8px;flex-wrap:wrap}
+.pill{font-weight:700;text-decoration:none;background:var(--card);border:1px solid var(--line);padding:9px 15px;border-radius:999px;font-size:15px}
+.lang{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:var(--card)}
+.lang button{font:inherit;font-size:15px;font-weight:700;padding:9px 18px;border:0;background:transparent;color:var(--muted);cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--mangrove);color:#fff}
+.lang button:focus-visible,a:focus-visible{outline:3px solid var(--tide);outline-offset:2px}
+header,section{display:flex;flex-direction:column;gap:16px}
+.answer{background:var(--mangrove);color:#fff;padding:26px;display:flex;flex-direction:column;gap:14px;border-radius:4px}
+.answer .big{font-size:clamp(23px,4vw,33px);font-weight:700;line-height:1.2} .answer p{color:#E3F1EB}
+.answer .step{color:#BFE3D4}
+.card{background:var(--card);border:1px solid var(--line);padding:22px;display:flex;flex-direction:column;gap:12px;border-radius:4px}
+.tblwrap{overflow-x:auto;background:var(--card);border:1px solid var(--line)}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums;font-size:14.5px}
+th,td{padding:11px 12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+td.n,th.n{text-align:right;white-space:nowrap} tr:last-child td{border-bottom:0}
+tr.best td{background:var(--goodbg)} .cmp{min-width:900px} .cmp td:first-child{min-width:230px} tr.bad td{background:#FBF3F1}
+.sub{display:block;color:var(--muted);font-size:12.5px;font-weight:600}
+.rbs{background:var(--card);border:1px solid var(--line);padding:18px;display:flex;flex-direction:column;gap:20px}
+.rv{display:block;font-size:13.5px;color:var(--muted)} .rv b{color:var(--ink)}
+.rb{display:grid;grid-template-columns:minmax(150px,240px) 1fr;gap:14px;align-items:center}
+.rl{font-size:15px;min-width:0}
+.rt{position:relative;height:30px;background:#EDF1EF}
+.zero{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--ink);opacity:.5}
+.rng{position:absolute;top:9px;height:12px;border-radius:6px;background:#9DB9C2} .rng.etf{background:var(--good)} .rng.offer{background:#C98A7F}
+.ev{position:absolute;top:2px;width:26px;height:26px;margin-left:-13px;border-radius:50%;background:var(--ink);border:3px solid #fff;box-shadow:0 0 0 1px var(--ink)}
+.ev span{position:absolute;left:50%;top:28px;transform:translateX(-50%);font-size:12.5px;font-weight:700;white-space:nowrap}
+@media (max-width:560px){.rb{grid-template-columns:1fr;gap:6px} th,td{padding:8px 7px;font-size:13.5px}}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px}
+.col{background:var(--card);border:1px solid var(--line);padding:18px;display:flex;flex-direction:column;gap:10px;min-width:0;border-radius:4px}
+.col.plus h3{color:var(--good)} .col.minus h3{color:var(--bad)}
+ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:9px} li{max-width:68ch}
+ol.do{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:12px;counter-reset:s}
+ol.do li{max-width:none;counter-increment:s;background:var(--card);border:1px solid var(--line);padding:16px 18px 16px 66px;position:relative;border-radius:4px;display:flex;flex-direction:column;gap:4px}
+ol.do li::before{content:counter(s);position:absolute;left:16px;top:14px;width:34px;height:34px;border-radius:50%;background:var(--mangrove);color:#fff;font-weight:700;display:grid;place-items:center}
+.when{font-size:13px;font-weight:700;color:var(--mangrove);text-transform:uppercase;letter-spacing:.06em}
+  .stackc{display:flex;flex-direction:column;gap:16px}
+footer{font-size:14px;color:var(--muted);border-top:1px solid var(--line);padding-top:18px;display:flex;flex-direction:column;gap:8px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+ <div class="top">
+  <div class="nav"><a class="pill" href="../">← <span lang="el">Αναλυτική</span><span lang="en">Detailed</span></a><a class="pill" href="../simple/"><span lang="el">Απλή</span><span lang="en">Simple</span></a></div>
+  <div class="lang" role="group" aria-label="Language"><button id="btn-el" type="button" aria-pressed="true">Ελληνικά</button><button id="btn-en" type="button" aria-pressed="false">English</button></div>
+ </div>
+ <span class="step"><span lang="el">Τι θα διάλεγα εγώ · 6 Οκτ 2026</span><span lang="en">What I would choose · 6 Oct 2026</span></span>
+ <h1><span lang="el">Με €650.000 για 10 χρόνια, τι θα έκανα;</span><span lang="en">With €650,000 for 10 years, what would I do?</span></h1>
+ <p class="muted"><span lang="el">Ίδιοι κανόνες για όλες τις επιλογές: ίδια χρήματα, ίδιο διάστημα (έως τέλος 2037), όλα τα έξοδα μέσα, χωρίς φόρους. Ποσά σε ευρώ, 1 € ≈ 4,12 AED.</span><span lang="en">Same rules for every option: same money, same period (to end of 2037), all costs included, no taxes. Amounts in euro, 1 € ≈ 4.12 AED.</span></p>
+</header>
+
+<section>
+ <div class="answer">
+  <span class="step"><span lang="el">Η ειλικρινής απάντηση</span><span lang="en">The honest answer</span></span>
+  <span class="big"><span lang="el">Αν τα χρήματα ήταν δικά μου, δεν θα αγόραζα αυτό το διαμέρισμα. Θα έβαζα το μεγαλύτερο μέρος σε ένα παγκόσμιο ταμείο μετοχών (ETF).</span><span lang="en">If the money were mine, I would not buy this apartment. I would put most of it into a global stock index fund (ETF).</span></span>
+  <p><span lang="el">Με τους ίδιους κανόνες, το ETF έχει περίπου διπλάσιο αναμενόμενο κέρδος (≈ +€406.000 έναντι ≈ +€209.000), μικρότερη χειρότερη περίπτωση, και τα χρήματα βγαίνουν σε 1–2 μέρες. Αν θέλεις οπωσδήποτε ακίνητο, η καλύτερη επιλογή που βρήκα είναι το ίδιο διαμέρισμα στα 2,35 εκατ. AED (επιλογή B), όχι η πρόταση που έχεις.</span><span lang="en">Under the same rules, the ETF has roughly double the expected profit (≈ +€406,000 vs ≈ +€209,000), a smaller worst case, and the money comes out in 1–2 days. If you definitely want property, the best option I found is the same apartment at AED 2.35 million (option B), not the offer you have.</span></p>
+ </div>
+</section>
+
+<section>
+ <span class="step"><span lang="el">Η σύγκριση</span><span lang="en">The comparison</span></span>
+ <h2><span lang="el">Τέσσερις επιλογές, ίδιοι κανόνες</span><span lang="en">Four options, same rules</span></h2>
+ <p><span lang="el">Κάθε γραμμή δείχνει από τη χειρότερη μέχρι την καλύτερη περίπτωση (από −€250.000 αριστερά έως +€900.000 δεξιά). Η μαύρη τελεία είναι το αναμενόμενο κέρδος (ο μέσος όρος με βάση τις πιθανότητες). Η κάθετη γραμμή είναι το μηδέν.</span><span lang="en">Each line runs from the worst to the best case (from −€250,000 on the left to +€900,000 on the right). The black dot is the expected profit (the probability-weighted average). The vertical line is zero.</span></p>
+ <div class="rbs" role="img" aria-label="Range of outcomes per option">
+<div class="rb"><div class="rl"><b>A</b> <span lang="el">Η πρόταση που έχεις</span><span lang="en">The offer you have</span><span class="rv"><span lang="el">αναμενόμενο</span><span lang="en">expected</span> <b><span class="nm">+€208.938</span></b></span></div><div class="rt"><div class="zero" style="left:21.7%"></div><div class="rng offer" style="left:4.0%;width:68.5%"></div><div class="ev" style="left:39.9%"></div></div></div>
+<div class="rb"><div class="rl"><b>B</b> <span lang="el">Ίδιο διαμέρισμα, φθηνότερα</span><span lang="en">Same apartment, cheaper</span><span class="rv"><span lang="el">αναμενόμενο</span><span lang="en">expected</span> <b><span class="nm">+€262.134</span></b></span></div><div class="rt"><div class="zero" style="left:21.7%"></div><div class="rng alt" style="left:8.7%;width:68.5%"></div><div class="ev" style="left:44.5%"></div></div></div>
+<div class="rb"><div class="rl"><b>C</b> <span lang="el">Έτοιμο, νοικιασμένο δυάρι</span><span lang="en">A ready, rented two-bedroom</span><span class="rv"><span lang="el">αναμενόμενο</span><span lang="en">expected</span> <b><span class="nm">+€190.742</span></b></span></div><div class="rt"><div class="zero" style="left:21.7%"></div><div class="rng ready" style="left:9.0%;width:57.1%"></div><div class="ev" style="left:38.3%"></div></div></div>
+<div class="rb"><div class="rl"><b>D</b> <span lang="el">Παγκόσμιο ταμείο μετοχών (ETF)</span><span lang="en">A global stock index fund (ETF)</span><span class="rv"><span lang="el">αναμενόμενο</span><span lang="en">expected</span> <b><span class="nm">+€405.724</span></b></span></div><div class="rt"><div class="zero" style="left:21.7%"></div><div class="rng etf" style="left:14.6%;width:82.0%"></div><div class="ev" style="left:57.0%"></div></div></div>
+ </div>
+ <div class="tblwrap"><table class="cmp">
+  <thead><tr><th><span lang="el">Επιλογή</span><span lang="en">Option</span></th><th class="n"><span lang="el">Βάζεις</span><span lang="en">You put in</span></th><th class="n"><span lang="el">Αναμενόμενο κέρδος</span><span lang="en">Expected profit</span></th><th class="n"><span lang="el">Χειρότερο</span><span lang="en">Worst</span></th><th class="n"><span lang="el">Καλύτερο</span><span lang="en">Best</span></th><th><span lang="el">Πόσο γρήγορα βγαίνουν τα χρήματα</span><span lang="en">How fast the money comes out</span></th><th><span lang="el">Κόπος</span><span lang="en">Effort</span></th><th><span lang="el">Πού είναι απλωμένο</span><span lang="en">How spread out</span></th></tr></thead>
+  <tbody><tr class="bad"><td><b>A</b> · <span lang="el">Η πρόταση που έχεις</span><span lang="en">The offer you have</span><span class="sub"><span lang="el">Radisson Tower 1, 2.560.000 AED, παράδοση Δεκ 2027.</span><span lang="en">Radisson Tower 1, AED 2,560,000, handover Dec 2027.</span></span></td><td class="n"><span class="nm">€648.245</span></td><td class="n"><b><span class="nm">+€208.938</span></b><span class="sub">+32% · ≈2.5% <span lang="el">τον χρόνο</span><span lang="en">a year</span></span></td><td class="n"><span class="nm">−€203.544</span></td><td class="n"><span class="nm">+€584.721</span></td><td><span lang="el">Μήνες για να πουλήσεις</span><span lang="en">Months to sell</span></td><td><span lang="el">Μέτρια (διαχειριστής)</span><span lang="en">Medium (manager)</span></td><td><span lang="el">1 σπίτι, 1 πόλη, περιοχή σε πόλεμο</span><span lang="en">1 home, 1 city, a region at war</span></td></tr>
+<tr class=""><td><b>B</b> · <span lang="el">Ίδιο διαμέρισμα, φθηνότερα</span><span lang="en">Same apartment, cheaper</span><span class="sub"><span lang="el">Η αγγελία Νο 1: Tower 1, μαγκρόβια, 2.349.990 AED.</span><span lang="en">Listing no. 1: Tower 1, mangrove, AED 2,349,990.</span></span></td><td class="n"><span class="nm">€595.049</span></td><td class="n"><b><span class="nm">+€262.134</span></b><span class="sub">+44% · ≈3.3% <span lang="el">τον χρόνο</span><span lang="en">a year</span></span></td><td class="n"><span class="nm">−€150.347</span></td><td class="n"><span class="nm">+€637.918</span></td><td><span lang="el">Μήνες για να πουλήσεις</span><span lang="en">Months to sell</span></td><td><span lang="el">Μέτρια (διαχειριστής)</span><span lang="en">Medium (manager)</span></td><td><span lang="el">1 σπίτι, 1 πόλη, περιοχή σε πόλεμο</span><span lang="en">1 home, 1 city, a region at war</span></td></tr>
+<tr class=""><td><b>C</b> · <span lang="el">Έτοιμο, νοικιασμένο δυάρι</span><span lang="en">A ready, rented two-bedroom</span><span class="sub"><span lang="el">Al Reem, ≈2.100.000 AED (μέση τιμή αγγελιών), ενοίκιο από την πρώτη μέρα.</span><span lang="en">Al Reem, ≈AED 2,100,000 (median listing), rent from day one.</span></span></td><td class="n"><span class="nm">€531.820</span></td><td class="n"><b><span class="nm">+€190.742</span></b><span class="sub">+36% · ≈2.8% <span lang="el">τον χρόνο</span><span lang="en">a year</span></span></td><td class="n"><span class="nm">−€146.425</span></td><td class="n"><span class="nm">+€510.043</span></td><td><span lang="el">Μήνες για να πουλήσεις</span><span lang="en">Months to sell</span></td><td><span lang="el">Μέτρια (διαχειριστής)</span><span lang="en">Medium (manager)</span></td><td><span lang="el">1 σπίτι, 1 πόλη, περιοχή σε πόλεμο</span><span lang="en">1 home, 1 city, a region at war</span></td></tr>
+<tr class="best"><td><b>D</b> · <span lang="el">Παγκόσμιο ταμείο μετοχών (ETF)</span><span lang="en">A global stock index fund (ETF)</span><span class="sub"><span lang="el">Ένα ETF που αγοράζει ≈3.600 μεγάλες εταιρείες όλου του κόσμου.</span><span lang="en">One ETF that buys ≈3,600 large companies worldwide.</span></span></td><td class="n"><span class="nm">€648.245</span></td><td class="n"><b><span class="nm">+€405.724</span></b><span class="sub">+63% · ≈4.4% <span lang="el">τον χρόνο</span><span lang="en">a year</span></span></td><td class="n"><span class="nm">−€82.325</span></td><td class="n"><span class="nm">+€860.793</span></td><td><span lang="el">1–2 μέρες</span><span lang="en">1–2 days</span></td><td><span lang="el">Καμία</span><span lang="en">None</span></td><td><span lang="el">Χιλιάδες εταιρείες, δεκάδες χώρες</span><span lang="en">Thousands of companies, dozens of countries</span></td></tr></tbody></table></div>
+ <p class="muted"><span lang="el">A, B, C: το ίδιο μοντέλο με την αναλυτική σελίδα (ενοίκιο, άδειοι μήνες, κοινόχρηστα, διαχείριση, επισκευές, έξοδα αγοράς και πώλησης) και η δική μου πρόβλεψη τιμών με πιθανότητες. Στο C περισσεύουν ≈ €116.000 που μπορούν να επενδυθούν αλλού. D: κόστος ≈ 0,2% τον χρόνο, αποδόσεις όπως στον πίνακα παρακάτω.</span><span lang="en">A, B, C: the same model as the detailed page (rent, empty months, building fees, management, repairs, buying and selling costs) and my price forecast with probabilities. Option C leaves ≈ €116,000 to invest elsewhere. D: cost ≈ 0.2% a year, returns as in the table below.</span></p>
+</section>
+
+<section>
+ <span class="step"><span lang="el">Γιατί το ETF</span><span lang="en">Why the ETF</span></span>
+ <h2><span lang="el">Οι συγκεκριμένοι λόγοι</span><span lang="en">The concrete reasons</span></h2>
+ <div class="card"><ul>
+  <li><span lang="el"><b>Μεγαλύτερη αναμενόμενη απόδοση.</b> Οι μεγάλες εταιρείες διαχείρισης προβλέπουν για τις παγκόσμιες μετοχές τα επόμενα 10–15 χρόνια περίπου 4,5%–6,5% (Vanguard) έως 7% (J.P. Morgan) τον χρόνο. Το διαμέρισμα, με τη δική μου πρόβλεψη, ≈ 2,5%.</span><span lang="en"><b>Higher expected return.</b> The big asset managers forecast about 4.5%–6.5% (Vanguard) to 7% (J.P. Morgan) a year for global stocks over the next 10–15 years. The apartment, on my forecast, ≈ 2.5%.</span></li>
+  <li><span lang="el"><b>Μακρύ ιστορικό.</b> Οι παγκόσμιες μετοχές έδωσαν κατά μέσο όρο ≈ 6,7% τον χρόνο πάνω από τον πληθωρισμό από το 1919 έως το 2023.</span><span lang="en"><b>A long track record.</b> Global stocks returned on average ≈ 6.7% a year above inflation from 1919 to 2023.</span></li>
+  <li><span lang="el"><b>Απλωμένο ρίσκο.</b> Χιλιάδες εταιρείες σε δεκάδες χώρες, αντί για ένα διαμέρισμα σε μία πόλη που βρίσκεται σε πόλεμο από τον Φεβρουάριο.</span><span lang="en"><b>Spread-out risk.</b> Thousands of companies in dozens of countries, instead of one apartment in one city that has been at war since February.</span></li>
+  <li><span lang="el"><b>Πολύ μικρότερα έξοδα.</b> ≈ 0,2% τον χρόνο. Στο διαμέρισμα πληρώνεις ≈ 4% για να αγοράσεις, 2% για να πουλήσεις, 7% του ενοικίου σε διαχειριστή, κοινόχρηστα και επισκευές.</span><span lang="en"><b>Much lower costs.</b> ≈ 0.2% a year. With the apartment you pay ≈ 4% to buy, 2% to sell, 7% of rent to a manager, plus building fees and repairs.</span></li>
+  <li><span lang="el"><b>Τα χρήματα είναι διαθέσιμα.</b> Πουλάς όποτε θέλεις, όλο ή ένα κομμάτι. Ένα διαμέρισμα θέλει μήνες, και σε κακή αγορά έκπτωση.</span><span lang="en"><b>The money is available.</b> You sell whenever you want, all or part. An apartment takes months, and in a bad market a discount.</span></li>
+  <li><span lang="el"><b>Μηδενικός κόπος.</b> Χωρίς ενοικιαστές, βλάβες, άδειους μήνες ή καθυστέρηση παράδοσης.</span><span lang="en"><b>Zero hassle.</b> No tenants, breakdowns, empty months or late handover.</span></li>
+ </ul></div>
+ <div class="stackc">
+  <div class="col minus">
+   <h3><span lang="el">Τα αρνητικά του ETF, ειλικρινά</span><span lang="en">The ETF downsides, honestly</span></h3>
+   <ul>
+    <li><span lang="el">Ανεβοκατεβαίνει πολύ. Έπεσε περίπου 40% το 2008 και περίπου ένα τρίτο τον Μάρτιο 2020. Μέσα σε 10 χρόνια θα δεις σίγουρα μεγάλες πτώσεις.</span><span lang="en">It swings a lot. It fell about 40% in 2008 and about a third in March 2020. Over 10 years you will certainly see big drops.</span></li>
+    <li><span lang="el">Υπάρχουν «χαμένες δεκαετίες»: το 2000–2009 οι παγκόσμιες μετοχές έμειναν περίπου στο ίδιο σημείο.</span><span lang="en">There are «lost decades»: in 2000–2009 global stocks ended roughly where they started.</span></li>
+    <li><span lang="el">Το μεγαλύτερο ρίσκο είσαι εσύ: αν πουλήσεις πανικόβλητος σε μια πτώση, κλειδώνεις τη ζημιά.</span><span lang="en">The biggest risk is you: if you panic-sell in a drop, you lock in the loss.</span></li>
+    <li><span lang="el">Δεν είναι κάτι που «βλέπεις» ή χρησιμοποιείς, και δεν δίνει μηνιαίο ενοίκιο.</span><span lang="en">It is not something you «see» or use, and it pays no monthly rent.</span></li>
+    <li><span lang="el">Περίπου 60% είναι αμερικανικές εταιρείες, άρα επηρεάζεται και από το δολάριο (όπως και το ντιράμ).</span><span lang="en">About 60% is US companies, so the dollar affects it too (as it does the dirham).</span></li>
+   </ul>
+  </div>
+  <div class="col">
+   <h3><span lang="el">Τα σενάρια του ETF</span><span lang="en">The ETF scenarios</span></h3>
+   <div class="tblwrap"><table><thead><tr><th><span lang="el">Σενάριο</span><span lang="en">Case</span></th><th class="n"><span lang="el">Τον χρόνο</span><span lang="en">Per year</span></th><th class="n"><span lang="el">Πιθαν.</span><span lang="en">Likely</span></th><th class="n">2037</th><th class="n"><span lang="el">Κέρδος</span><span lang="en">Profit</span></th></tr></thead><tbody><tr><td><span lang="el">Χαμένη δεκαετία (όπως το 2000–2009)</span><span lang="en">A lost decade (like 2000–2009)</span></td><td class="n">−1%</td><td class="n"><b>10%</b></td><td class="n"><span class="nm">€565.920</span></td><td class="n"><span class="nm">−€82.325</span></td></tr><tr><td><span lang="el">Αδύναμη δεκαετία</span><span lang="en">A weak decade</span></td><td class="n">+2%</td><td class="n"><b>15%</b></td><td class="n"><span class="nm">€792.322</span></td><td class="n"><span class="nm">+€144.077</span></td></tr><tr><td><span lang="el">Κάτω από τον μέσο όρο</span><span lang="en">Below average</span></td><td class="n">+4%</td><td class="n"><b>25%</b></td><td class="n"><span class="nm">€986.187</span></td><td class="n"><span class="nm">+€337.942</span></td></tr><tr><td><span lang="el">Οι προβλέψεις των μεγάλων εταιρειών</span><span lang="en">The big firms' forecasts</span></td><td class="n">+5,5%</td><td class="n"><b>35%</b></td><td class="n"><span class="nm">€1.158.933</span></td><td class="n"><span class="nm">+€510.688</span></td></tr><tr><td><span lang="el">Όπως τα τελευταία 15 χρόνια</span><span lang="en">Like the last 15 years</span></td><td class="n">+8%</td><td class="n"><b>15%</b></td><td class="n"><span class="nm">€1.509.038</span></td><td class="n"><span class="nm">+€860.793</span></td></tr></tbody></table></div>
+   <p class="muted"><span lang="el">Από €648.245 σήμερα, μείον κόστος 0,2% τον χρόνο.</span><span lang="en">From €648,245 today, less a 0.2% yearly cost.</span></p>
+  </div>
+ </div>
+</section>
+
+<section>
+ <span class="step"><span lang="el">Αν θέλεις οπωσδήποτε ακίνητο</span><span lang="en">If you definitely want property</span></span>
+ <h2><span lang="el">Η καλύτερη επιλογή ακινήτου</span><span lang="en">The best property option</span></h2>
+ <div class="two">
+  <div class="col plus">
+   <h3><span lang="el">Τώρα: η επιλογή B</span><span lang="en">Now: option B</span></h3>
+   <p><span lang="el">Το ίδιο διαμέρισμα, ίδιος πύργος, ίδια θέα, στα 2.349.990 AED (≈ €570.000). Αναμενόμενο κέρδος ≈ +€262.000 (+44%) αντί για ≈ +€209.000. Είναι η καλύτερη πρόταση ακινήτου που βρήκα σήμερα.</span><span lang="en">The same apartment, same tower, same view, at AED 2,349,990 (≈ €570,000). Expected profit ≈ +€262,000 (+44%) instead of ≈ +€209,000. It is the best property deal I found today.</span></p>
+  </div>
+  <div class="col plus">
+   <h3><span lang="el">Ακόμα καλύτερα: περίμενε το 2028–2029</span><span lang="en">Even better: wait for 2028–2029</span></h3>
+   <p><span lang="el">Τότε παραδίδονται πάνω από 34.000 νέα σπίτια. Πολλοί επενδυτές δεν θα μπορούν να πληρώσουν το 60% της παράδοσης και θα πουλήσουν. Εκεί βρίσκεις έτοιμο διαμέρισμα, με ενοίκιο από την πρώτη μέρα, πιο φθηνά από σήμερα. Μέχρι τότε τα χρήματα δουλεύουν στο ETF.</span><span lang="en">More than 34,000 new homes are handed over then. Many investors will not be able to pay the 60% at handover and will sell. That is where you find a ready apartment, with rent from day one, cheaper than today. Until then the money works in the ETF.</span></p>
+  </div>
+ </div>
+</section>
+
+<section>
+ <span class="step"><span lang="el">Το πλάνο</span><span lang="en">The plan</span></span>
+ <h2><span lang="el">Τι θα έκανα, βήμα βήμα</span><span lang="en">What I would do, step by step</span></h2>
+ <ol class="do">
+  <li><span class="when"><span lang="el">Αυτή την εβδομάδα</span><span lang="en">This week</span></span><span><span lang="el">Δεν υπογράφω την πρόταση των 2.560.000 AED. Αν ο μεσίτης πιέζει, η απάντηση είναι ότι υπάρχει το ίδιο διαμέρισμα στα 2.349.990.</span><span lang="en">I do not sign the AED 2,560,000 offer. If the agent pushes, the answer is that the same apartment is listed at 2,349,990.</span></span></li>
+  <li><span class="when"><span lang="el">Πριν απ’ όλα</span><span lang="en">First of all</span></span><span><span lang="el">Κρατάω 6–12 μήνες εξόδων σε λογαριασμό. Αυτά δεν μπαίνουν πουθενά.</span><span lang="en">I keep 6–12 months of expenses in an account. That money goes nowhere.</span></span></li>
+  <li><span class="when"><span lang="el">Μήνας 1</span><span lang="en">Month 1</span></span><span><span lang="el">Ανοίγω λογαριασμό σε εποπτευόμενο χρηματιστή στην ΕΕ που δίνει ETF τύπου UCITS. Διαλέγω ένα παγκόσμιο ETF που επανεπενδύει τα μερίσματα (Acc), π.χ. Vanguard FTSE All-World (ISIN IE00BK5BQT80) ή iShares MSCI ACWI (ISIN IE00B6R52259).</span><span lang="en">I open an account with a regulated EU broker that offers UCITS ETFs. I pick one global ETF that reinvests dividends (Acc), e.g. Vanguard FTSE All-World (ISIN IE00BK5BQT80) or iShares MSCI ACWI (ISIN IE00B6R52259).</span></span></li>
+  <li><span class="when"><span lang="el">Μήνες 1–6</span><span lang="en">Months 1–6</span></span><span><span lang="el">Μπαίνω σε 6 ίσα κομμάτια, ένα κάθε μήνα (≈ €108.000 το καθένα), για να μην πέσω όλο πάνω σε μια κακή μέρα.</span><span lang="en">I go in with 6 equal parts, one each month (≈ €108,000 each), so I do not put it all in on a bad day.</span></span></li>
+  <li><span class="when"><span lang="el">Κάθε χρόνο</span><span lang="en">Every year</span></span><span><span lang="el">Κοιτάζω μία φορά τον χρόνο, προσθέτω αν μπορώ, και δεν πουλάω στις πτώσεις. Μια πτώση 20%–40% κάποια στιγμή είναι σχεδόν σίγουρη. Αυτό είναι το «εισιτήριο» για την απόδοση.</span><span lang="en">I look once a year, add if I can, and do not sell in drops. A 20%–40% drop at some point is almost certain. That is the «ticket» for the return.</span></span></li>
+  <li><span class="when">2028–2029</span><span><span lang="el">Αν θέλω ακόμα ακίνητο στο Άμπου Ντάμπι, ψάχνω έτοιμο, νοικιασμένο διαμέρισμα στο Al Reem, Saadiyat ή Yas, μόνο αν: είναι τουλάχιστον 15% φθηνότερο ανά ft² από σήμερα, το ενοίκιο δίνει 7%+ μικτή απόδοση και το κτίριο κατοικείται ήδη. Τότε μεταφέρω έως ~40% από το ETF.</span><span lang="en">If I still want property in Abu Dhabi, I look for a ready, rented apartment on Al Reem, Saadiyat or Yas, only if: it is at least 15% cheaper per ft² than today, the rent gives a 7%+ gross yield and the building is already lived in. Then I move up to ~40% from the ETF.</span></span></li>
+  <li><span class="when">2037</span><span><span lang="el">Αποφασίζω: συνεχίζω, ή αρχίζω να παίρνω ένα σταθερό ποσό τον χρόνο.</span><span lang="en">I decide: keep going, or start taking a steady amount each year.</span></span></li>
+ </ol>
+</section>
+
+<footer>
+ <p><span lang="el">Δεν είμαι αδειοδοτημένος χρηματοοικονομικός σύμβουλος. Αυτή είναι η δική μου ανάλυση με δημόσια στοιχεία και δικές μου παραδοχές. Οι προβλέψεις δεν είναι εγγυήσεις και οι αποδόσεις του παρελθόντος δεν εγγυώνται τις μελλοντικές. Πριν επενδύσεις, μίλα με ανεξάρτητο αδειοδοτημένο σύμβουλο.</span><span lang="en">I am not a licensed financial adviser. This is my own analysis using public data and my own assumptions. Forecasts are not guarantees and past returns do not guarantee future ones. Before investing, talk to an independent licensed adviser.</span></p>
+ <p><span lang="el">Πηγές</span><span lang="en">Sources</span>: <a href="https://am.jpmorgan.com/us/en/asset-management/institutional/about-us/media/press-releases/jp-morgan-releases-2026-long-term-capital-market-assumptions/" target="_blank" rel="noopener">J.P. Morgan 2026 LTCMA</a> · <a href="https://www.vanguardmexico.com/en/home/insights/economic-market-outlook/vanguard-capital-markets-model-forecasts-2026" target="_blank" rel="noopener">Vanguard VCMM (Jun 2026)</a> · <a href="https://monevator.com/world-index/" target="_blank" rel="noopener">Monevator world index</a> · <a href="https://www.cushwake.ae/en/marketbeats/marketbeat-residential-q2-2026-abu-dhabi-uae" target="_blank" rel="noopener">Cushman &amp; Wakefield Q2 2026</a> · <a href="https://en.wikipedia.org/wiki/United_Arab_Emirates_in_the_2026_Iran_war" target="_blank" rel="noopener">UAE in the 2026 Iran war</a> · <a href="https://www.propertyfinder.ae/en/buy/abu-dhabi/2-bedroom-apartments-for-sale-al-reem-island.html" target="_blank" rel="noopener">Property Finder</a></p>
+</footer>
+</div>
+<script>
+(function(){var el=document.getElementById('btn-el'),en=document.getElementById('btn-en');
+var nums=[].slice.call(document.querySelectorAll('.nm'));nums.forEach(function(e){e._el=e.textContent;e._en=e.textContent.replace(/\./g,',');});
+function set(l){nums.forEach(function(e){e.textContent=(l==='en'?e._en:e._el)});document.body.classList.toggle('en',l==='en');document.documentElement.lang=l;el.setAttribute('aria-pressed',l==='el');en.setAttribute('aria-pressed',l==='en');try{localStorage.setItem('rad-lang',l)}catch(e){}}
+el.addEventListener('click',function(){set('el')});en.addEventListener('click',function(){set('en')});
+var s=null;try{s=localStorage.getItem('rad-lang')}catch(e){}set(s==='en'?'en':'el');})();
+</script>
+</body>
+</html>

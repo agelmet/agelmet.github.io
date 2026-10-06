@@ -6,328 +6,418 @@
 <meta name="robots" content="noindex,nofollow">
 <title>Radisson Residences 2BR + Maid</title>
 <style>
-@font-face{font-family:'Manrope';font-style:normal;font-weight:400;font-display:swap;src:url(assets/fonts/manrope-latin-400-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
-@font-face{font-family:'Manrope';font-style:normal;font-weight:600;font-display:swap;src:url(assets/fonts/manrope-latin-600-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
-@font-face{font-family:'Manrope';font-style:normal;font-weight:700;font-display:swap;src:url(assets/fonts/manrope-latin-700-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
-@font-face{font-family:'Manrope';font-style:normal;font-weight:400;font-display:swap;src:url(assets/fonts/manrope-greek-400-normal.woff2) format('woff2');unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF}
-@font-face{font-family:'Manrope';font-style:normal;font-weight:600;font-display:swap;src:url(assets/fonts/manrope-greek-600-normal.woff2) format('woff2');unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF}
-@font-face{font-family:'Manrope';font-style:normal;font-weight:700;font-display:swap;src:url(assets/fonts/manrope-greek-700-normal.woff2) format('woff2');unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF}
-/* Layout: one reading column (max 860px), verdict first, then money, price, rent, market, risks, opinion. Light only by request. */
-:root{
-  color-scheme: light only;
-  --paper:#F2F5F3; --card:#FFFFFF; --ink:#13231F; --muted:#56655F; --line:#D5DDD9;
-  --mangrove:#1D5B4A; --tide:#2A7488; --sand:#E7E1D2; --warn:#A8690F; --risk:#A23B2D; --good:#1D6B45;
-  --display:"Manrope","Helvetica Neue",Arial,sans-serif;
-  --body:"Manrope","Helvetica Neue",Arial,sans-serif;
-}
+@font-face{font-family:'Manrope';font-weight:400;font-display:swap;src:url(assets/fonts/manrope-latin-400-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2190-2199,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Manrope';font-weight:600;font-display:swap;src:url(assets/fonts/manrope-latin-600-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2190-2199,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Manrope';font-weight:700;font-display:swap;src:url(assets/fonts/manrope-latin-700-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2190-2199,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Manrope';font-weight:400;font-display:swap;src:url(assets/fonts/manrope-greek-400-normal.woff2) format('woff2');unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF}
+@font-face{font-family:'Manrope';font-weight:600;font-display:swap;src:url(assets/fonts/manrope-greek-600-normal.woff2) format('woff2');unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF}
+@font-face{font-family:'Manrope';font-weight:700;font-display:swap;src:url(assets/fonts/manrope-greek-700-normal.woff2) format('woff2');unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF}
+/* Light only. One reading column; summary first, evidence after. */
+:root{color-scheme:light only;
+ --paper:#F2F5F3;--card:#FFFFFF;--ink:#13231F;--muted:#56655F;--line:#D5DDD9;
+ --mangrove:#1D5B4A;--tide:#2A7488;--sand:#EFE9DA;--hl:#FFF4D6;--good:#1D6B45;--risk:#A23B2D;
+ --f:"Manrope","Helvetica Neue",Arial,sans-serif}
 *{box-sizing:border-box}
-body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;margin:0;padding-inline:18px;padding-block:28px 64px}
-.wrap{max-width:860px;margin:0 auto;display:flex;flex-direction:column;gap:44px}
-body:not(.en) [lang="en"]{display:none}
-body.en [lang="el"]{display:none}
-h1,h2{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.15}
-h1{font-size:clamp(30px,6vw,46px);font-weight:700}
-h2{font-size:clamp(22px,3.6vw,28px);font-weight:700}
-p{margin:0;max-width:66ch}
+html{background:var(--paper)}
+body{background:var(--paper);color:var(--ink);font-family:var(--f);font-size:16px;line-height:1.6;margin:0;padding-inline:16px;padding-block:24px 64px}
+.wrap{max-width:980px;margin:0 auto;display:flex;flex-direction:column;gap:46px}
+body:not(.en) [lang="en"]{display:none} body.en [lang="el"]{display:none}
+h1,h2,h3{margin:0;line-height:1.2;text-wrap:balance}
+h1{font-size:clamp(28px,5.5vw,42px);font-weight:700;letter-spacing:-.01em}
+h2{font-size:clamp(21px,3.4vw,27px);font-weight:700}
+h3{font-size:15px;font-weight:700}
+p{margin:0;max-width:70ch}
+a{color:var(--tide)}
 .eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--mangrove)}
+.muted{color:var(--muted);font-size:14px}
+.eur{color:var(--muted);font-weight:600;white-space:nowrap}
+.aed{white-space:nowrap}
 .top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
 .lang{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:var(--card)}
-.lang button{font:inherit;font-weight:700;font-size:13px;padding:8px 16px;border:0;background:transparent;color:var(--muted);cursor:pointer}
+.lang button{font:inherit;font-weight:700;font-size:14px;padding:9px 18px;border:0;background:transparent;color:var(--muted);cursor:pointer}
 .lang button[aria-pressed="true"]{background:var(--mangrove);color:#fff}
-.lang button:focus-visible{outline:3px solid var(--tide);outline-offset:-3px}
-header{display:flex;flex-direction:column;gap:18px}
-.sub{color:var(--muted);font-size:17px}
-.verdict{background:var(--mangrove);color:#fff;border-radius:6px;padding:24px;display:flex;flex-direction:column;gap:10px}
-.verdict .eyebrow{color:#BFE3D4}
-.verdict strong.big{font-family:var(--display);font-size:clamp(21px,3.4vw,27px);line-height:1.25;font-weight:700}
-.verdict p{color:#E6F2EC}
+header{display:flex;flex-direction:column;gap:16px}
 section{display:flex;flex-direction:column;gap:16px}
-.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
-.facts div{background:var(--card);padding:14px 16px;display:flex;flex-direction:column;gap:2px;min-width:0}
-.facts span.k{font-size:12px;color:var(--muted);font-weight:700;letter-spacing:.04em;text-transform:uppercase}
-.facts span.v{font-weight:700;font-size:17px;font-variant-numeric:tabular-nums}
+.box{background:var(--card);border:1px solid var(--line);padding:20px;display:flex;flex-direction:column;gap:12px}
+.fix{background:var(--hl);border:1px solid #E8D49A;padding:18px 20px;display:flex;flex-direction:column;gap:10px}
+.verdict{background:var(--mangrove);color:#fff;padding:24px;display:flex;flex-direction:column;gap:12px}
+.verdict .eyebrow{color:#BFE3D4}
+.verdict .big{font-size:clamp(20px,3.2vw,25px);font-weight:700;line-height:1.3}
+.verdict p{color:#E6F2EC} .verdict .eur{color:#BFE3D4}
+ul,ol{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px}
+li{max-width:70ch}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.facts div{background:var(--card);padding:13px 16px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.k{font-size:12px;color:var(--muted);font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+.v{font-weight:700;font-size:16px;font-variant-numeric:tabular-nums}
 .tblwrap{overflow-x:auto;background:var(--card);border:1px solid var(--line)}
-table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums;font-size:15px}
-th,td{padding:11px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
-th{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums;font-size:14.5px}
+th,td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
 td.n,th.n{text-align:right;white-space:nowrap}
 tr:last-child td{border-bottom:0}
 tr.sum td{font-weight:700;background:var(--sand)}
-.bars{display:flex;flex-direction:column;gap:12px;background:var(--card);border:1px solid var(--line);padding:18px}
-.bar{display:grid;grid-template-columns:minmax(120px,190px) 1fr;gap:12px;align-items:center;font-size:14px}
-.bar .lab{font-weight:700;min-width:0}
-.bar .lab small{display:block;color:var(--muted);font-weight:500}
-.track{position:relative;height:26px;background:#EAEFEC}
-.fill{position:absolute;inset:0 auto 0 0;background:var(--tide)}
-.fill.now{background:var(--risk)}
-.fill.me{background:var(--mangrove)}
-.fill.soft{background:#9DB9C2}
-.val{position:absolute;right:8px;top:0;line-height:26px;font-weight:700;font-size:13px;font-variant-numeric:tabular-nums;color:var(--ink)}
-@media (max-width:520px){.bar{grid-template-columns:1fr}}
-.note{font-size:14px;color:var(--muted)}
-.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+tr.me td{background:var(--hl);font-weight:600}
+.sub{display:block;color:var(--muted);font-size:12.5px;font-weight:600}
+.pos{color:var(--good)} .neg{color:var(--risk)}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
 .col{background:var(--card);border:1px solid var(--line);padding:18px;display:flex;flex-direction:column;gap:10px;min-width:0}
-.col h3{margin:0;font-size:14px;letter-spacing:.08em;text-transform:uppercase}
 .col.plus h3{color:var(--good)} .col.minus h3{color:var(--risk)}
-ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px}
-li{max-width:66ch}
-.pos{color:var(--good);font-weight:700}.neg{color:var(--risk);font-weight:700}
-.opinion{border-left:4px solid var(--mangrove);padding-left:18px;display:flex;flex-direction:column;gap:12px}
-ol{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:8px}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr));gap:16px}
+.opt{background:var(--card);border:1px solid var(--line);padding:18px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.opt-h{display:flex;gap:12px;align-items:flex-start}
+.badge{flex:none;width:30px;height:30px;border-radius:50%;background:var(--mangrove);color:#fff;font-weight:700;display:grid;place-items:center;font-size:14px}
+.btn{align-self:flex-start;margin-top:auto;background:var(--mangrove);color:#fff;text-decoration:none;font-weight:700;font-size:14px;padding:9px 14px}
+.btn:focus-visible,.lang button:focus-visible,a:focus-visible{outline:3px solid var(--tide);outline-offset:2px}
+.bars{display:flex;flex-direction:column;gap:10px;background:var(--card);border:1px solid var(--line);padding:18px}
+.bar{display:grid;grid-template-columns:minmax(130px,210px) 1fr;gap:12px;align-items:center;font-size:14px}
+.bar .lab{font-weight:700;min-width:0} .bar .lab small{display:block;color:var(--muted);font-weight:600}
+.track{position:relative;height:28px;background:#EAEFEC}
+.fill{position:absolute;inset:0 auto 0 0;background:var(--tide)} .fill.now{background:var(--risk)}
+.val{position:absolute;right:8px;top:0;line-height:28px;font-weight:700;font-size:13px;font-variant-numeric:tabular-nums}
+@media (max-width:540px){.bar{grid-template-columns:1fr}}
+  .facts.f3{grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr))}
 footer{font-size:13px;color:var(--muted);display:flex;flex-direction:column;gap:8px;border-top:1px solid var(--line);padding-top:18px}
-footer a{color:var(--tide)}
 </style>
 </head>
 <body>
-
 <div class="wrap">
+
 <header>
-  <div class="top">
-    <span class="eyebrow"><span lang="el">Ανάλυση φακέλου · 6 Οκτ 2026</span><span lang="en">Folder analysis · 6 Oct 2026</span></span>
-    <div class="lang" role="group" aria-label="Language">
-      <button id="btn-el" type="button" aria-pressed="true">Ελληνικά</button>
-      <button id="btn-en" type="button" aria-pressed="false">English</button>
-    </div>
-  </div>
-  <h1>Radisson Residences, Al Reem Island<br><span lang="el">2 υπνοδωμάτια + δωμάτιο βοηθού</span><span lang="en">2 bedrooms + maid's room</span></h1>
-  <p class="sub">
-    <span lang="el">Ο φάκελος είναι μια πρόταση αγοράς διαμερίσματος στο Άμπου Ντάμπι που ακόμα χτίζεται. Δεν το αγοράζεις από την κατασκευαστική, αλλά από έναν ιδιώτη που το έκλεισε πέρσι και τώρα το μεταπουλά πιο ακριβά.</span>
-    <span lang="en">The folder is an offer to buy an apartment in Abu Dhabi that is still under construction. You would not buy it from the developer, but from a private owner who reserved it last year and is now reselling it at a higher price.</span>
-  </p>
-  <div class="verdict">
-    <span class="eyebrow"><span lang="el">Η γνώμη μου με μία ματιά</span><span lang="en">My view at a glance</span></span>
-    <strong class="big">
-      <span lang="el">Καλό ακίνητο, σοβαρό έργο, αλλά η τιμή είναι η πιο ακριβή από όλα τα παρόμοια που πωλούνται. Ευκαιρία γίνεται μόνο με αισθητή έκπτωση.</span>
-      <span lang="en">Good property, serious project, but the price is the highest of all similar units on sale. It only becomes an opportunity with a real discount.</span>
-    </strong>
-    <p>
-      <span lang="el">Πληρώνεις στον πωλητή 545.000 AED κέρδος από την πρώτη μέρα, για κάτι που θα παραδοθεί σε 15 μήνες. Το περιθώριο ανόδου που απομένει για σένα είναι μικρότερο από το ρίσκο που αναλαμβάνεις.</span>
-      <span lang="en">You hand the seller AED 545,000 of profit on day one, for something delivered in 15 months. The upside left for you is smaller than the risk you take on.</span>
-    </p>
-  </div>
+ <div class="top">
+  <span class="eyebrow"><span lang="el">Ανάλυση · ενημερώθηκε 6 Οκτ 2026</span><span lang="en">Analysis · updated 6 Oct 2026</span></span>
+  <div class="lang" role="group" aria-label="Language"><button id="btn-el" type="button" aria-pressed="true">Ελληνικά</button><button id="btn-en" type="button" aria-pressed="false">English</button></div>
+ </div>
+ <h1>Radisson Residences, Al Reem Island<br><span lang="el">2 υπνοδωμάτια + δωμάτιο βοηθού</span><span lang="en">2 bedrooms + maid's room</span></h1>
+ <p class="muted"><span lang="el">Όλα τα ποσά σε AED και σε ευρώ με ισοτιμία 1 € = 4.12 AED (6 Οκτ 2026). Όλα τα εμβαδά σε ft² και m².</span><span lang="en">All amounts in AED and in euro at 1 € = 4.12 AED (6 Oct 2026). All areas in ft² and m².</span></p>
 </header>
 
 <section>
-  <span class="eyebrow"><span lang="el">Τι είναι</span><span lang="en">What it is</span></span>
-  <h2><span lang="el">Το ακίνητο με απλά λόγια</span><span lang="en">The property in plain words</span></h2>
-  <div class="facts">
-    <div><span class="k"><span lang="el">Μονάδα</span><span lang="en">Unit</span></span><span class="v">4-903 · <span lang="el">9ος όροφος</span><span lang="en">9th floor</span></span></div>
-    <div><span class="k"><span lang="el">Πύργος</span><span lang="en">Tower</span></span><span class="v">Tower 1</span></div>
-    <div><span class="k"><span lang="el">Τύπος</span><span lang="en">Type</span></span><span class="v">2BR-1 + maid</span></div>
-    <div><span class="k"><span lang="el">Εσωτερικό</span><span lang="en">Interior</span></span><span class="v">118,7 m² · 1.278 ft²</span></div>
-    <div><span class="k"><span lang="el">Μπαλκόνια</span><span lang="en">Balconies</span></span><span class="v">34,8 m² · 375 ft²</span></div>
-    <div><span class="k"><span lang="el">Σύνολο</span><span lang="en">Total</span></span><span class="v">153,5 m² · 1.653 ft²</span></div>
-    <div><span class="k"><span lang="el">Θέα (αγγελία)</span><span lang="en">View (listing)</span></span><span class="v">Mangrove</span></div>
-    <div><span class="k"><span lang="el">Παράδοση</span><span lang="en">Handover</span></span><span class="v">31 Dec 2027</span></div>
-    <div><span class="k"><span lang="el">Θέση στάθμευσης</span><span lang="en">Parking</span></span><span class="v">1</span></div>
-  </div>
-  <p>
-    <span lang="el">Κατασκευαστής είναι η Royal Development Holding, θυγατρική του ομίλου Emirates Stallions Group. Η εταιρεία ιδρύθηκε τον Ιούνιο του 2025, άρα αυτό είναι το πρώτο της έργο με αυτό το όνομα. Το Radisson δίνει το brand και προνόμια μέλους, δεν χτίζει το κτίριο. Η πρώτη φάση (πύργοι 1 και 2) πουλήθηκε ολόκληρη σε 24 ώρες τον Δεκέμβριο του 2025.</span>
-    <span lang="en">The developer is Royal Development Holding, a subsidiary of Emirates Stallions Group. The company was set up in June 2025, so this is its first project under this name. Radisson provides the brand and member perks, it does not build the tower. Phase one (towers 1 and 2) sold out in 24 hours in December 2025.</span>
-  </p>
-  <p class="note">
-    <span lang="el">Προσοχή: οι διαφάνειες με τα 437 διαμερίσματα, τις τιμές «από 950.000» και την παράδοση το 2029 αφορούν τον Πύργο 3, μια νέα φάση με γκαρσονιέρες και δυάρια. Δεν είναι το δικό σου ακίνητο. Χρησιμεύουν μόνο για σύγκριση τιμών.</span>
-    <span lang="en">Note: the slides showing 437 units, prices "from 950,000" and a 2029 handover are about Tower 3, a new phase of studios and one-bedrooms. They are not your unit. They are only useful as a price comparison.</span>
-  </p>
-</section>
-
-<section>
-  <span class="eyebrow"><span lang="el">Τα χρήματα</span><span lang="en">The money</span></span>
-  <h2><span lang="el">Πόσα πληρώνεις και πότε</span><span lang="en">How much you pay and when</span></h2>
-  <p>
-    <span lang="el">Ο πωλητής το έκλεισε στα 2.015.040 AED. Στο πουλά 2.560.000 AED, δηλαδή 27% ακριβότερα. Εσύ του δίνεις πίσω όσα έχει πληρώσει μέχρι σήμερα μαζί με το κέρδος του, και συνεχίζεις εσύ τις υπόλοιπες δόσεις προς την κατασκευαστική.</span>
-    <span lang="en">The seller reserved it at AED 2,015,040. He is selling at AED 2,560,000, which is 27% more. You pay him back what he has paid so far plus his profit, and you take over the remaining instalments to the developer.</span>
-  </p>
-  <div class="tblwrap"><table>
-    <thead><tr><th><span lang="el">Η πρώτη πληρωμή αναλυτικά</span><span lang="en">The first payment, broken down</span></th><th class="n">AED</th></tr></thead>
-    <tbody>
-      <tr><td><span lang="el">Όσα έχει ήδη πληρώσει ο πωλητής (22,5%)</span><span lang="en">What the seller has already paid (22.5%)</span></td><td class="n">453,384</td></tr>
-      <tr><td><span lang="el">Το κέρδος του πωλητή</span><span lang="en">The seller's profit</span></td><td class="n">544,960</td></tr>
-      <tr><td><span lang="el">Μεσιτικά 2% + ΦΠΑ 5%</span><span lang="en">Agency 2% + 5% VAT</span></td><td class="n">53,760</td></tr>
-      <tr><td><span lang="el">Τέλος μεταβίβασης 2% (ADM)</span><span lang="en">Transfer fee 2% (ADM)</span></td><td class="n">51,760</td></tr>
-      <tr><td><span lang="el">NOC (άδεια της κατασκευαστικής για τη μεταπώληση)</span><span lang="en">NOC (developer's consent to the resale)</span></td><td class="n">5,250</td></tr>
-      <tr class="sum"><td><span lang="el">Μετρητά την πρώτη μέρα</span><span lang="en">Cash on day one</span></td><td class="n">1,109,114</td></tr>
-    </tbody>
-  </table></div>
-  <div class="bars" role="img" aria-label="Payment timeline in AED">
-    <div class="bar"><div class="lab"><span lang="el">Τώρα</span><span lang="en">Now</span><small><span lang="el">πωλητής + έξοδα</span><span lang="en">seller + fees</span></small></div><div class="track"><div class="fill now" style="width:91.7%"></div><span class="val">1,109,114</span></div></div>
-    <div class="bar"><div class="lab">31 Dec 2026<small>5%</small></div><div class="track"><div class="fill" style="width:8.3%"></div><span class="val">100,752</span></div></div>
-    <div class="bar"><div class="lab">30 Apr 2027<small>5%</small></div><div class="track"><div class="fill" style="width:8.3%"></div><span class="val">100,752</span></div></div>
-    <div class="bar"><div class="lab">30 Sep 2027<small>7.5%</small></div><div class="track"><div class="fill" style="width:12.5%"></div><span class="val">151,128</span></div></div>
-    <div class="bar"><div class="lab"><span lang="el">Παράδοση</span><span lang="en">Handover</span> 31 Dec 2027<small>60%</small></div><div class="track"><div class="fill" style="width:100%"></div><span class="val" style="color:#fff">1,209,024</span></div></div>
-  </div>
-  <div class="facts">
-    <div><span class="k"><span lang="el">Συνολικό κόστος</span><span lang="en">Total cost</span></span><span class="v">AED 2,670,770</span></div>
-    <div><span class="k"><span lang="el">Πριν πάρεις κλειδί</span><span lang="en">Before you get the key</span></span><span class="v">AED 1,461,746</span></div>
-    <div><span class="k"><span lang="el">Σε ευρώ, περίπου</span><span lang="en">In euro, roughly</span></span><span class="v">€620,000</span></div>
-  </div>
-  <p class="note">
-    <span lang="el">Το ευρώ υπολογίστηκε με περίπου 4,3 AED ανά ευρώ. Έλεγξε τη σημερινή ισοτιμία. Το AED είναι κλειδωμένο στο δολάριο, άρα η αξία σε ευρώ ανεβοκατεβαίνει μαζί με το δολάριο.</span>
-    <span lang="en">Euro figure uses about 4.3 AED per euro. Check today's rate. The dirham is pegged to the US dollar, so the value in euro moves with the dollar.</span>
-  </p>
-</section>
-
-<section>
-  <span class="eyebrow"><span lang="el">Η τιμή</span><span lang="en">The price</span></span>
-  <h2><span lang="el">Είναι λογική η τιμή;</span><span lang="en">Is the price fair?</span></h2>
-  <p>
-    <span lang="el">Ο πιο δίκαιος τρόπος σύγκρισης είναι η τιμή ανά τετραγωνικό πόδι (ft²) της συνολικής επιφάνειας. Στο Property Finder υπάρχουν σήμερα 47 αγγελίες μεταπώλησης για δυάρια στο ίδιο συγκρότημα, από 2.150.000 έως 2.560.000 AED. Το δικό σου είναι στο ανώτατο όριο.</span>
-    <span lang="en">The fairest comparison is price per square foot (ft²) of total area. Property Finder currently shows 47 resale listings for two-bedrooms in the same development, from AED 2,150,000 to 2,560,000. Yours sits at the very top.</span>
-  </p>
-  <div class="bars" role="img" aria-label="Price per square foot comparison">
-    <div class="bar"><div class="lab"><span lang="el">Τι πλήρωσε ο πωλητής</span><span lang="en">What the seller paid</span><small>Dec 2025</small></div><div class="track"><div class="fill soft" style="width:61%"></div><span class="val">1,219 / ft²</span></div></div>
-    <div class="bar"><div class="lab"><span lang="el">Ίδιο μέγεθος, φθηνότερη αγγελία</span><span lang="en">Same size, cheapest listing</span><small>Tower 2 · 2,249,990</small></div><div class="track"><div class="fill soft" style="width:67.7%"></div><span class="val">1,353 / ft²</span></div></div>
-    <div class="bar"><div class="lab"><span lang="el">Ίδιο μέγεθος, Tower 1</span><span lang="en">Same size, Tower 1</span><small>2,400,000</small></div><div class="track"><div class="fill soft" style="width:72.2%"></div><span class="val">1,443 / ft²</span></div></div>
-    <div class="bar"><div class="lab"><span lang="el">Αυτή η πρόταση</span><span lang="en">This offer</span><small>2,560,000</small></div><div class="track"><div class="fill me" style="width:77.5%"></div><span class="val">1,549 / ft²</span></div></div>
-    <div class="bar"><div class="lab"><span lang="el">Νέος Πύργος 3, 2BR townhouse</span><span lang="en">New Tower 3, 2BR townhouse</span><small><span lang="el">από 3.500.000 · παράδοση 2029</span><span lang="en">from 3,500,000 · handover 2029</span></small></div><div class="track"><div class="fill" style="width:93.4%"></div><span class="val">1,868 / ft²</span></div></div>
-    <div class="bar"><div class="lab"><span lang="el">Νέος Πύργος 3, 1BR</span><span lang="en">New Tower 3, 1BR</span><small><span lang="el">από 1.900.000 · επιπλωμένο</span><span lang="en">from 1,900,000 · furnished</span></small></div><div class="track"><div class="fill" style="width:98.8%"></div><span class="val">1,975 / ft²</span></div></div>
-  </div>
-  <p>
-    <span lang="el">Δύο αναγνώσεις, και οι δύο αληθινές. Το επιχείρημα του μεσίτη: η κατασκευαστική πουλά τώρα τον Πύργο 3 πολύ ακριβότερα ανά πόδι, άρα το δικό σου είναι «φθηνό» και παραδίδεται δύο χρόνια νωρίτερα. Η άλλη πλευρά: τα μικρά επιπλωμένα διαμερίσματα κοστίζουν πάντα περισσότερο ανά πόδι, και για το ίδιο ακριβώς μέγεθος υπάρχουν αγγελίες έως και 310.000 AED φθηνότερες. Οι αγγελίες είναι ζητούμενες τιμές, όχι πραγματικές πωλήσεις.</span>
-    <span lang="en">Two readings, both true. The agent's argument: the developer now sells Tower 3 at a much higher price per foot, so yours is "cheap" and arrives two years earlier. The other side: small furnished units always cost more per foot, and for the very same size there are listings up to AED 310,000 cheaper. Listings are asking prices, not completed sales.</span>
-  </p>
-</section>
-
-<section>
-  <span class="eyebrow"><span lang="el">Το ενοίκιο</span><span lang="en">The rent</span></span>
-  <h2><span lang="el">Τι μπορεί να αποδώσει αν το νοικιάσεις</span><span lang="en">What it could earn if you rent it out</span></h2>
-  <p>
-    <span lang="el">Δική μου εκτίμηση, όχι υπόσχεση. Τα δυάρια στο Al Reem νοικιάζονται σήμερα γύρω στα 102 AED ανά ft² τον χρόνο κατά το Bayut, και η επίσημη έκθεση ADREC δείχνει 1.200 έως 1.400 AED ανά m² στα κτίρια του νησιού. Για καινούριο, επώνυμο διαμέρισμα με δωμάτιο βοηθού, βάζω 150.000 έως 190.000 AED τον χρόνο.</span>
-    <span lang="en">My estimate, not a promise. Two-bedrooms on Al Reem rent for about AED 102 per ft² a year according to Bayut, and the official ADREC report shows AED 1,200 to 1,400 per m² across the island's buildings. For a new, branded unit with a maid's room I assume AED 150,000 to 190,000 a year.</span>
-  </p>
-  <div class="tblwrap"><table>
-    <thead><tr><th><span lang="el">Σενάριο</span><span lang="en">Scenario</span></th><th class="n"><span lang="el">Ενοίκιο</span><span lang="en">Rent</span></th><th class="n"><span lang="el">Κοινόχρηστα</span><span lang="en">Service charge</span></th><th class="n"><span lang="el">Καθαρό</span><span lang="en">Net</span></th><th class="n"><span lang="el">Απόδοση</span><span lang="en">Yield</span></th></tr></thead>
-    <tbody>
-      <tr><td><span lang="el">Χαμηλό</span><span lang="en">Low</span></td><td class="n">150,000</td><td class="n">50,000</td><td class="n">100,000</td><td class="n">3.7%</td></tr>
-      <tr class="sum"><td><span lang="el">Μεσαίο</span><span lang="en">Middle</span></td><td class="n">170,000</td><td class="n">45,000</td><td class="n">125,000</td><td class="n">4.7%</td></tr>
-      <tr><td><span lang="el">Υψηλό</span><span lang="en">High</span></td><td class="n">190,000</td><td class="n">40,000</td><td class="n">150,000</td><td class="n">5.6%</td></tr>
-    </tbody>
-  </table></div>
-  <p class="note">
-    <span lang="el">Απόδοση επί του συνολικού κόστους 2.670.770 AED. Τα κοινόχρηστα του κτιρίου δεν αναφέρονται πουθενά στον φάκελο. Στο Al Reem κυμαίνονται από 25 έως 45 AED ανά ft² τον χρόνο, άρα αυτό το νούμερο πρέπει να το ζητήσεις. Το ενοίκιο δεν φορολογείται στα Εμιράτα, αλλά ως φορολογικός κάτοικος Ελλάδας το δηλώνεις εδώ. Ρώτησε τον λογιστή σου.</span>
-    <span lang="en">Yield on the total cost of AED 2,670,770. The building's service charge appears nowhere in the folder. On Al Reem it ranges from AED 25 to 45 per ft² a year, so you need to ask for it. Rent is not taxed in the UAE, but as a Greek tax resident you declare it in Greece. Ask your accountant.</span>
-  </p>
-</section>
-
-<section>
-  <span class="eyebrow"><span lang="el">Η αγορά</span><span lang="en">The market</span></span>
-  <h2><span lang="el">Τι λέει η επίσημη έκθεση ADREC για το πρώτο εξάμηνο του 2026</span><span lang="en">What the official ADREC H1 2026 report says</span></h2>
-  <div class="two">
-    <div class="col plus">
-      <h3><span lang="el">Υπέρ</span><span lang="en">In favour</span></h3>
-      <ul>
-        <li><span lang="el">Ρεκόρ συναλλαγών 117 δισ. AED σε έξι μήνες. Οι πωλήσεις κατοικιών σχεδόν τριπλασιάστηκαν.</span><span lang="en">Record AED 117 billion of transactions in six months. Home sales almost tripled.</span></li>
-        <li><span lang="el">Οι τιμές διαμερισμάτων ανέβηκαν 20% σε έναν χρόνο. Τα νέα μισθωτήρια 17%.</span><span lang="en">Apartment prices rose 20% in a year. New leases rose 17%.</span></li>
-        <li><span lang="el">Το Al Reem είναι από τις τρεις ακριβότερες περιοχές για διαμερίσματα και πρώτο σε αριθμό πωλήσεων.</span><span lang="en">Al Reem is among the three priciest apartment districts and first by number of sales.</span></li>
-        <li><span lang="el">Τα χρήματα των αγοραστών σε υπό κατασκευή έργα μπαίνουν σε λογαριασμό escrow που εποπτεύει το κράτος.</span><span lang="en">Buyers' money in off-plan projects goes into escrow accounts supervised by the state.</span></li>
-        <li><span lang="el">Το πάγωμα αυξήσεων ενοικίων από 2 Ιουνίου εξαιρεί τις κοινότητες ADGM, όπου ανήκει το Al Reem.</span><span lang="en">The rent-increase freeze of 2 June excludes ADGM communities, which include Al Reem.</span></li>
-      </ul>
-    </div>
-    <div class="col minus">
-      <h3><span lang="el">Σημάδια προσοχής</span><span lang="en">Warning signs</span></h3>
-      <ul>
-        <li><span lang="el">Το 89% των πωλήσεων είναι ακίνητα που δεν έχουν χτιστεί ακόμα. Αυτό δείχνει πολλή κερδοσκοπία.</span><span lang="en">89% of sales are homes not yet built. That points to a lot of speculation.</span></li>
-        <li><span lang="el">Στο Al Reem υπάρχουν περίπου 27.500 κατοικίες και έρχονται άλλες 13.500 έως το 2030. Σχεδόν 50% περισσότερες.</span><span lang="en">Al Reem has about 27,500 homes and another 13,500 are coming by 2030. Almost 50% more.</span></li>
-        <li><span lang="el">Οι παραδόσεις κορυφώνονται το 2028, ακριβώς όταν θα ψάχνεις ενοικιαστή ή αγοραστή.</span><span lang="en">Deliveries peak in 2028, exactly when you would be looking for a tenant or a buyer.</span></li>
-        <li><span lang="el">Κατά το Bayut τα ενοίκια στα δυάρια του Al Reem έπεσαν από 109 σε 102 AED ανά ft² μέσα σε έναν χρόνο, ενώ οι τιμές πώλησης ανέβαιναν.</span><span lang="en">Per Bayut, two-bedroom rents on Al Reem slipped from AED 109 to 102 per ft² in a year, while sale prices kept rising.</span></li>
-        <li><span lang="el">Το ίδιο το κράτος πάγωσε τις αυξήσεις ενοικίων. Δείχνει ότι παρεμβαίνει όταν η αγορά ζεσταίνεται.</span><span lang="en">The state itself froze rent increases. It shows it steps in when the market overheats.</span></li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<section>
-  <span class="eyebrow"><span lang="el">Το ρίσκο</span><span lang="en">The risk</span></span>
-  <h2><span lang="el">Τι γίνεται με τα χρήματά σου στην παράδοση</span><span lang="en">What happens to your money at handover</span></h2>
-  <p>
-    <span lang="el">Επειδή πληρώνεις έξοδα 110.770 AED πάνω από την τιμή, ξεκινάς με ζημιά 4%. Για να βγεις απλώς στα ίσα σου σε μια μεταπώληση, το διαμέρισμα πρέπει να αξίζει περίπου 2.730.000 AED, δηλαδή 6,6% πάνω από την τιμή που το αγοράζεις.</span>
-    <span lang="en">Because you pay AED 110,770 of costs on top of the price, you start 4% down. Just to break even on a resale, the apartment must be worth about AED 2,730,000, which is 6.6% above the price you are paying.</span>
-  </p>
-  <div class="tblwrap"><table>
-    <thead><tr><th><span lang="el">Αξία τον Δεκέμβριο 2027</span><span lang="en">Value in December 2027</span></th><th class="n">AED</th><th class="n"><span lang="el">Κέρδος / ζημιά</span><span lang="en">Gain / loss</span></th></tr></thead>
-    <tbody>
-      <tr><td><span lang="el">Πέφτει 10%</span><span lang="en">Falls 10%</span></td><td class="n">2,304,000</td><td class="n neg">−366,770</td></tr>
-      <tr><td><span lang="el">Μένει ίδια</span><span lang="en">Stays flat</span></td><td class="n">2,560,000</td><td class="n neg">−110,770</td></tr>
-      <tr><td><span lang="el">Ανεβαίνει 10%</span><span lang="en">Rises 10%</span></td><td class="n">2,816,000</td><td class="n pos">+145,230</td></tr>
-      <tr><td><span lang="el">Ανεβαίνει 20%</span><span lang="en">Rises 20%</span></td><td class="n">3,072,000</td><td class="n pos">+401,230</td></tr>
-    </tbody>
-  </table></div>
-  <p class="note"><span lang="el">Πριν από τα έξοδα πώλησης (περίπου 2% μεσιτικά). Για σύγκριση, ο σημερινός πωλητής έβαλε 453.384 AED και φεύγει με 544.960 AED κέρδος σε δέκα μήνες. Το μεγάλο κομμάτι της ανόδου το έχει ήδη πάρει εκείνος.</span><span lang="en">Before selling costs (about 2% agency). For comparison, today's seller put in AED 453,384 and leaves with AED 544,960 of profit in ten months. He has already taken the big slice of the rise.</span></p>
-  <div class="two">
-    <div class="col plus">
-      <h3><span lang="el">Τα δυνατά σημεία</span><span lang="en">Strengths</span></h3>
-      <ul>
-        <li><span lang="el">Μεγάλο, σωστά σχεδιασμένο διαμέρισμα: δύο μπάνια, ξενώνας WC, δωμάτιο βοηθού, δύο μπαλκόνια.</span><span lang="en">Large, well-planned unit: two bathrooms, guest WC, maid's room, two balconies.</span></li>
-        <li><span lang="el">Μόνο 15 μήνες έως την παράδοση, άρα λιγότερη αναμονή από ένα νέο έργο.</span><span lang="en">Only 15 months to handover, so a shorter wait than a brand-new launch.</span></li>
-        <li><span lang="el">Το 60% πληρώνεται στην παράδοση, όταν μπορεί να καλυφθεί και με δάνειο.</span><span lang="en">60% is paid at handover, when a mortgage may cover it.</span></li>
-        <li><span lang="el">Διεθνές brand και περιοχή με πραγματική ζήτηση.</span><span lang="en">International brand in an area with real demand.</span></li>
-      </ul>
-    </div>
-    <div class="col minus">
-      <h3><span lang="el">Τα αδύνατα σημεία</span><span lang="en">Weaknesses</span></h3>
-      <ul>
-        <li><span lang="el">Η ακριβότερη από 47 αγγελίες, και μόλις στον 9ο όροφο.</span><span lang="en">The most expensive of 47 listings, and only on the 9th floor.</span></li>
-        <li><span lang="el">1,1 εκατ. AED μετρητά άμεσα, τα μισά ως κέρδος τρίτου.</span><span lang="en">AED 1.1 million in cash straight away, half of it someone else's profit.</span></li>
-        <li><span lang="el">47 ιδιοκτήτες προσπαθούν ήδη να πουλήσουν. Στην παράδοση θα ανταγωνίζεσαι όλους αυτούς.</span><span lang="en">47 owners are already trying to sell. At handover you compete with all of them.</span></li>
-        <li><span lang="el">Νέα εταιρεία χωρίς παραδομένο έργο με αυτό το όνομα. Το χρονοδιάγραμμα των δύο ετών είναι σφιχτό.</span><span lang="en">New company with no delivered project under this name. The two-year schedule is tight.</span></li>
-        <li><span lang="el">Ρίσκο ισοτιμίας δολαρίου και γεωπολιτικό ρίσκο της περιοχής.</span><span lang="en">Dollar exchange-rate risk and regional geopolitical risk.</span></li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<section>
+ <span class="eyebrow"><span lang="el">Με απλά λόγια</span><span lang="en">In plain words</span></span>
+ <h2><span lang="el">Η περίληψη</span><span lang="en">The summary</span></h2>
+ <div class="box">
+  <ul>
+   <li><span lang="el"><strong>Τι είναι:</strong> διαμέρισμα 153,5 m² (1.653 ft²) στον 9ο όροφο του Πύργου 1, στο Άμπου Ντάμπι. Χτίζεται ακόμα και παραδίδεται τέλος 2027. Το αγοράζεις από ιδιώτη που το έκλεισε τον Δεκέμβριο 2025 στα <span class="aed">AED 2,015,040</span> <span class="eur">≈ €489,087</span> και τώρα ζητά <span class="aed">AED 2,560,000</span> <span class="eur">≈ €621,359</span>.</span><span lang="en"><strong>What it is:</strong> a 153.5 m² (1,653 ft²) apartment on the 9th floor of Tower 1 in Abu Dhabi. It is still being built and is handed over at the end of 2027. You buy it from a private owner who reserved it in December 2025 at <span class="aed">AED 2,015,040</span> <span class="eur">≈ €489,087</span> and now asks <span class="aed">AED 2,560,000</span> <span class="eur">≈ €621,359</span>.</span></li>
+   <li><span lang="el"><strong>Πόσα βάζεις:</strong> συνολικά <span class="aed">AED 2,670,770</span> <span class="eur">≈ €648,245</span>. Από αυτά <span class="aed">AED 1,109,114</span> <span class="eur">≈ €269,202</span> την πρώτη μέρα και <span class="aed">AED 1,209,024</span> <span class="eur">≈ €293,452</span> στην παράδοση.</span><span lang="en"><strong>What you put in:</strong> <span class="aed">AED 2,670,770</span> <span class="eur">≈ €648,245</span> in total. Of that, <span class="aed">AED 1,109,114</span> <span class="eur">≈ €269,202</span> on day one and <span class="aed">AED 1,209,024</span> <span class="eur">≈ €293,452</span> at handover.</span></li>
+   <li><span lang="el"><strong>Είναι ακριβό;</strong> Λίγο. Υπάρχουν 16 αγγελίες στο ίδιο μέγεθος. Η δική σου είναι η 14η φθηνότερη από τις 16. Στον ίδιο πύργο, με ίδια θέα και ίδιο μέγεθος, υπάρχει αγγελία 210.010 AED (≈ €51.000) φθηνότερη.</span><span lang="en"><strong>Is it expensive?</strong> Somewhat. There are 16 listings of the same size. Yours is the 14th cheapest of 16. In the same tower, with the same view and size, there is a listing AED 210,010 (≈ €51,000) cheaper.</span></li>
+   <li><span lang="el"><strong>Για το πλάνο σου (κράτημα 10 χρόνια):</strong> με λογικές παραδοχές βγάζεις περίπου 4% έως 8% τον χρόνο, πριν από τον ελληνικό φόρο. Το ενοίκιο μόνο του σου επιστρέφει περίπου τα μισά χρήματα σε 10 χρόνια. Τα υπόλοιπα και το κέρδος έρχονται όταν πουλήσεις.</span><span lang="en"><strong>For your plan (hold 10 years):</strong> with reasonable assumptions you earn roughly 4% to 8% a year, before Greek tax. Rent alone returns about half your money in 10 years. The rest and the profit come when you sell.</span></li>
+  </ul>
+ </div>
+ <div class="verdict">
   <span class="eyebrow"><span lang="el">Η γνώμη μου</span><span lang="en">My opinion</span></span>
-  <h2><span lang="el">Τι θα έκανα στη θέση σου</span><span lang="en">What I would do in your place</span></h2>
-  <div class="opinion">
-    <p>
-      <span lang="el">Η απάντηση εξαρτάται από τον σκοπό. Για γρήγορη μεταπώληση με κέρδος, δεν το βλέπω: χρειάζεσαι άνοδο 7% μόνο για να μη χάσεις, σε μια αγορά που ανέβηκε ήδη 20% και περιμένει κύμα νέων παραδόσεων. Για ενοίκιο, μια καθαρή απόδοση γύρω στο 4,7% είναι αξιοπρεπής αλλά όχι εντυπωσιακή για το ρίσκο ενός ακινήτου που δεν έχει χτιστεί. Αν θέλεις να μείνεις εκεί ή να κρατήσεις ένα καλό διαμέρισμα για δέκα χρόνια, τότε έχει νόημα, αλλά σε χαμηλότερη τιμή.</span>
-      <span lang="en">The answer depends on your goal. For a quick resale at a profit, I do not see it: you need a 7% rise just to avoid a loss, in a market that already rose 20% and expects a wave of new deliveries. For rental, a net yield around 4.7% is decent but not impressive for the risk of an unbuilt property. If you want to live there or hold a good apartment for ten years, it makes sense, but at a lower price.</span>
-    </p>
-    <p>
-      <span lang="el">Αν σου αρέσει, θα διαπραγματευόμουν με βάση τις άλλες αγγελίες ίδιου μεγέθους, με στόχο 2.300.000 έως 2.400.000 AED. Στα 2.350.000 το κέρδος του πωλητή παραμένει πάνω από 330.000 AED, άρα έχει περιθώριο να δεχτεί. Αν δεν κατεβαίνει, υπάρχουν 46 άλλες επιλογές στο ίδιο συγκρότημα.</span>
-      <span lang="en">If you like it, I would negotiate using the other same-size listings, aiming for AED 2,300,000 to 2,400,000. At 2,350,000 the seller still keeps more than AED 330,000 of profit, so he has room to accept. If he will not move, there are 46 other options in the same development.</span>
-    </p>
-    <p><strong><span lang="el">Πριν δώσεις οποιοδήποτε ποσό, ζήτα γραπτά:</span><span lang="en">Before paying anything, ask in writing for:</span></strong></p>
-    <ol>
-      <li><span lang="el">Την πλήρη σύμβαση του πωλητή (SPA) και αποδείξεις ότι έχει πληρώσει και τις τέσσερις δόσεις, μαζί με αυτή της 30ής Σεπτεμβρίου 2026.</span><span lang="en">The seller's full contract (SPA) and receipts proving all four instalments are paid, including the one of 30 September 2026.</span></li>
-      <li><span lang="el">Πρόσφατη επίσημη αναφορά προόδου του εργοταξίου και φωτογραφίες του Πύργου 1.</span><span lang="en">A recent official construction progress report and photos of Tower 1.</span></li>
-      <li><span lang="el">Τα ετήσια κοινόχρηστα ανά ft² και αν το διαμέρισμα παραδίδεται επιπλωμένο.</span><span lang="en">The yearly service charge per ft² and whether the unit comes furnished.</span></li>
-      <li><span lang="el">Τι προβλέπει η σύμβαση αν η παράδοση καθυστερήσει, και αν υπάρχουν άλλα τέλη στην παράδοση.</span><span lang="en">What the contract says if handover is late, and whether more fees are due at handover.</span></li>
-      <li><span lang="el">Γιατί το τέλος ADM είναι 51.760 και όχι 51.200 AED (το 2% της τιμής).</span><span lang="en">Why the ADM fee is 51,760 and not 51,200 AED (2% of the price).</span></li>
-      <li><span lang="el">Από τράπεζα των Εμιράτων: αν και πόσο δανείζει σε μη κάτοικο για το 60% της παράδοσης.</span><span lang="en">From a UAE bank: whether and how much it lends a non-resident for the 60% at handover.</span></li>
-      <li><span lang="el">Πραγματικές τιμές πώλησης στο έργο από το μητρώο, όχι ζητούμενες τιμές αγγελιών.</span><span lang="en">Actual registered sale prices in the project, not listing asking prices.</span></li>
-    </ol>
+  <span class="big"><span lang="el">Για μακροπρόθεσμο κράτημα είναι μια λογική επένδυση σε καλό σημείο. Όχι όμως σε αυτή την τιμή. Δώσε προσφορά γύρω στα 2.350.000 AED ή πάρε την αγγελία Νο 1 παρακάτω.</span><span lang="en">For a long-term hold it is a sensible investment in a good location. But not at this price. Offer around AED 2,350,000, or go for option no. 1 below.</span></span>
+  <p><span lang="el">Η διαφορά των 210.000 AED (≈ €51.000) δεν θα σε καταστρέψει σε βάθος 10 ετών. Είναι όμως χρήματα που χαρίζεις χωρίς λόγο, αφού υπάρχει σχεδόν ίδιο διαμέρισμα στον ίδιο πύργο φθηνότερα.</span><span lang="en">The AED 210,000 difference (≈ €51,000) will not ruin a 10-year plan. But it is money given away for nothing, since a nearly identical apartment in the same tower is listed for less.</span></p>
+ </div>
+</section>
+
+<section>
+ <div class="fix">
+  <h3><span lang="el">Τι διόρθωσα από την πρώτη έκδοση</span><span lang="en">What I corrected from the first version</span></h3>
+  <ul>
+   <li><span lang="el">Είχα γράψει ότι η τιμή σου είναι η ακριβότερη από 47 αγγελίες. Λάθος. Είχα διαβάσει μόνο την πρώτη σελίδα αποτελεσμάτων. Το ακριβότερο δυάρι είναι στα 2.850.000 AED.</span><span lang="en">I wrote that your price is the most expensive of 47 listings. Wrong. I had only read the first page of results. The most expensive two-bedroom is at AED 2,850,000.</span></li>
+   <li><span lang="el">Είχα γράψει «46 άλλες επιλογές». Λάθος. Από τις 47 αγγελίες, μόνο 16 είναι του ίδιου μεγάλου μεγέθους με δωμάτιο βοηθού. Οι άλλες 31 είναι μικρότερα δυάρια (1.321–1.373 ft² / 123–128 m²), δηλαδή άλλος τύπος. Κάποιες αγγελίες ίσως είναι το ίδιο διαμέρισμα από δύο μεσίτες.</span><span lang="en">I wrote «46 other options». Wrong. Of the 47 listings, only 16 are the same large size with a maid's room. The other 31 are smaller two-bedrooms (1,321–1,373 ft² / 123–128 m²), a different type. Some listings may be the same apartment posted by two agents.</span></li>
+   <li><span lang="el">Είχα μετατρέψει σε ευρώ με 4,3 AED. Η σωστή ισοτιμία σήμερα είναι περίπου 4,12, άρα το σύνολο είναι ≈ €648.000 και όχι €620.000.</span><span lang="en">I converted to euro at 4.3 AED. Today's rate is about 4.12, so the total is ≈ €648,000, not €620,000.</span></li>
+  </ul>
+ </div>
+</section>
+
+<section>
+ <span class="eyebrow"><span lang="el">Το ακίνητο</span><span lang="en">The property</span></span>
+ <h2><span lang="el">Τα βασικά στοιχεία</span><span lang="en">The key facts</span></h2>
+ <div class="facts f3">
+  <div><span class="k"><span lang="el">Μονάδα</span><span lang="en">Unit</span></span><span class="v">4-903 · <span lang="el">9ος όροφος</span><span lang="en">9th floor</span> · Tower 1</span></div>
+  <div><span class="k"><span lang="el">Εσωτερικό</span><span lang="en">Interior</span></span><span class="v">118.7 m² · 1,278 ft²</span></div>
+  <div><span class="k"><span lang="el">Μπαλκόνια</span><span lang="en">Balconies</span></span><span class="v">34.8 m² · 375 ft²</span></div>
+  <div><span class="k"><span lang="el">Σύνολο</span><span lang="en">Total</span></span><span class="v">153.5 m² · 1,653 ft²</span></div>
+  <div><span class="k"><span lang="el">Παράδοση</span><span lang="en">Handover</span></span><span class="v">31 Dec 2027</span></div>
+  <div><span class="k"><span lang="el">Στάθμευση</span><span lang="en">Parking</span></span><span class="v">1</span></div>
+ </div>
+ <p><span lang="el">Κατασκευαστής: Royal Development Holding (θυγατρική του Emirates Stallions Group, ιδρύθηκε Ιούνιο 2025). Το Radisson δίνει το όνομα και προνόμια μέλους. Η πρώτη φάση (Πύργοι 1 και 2) πουλήθηκε σε 24 ώρες τον Δεκέμβριο 2025. Το ίδιο διαμέρισμα φαίνεται να είναι αγγελία στο Property Finder από τις 9 Σεπτεμβρίου (Tower 1, 1.649 ft², μαγκρόβια, 2.560.000 AED, γραφείο Al Zaeem). Άρα είναι στην αγορά σχεδόν έναν μήνα χωρίς αγοραστή.</span><span lang="en">Developer: Royal Development Holding (part of Emirates Stallions Group, set up June 2025). Radisson provides the brand and member perks. Phase one (Towers 1 and 2) sold out in 24 hours in December 2025. The same apartment appears to be listed on Property Finder since 9 September (Tower 1, 1,649 ft², mangrove, AED 2,560,000, Al Zaeem agency). So it has been on the market almost a month without a buyer.</span></p>
+</section>
+
+<section>
+ <span class="eyebrow"><span lang="el">Τα χρήματα</span><span lang="en">The money</span></span>
+ <h2><span lang="el">Πόσα πληρώνεις και πότε</span><span lang="en">How much you pay and when</span></h2>
+ <div class="tblwrap"><table>
+  <thead><tr><th><span lang="el">Πληρωμή</span><span lang="en">Payment</span></th><th><span lang="el">Πότε</span><span lang="en">When</span></th><th class="n">AED</th><th class="n">EUR</th></tr></thead>
+  <tbody>
+   <tr><td><span lang="el">Επιστροφή όσων πλήρωσε ο πωλητής (22,5%)</span><span lang="en">Repay what the seller already paid (22.5%)</span></td><td><span lang="el">Τώρα</span><span lang="en">Now</span></td><td class="n">453,384</td><td class="n">€110,045</td></tr>
+   <tr><td><span lang="el">Κέρδος του πωλητή</span><span lang="en">Seller's profit</span></td><td><span lang="el">Τώρα</span><span lang="en">Now</span></td><td class="n">544,960</td><td class="n">€132,272</td></tr>
+   <tr><td><span lang="el">Μεσιτικά 2% + ΦΠΑ 5%</span><span lang="en">Agency 2% + 5% VAT</span></td><td><span lang="el">Τώρα</span><span lang="en">Now</span></td><td class="n">53,760</td><td class="n">€13,049</td></tr>
+   <tr><td><span lang="el">Τέλος μεταβίβασης 2% (ADM)</span><span lang="en">Transfer fee 2% (ADM)</span></td><td><span lang="el">Τώρα</span><span lang="en">Now</span></td><td class="n">51,760</td><td class="n">€12,563</td></tr>
+   <tr><td><span lang="el">NOC (άδεια κατασκευαστικής)</span><span lang="en">NOC (developer consent)</span></td><td><span lang="el">Τώρα</span><span lang="en">Now</span></td><td class="n">5,250</td><td class="n">€1,274</td></tr>
+   <tr class="sum"><td><span lang="el">Σύνολο πρώτης μέρας</span><span lang="en">Day-one total</span></td><td></td><td class="n">1,109,114</td><td class="n">€269,202</td></tr>
+   <tr><td><span lang="el">Δόση 5%</span><span lang="en">Instalment 5%</span></td><td>31 Dec 2026</td><td class="n">100,752</td><td class="n">€24,454</td></tr>
+   <tr><td><span lang="el">Δόση 5%</span><span lang="en">Instalment 5%</span></td><td>30 Apr 2027</td><td class="n">100,752</td><td class="n">€24,454</td></tr>
+   <tr><td><span lang="el">Δόση 7,5%</span><span lang="en">Instalment 7.5%</span></td><td>30 Sep 2027</td><td class="n">151,128</td><td class="n">€36,682</td></tr>
+   <tr><td><span lang="el">Παράδοση 60%</span><span lang="en">Handover 60%</span></td><td>31 Dec 2027</td><td class="n">1,209,024</td><td class="n">€293,452</td></tr>
+   <tr class="sum"><td><span lang="el">Συνολικό κόστος</span><span lang="en">Total cost</span></td><td></td><td class="n">2,670,770</td><td class="n">€648,245</td></tr>
+  </tbody></table></div>
+ <p class="muted"><span lang="el">Πηγή: το σημείωμα τιμής και η σύμβαση κράτησης στον φάκελό σου (σελ. 7 και 30). Το AED είναι κλειδωμένο στο δολάριο, οπότε το ποσό σε ευρώ αλλάζει όταν αλλάζει το ευρώ/δολάριο.</span><span lang="en">Source: the price note and the reservation agreement in your folder (pages 7 and 30). The dirham is pegged to the US dollar, so the euro amount changes when euro/dollar moves.</span></p>
+</section>
+
+<section id="evidence">
+ <span class="eyebrow"><span lang="el">Οι αποδείξεις</span><span lang="en">The evidence</span></span>
+ <h2><span lang="el">Όλα τα ίδιου μεγέθους δυάρια που πωλούνται τώρα</span><span lang="en">Every same-size two-bedroom for sale right now</span></h2>
+ <p><span lang="el">Τα πήρα απευθείας από το Property Finder στις 6 Οκτωβρίου 2026 (47 αγγελίες δυαρίων στο Radisson Residences, σε 3 σελίδες). Το Bayut δείχνει 51 αγγελίες, κυρίως τις ίδιες, ανεβασμένες και εκεί. Κράτησα μόνο τα 16 με μέγεθος 1.623–1.664 ft² (151–155 m²), δηλαδή τον ίδιο τύπο με τον δικό σου. Ταξινομημένα από το φθηνότερο. Πάτα «Αγγελία» για να δεις την καθεμία.</span><span lang="en">Taken directly from Property Finder on 6 October 2026 (47 two-bedroom listings in Radisson Residences, over 3 pages). Bayut shows 51 listings, mostly the same ads posted there too. I kept only the 16 sized 1,623–1,664 ft² (151–155 m²), the same type as yours. Sorted cheapest first. Tap «Listing» to open each one.</span></p>
+ <div class="tblwrap"><table>
+  <thead><tr><th>#</th><th><span lang="el">Πύργος</span><span lang="en">Tower</span></th><th><span lang="el">Θέα / σημειώσεις</span><span lang="en">View / notes</span></th><th class="n"><span lang="el">Μέγεθος</span><span lang="en">Size</span></th><th class="n"><span lang="el">Τιμή AED</span><span lang="en">Price AED</span></th><th class="n"><span lang="el">AED ανά m²</span><span lang="en">AED per m²</span></th><th><span lang="el">Μεσίτης · από</span><span lang="en">Agency · since</span></th><th></th></tr></thead>
+  <tbody>
+<tr>
+<td>1</td><td>Tower 2</td><td><span lang="el">Θάλασσα</span><span lang="en">Sea</span></td>
+<td class="n">1,663<span class="sub">154.5 m²</span></td>
+<td class="n">2,249,990<span class="sub">€546,114</span></td>
+<td class="n">14,563<span class="sub">€3,535</span></td>
+<td>Al Zaeem<span class="sub">2 Oct</span></td>
+<td><a href="https://www.propertyfinder.ae/en/plp/buy/apartment-for-sale-abu-dhabi-al-reem-island-city-of-lights-radisson-residences-radisson-residences-tower-2-153297866.html" target="_blank" rel="noopener"><span lang="el">Αγγελία</span><span lang="en">Listing</span> ↗</a></td></tr>
+<tr>
+<td>2</td><td>Tower 2</td><td><span lang="el">Θάλασσα, ψηλός όροφος</span><span lang="en">Sea, high floor</span></td>
+<td class="n">1,661<span class="sub">154.3 m²</span></td>
+<td class="n">2,280,000<span class="sub">€553,398</span></td>
+<td class="n">14,775<span class="sub">€3,586</span></td>
+<td>Metropolitan Capital<span class="sub">4 Sep</span></td>
+<td><a href="https://www.propertyfinder.ae/en/plp/buy/apartment-for-sale-abu-dhabi-al-reem-island-city-of-lights-radisson-residences-radisson-residences-tower-2-140145791.html" target="_blank" rel="noopener"><span lang="el">Αγγελία</span><span lang="en">Listing</span> ↗</a></td></tr>
+<tr>
+<td>3</td><td>?</td><td><span lang="el">Θάλασσα</span><span lang="en">Sea</span></td>
+<td class="n">1,664<span class="sub">154.6 m²</span></td>
+<td class="n">2,299,000<span class="sub">€558,010</span></td>
+<td class="n">14,872<span class="sub">€3,610</span></td>
+<td>Finger Print Properties<span class="sub">24 Jul</span></td>
+<td><a href="https://www.propertyfinder.ae/en/plp/buy/apartment-for-sale-abu-dhabi-al-reem-island-city-of-lights-radisson-residences-120644333.html" target="_blank" rel="noopener"><span lang="el">Αγγελία</span><span lang="en">Listing</span> ↗</a></td></tr>
+<tr>
+<td>4</td><td>Tower 1</td><td><span lang="el">Μαγκρόβια</span><span lang="en">Mangrove</span></td>
+<td class="n">1,648<span class="sub">153.1 m²</span></td>
+<td class="n">2,349,990<span class="sub">€570,386</span></td>
+<td class="n">15,349<span class="sub">€3,725</span></td>
+<td>One Location<span class="sub">28 Sep</span></td>
+<td><a href="https://www.propertyfinder.ae/en/plp/buy/apartment-for-sale-abu-dhabi-al-reem-island-city-of-lights-radisson-residences-radisson-residences-tower-1-151375298.html" target="_blank" rel="noopener"><span lang="el">Αγγελία</span><span lang="en">Listing</span> ↗</a></td></tr>
+<tr>
+<td>5</td><td>Tower 1</td><td><span lang="el">—</span><span lang="en">—</span></td>
+<td class="n">1,663<span class="sub">154.5 m²</span></td>
+<td class="n">2,400,000<span class="sub">€582,524</span></td>
+<td class="n">15,534<span class="sub">€3,770</span></td>
+<td>Al Mira<span class="sub">3 Oct</span></td>
+<td><a href="https://www.propertyfinder.ae/en/plp/buy/apartment-for-sale-abu-dhabi-al-reem-island-city-of-lights-radisson-residences-radisson-residences-tower-1-153741095.html" target="_blank" rel="noopener"><span lang="el">Αγγελία</span><span lang="en">Listing</span> ↗</a></td></tr>
+<tr>
+<td>6</td><td>Tower 1</td><td><span lang="el">—</span><span lang="en">—</span></td>
+<td class="n">1,663<span class="sub">154.5 m²</span></td>
+<td class="n">2,450,000<span class="sub">€594,660</span></td>
+<td class="n">15,858<span class="sub">€3,849</span></td>
+<td>Mirage Capital<span class="sub">9 Sep</span></td>
+<td><a href="https://www.propertyfinder.ae/en/plp/buy/apartment-for-sale-abu-dhabi-al-reem-island-city-of-lights-radisson-residences-radisson-residences-tower-1-142360313.html" target="_blank" rel="noopener"><span lang="el">Αγγελία</span><span lang="en">Listing</span> ↗</a></td></tr>
+<tr>
+<td>7</td><td>Tower 2</td><td><span lang="el">Μαγκρόβια, ψηλός όροφος</span><span lang="en">Mangrove, high floor</span></td>
+<td class="n">1,661<span class="sub">154.3 m²</span></td>
+<td class="n">2,450,000<span class="sub">€594,660</span></td>
+<td class="n">15,877<span class="sub">€3,854</span></td>
+<td>Reach Home<span class="sub">29 Apr</span></td>
+<td><a href="https://www.propertyfinder.ae/en/plp/buy/apartment-for-sale-abu-dhabi-al-reem-island-city-of-lights-radisson-residences-radisson-residences-tower-2-82812695.html" target="_blank" rel="noopener"><span lang="el">Αγγελία</span><span lang="en">Listing</span> ↗</a></td></tr>
+<tr>
+<td>8</td><td>Tower 2</td><td><span lang="el">Κανάλι, ψηλός όροφος</span><span lang="en">Canal, high floor</span></td>
+<td class="n">1,647<span class="sub">153.0 m²</span></td>
+<td class="n">2,450,000<span class="sub">€594,660</span></td>
+<td class="n">16,012<span class="sub">€3,886</span></td>
+<td>SQF Realty<span class="sub">1 Oct</span></td>
+<td><a href="https://www.propertyfinder.ae/en/plp/buy/apartment-for-sale-abu-dhabi-al-reem-island-city-of-lights-radisson-residences-radisson-residences-tower-2-152862624.html" target="_blank" rel="noopener"><span lang="el">Αγγελία</span><span lang="en">Listing</span> ↗</a></td></tr>
+<tr>
+<td>9</td><td>Tower 2</td><td><span lang="el">—</span><span lang="en">—</span></td>
+<td class="n">1,647<span class="sub">153.0 m²</span></td>
+<td class="n">2,478,600<span class="sub">€601,602</span></td>
+<td class="n">16,199<span class="sub">€3,932</span></td>
+<td>Nationwide Middle East<span class="sub">21 Jul</span></td>
+<td><a href="https://www.propertyfinder.ae/en/plp/buy/apartment-for-sale-abu-dhabi-al-reem-island-city-of-lights-radisson-residences-radisson-residences-tower-2-119035970.html" target="_blank" rel="noopener"><span lang="el">Αγγελία</span><span lang="en">Listing</span> ↗</a></td></tr>
+<tr>
+<td>10</td><td>Tower 2</td><td><span lang="el">—</span><span lang="en">—</span></td>
+<td class="n">1,623<span class="sub">150.8 m²</span></td>
+<td class="n">2,526,000<span class="sub">€613,107</span></td>
+<td class="n">16,753<span class="sub">€4,066</span></td>
+<td>Mirage Capital<span class="sub">5 Sep</span></td>
+<td><a href="https://www.propertyfinder.ae/en/plp/buy/apartment-for-sale-abu-dhabi-al-reem-island-city-of-lights-radisson-residences-radisson-residences-tower-2-140590620.html" target="_blank" rel="noopener"><span lang="el">Αγγελία</span><span lang="en">Listing</span> ↗</a></td></tr>
+<tr>
+<td>11</td><td>Tower 2</td><td><span lang="el">Θάλασσα, ψηλός όροφος</span><span lang="en">Sea, high floor</span></td>
+<td class="n">1,647<span class="sub">153.0 m²</span></td>
+<td class="n">2,528,000<span class="sub">€613,592</span></td>
+<td class="n">16,522<span class="sub">€4,010</span></td>
+<td>Eliva<span class="sub">29 Aug</span></td>
+<td><a href="https://www.propertyfinder.ae/en/plp/buy/apartment-for-sale-abu-dhabi-al-reem-island-city-of-lights-radisson-residences-radisson-residences-tower-2-137439787.html" target="_blank" rel="noopener"><span lang="el">Αγγελία</span><span lang="en">Listing</span> ↗</a></td></tr>
+<tr>
+<td>12</td><td>Tower 2</td><td><span lang="el">Θάλασσα, γωνιακό, 3 μπαλκόνια</span><span lang="en">Full sea, corner, 3 balconies</span></td>
+<td class="n">1,647<span class="sub">153.0 m²</span></td>
+<td class="n">2,550,000<span class="sub">€618,932</span></td>
+<td class="n">16,665<span class="sub">€4,045</span></td>
+<td>Metropolitan Capital<span class="sub">30 Sep</span></td>
+<td><a href="https://www.propertyfinder.ae/en/plp/buy/apartment-for-sale-abu-dhabi-al-reem-island-city-of-lights-radisson-residences-radisson-residences-tower-2-152357548.html" target="_blank" rel="noopener"><span lang="el">Αγγελία</span><span lang="en">Listing</span> ↗</a></td></tr>
+<tr>
+<td>13</td><td>Tower 2</td><td><span lang="el">Μαγκρόβια, γωνιακό, 3 μπαλκόνια</span><span lang="en">Full mangrove, corner, 3 balconies</span></td>
+<td class="n">1,647<span class="sub">153.0 m²</span></td>
+<td class="n">2,550,000<span class="sub">€618,932</span></td>
+<td class="n">16,665<span class="sub">€4,045</span></td>
+<td>PSI<span class="sub">17 Jun</span></td>
+<td><a href="https://www.propertyfinder.ae/en/plp/buy/apartment-for-sale-abu-dhabi-al-reem-island-city-of-lights-radisson-residences-radisson-residences-tower-2-103686107.html" target="_blank" rel="noopener"><span lang="el">Αγγελία</span><span lang="en">Listing</span> ↗</a></td></tr>
+<tr class="me">
+<td>14</td><td>Tower 1</td><td><span lang="el">Μαγκρόβια</span><span lang="en">Mangrove</span><br><strong><span lang="el">← η δική σου πρόταση</span><span lang="en">← your offer</span></strong></td>
+<td class="n">1,649<span class="sub">153.2 m²</span></td>
+<td class="n">2,560,000<span class="sub">€621,359</span></td>
+<td class="n">16,710<span class="sub">€4,056</span></td>
+<td>Al Zaeem<span class="sub">9 Sep</span></td>
+<td><a href="https://www.propertyfinder.ae/en/plp/buy/apartment-for-sale-abu-dhabi-al-reem-island-city-of-lights-radisson-residences-radisson-residences-tower-1-142385986.html" target="_blank" rel="noopener"><span lang="el">Αγγελία</span><span lang="en">Listing</span> ↗</a></td></tr>
+<tr>
+<td>15</td><td>Tower 1</td><td><span lang="el">Νερό</span><span lang="en">Water</span></td>
+<td class="n">1,654<span class="sub">153.7 m²</span></td>
+<td class="n">2,700,000<span class="sub">€655,340</span></td>
+<td class="n">17,571<span class="sub">€4,265</span></td>
+<td>Huspy<span class="sub">25 Aug</span></td>
+<td><a href="https://www.propertyfinder.ae/en/plp/buy/apartment-for-sale-abu-dhabi-al-reem-island-city-of-lights-radisson-residences-radisson-residences-tower-1-135610666.html" target="_blank" rel="noopener"><span lang="el">Αγγελία</span><span lang="en">Listing</span> ↗</a></td></tr>
+<tr>
+<td>16</td><td>Tower 1</td><td><span lang="el">Μαγκρόβια, ψηλός όροφος, ημιεπιπλωμένο</span><span lang="en">Mangrove, high floor, semi-furnished</span></td>
+<td class="n">1,663<span class="sub">154.5 m²</span></td>
+<td class="n">2,850,000<span class="sub">€691,748</span></td>
+<td class="n">18,447<span class="sub">€4,477</span></td>
+<td>Huspy<span class="sub">17 Aug</span></td>
+<td><a href="https://www.propertyfinder.ae/en/plp/buy/apartment-for-sale-abu-dhabi-al-reem-island-city-of-lights-radisson-residences-radisson-residences-tower-1-131564433.html" target="_blank" rel="noopener"><span lang="el">Αγγελία</span><span lang="en">Listing</span> ↗</a></td></tr>
+  </tbody></table></div>
+ <div class="facts">
+  <div><span class="k"><span lang="el">Φθηνότερο</span><span lang="en">Cheapest</span></span><span class="v"><span class="aed">AED 2,249,990</span> <span class="eur">≈ €546,114</span></span></div>
+  <div><span class="k"><span lang="el">Μέση τιμή (διάμεσος)</span><span lang="en">Middle price (median)</span></span><span class="v"><span class="aed">AED 2,464,300</span> <span class="eur">≈ €598,131</span></span></div>
+  <div><span class="k"><span lang="el">Ακριβότερο</span><span lang="en">Most expensive</span></span><span class="v"><span class="aed">AED 2,850,000</span> <span class="eur">≈ €691,748</span></span></div>
+  <div><span class="k"><span lang="el">Η δική σου πρόταση</span><span lang="en">Your offer</span></span><span class="v"><span class="aed">AED 2,560,000</span> <span class="eur">≈ €621,359</span></span><span class="muted"><span lang="el">14η από 16 · 4% πάνω από τη μέση</span><span lang="en">14th of 16 · 4% above the middle</span></span></div>
+ </div>
+ <p class="muted"><span lang="el">Μόνο στον Πύργο 1 υπάρχουν 6 τέτοιες αγγελίες: 2.349.990 · 2.400.000 · 2.450.000 · 2.560.000 (η δική σου) · 2.700.000 · 2.850.000 AED. Εκεί είσαι στη μέση. Οι αγγελίες είναι τιμές που ζητάνε οι πωλητές, όχι τιμές που πουλήθηκαν. Οι πραγματικές πωλήσεις φαίνονται στο μητρώο (ADGM / ADREC) και τις έχει ο μεσίτης.</span><span lang="en">In Tower 1 alone there are 6 such listings: 2,349,990 · 2,400,000 · 2,450,000 · 2,560,000 (yours) · 2,700,000 · 2,850,000 AED. There you sit in the middle. Listings are asking prices, not sold prices. Actual sales are in the registry (ADGM / ADREC) and an agent can pull them.</span></p>
+
+ <h3><span lang="el">Η σύγκριση με τον νέο Πύργο 3</span><span lang="en">The comparison with the new Tower 3</span></h3>
+ <p><span lang="el">Αυτές οι τιμές δεν είναι από το ίντερνετ. Είναι από τις διαφάνειες της παρουσίασης της κατασκευαστικής που έχεις στον φάκελο (Zoom με τον Ahmed Mokhtar, εικόνες 3 και 8). Ο Πύργος 3 έχει γκαρσονιέρες, δυάρια και λίγα διώροφα. Παραδίδεται Σεπτέμβριο 2029. Τα διαμερίσματά του είναι επιπλωμένα.</span><span lang="en">These prices are not from the internet. They are from the developer's presentation slides in your folder (the Zoom with Ahmed Mokhtar, images 3 and 8). Tower 3 has studios, one-bedrooms and a few townhouses. Handover is September 2029. Its units come furnished.</span></p>
+ <div class="tblwrap"><table>
+  <thead><tr><th><span lang="el">Τι</span><span lang="en">What</span></th><th class="n"><span lang="el">Μέγεθος</span><span lang="en">Size</span></th><th class="n"><span lang="el">Τιμή</span><span lang="en">Price</span></th><th class="n"><span lang="el">AED ανά m²</span><span lang="en">AED per m²</span></th></tr></thead>
+  <tbody>
+   <tr><td><span lang="el">Τι πλήρωσε ο πωλητής σου (Δεκ 2025)</span><span lang="en">What your seller paid (Dec 2025)</span></td><td class="n">1,653 ft²<span class="sub">153.5 m²</span></td><td class="n">2,015,040<span class="sub">€489,087</span></td><td class="n">13,125<span class="sub">€3,186</span></td></tr>
+   <tr class="me"><td><span lang="el">Η δική σου πρόταση</span><span lang="en">Your offer</span></td><td class="n">1,653 ft²<span class="sub">153.5 m²</span></td><td class="n">2,560,000<span class="sub">€621,359</span></td><td class="n">16,674<span class="sub">€4,047</span></td></tr>
+   <tr><td><span lang="el">Πύργος 3 · διώροφο 2 υπνοδωματίων, από</span><span lang="en">Tower 3 · 2-bed townhouse, from</span></td><td class="n">1,874 ft²<span class="sub">174.1 m²</span></td><td class="n">3,500,000<span class="sub">€849,515</span></td><td class="n">20,103<span class="sub">€4,879</span></td></tr>
+   <tr><td><span lang="el">Πύργος 3 · δυάρι (1 υπνοδ.) μαγκρόβια, από</span><span lang="en">Tower 3 · 1-bed mangrove view, from</span></td><td class="n">962 ft²<span class="sub">89.4 m²</span></td><td class="n">1,900,000<span class="sub">€461,165</span></td><td class="n">21,259<span class="sub">€5,160</span></td></tr>
+  </tbody></table></div>
+ <p class="muted"><span lang="el">Γιατί είναι ακριβότερος ο Πύργος 3; Τα μικρά, επιπλωμένα διαμερίσματα κοστίζουν πάντα περισσότερο ανά m². Ο μεσίτης θα σου πει ότι ο Πύργος 3 δείχνει πού πάνε οι τιμές, και έχει ένα δίκιο. Αλλά για σύγκριση «μήλα με μήλα» μετράει ο πίνακας με τα 16 ίδια διαμερίσματα πιο πάνω.</span><span lang="en">Why is Tower 3 pricier? Small furnished units always cost more per m². The agent will tell you Tower 3 shows where prices are heading, and he has a point. But for an apples-to-apples comparison, the table of the 16 identical units above is what counts.</span></p>
+</section>
+
+<section>
+ <span class="eyebrow"><span lang="el">Οι καλύτερες εναλλακτικές</span><span lang="en">The best alternatives</span></span>
+ <h2><span lang="el">Τι θα ζητούσα να δω</span><span lang="en">What I would ask to see</span></h2>
+ <div class="opts">
+<article class="opt">
+<div class="opt-h"><span class="badge">1</span><div><strong><span class="aed">AED 2,349,990</span> <span class="eur">≈ €570,386</span></strong><div class="muted">Tower 1 · 1,648 ft² <span class="eur">· 153.1 m²</span> · <span lang="el">Μαγκρόβια</span><span lang="en">Mangrove</span></div></div></div>
+<p><span lang="el">Η πιο καθαρή σύγκριση. Ίδιος πύργος, ίδια θέα, σχεδόν ίδιο μέγεθος (1.648 έναντι 1.649 ft²), 2 υπνοδωμάτια + δωμάτιο βοηθού. Είναι 210.010 AED (≈ €51.000) φθηνότερο από την πρότασή σου.</span><span lang="en">The cleanest comparison. Same tower, same view, almost the same size (1,648 vs 1,649 ft²), 2 bedrooms + maid's room. It is AED 210,010 (≈ €51,000) cheaper than your offer.</span></p>
+<p class="muted">One Location Real Estate · <span lang="el">στην αγορά από</span><span lang="en">listed</span> 28 Sep · <span lang="el">ανά m²</span><span lang="en">per m²</span>: AED 15,349 ≈ €3,725</p>
+<a class="btn" href="https://www.propertyfinder.ae/en/plp/buy/apartment-for-sale-abu-dhabi-al-reem-island-city-of-lights-radisson-residences-radisson-residences-tower-1-151375298.html" target="_blank" rel="noopener"><span lang="el">Δες την αγγελία</span><span lang="en">Open the listing</span> ↗</a>
+</article>
+<article class="opt">
+<div class="opt-h"><span class="badge">2</span><div><strong><span class="aed">AED 2,249,990</span> <span class="eur">≈ €546,114</span></strong><div class="muted">Tower 2 · 1,663 ft² <span class="eur">· 154.5 m²</span> · <span lang="el">Θάλασσα</span><span lang="en">Sea</span></div></div></div>
+<p><span lang="el">Το φθηνότερο του ίδιου μεγέθους, με θέα θάλασσα και τίτλο «Low Premium» (μικρό κέρδος πωλητή). Το ανεβάζει το ίδιο μεσιτικό που σου έστειλε την πρόταση, άρα μπορείς να το ζητήσεις απευθείας. Είναι 310.010 AED (≈ €75.000) φθηνότερο. Πύργος 2: ρώτα αν η παράδοση είναι επίσης Δεκέμβριος 2027.</span><span lang="en">The cheapest of this size, sea view, titled «Low Premium» (small seller profit). It is listed by the same agency that sent you the offer, so you can ask them for it directly. It is AED 310,010 (≈ €75,000) cheaper. Tower 2: ask whether handover is also December 2027.</span></p>
+<p class="muted">Al Zaeem (ίδιο γραφείο με την πρότασή σου) · <span lang="el">στην αγορά από</span><span lang="en">listed</span> 2 Oct · <span lang="el">ανά m²</span><span lang="en">per m²</span>: AED 14,563 ≈ €3,535</p>
+<a class="btn" href="https://www.propertyfinder.ae/en/plp/buy/apartment-for-sale-abu-dhabi-al-reem-island-city-of-lights-radisson-residences-radisson-residences-tower-2-153297866.html" target="_blank" rel="noopener"><span lang="el">Δες την αγγελία</span><span lang="en">Open the listing</span> ↗</a>
+</article>
+<article class="opt">
+<div class="opt-h"><span class="badge">3</span><div><strong><span class="aed">AED 2,280,000</span> <span class="eur">≈ €553,398</span></strong><div class="muted">Tower 2 · 1,661 ft² <span class="eur">· 154.3 m²</span> · <span lang="el">Θάλασσα, ψηλός όροφος</span><span lang="en">Sea, high floor</span></div></div></div>
+<p><span lang="el">Ψηλός όροφος με θέα θάλασσα και δύο μπαλκόνια. Οι ψηλοί όροφοι νοικιάζονται και μεταπωλούνται καλύτερα. Η δική σου πρόταση είναι στον 9ο όροφο.</span><span lang="en">High floor, sea view, two balconies. High floors rent and resell better. Your offer is on the 9th floor.</span></p>
+<p class="muted">Metropolitan Capital · <span lang="el">στην αγορά από</span><span lang="en">listed</span> 4 Sep · <span lang="el">ανά m²</span><span lang="en">per m²</span>: AED 14,775 ≈ €3,586</p>
+<a class="btn" href="https://www.propertyfinder.ae/en/plp/buy/apartment-for-sale-abu-dhabi-al-reem-island-city-of-lights-radisson-residences-radisson-residences-tower-2-140145791.html" target="_blank" rel="noopener"><span lang="el">Δες την αγγελία</span><span lang="en">Open the listing</span> ↗</a>
+</article>
+<article class="opt">
+<div class="opt-h"><span class="badge">4</span><div><strong><span class="aed">AED 2,299,000</span> <span class="eur">≈ €558,010</span></strong><div class="muted">Tower ? · 1,664 ft² <span class="eur">· 154.6 m²</span> · <span lang="el">Θάλασσα</span><span lang="en">Sea</span></div></div></div>
+<p><span lang="el">Είναι στην αγορά από τον Ιούλιο, δηλαδή πάνω από δύο μήνες χωρίς αγοραστή. Ο πωλητής πιθανότατα δέχεται χαμηλότερη προσφορά. Ο πύργος δεν αναγράφεται, ρώτα.</span><span lang="en">On the market since July, over two months without a buyer. The seller will likely accept a lower offer. The tower is not stated, ask.</span></p>
+<p class="muted">Finger Print Properties · <span lang="el">στην αγορά από</span><span lang="en">listed</span> 24 Jul · <span lang="el">ανά m²</span><span lang="en">per m²</span>: AED 14,872 ≈ €3,610</p>
+<a class="btn" href="https://www.propertyfinder.ae/en/plp/buy/apartment-for-sale-abu-dhabi-al-reem-island-city-of-lights-radisson-residences-120644333.html" target="_blank" rel="noopener"><span lang="el">Δες την αγγελία</span><span lang="en">Open the listing</span> ↗</a>
+</article>
+ </div>
+ <div class="box">
+  <h3><span lang="el">Για κάθε αγγελία ρώτα τον μεσίτη</span><span lang="en">For each listing, ask the agent</span></h3>
+  <ol>
+   <li><span lang="el">Ποια ήταν η αρχική τιμή και πόσα έχουν πληρωθεί; Αυτό ορίζει πόσα μετρητά δίνεις την πρώτη μέρα.</span><span lang="en">What was the original price and how much has been paid? That sets how much cash you pay on day one.</span></li>
+   <li><span lang="el">Ποιος όροφος, ποια θέα, και ποια ημερομηνία παράδοσης (ειδικά για τον Πύργο 2);</span><span lang="en">Which floor, which view, and which handover date (especially for Tower 2)?</span></li>
+   <li><span lang="el">Δείξε μου την κάτοψη και τη σελίδα πληρωμών της σύμβασης.</span><span lang="en">Show me the floor plan and the payment page of the contract.</span></li>
+  </ol>
+ </div>
+</section>
+
+<section>
+ <span class="eyebrow"><span lang="el">Το πλάνο σου</span><span lang="en">Your plan</span></span>
+ <h2><span lang="el">Κράτημα 10 χρόνια: τι μπορεί να γίνει</span><span lang="en">Holding 10 years: what could happen</span></h2>
+ <p><span lang="el">Υποθέτω ότι το νοικιάζεις από το 2028 για 10 χρόνια και το πουλάς τέλος 2037. Ενοίκιο <span class="aed">AED 170,000</span> <span class="eur">≈ €41,262</span> τον χρόνο, που ανεβαίνει 2% τον χρόνο. Κοινόχρηστα <span class="aed">AED 48,000</span> <span class="eur">≈ €11,650</span> τον χρόνο (≈ 29 AED ανά ft²) και 5% για διαχείριση. Καθαρό τον πρώτο χρόνο ≈ <span class="aed">AED 113,500</span> <span class="eur">≈ €27,549</span>, δηλαδή 4,3% του κόστους. Αυτά είναι δικές μου εκτιμήσεις από τις τιμές της περιοχής, όχι προσφορά ενοικίου.</span><span lang="en">I assume you rent it from 2028 for 10 years and sell at the end of 2037. Rent <span class="aed">AED 170,000</span> <span class="eur">≈ €41,262</span> a year, rising 2% a year. Service charge <span class="aed">AED 48,000</span> <span class="eur">≈ €11,650</span> a year (≈ AED 29 per ft²) and 5% for management. First-year net ≈ <span class="aed">AED 113,500</span> <span class="eur">≈ €27,549</span>, which is 4.3% of the cost. These are my estimates from area prices, not a rent offer.</span></p>
+ <div class="tblwrap"><table>
+  <thead><tr><th><span lang="el">Αν η αξία…</span><span lang="en">If the value…</span></th><th class="n"><span lang="el">Αξία 2037</span><span lang="en">Value 2037</span></th><th class="n"><span lang="el">Ενοίκια 10 ετών</span><span lang="en">10 years of rent</span></th><th class="n"><span lang="el">Συνολικό κέρδος</span><span lang="en">Total profit</span></th><th class="n"><span lang="el">Ανά χρόνο</span><span lang="en">Per year</span></th><th class="n"><span lang="el">Ανά χρόνο αν πληρώσεις 2,35εκ.</span><span lang="en">Per year if you pay 2.35M</span></th></tr></thead>
+  <tbody>
+<tr><td><span lang="el">Πέφτει 2% τον χρόνο</span><span lang="en">Falls 2% a year</span></td><td class="n">1,998,754<span class="sub">€485,134</span></td><td class="n">1,242,793<span class="sub">€301,649</span></td><td class="n pos">+571,338<span class="sub">€138,674</span></td><td class="n"><strong>2.2%</strong></td><td class="n">2.7%</td></tr>
+<tr><td><span lang="el">Μένει ίδια</span><span lang="en">Stays flat</span></td><td class="n">2,508,800<span class="sub">€608,932</span></td><td class="n">1,242,793<span class="sub">€301,649</span></td><td class="n pos">+1,081,383<span class="sub">€262,472</span></td><td class="n"><strong>3.8%</strong></td><td class="n">4.3%</td></tr>
+<tr><td><span lang="el">Ανεβαίνει 3% τον χρόνο</span><span lang="en">Rises 3% a year</span></td><td class="n">3,498,524<span class="sub">€849,156</span></td><td class="n">1,242,793<span class="sub">€301,649</span></td><td class="n pos">+2,071,107<span class="sub">€502,696</span></td><td class="n"><strong>6.4%</strong></td><td class="n">6.8%</td></tr>
+<tr><td><span lang="el">Ανεβαίνει 5% τον χρόνο</span><span lang="en">Rises 5% a year</span></td><td class="n">4,343,558<span class="sub">€1,054,262</span></td><td class="n">1,242,793<span class="sub">€301,649</span></td><td class="n pos">+2,916,142<span class="sub">€707,801</span></td><td class="n"><strong>8.2%</strong></td><td class="n">8.5%</td></tr>
+  </tbody></table></div>
+ <p class="muted"><span lang="el">Η «αξία 2037» είναι μετά από 2% έξοδα πώλησης. Το «ανά χρόνο» είναι σαν επιτόκιο λογαριασμού: πόσο σου απέδωσαν τα χρήματα κάθε χρόνο κατά μέσο όρο. Όλα πριν από τον ελληνικό φόρο στα ενοίκια και την υπεραξία. Ρώτα τον λογιστή σου, γιατί ο φόρος μπορεί να πάρει σημαντικό κομμάτι.</span><span lang="en">The «value 2037» is after 2% selling costs. «Per year» works like an account interest rate: how much your money earned each year on average. All before Greek tax on rent and gains. Ask your accountant, because the tax can take a big share.</span></p>
+ <div class="two">
+  <div class="col">
+   <h3><span lang="el">«Να πάρω πίσω τα χρήματα σε 7–10 χρόνια»</span><span lang="en">«Get my money back in 7–10 years»</span></h3>
+   <p><span lang="el">Μόνο από το ενοίκιο, όχι. Σε 10 χρόνια το ενοίκιο σου επιστρέφει περίπου <span class="aed">AED 1,242,793</span> <span class="eur">≈ €301,649</span>, δηλαδή λίγο λιγότερο από τα μισά. Για να βγουν όλα μόνο από ενοίκια θέλει περίπου 20 χρόνια.</span><span lang="en">From rent alone, no. In 10 years rent returns about <span class="aed">AED 1,242,793</span> <span class="eur">≈ €301,649</span>, a bit under half. Getting it all back from rent alone takes about 20 years.</span></p>
+   <p><span lang="el">Με πώληση, ναι. Αν πουλήσεις μετά από 7 χρόνια ενοικίου (2035) και η αξία ανέβει 3% τον χρόνο, παίρνεις πίσω όλα τα χρήματα συν περίπου <span class="aed">AED 1,374,666</span> <span class="eur">≈ €333,657</span> κέρδος. Αν η αξία μείνει ίδια, το κέρδος είναι περίπου <span class="aed">AED 681,821</span> <span class="eur">≈ €165,491</span>.</span><span lang="en">With a sale, yes. If you sell after 7 years of renting (2035) and the value rises 3% a year, you get all your money back plus about <span class="aed">AED 1,374,666</span> <span class="eur">≈ €333,657</span> profit. If the value stays flat, the profit is about <span class="aed">AED 681,821</span> <span class="eur">≈ €165,491</span>.</span></p>
   </div>
+  <div class="col">
+   <h3><span lang="el">Τι σημαίνει για σένα</span><span lang="en">What it means for you</span></h3>
+   <p><span lang="el">Σε όλα τα σενάρια, ακόμα και αν η τιμή πέφτει 2% τον χρόνο, δεν χάνεις χρήματα μετά από 10 χρόνια, γιατί το ενοίκιο καλύπτει τη ζημιά. Αυτό ισχύει μόνο αν το νοικιάζεις σταθερά και αν η παράδοση γίνει κανονικά.</span><span lang="en">In every scenario, even if the price falls 2% a year, you do not lose money after 10 years, because rent covers the loss. That holds only if it stays rented and handover happens as planned.</span></p>
+   <p><span lang="el">Αν πληρώσεις 2.350.000 αντί για 2.560.000, κερδίζεις περίπου μισή μονάδα τον χρόνο. Δεν είναι τεράστιο, αλλά είναι ≈ €51.000 που μένουν σε σένα από την πρώτη μέρα.</span><span lang="en">If you pay 2,350,000 instead of 2,560,000, you gain about half a point a year. Not huge, but it is ≈ €51,000 that stays with you from day one.</span></p>
+  </div>
+ </div>
+</section>
+
+<section>
+ <span class="eyebrow"><span lang="el">Η αγορά</span><span lang="en">The market</span></span>
+ <h2><span lang="el">Τι λέει η επίσημη έκθεση ADREC (α΄ εξάμηνο 2026)</span><span lang="en">What the official ADREC report says (H1 2026)</span></h2>
+ <div class="two">
+  <div class="col plus">
+   <h3><span lang="el">Υπέρ</span><span lang="en">In favour</span></h3>
+   <ul>
+    <li><span lang="el">Ρεκόρ: 117 δισ. AED συναλλαγές σε 6 μήνες.</span><span lang="en">Record: AED 117 billion of deals in 6 months.</span></li>
+    <li><span lang="el">Τιμές διαμερισμάτων +20% σε έναν χρόνο, νέα ενοίκια +17%.</span><span lang="en">Apartment prices +20% in a year, new rents +17%.</span></li>
+    <li><span lang="el">Το Al Reem είναι από τις 3 ακριβότερες περιοχές και πρώτο σε αριθμό πωλήσεων.</span><span lang="en">Al Reem is among the 3 priciest districts and first by number of sales.</span></li>
+    <li><span lang="el">Τα χρήματα των αγοραστών μπαίνουν σε λογαριασμό escrow που ελέγχει το κράτος.</span><span lang="en">Buyers' money goes into state-supervised escrow accounts.</span></li>
+   </ul>
+  </div>
+  <div class="col minus">
+   <h3><span lang="el">Προσοχή</span><span lang="en">Caution</span></h3>
+   <ul>
+    <li><span lang="el">Το 89% των πωλήσεων είναι ακίνητα που δεν έχουν χτιστεί. Πολλή κερδοσκοπία.</span><span lang="en">89% of sales are unbuilt homes. Lots of speculation.</span></li>
+    <li><span lang="el">Στο Al Reem υπάρχουν ≈ 27.500 κατοικίες και έρχονται ≈ 13.500 ακόμα έως το 2030.</span><span lang="en">Al Reem has ≈ 27,500 homes and ≈ 13,500 more are coming by 2030.</span></li>
+    <li><span lang="el">Οι παραδόσεις κορυφώνονται το 2028, την ίδια χρονιά που θα ψάχνεις ενοικιαστή.</span><span lang="en">Deliveries peak in 2028, the same year you will look for a tenant.</span></li>
+    <li><span lang="el">Κατά το Bayut, τα ενοίκια δυαριών στο Al Reem έπεσαν από 109 σε 102 AED/ft² μέσα σε έναν χρόνο.</span><span lang="en">Per Bayut, two-bedroom rents on Al Reem slipped from 109 to 102 AED/ft² in a year.</span></li>
+   </ul>
+  </div>
+ </div>
+</section>
+
+<section>
+ <span class="eyebrow"><span lang="el">Πριν υπογράψεις</span><span lang="en">Before you sign</span></span>
+ <h2><span lang="el">Τι να ζητήσεις γραπτά</span><span lang="en">What to ask for in writing</span></h2>
+ <div class="box"><ol>
+  <li><span lang="el">Την πλήρη σύμβαση του πωλητή (SPA) και αποδείξεις ότι πλήρωσε και τις τέσσερις δόσεις έως 30 Σεπτεμβρίου 2026.</span><span lang="en">The seller's full contract (SPA) and receipts for all four instalments up to 30 September 2026.</span></li>
+  <li><span lang="el">Επίσημη αναφορά προόδου του εργοταξίου και φωτογραφίες του Πύργου 1.</span><span lang="en">An official construction progress report and photos of Tower 1.</span></li>
+  <li><span lang="el">Τα ετήσια κοινόχρηστα ανά ft² και αν παραδίδεται επιπλωμένο.</span><span lang="en">The yearly service charge per ft² and whether it comes furnished.</span></li>
+  <li><span lang="el">Τι γίνεται αν η παράδοση αργήσει, και αν υπάρχουν άλλα τέλη στην παράδοση.</span><span lang="en">What happens if handover is late, and whether more fees are due at handover.</span></li>
+  <li><span lang="el">Γιατί το τέλος ADM είναι 51.760 και όχι 51.200 AED (2% της τιμής).</span><span lang="en">Why the ADM fee is 51,760 and not 51,200 AED (2% of the price).</span></li>
+  <li><span lang="el">Από τράπεζα των Εμιράτων: αν δανείζει μη κάτοικο για το 60% της παράδοσης.</span><span lang="en">From a UAE bank: whether it lends a non-resident for the 60% at handover.</span></li>
+  <li><span lang="el">Τις πραγματικές τιμές πώλησης στο έργο από το μητρώο, όχι τις αγγελίες.</span><span lang="en">Actual registered sale prices in the project, not listing prices.</span></li>
+ </ol></div>
 </section>
 
 <footer>
-  <p><span lang="el">Δεν είμαι χρηματοοικονομικός σύμβουλος ούτε δικηγόρος. Τα παραπάνω είναι ανάλυση των αρχείων του φακέλου και δημόσιων στοιχείων, με δικές μου παραδοχές όπου το σημειώνω. Πριν υπογράψεις, δείξε τη σύμβαση σε δικηγόρο των Εμιράτων.</span><span lang="en">I am not a financial adviser or a lawyer. This is an analysis of the files in the folder and of public data, with my own assumptions where stated. Before signing, have a UAE lawyer read the contract.</span></p>
-  <p><span lang="el">Πηγές:</span><span lang="en">Sources:</span> <span lang="el">ο φάκελός σου (σημείωμα τιμής, σύμβαση κράτησης, κάτοψη, έκθεση ADREC H1 2026)</span><span lang="en">your folder (price note, reservation agreement, floor plan, ADREC H1 2026 report)</span> ·
-  <a href="https://www.propertyfinder.ae/en/buy/abu-dhabi/2-bedroom-apartments-for-sale-al-reem-island-city-of-lights-radisson-residences.html">Property Finder</a> ·
-  <a href="https://www.bayut.com/property-market-analysis/index/rent/properties/abu-dhabi/al-reem-island/">Bayut rent index</a> ·
-  <a href="https://oplusrealty.com/al-reem-island-abu-dhabi-area-guide/">Oplus area guide</a> ·
-  <a href="https://www.zawya.com/en/press-release/companies-news/royal-development-holding-sells-out-phase-1-of-aed-12bln-radisson-residences-al-reem-island-within-24-hours-of-public-launch-ueidpg1t">Zawya</a> ·
-  <a href="https://www.tradingview.com/news/reuters.com,2026-09-21:newsml_Zaw3N5VRj:0-royal-development-holding-launches-phase-2-of-395mln-radisson-residences-on-al-reem-island/">Reuters / TradingView</a> ·
-  <a href="https://www.indexbox.io/blog/abu-dhabi-residential-sales-surge-178-to-aed678b-in-h1-2026/">IndexBox</a></p>
+ <p><span lang="el">Δεν είμαι χρηματοοικονομικός σύμβουλος ούτε δικηγόρος. Αυτή είναι ανάλυση των αρχείων του φακέλου σου και δημόσιων στοιχείων, με δικές μου παραδοχές όπου το γράφω. Πριν υπογράψεις, δείξε τη σύμβαση σε δικηγόρο των Εμιράτων.</span><span lang="en">I am not a financial adviser or a lawyer. This analyses the files in your folder and public data, with my own assumptions where stated. Before signing, have a UAE lawyer read the contract.</span></p>
+ <p><span lang="el">Πηγές</span><span lang="en">Sources</span>: <span lang="el">ο φάκελός σου (σημείωμα τιμής, σύμβαση κράτησης, κάτοψη, διαφάνειες κατασκευαστικής, έκθεση ADREC H1 2026)</span><span lang="en">your folder (price note, reservation agreement, floor plan, developer slides, ADREC H1 2026 report)</span> ·
+ <a href="https://www.propertyfinder.ae/en/buy/abu-dhabi/2-bedroom-apartments-for-sale-al-reem-island-city-of-lights-radisson-residences.html" target="_blank" rel="noopener">Property Finder</a> ·
+ <a href="https://www.bayut.com/for-sale/2-bedroom-apartments/abu-dhabi/al-reem-island/city-of-lights/radisson-residences/" target="_blank" rel="noopener">Bayut</a> ·
+ <a href="https://www.bayut.com/property-market-analysis/index/rent/properties/abu-dhabi/al-reem-island/" target="_blank" rel="noopener">Bayut rent index</a> ·
+ <a href="https://oplusrealty.com/al-reem-island-abu-dhabi-area-guide/" target="_blank" rel="noopener">Oplus</a> ·
+ <a href="https://www.zawya.com/en/press-release/companies-news/royal-development-holding-sells-out-phase-1-of-aed-12bln-radisson-residences-al-reem-island-within-24-hours-of-public-launch-ueidpg1t" target="_blank" rel="noopener">Zawya</a> ·
+ <a href="https://www.exchange-rates.org/exchange-rate-history/aed-eur-2026-10-01" target="_blank" rel="noopener">exchange-rates.org</a></p>
 </footer>
 </div>
-
 <script>
-(function(){
-  var el=document.getElementById('btn-el'), en=document.getElementById('btn-en');
-  function set(l){
-    document.body.classList.toggle('en', l==='en');
-    document.documentElement.lang=l;
-    el.setAttribute('aria-pressed', l==='el'); en.setAttribute('aria-pressed', l==='en');
-    try{localStorage.setItem('lang',l)}catch(e){}
-  }
-  el.addEventListener('click',function(){set('el')});
-  en.addEventListener('click',function(){set('en')});
-  var saved=null; try{saved=localStorage.getItem('lang')}catch(e){}
-  set(saved==='en'?'en':'el');
-})();
+(function(){var el=document.getElementById('btn-el'),en=document.getElementById('btn-en');
+function set(l){document.body.classList.toggle('en',l==='en');document.documentElement.lang=l;el.setAttribute('aria-pressed',l==='el');en.setAttribute('aria-pressed',l==='en');try{localStorage.setItem('rad-lang',l)}catch(e){}}
+el.addEventListener('click',function(){set('el')});en.addEventListener('click',function(){set('en')});
+var s=null;try{s=localStorage.getItem('rad-lang')}catch(e){}set(s==='en'?'en':'el');})();
 </script>
-
 </body>
 </html>

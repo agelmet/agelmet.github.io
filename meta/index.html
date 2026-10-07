@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="color-scheme" content="light only">
+<meta name="theme-color" content="#F7F5F0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Instagram · Advon">
+<title>Instagram · Advon Media</title>
+<style>
+:root{color-scheme:light only;--bg:#F7F5F0;--card:#FFFFFF;--soft:#F1EEE7;--line:#E4DFD5;--ink:#16181C;--mute:#6A6F78;--ok:#1E8A55;--okSoft:#E5F4EC;--warn:#A85F00;--warnSoft:#FFF2DF;
+ --ig:linear-gradient(120deg,#F58529 0%,#DD2A7B 52%,#8134AF 100%);--r:20px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;background:var(--bg)}
+body{background:var(--bg);color:var(--ink);font:16px/1.45 -apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;min-height:100vh;padding:0 16px calc(32px + env(safe-area-inset-bottom))}
+.wrap{max-width:520px;margin:0 auto}
+header{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:calc(14px + env(safe-area-inset-top)) 0 14px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:17px}
+.brand i{width:34px;height:34px;border-radius:10px;background:var(--ig);display:grid;place-items:center;flex:none}
+.brand i svg{width:20px;height:20px}
+.brand small{display:block;font-weight:600;color:var(--mute);font-size:12px}
+.tt{font-size:13px;font-weight:600;color:var(--ink);text-decoration:none;border:1px solid var(--line);background:var(--card);border-radius:99px;padding:6px 11px;white-space:nowrap}
+.prog{display:flex;align-items:center;gap:10px;margin:0 2px 14px;font-size:13px;color:var(--mute)}
+.prog .track{flex:1;height:6px;border-radius:6px;background:var(--soft);overflow:hidden}
+.prog .track i{display:block;height:100%;background:var(--ig);border-radius:6px;transition:width .4s ease}
+.prog b{color:var(--ink)}
+.hero{background:var(--card);border:1px solid var(--line);border-radius:26px;padding:16px;box-shadow:0 1px 2px rgba(20,20,30,.04),0 18px 44px -18px rgba(60,40,80,.22)}
+.when{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px}
+.when b{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#B0306E}
+.tag{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;border-radius:99px;padding:4px 9px;background:var(--soft);color:var(--mute);white-space:nowrap}
+.tag.done{background:var(--okSoft);color:var(--ok)}
+.media{display:flex;justify-content:center;background:#0B0D10;border-radius:18px;overflow:hidden;margin-bottom:14px}
+.media video{display:block;width:auto;max-width:100%;height:auto;max-height:50vh;aspect-ratio:9/16;object-fit:contain;background:#0B0D10}
+h1{font-size:20px;line-height:1.25;margin-bottom:4px;letter-spacing:-.01em}
+.sub{font-size:13px;color:var(--mute);margin-bottom:14px}
+.btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;border:0;border-radius:15px;padding:17px 14px;font:700 17px/1.2 inherit;font-family:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:transform .12s ease,opacity .2s;touch-action:manipulation;-webkit-user-select:none;user-select:none}
+.btn:active{transform:scale(.98)}
+.btn .k{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font-size:13px;flex:none}
+.b1{background:var(--ink);color:#fff}.b1 .k{background:rgba(255,255,255,.2)}
+.b2{background:var(--ig);color:#fff;margin-top:10px;box-shadow:0 12px 26px -10px rgba(221,42,123,.55)}.b2 .k{background:rgba(255,255,255,.25)}
+.b2[disabled]{opacity:.6}
+.b3{background:var(--card);border:1.5px solid var(--line);color:var(--ink);margin-top:10px;font-size:15px;padding:14px}
+.b3.on{border-color:rgba(30,138,85,.45);background:var(--okSoft);color:var(--ok)}
+.row{display:flex;gap:10px;margin-top:10px}
+.row a,.row button{flex:1;display:flex;align-items:center;justify-content:center;text-align:center;font-size:13px;font-weight:600;color:var(--ink);text-decoration:none;background:var(--soft);border:0;border-radius:12px;padding:11px 8px;font-family:inherit;cursor:pointer;touch-action:manipulation}
+.bar{height:4px;border-radius:4px;background:var(--soft);overflow:hidden;margin-top:8px;display:none}
+.bar i{display:block;height:100%;width:0;background:#DD2A7B;transition:width .2s}
+.how{margin-top:16px;border-top:1px solid var(--line);padding-top:14px}
+.how ol{padding-left:22px;font-size:15px;color:#33363C}
+.how li{margin:7px 0}
+.how li b{color:var(--ink)}
+.pin{margin-top:12px;background:var(--warnSoft);color:#6B3D00;border-radius:12px;padding:10px 12px;font-size:14px}
+.cap{margin-top:14px}
+.cap summary{cursor:pointer;color:var(--mute);font-size:14px;font-weight:600;list-style:none}
+.cap summary::-webkit-details-marker{display:none}
+.cap pre{white-space:pre-wrap;font:14px/1.5 inherit;font-family:inherit;color:#33363C;background:var(--soft);border-radius:12px;padding:12px;margin-top:8px}
+h2{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);margin:28px 2px 4px}
+.gd{font-size:13px;color:var(--mute);margin:0 2px 10px}
+.list{display:flex;flex-direction:column;gap:8px}
+.it{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:15px;padding:8px;text-decoration:none;color:inherit;-webkit-tap-highlight-color:transparent}
+.it img{width:44px;height:78px;object-fit:cover;border-radius:9px;background:#0B0D10;flex:none}
+.it .t{flex:1;min-width:0}
+.it .t b{display:block;font-size:15px;line-height:1.3;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.it .t span{display:block;font-size:12px;color:var(--mute);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.it .s{flex:none;font-size:12px;font-weight:700;color:var(--mute);padding-right:6px}
+.it.posted .s{color:var(--ok)}
+.it.posted img{opacity:.55}
+.it.cur{border-color:#DD2A7B;box-shadow:0 0 0 1px #DD2A7B inset}
+.toast{position:fixed;left:50%;bottom:calc(22px + env(safe-area-inset-bottom));transform:translate(-50%,20px);opacity:0;background:var(--ink);color:#fff;font-weight:700;font-size:14px;border-radius:99px;padding:11px 18px;transition:.25s;pointer-events:none;z-index:9;max-width:90vw;text-align:center}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+.empty{color:var(--mute);text-align:center;padding:40px 0}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand"><i><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1" fill="#fff" stroke="none"/></svg></i><div>Instagram videos<small>Advon Media · post from your phone</small></div></div>
+    <a class="tt" href="../tiktok/">TikTok ›</a>
+  </header>
+  <div class="prog" id="prog" hidden><div class="track"><i id="progBar"></i></div><span id="progTxt"></span></div>
+  <main id="app"><p class="empty">Loading…</p></main>
+</div>
+<div class="toast" id="toast"></div>
+<script>
+(function(){
+  // drafts.advonmedia.com/meta/ (7 Oct 2026) — the Ad Kit videos, posted by Angelo from his phone with a sound of his choice.
+  // Videos and captions are read live from ../advon-social/sales.json (the CRM Meta → SALES list), so a new sales video
+  // shows up here by itself. «I posted it ✓» is saved on the server through advonmedia.com/api/tiktok with ids «ig-<id>».
+  var S='../advon-social/', API='https://advonmedia.com/api/tiktok', DONE_KEY='advon-ig-done', PEND_KEY='advon-ig-pending';
+  var ORDER=['pin','organic','ads'];          // which group the «next to post» card is taken from first
+  var GROUPS={ads:['1 · The two ads','The same videos that run in Meta Ads. You can also post them on your profile.'],
+              pin:['2 · Pin on your profile','Post these first and pin them to the top of your profile.'],
+              organic:['3 · Posts','For Instagram + Facebook, whenever you like.']};
+  var data=[], blobs={}, loading={};
+  var $=function(s,r){return (r||document).querySelector(s)};
+  function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  function J(k,v){try{if(v===undefined)return JSON.parse(localStorage.getItem(k)||'{}');localStorage.setItem(k,JSON.stringify(v))}catch(e){return {}}}
+  function done(){return J(DONE_KEY)}
+  var tt;function toast(m){var t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(tt);tt=setTimeout(function(){t.classList.remove('on')},2600)}
+
+  // ---- «I posted it» saved on the server, with a local copy that retries until it is sent
+  function send(id,on,at){return fetch(API,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({id:'ig-'+id,on:on,at:at}),cache:'no-store'}).then(function(r){return r.json()}).then(function(j){if(!j||!j.ok)throw new Error('not saved');return j})}
+  function setDone(id,v){
+    var d=done(),at=new Date().toISOString();if(v)d[id]=at;else delete d[id];J(DONE_KEY,d);
+    var q=J(PEND_KEY);q[id]={on:!!v,at:at};J(PEND_KEY,q);
+    return send(id,!!v,at).then(function(){var q2=J(PEND_KEY);delete q2[id];J(PEND_KEY,q2);return true},function(){return false});
+  }
+  function flush(){var q=J(PEND_KEY);Object.keys(q).forEach(function(id){send(id,q[id].on,q[id].at).then(function(){var q2=J(PEND_KEY);delete q2[id];J(PEND_KEY,q2)},function(){})})}
+  function syncDone(){
+    return fetch(API,{cache:'no-store'}).then(function(r){return r.json()}).then(function(j){
+      if(!j||!j.ok)return;var d={},q=J(PEND_KEY);
+      Object.keys(j.done||{}).forEach(function(k){if(k.indexOf('ig-')===0)d[k.slice(3)]=j.done[k]});
+      Object.keys(q).forEach(function(id){if(q[id].on)d[id]=q[id].at;else delete d[id]});
+      J(DONE_KEY,d);
+    },function(){});
+  }
+
+  function copy(text){
+    if(navigator.clipboard&&navigator.clipboard.writeText){return navigator.clipboard.writeText(text).then(function(){return true},function(){return legacy(text)})}
+    return Promise.resolve(legacy(text));
+  }
+  function legacy(text){var a=document.createElement('textarea');a.value=text;a.setAttribute('readonly','');a.style.cssText='position:fixed;top:0;left:0;opacity:0';document.body.appendChild(a);a.select();a.setSelectionRange(0,text.length);var ok=false;try{ok=document.execCommand('copy')}catch(e){}a.remove();return ok}
+
+  // the video is fetched once and kept, so the share sheet opens straight from the tap (iOS needs the file ready)
+  function prepare(p,onp){
+    if(blobs[p.id])return Promise.resolve(blobs[p.id]);
+    if(loading[p.id])return loading[p.id];
+    loading[p.id]=fetch(p.video).then(function(r){
+      if(!r.ok)throw new Error(r.status);
+      var tot=+r.headers.get('content-length')||0,have=0;
+      if(!r.body||!window.ReadableStream)return r.blob();
+      var rd=r.body.getReader(),parts=[];
+      function pump(){return rd.read().then(function(x){if(x.done)return new Blob(parts,{type:'video/mp4'});parts.push(x.value);have+=x.value.length;onp&&tot&&onp(Math.min(99,Math.round(have/tot*100)));return pump()})}
+      return pump();
+    }).then(function(b){var f=[new File([b],'advon-'+p.id.replace(/^sales-/,'')+'.mp4',{type:'video/mp4'})];blobs[p.id]=f;onp&&onp(100);return f},
+            function(e){delete loading[p.id];throw e});
+    return loading[p.id];
+  }
+
+  function pick(){
+    var h=decodeURIComponent((location.hash||'').slice(1));
+    var byHash=h&&data.find(function(p){return p.id===h});
+    if(byHash)return byHash;
+    var d=done();
+    for(var i=0;i<ORDER.length;i++){var f=data.find(function(p){return p.group===ORDER[i]&&!d[p.id]});if(f)return f}
+    return data[0];
+  }
+  function nextOf(p){var d=done(),i=data.indexOf(p);
+    for(var k=1;k<=data.length;k++){var q=data[(i+k)%data.length];if(!d[q.id]&&q!==p)return q}
+    return null}
+
+  function card(p){
+    var d=done()[p.id];
+    return '<section class="hero">'+
+      '<div class="when"><b>'+esc((GROUPS[p.group]||[p.group])[0])+'</b>'+(d?'<span class="tag done">Posted ✓</span>':'<span class="tag">Not posted yet</span>')+'</div>'+
+      '<div class="media"><video src="'+esc(p.video)+'#t=0.1" poster="'+esc(p.cover)+'" controls playsinline preload="metadata"></video></div>'+
+      '<h1>'+esc(p.title)+'</h1>'+(p.kind?'<p class="sub">'+esc(p.kind)+'</p>':'')+
+      '<button class="btn b1" id="bCopy" type="button"><span class="k">1</span>Copy caption</button>'+
+      '<button class="btn b2" id="bShare" type="button"><span class="k">2</span><span id="shareTxt">Open in Instagram</span></button>'+
+      '<div class="bar" id="bar"><i></i></div>'+
+      '<div class="row"><a id="bSave" href="'+esc(p.video)+'" download>Download video</a><button id="bNext" type="button">Next video ›</button></div>'+
+      '<button class="btn b3'+(d?' on':'')+'" id="bDone" type="button">'+(d?'✓ Posted — tap to undo':'I posted it ✓')+'</button>'+
+      (p.group==='pin'?'<p class="pin"><b>Pin it:</b> after posting, open the reel on your profile → <b>⋯</b> → <b>Pin to your profile</b>.</p>':'')+
+      '<div class="how"><ol>'+
+        '<li><b>Copy caption</b> (button 1).</li>'+
+        '<li><b>Open in Instagram</b> → tap <b>Instagram</b> in the share menu → <b>Reels</b>. (Not in the row? Swipe to <b>More</b>, or tap «Save Video» and upload it from Photos.)</li>'+
+        '<li>Tap the <b>music note</b> → pick your song → <b>Volume</b>: keep the <b>video’s own sound up</b> (it has the voice) and the song <b>low, about 15–20%</b>.</li>'+
+        '<li><b>Next</b> → paste the caption → turn on <b>Share to Facebook</b> → <b>Share</b>. Then tap <b>I posted it ✓</b> here.</li>'+
+      '</ol></div>'+
+      '<details class="cap"><summary>Show the caption ▾</summary><pre>'+esc(p.caption)+'</pre></details>'+
+    '</section>';
+  }
+  function row(p,cur){
+    var d=done()[p.id];
+    return '<a class="it'+(d?' posted':'')+(p===cur?' cur':'')+'" href="#'+esc(p.id)+'"><img loading="lazy" src="'+esc(p.cover)+'" alt=""><div class="t"><b>'+esc(p.title)+'</b><span>'+esc(p.kind||'')+'</span></div><span class="s">'+(d?'Posted ✓':'›')+'</span></a>';
+  }
+
+  function render(){
+    if(!data.length){$('#app').innerHTML='<p class="empty">No videos yet.</p>';return}
+    var cur=pick(), d=done(), n=data.filter(function(p){return d[p.id]}).length;
+    $('#prog').hidden=false;$('#progBar').style.width=Math.round(n/data.length*100)+'%';
+    $('#progTxt').innerHTML='<b>'+n+'</b> of '+data.length+' posted';
+    var h=card(cur);
+    ['ads','pin','organic'].forEach(function(g){
+      var L=data.filter(function(p){return p.group===g});if(!L.length)return;
+      h+='<h2>'+esc(GROUPS[g][0])+' · '+L.length+'</h2><p class="gd">'+esc(GROUPS[g][1])+'</p><div class="list">'+L.map(function(p){return row(p,cur)}).join('')+'</div>';
+    });
+    var other=data.filter(function(p){return !GROUPS[p.group]});
+    if(other.length)h+='<h2>More videos · '+other.length+'</h2><div class="list">'+other.map(function(p){return row(p,cur)}).join('')+'</div>';
+    $('#app').innerHTML=h;
+    wire(cur);
+  }
+
+  function wire(p){
+    var sh=$('#bShare'),txt=$('#shareTxt'),bar=$('#bar');
+    var canShare=!!(navigator.share&&navigator.canShare);
+    function progress(n){bar.style.display=n>=100?'none':'block';bar.firstChild.style.width=n+'%';if(n<100)txt.textContent='Preparing video… '+n+'%'}
+    function ready(){txt.textContent='Open in Instagram';sh.disabled=false}
+    if(canShare){sh.disabled=true;prepare(p,progress).then(ready,function(){txt.textContent='Could not load — tap to retry';sh.disabled=false})}
+    $('#bCopy').onclick=function(){copy(p.caption).then(function(ok){toast(ok?'Caption copied ✓':'Copy failed — use «Show the caption»')})};
+    sh.onclick=function(){
+      copy(p.caption);   // the caption is also on the clipboard, ready to paste inside Instagram
+      if(!canShare){location.href=p.video;return}
+      var files=blobs[p.id];
+      if(!files){prepare(p,progress).then(ready,function(){txt.textContent='Could not load — tap to retry';sh.disabled=false});return}
+      var payload={files:files};
+      if(navigator.canShare(payload)){
+        navigator.share(payload).then(function(){toast('Caption copied ✓ — paste it in Instagram')},function(e){if(e&&e.name!=='AbortError')toast('Share failed: '+e.name)});
+      }else toast('This phone cannot share the video — use Download');
+    };
+    $('#bDone').onclick=function(){var was=!!done()[p.id];this.disabled=true;
+      setDone(p.id,!was).then(function(ok){toast(ok?(was?'Marked as not posted':'Marked as posted ✓'):'Saved on this phone — it will sync when online');render()})};
+    $('#bNext').onclick=function(){var q=nextOf(p);if(q){location.hash=q.id}else toast('All videos are posted ✓')};
+  }
+
+  window.addEventListener('hashchange',function(){render();window.scrollTo(0,0)});
+  Promise.all([fetch(S+'sales.json',{cache:'no-cache'}).then(function(r){return r.json()}),syncDone()]).then(function(r){
+    var j=r[0]||{};
+    data=(j.posts||[]).filter(function(x){return x.group!=='old'&&x.media&&x.media[0]}).map(function(x){
+      var cap=String(x.caption||'').trim(), ht=String(x.hashtags||'').trim();
+      return {id:x.id,group:x.group||'',title:String(x.title||'').replace(/[«»]/g,''),kind:String(x.kind||''),
+        caption:cap+(ht&&cap.indexOf(ht)<0?'\n\n'+ht:''),video:S+x.media[0],cover:x.cover?S+x.cover:''};
+    });
+    var rank={ads:0,pin:1,organic:2};
+    data.sort(function(a,b){return (rank[a.group]==null?9:rank[a.group])-(rank[b.group]==null?9:rank[b.group])});
+    render();flush();
+  },function(){$('#app').innerHTML='<p class="empty">Could not load the videos. Pull down to refresh.</p>'});
+  document.addEventListener('visibilitychange',function(){if(document.visibilityState==='visible'&&data.length)syncDone().then(function(){render();flush()})});
+})();
+</script>
+</body>
+</html>

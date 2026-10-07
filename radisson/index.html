@@ -13,7 +13,7 @@
 @font-face{font-family:'Manrope';font-weight:600;font-display:swap;src:url(assets/fonts/manrope-greek-600-normal.woff2) format('woff2');unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF}
 @font-face{font-family:'Manrope';font-weight:700;font-display:swap;src:url(assets/fonts/manrope-greek-700-normal.woff2) format('woff2');unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF}
 
-/* Light only. One page, eight tabs, one idea per block. */
+/* Light only. One page, nine tabs, one idea per block. */
 :root{color-scheme:light only;--paper:#F3F6F4;--card:#FFFFFF;--ink:#13231F;--muted:#58675F;--line:#D6DED9;--soft:#EDF1EF;
  --brand:#1D5B4A;--tide:#2A7488;--good:#1D7A4C;--goodbg:#E3F3EA;--warn:#B07A10;--warnbg:#FBF1D9;--bad:#B23A2C;--badbg:#F8E4E0;
  --f:"Manrope","Helvetica Neue",Arial,sans-serif}
@@ -117,6 +117,20 @@ td.n,th.n{text-align:right;white-space:nowrap} .nw{white-space:nowrap} tr.me td{
 .opt{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:14px 16px;display:grid;grid-template-columns:1fr auto;gap:4px 12px;align-items:center}
 .opt b.p{font-size:19px} .opt .m{grid-column:1/-1;font-size:14px;color:var(--muted)} .opt a{font-weight:700;white-space:nowrap}
 .kpi .aed{white-space:normal;overflow-wrap:anywhere}
+/* new offer highlight */
+.newbox{display:flex;gap:12px;align-items:flex-start;text-decoration:none;color:var(--ink);background:#FFF4D6;border:2px solid #C8901E;border-radius:6px;padding:14px 16px;font-size:15.5px}
+.newbox .nb-t{flex:none;background:#9A6A12;color:#fff;font-weight:700;font-size:12px;letter-spacing:.06em;padding:4px 9px;border-radius:999px;margin-top:1px}
+.tabs a.new{border-color:#C8901E;color:#7A4E0E;background:#FFF4D6} .tabs a.new[aria-current="true"]{background:#9A6A12;border-color:#9A6A12;color:#fff}
+.hero.new{background:#7A4E0E} .hero.new .eyebrow{color:#FFE2A8} .hero.new p{color:#FBEBD0}
+.kpi.hl{border:2px solid #C8901E;background:#FFF9EA}
+.cmp table{font-size:14.5px} .cmp th small,.cmp td small,.card td small{display:block;color:var(--muted);font-size:12px;font-weight:600;text-transform:none;letter-spacing:0}
+.cmp th{white-space:normal;vertical-align:bottom} .cmp td:first-child{font-weight:700;color:var(--muted);min-width:110px}
+th.newc,td.newc{box-shadow:inset 3px 0 0 #C8901E,inset -3px 0 0 #C8901E} th.newc{background:#9A6A12;color:#fff} th.newc small{color:#FFE2A8}
+td.win{background:var(--goodbg);color:#14532F;font-weight:700} td.lose{background:var(--badbg);color:#7E2419;font-weight:600}
+tr.tot td{border-top:2px solid var(--ink)} .fill.newf{background:#9A6A12}
+.card.opinion{border:2px solid var(--brand)}
+.swipe{display:none}
+@media (max-width:560px){.swipe{display:inline} .pay th,.pay td.n{white-space:normal} .pay table{font-size:13.5px} .pay th,.pay td{padding:8px 6px} .cmp table{font-size:13.5px} .cmp th,.cmp td{padding:8px 7px}}
 footer{font-size:13.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px;display:flex;flex-direction:column;gap:8px}
 </style>
 </head>
@@ -134,17 +148,19 @@ footer{font-size:13.5px;color:var(--muted);border-top:1px solid var(--line);padd
 
 <nav class="tabs" aria-label="Sections">
  <a href="#summary"><span class="n">1</span><span lang="el">Περίληψη</span><span lang="en">Summary</span></a>
- <a href="#price"><span class="n">2</span><span lang="el">Σπίτι & τιμή</span><span lang="en">Home & price</span></a>
- <a href="#future"><span class="n">3</span><span lang="el">Το μέλλον</span><span lang="en">The future</span></a>
- <a href="#years"><span class="n">4</span><span lang="el">10 χρόνια</span><span lang="en">10 years</span></a>
- <a href="#choose"><span class="n">5</span><span lang="el">Τι θα έκανα</span><span lang="en">What I would do</span></a>
- <a href="#visa"><span class="n">6</span>Visa</a>
- <a href="#adrec"><span class="n">7</span>ADREC</a>
- <a href="#sources"><span class="n">8</span><span lang="el">Πηγές</span><span lang="en">Sources</span></a>
+ <a href="#offer" class="new"><span class="n">2</span><span lang="el">Νέα πρόταση</span><span lang="en">New offer</span></a>
+ <a href="#price"><span class="n">3</span><span lang="el">Σπίτι & τιμή</span><span lang="en">Home & price</span></a>
+ <a href="#future"><span class="n">4</span><span lang="el">Το μέλλον</span><span lang="en">The future</span></a>
+ <a href="#years"><span class="n">5</span><span lang="el">10 χρόνια</span><span lang="en">10 years</span></a>
+ <a href="#choose"><span class="n">6</span><span lang="el">Τι θα έκανα</span><span lang="en">What I would do</span></a>
+ <a href="#visa"><span class="n">7</span>Visa</a>
+ <a href="#adrec"><span class="n">8</span>ADREC</a>
+ <a href="#sources"><span class="n">9</span><span lang="el">Πηγές</span><span lang="en">Sources</span></a>
 </nav>
 
 <!-- 1 SUMMARY -->
 <section class="panel" id="summary">
+ <a class="newbox" href="#offer"><span class="nb-t"><span lang="el">ΝΕΟ · 7 Οκτ</span><span lang="en">NEW · 7 Oct</span></span><span><span lang="el"><b>Νέα πρόταση απευθείας από την κατασκευαστική:</b> 2ος όροφος, 2.420.000 AED. Βγαίνει €49.000 φθηνότερα από την πρώτη και θέλει €199.000 λιγότερα μετρητά τώρα. Δες τη σύγκριση →</span><span lang="en"><b>New offer direct from the developer:</b> 2nd floor, AED 2,420,000. €49,000 cheaper than the first, and €199,000 less cash now. See the comparison →</span></span></a>
  <div class="hero">
   <span class="eyebrow"><span lang="el">Η απάντηση σε 10 δευτερόλεπτα</span><span lang="en">The answer in 10 seconds</span></span>
   <span class="big"><span lang="el">Καλό διαμέρισμα, μέτρια επένδυση. Μην το πάρεις στα €621.000.</span><span lang="en">Good apartment, average investment. Do not buy it at €621,000.</span></span>
@@ -166,11 +182,93 @@ footer{font-size:13.5px;color:var(--muted);border-top:1px solid var(--line);padd
   <h3><span lang="el">Τι να κάνεις τώρα</span><span lang="en">What to do now</span></h3>
   <ol class="steps">
    <li><span lang="el"><b>Μην υπογράψεις στα 2.560.000 AED.</b> Το ίδιο διαμέρισμα στον ίδιο πύργο ζητείται 2.349.990.</span><span lang="en"><b>Do not sign at AED 2,560,000.</b> The same apartment in the same tower is listed at 2,349,990.</span></li>
-   <li><span lang="el"><b>Αποφάσισε τι θέλεις:</b> ακίνητο στο Άμπου Ντάμπι ή το καλύτερο οικονομικό αποτέλεσμα. Η καρτέλα 5 εξηγεί τη διαφορά.</span><span lang="en"><b>Decide what you want:</b> property in Abu Dhabi, or the best financial result. Tab 5 explains the difference.</span></li>
+   <li><span lang="el"><b>Αποφάσισε τι θέλεις:</b> ακίνητο στο Άμπου Ντάμπι ή το καλύτερο οικονομικό αποτέλεσμα. Η καρτέλα 6 εξηγεί τη διαφορά.</span><span lang="en"><b>Decide what you want:</b> property in Abu Dhabi, or the best financial result. Tab 6 explains the difference.</span></li>
    <li><span lang="el"><b>Αν διαλέξεις ακίνητο:</b> προσφορά ≈2.350.000 AED, δικηγόρος στα Εμιράτα και απόδειξη ότι ο πωλητής πλήρωσε τις δόσεις του.</span><span lang="en"><b>If you choose property:</b> offer ≈AED 2,350,000, a UAE lawyer, and proof the seller paid his instalments.</span></li>
   </ol>
  </div>
- <a class="next" href="#price"><span lang="el">Επόμενο: Σπίτι & τιμή →</span><span lang="en">Next: Home & price →</span></a>
+ <a class="next" href="#offer"><span lang="el">Επόμενο: Νέα πρόταση →</span><span lang="en">Next: New offer →</span></a>
+</section>
+
+<!-- 2 NEW OFFER (7 Oct 2026) -->
+<section class="panel" id="offer">
+ <div class="hero new">
+  <span class="eyebrow"><span lang="el">ΝΕΟ · 7 Οκτ 2026 · απευθείας από την κατασκευαστική</span><span lang="en">NEW · 7 Oct 2026 · direct from the developer</span></span>
+  <span class="big"><span lang="el">Η νέα πρόταση είναι καλύτερη από την πρώτη: €49.000 λιγότερα συνολικά και €199.000 λιγότερα μετρητά τώρα. Το αδύνατο σημείο της είναι ο 2ος όροφος.</span><span lang="en">The new offer beats the first one: €49,000 less in total and €199,000 less cash now. Its weak point is the 2nd floor.</span></span>
+  <p><span lang="el">Μονάδα <b>RR1-4-208</b>, Πύργος 1, <b>2ος όροφος</b>, δυάρι + δωμάτιο βοηθού, 154,5 m². Την πουλά η ίδια η κατασκευαστική (Royal Development Holding) στα <b>2.420.000 AED</b>, με πρόγραμμα 30/70: 30% σε 6 δόσεις ως τον Νοέμβριο 2027 και 70% στις 31/12/2027.</span><span lang="en">Unit <b>RR1-4-208</b>, Tower 1, <b>2nd floor</b>, 2-bed + maid's room, 154.5 m². Sold by the developer itself (Royal Development Holding) at <b>AED 2,420,000</b>, on a 30/70 plan: 30% in 6 instalments until November 2027 and 70% on 31/12/2027.</span></p>
+ </div>
+ <div class="kpis">
+  <div class="kpi hl"><span class="k"><span lang="el">Βάζεις συνολικά</span><span lang="en">Total you put in</span></span><span class="v"><span class="nm">€599.254</span></span><span class="aed"><span lang="el">αντί για €648.245 · −€48.992</span><span lang="en">instead of €648,245 · −€48,992</span></span></div>
+  <div class="kpi hl"><span class="k"><span lang="el">Μετρητά τον 1ο μήνα</span><span lang="en">Cash in month 1</span></span><span class="v"><span class="nm">€70.613</span></span><span class="aed"><span lang="el">αντί για €269.202 · −€198.590</span><span lang="en">instead of €269,202 · −€198,590</span></span></div>
+  <div class="kpi"><span class="k"><span lang="el">Τιμή ανά m²</span><span lang="en">Price per m²</span></span><span class="v"><span class="nm">€3.802</span></span><span class="aed"><span lang="el">αντί για €4.048 στην πρώτη</span><span lang="en">instead of €4,048 for the first</span></span></div>
+  <div class="kpi"><span class="k"><span lang="el">Όροφος</span><span lang="en">Floor</span></span><span class="v neg">2</span><span class="aed"><span lang="el">αντί για 9 · λιγότερη θέα</span><span lang="en">instead of 9 · less view</span></span></div>
+ </div>
+
+ <h3><span lang="el">Δίπλα δίπλα</span><span lang="en">Side by side</span></h3>
+ <p class="muted"><span lang="el">Πράσινο = καλύτερο, κόκκινο = χειρότερο. Ποσά σε ευρώ, 1 € ≈ 4,12 AED.</span><span lang="en">Green = better, red = worse. Amounts in euro, 1 € ≈ 4.12 AED.</span><span class="swipe"><span lang="el"> Στο κινητό σύρε τον πίνακα δεξιά για την 3η στήλη.</span><span lang="en"> On a phone, swipe the table for the 3rd column.</span></span></p>
+ <div class="tbl cmp"><table>
+  <thead><tr><th></th><th><span lang="el">Πρώτη πρόταση</span><span lang="en">First offer</span><small>4-903</small></th><th class="newc"><span lang="el">ΝΕΑ πρόταση</span><span lang="en">NEW offer</span><small>RR1-4-208</small></th><th><span lang="el">Φθηνότερη αγγελία ίδιου πύργου</span><span lang="en">Cheapest same-tower listing</span><small><span lang="el">καρτέλα 3</span><span lang="en">tab 3</span></small></th></tr></thead>
+  <tbody>
+   <tr><td><span lang="el">Από ποιον</span><span lang="en">From whom</span></td><td><span lang="el">Μεταπώληση από ιδιοκτήτη</span><span lang="en">Resale by an owner</span></td><td class="newc win"><span lang="el">Η κατασκευαστική, πρώτος ιδιοκτήτης</span><span lang="en">The developer, first owner</span></td><td><span lang="el">Μεταπώληση</span><span lang="en">Resale</span></td></tr>
+   <tr><td><span lang="el">Όροφος</span><span lang="en">Floor</span></td><td class="win">9</td><td class="newc lose">2</td><td><span lang="el">δεν αναφέρεται</span><span lang="en">not stated</span></td></tr>
+   <tr><td><span lang="el">Εμβαδόν</span><span lang="en">Area</span></td><td>153,5 m²</td><td class="newc">154,5 m² <small><span lang="el">(118 μέσα + 36,5 μπαλκόνια)</span><span lang="en">(118 inside + 36.5 balconies)</span></small></td><td>153 m²</td></tr>
+   <tr><td><span lang="el">Τιμή</span><span lang="en">Price</span></td><td class="lose"><span class="nm">€621.359</span><small><span class="nm">2.560.000</span> AED</small></td><td class="newc"><span class="nm">€587.379</span><small><span class="nm">2.420.000</span> AED</small></td><td class="win"><span class="nm">€570.386</span><small><span class="nm">2.349.990</span> AED</small></td></tr>
+   <tr><td><span lang="el">Έξοδα αγοράς</span><span lang="en">Buying costs</span></td><td class="lose"><span class="nm">€26.886</span><small><span lang="el">μεσίτης + 2% + NOC</span><span lang="en">agent + 2% + NOC</span></small></td><td class="newc win"><span class="nm">€11.875</span><small><span lang="el">μόνο 2% ADGM + 525 AED</span><span lang="en">only 2% ADGM + AED 525</span></small></td><td><span class="nm">€24.660</span><small><span lang="el">μεσίτης + 2% + NOC</span><span lang="en">agent + 2% + NOC</span></small></td></tr>
+   <tr class="tot"><td><b><span lang="el">Βάζεις συνολικά</span><span lang="en">Total you put in</span></b></td><td class="lose"><b><span class="nm">€648.245</span></b></td><td class="newc"><b><span class="nm">€599.254</span></b></td><td class="win"><b><span class="nm">€595.046</span></b></td></tr>
+   <tr><td><span lang="el">Ανά m² (τιμή)</span><span lang="en">Per m² (price)</span></td><td class="lose"><span class="nm">€4.048</span></td><td class="newc"><span class="nm">€3.802</span></td><td class="win"><span class="nm">€3.725</span></td></tr>
+   <tr><td><span lang="el">Μετρητά τον 1ο μήνα</span><span lang="en">Cash in month 1</span></td><td class="lose"><span class="nm">€269.202</span></td><td class="newc win"><span class="nm">€70.613</span></td><td><span lang="el">Μεγάλο ποσό, όπως στην πρώτη</span><span lang="en">A large sum, like the first</span></td></tr>
+   <tr><td><span lang="el">Κίνδυνος από τον πωλητή</span><span lang="en">Seller risk</span></td><td class="lose"><span lang="el">Ναι: πρέπει να ελέγξεις ότι πλήρωσε τις δόσεις του</span><span lang="en">Yes: you must check he paid his instalments</span></td><td class="newc win"><span lang="el">Όχι, πληρώνεις κατευθείαν στο escrow</span><span lang="en">No, you pay straight into escrow</span></td><td><span lang="el">Ναι</span><span lang="en">Yes</span></td></tr>
+   <tr><td>Golden Visa</td><td><span lang="el">Ναι, μετά την παράδοση (οριακά: η κατασκευαστική παίρνει 2.015.040 AED)</span><span lang="en">Yes, after handover (just: the developer gets AED 2,015,040)</span></td><td class="newc win"><span lang="el">Ναι, μετά την παράδοση, με άνεση (η κατασκευαστική παίρνει 2.420.000 AED)</span><span lang="en">Yes, after handover, comfortably (the developer gets AED 2,420,000)</span></td><td><span lang="el">Μάλλον, εξαρτάται από την αρχική τιμή</span><span lang="en">Probably, depends on the original price</span></td></tr>
+   <tr><td><span lang="el">Παράδοση</span><span lang="en">Handover</span></td><td>12/2027</td><td class="newc">12/2027</td><td>12/2027</td></tr>
+  </tbody></table></div>
+
+ <div class="card">
+  <h3><span lang="el">Πόσα βάζεις συνολικά</span><span lang="en">Total you put in</span></h3>
+  <div class="bars">
+   <div class="bar"><span class="lab"><span lang="el">Πρώτη πρόταση</span><span lang="en">First offer</span><small><span lang="el">9ος όροφος</span><span lang="en">9th floor</span></small></span><div class="track"><div class="fill you" style="width:99%"></div><span class="val"><span class="nm">€648.245</span></span></div></div>
+   <div class="bar"><span class="lab"><span lang="el">ΝΕΑ πρόταση</span><span lang="en">NEW offer</span><small><span lang="el">2ος όροφος</span><span lang="en">2nd floor</span></small></span><div class="track"><div class="fill newf" style="width:66%"></div><span class="val"><span class="nm">€599.254</span></span></div></div>
+   <div class="bar"><span class="lab"><span lang="el">Ίδιος πύργος, αγγελία</span><span lang="en">Same tower, listing</span><small><span lang="el">όροφος άγνωστος</span><span lang="en">floor unknown</span></small></span><div class="track"><div class="fill" style="width:63%"></div><span class="val"><span class="nm">€595.046</span></span></div></div>
+   <div class="bar"><span class="lab"><span lang="el">Φθηνότερη αγγελία</span><span lang="en">Cheapest listing</span><small><span lang="el">Πύργος 2, θάλασσα</span><span lang="en">Tower 2, sea</span></small></span><div class="track"><div class="fill best" style="width:47%"></div><span class="val"><span class="nm">€569.779</span></span></div></div>
+  </div>
+  <p class="muted"><span lang="el">Η κλίμακα ξεκινά από €500.000, για να φαίνονται οι διαφορές. Όλα με τα έξοδα αγοράς.</span><span lang="en">The scale starts at €500,000 so the differences show. All include buying costs.</span></p>
+ </div>
+
+ <div class="card">
+  <h3><span lang="el">Πότε πληρώνεις</span><span lang="en">When you pay</span></h3>
+  <div class="tbl pay"><table>
+   <thead><tr><th><span lang="el">Πότε</span><span lang="en">When</span></th><th class="n"><span lang="el">Πρώτη πρόταση</span><span lang="en">First offer</span></th><th class="n newc"><span lang="el">ΝΕΑ πρόταση</span><span lang="en">NEW offer</span></th></tr></thead>
+   <tbody>
+    <tr><td><span lang="el">Με την υπογραφή</span><span lang="en">On signing</span></td><td class="n lose"><span class="nm">€269.202</span></td><td class="n newc win"><span class="nm">€41.244</span><small><span lang="el">5% + έξοδα</span><span lang="en">5% + costs</span></small></td></tr>
+    <tr><td><span lang="el">+30 μέρες</span><span lang="en">+30 days</span></td><td class="n">—</td><td class="n newc"><span class="nm">€29.369</span></td></tr>
+    <tr><td><span lang="el">Δεκ 2026 – Νοε 2027</span><span lang="en">Dec 2026 – Nov 2027</span></td><td class="n"><span class="nm">€85.590</span><small><span lang="el">3 δόσεις</span><span lang="en">3 instalments</span></small></td><td class="n newc"><span class="nm">€117.476</span><small><span lang="el">4 δόσεις των €29.369</span><span lang="en">4 × €29,369</span></small></td></tr>
+    <tr><td><span lang="el">Παράδοση, Δεκ 2027</span><span lang="en">Handover, Dec 2027</span></td><td class="n win"><span class="nm">€293.452</span><small>60%</small></td><td class="n newc lose"><span class="nm">€411.165</span><small>70%</small></td></tr>
+    <tr class="tot"><td><b><span lang="el">Σύνολο</span><span lang="en">Total</span></b></td><td class="n"><b><span class="nm">€648.245</span></b></td><td class="n newc"><b><span class="nm">€599.254</span></b></td></tr>
+   </tbody></table></div>
+  <p class="muted"><span lang="el">Με τη νέα, τα περισσότερα λεφτά μένουν στην τσέπη σου ως τον Δεκέμβριο 2027. Πρέπει όμως να έχεις έτοιμα €411.000 στην παράδοση (ή δάνειο, που όμως χαλάει το Golden Visa, καρτέλα 7).</span><span lang="en">With the new one, most of the money stays in your pocket until December 2027. But you need €411,000 ready at handover (or a mortgage, which spoils the Golden Visa, tab 7).</span></p>
+ </div>
+
+ <div class="card opinion">
+  <h3><span lang="el">Η γνώμη μου</span><span lang="en">My opinion</span></h3>
+  <div class="lights">
+   <div class="lt"><span class="dot g"><span lang="el">Ασφάλεια</span><span lang="en">Safety</span></span><span lang="el">Αγοράζεις από την κατασκευαστική. Δεν υπάρχει πωλητής να ελέγξεις και τα λεφτά πάνε κατευθείαν στο escrow.</span><span lang="en">You buy from the developer. No seller to check, and the money goes straight into escrow.</span></div>
+   <div class="lt"><span class="dot g"><span lang="el">Πληρωμές</span><span lang="en">Payments</span></span><span lang="el">€199.000 λιγότερα τώρα και €15.000 λιγότερα έξοδα.</span><span lang="en">€199,000 less now and €15,000 less in costs.</span></div>
+   <div class="lt"><span class="dot y"><span lang="el">Τιμή</span><span lang="en">Price</span></span><span lang="el">Καλύτερη από την πρώτη, όχι όμως ευκαιρία. Στη μεταπώληση υπάρχουν ίδια διαμερίσματα από ≈€570.000 όλα μαζί.</span><span lang="en">Better than the first, but not a bargain. Resales of the same apartment start at ≈€570,000 all in.</span></div>
+   <div class="lt"><span class="dot r"><span lang="el">Όροφος</span><span lang="en">Floor</span></span><span lang="el">Ο 2ος όροφος έχει λιγότερη θέα και περισσότερο θόρυβο, και πουλιέται πιο δύσκολα. Υπολογίζω ότι θα αξίζει 3–8% λιγότερο από έναν ψηλό όροφο.</span><span lang="en">The 2nd floor has less view and more noise, and is harder to resell. I estimate it is worth 3–8% less than a high floor.</span></div>
+  </div>
+  <p><span lang="el"><b>Ανάμεσα στις δύο προτάσεις που σου έστειλαν, παίρνω καθαρά τη νέα.</b> Σε 10 χρόνια περιμένω περίπου <b>+€200.000 έως +€255.000</b> (≈2,6–3,3% τον χρόνο), ανάλογα πόσο λιγότερο θα αξίζει ο 2ος όροφος. Η πρώτη έδινε +€209.000 με €49.000 περισσότερα λεφτά. Η μεγάλη εικόνα δεν αλλάζει: είναι λογική επένδυση, όχι εξαιρετική, και το ETF (καρτέλα 6) έχει ακόμα μεγαλύτερο αναμενόμενο κέρδος.</span><span lang="en"><b>Between the two offers you were sent, I clearly take the new one.</b> Over 10 years I expect roughly <b>+€200,000 to +€255,000</b> (≈2.6–3.3% a year), depending on how much less the 2nd floor is worth. The first gave +€209,000 with €49,000 more money. The big picture does not change: it is a sensible investment, not an outstanding one, and the ETF (tab 6) still has a higher expected profit.</span></p>
+ </div>
+
+ <div class="card">
+  <h3><span lang="el">Πριν υπογράψεις, ζήτα γραπτώς</span><span lang="en">Before you sign, ask in writing</span></h3>
+  <ol class="steps">
+   <li><span lang="el"><b>Ψηλότερο όροφο.</b> Τι κοστίζει το ίδιο διαμέρισμα στον 8ο–15ο όροφο με το ίδιο πρόγραμμα; Αν η διαφορά είναι μικρή (κάτω από ≈3%), προτίμησε τον ψηλό.</span><span lang="en"><b>A higher floor.</b> What does the same apartment cost on floors 8–15 with the same plan? If the difference is small (under ≈3%), prefer the high one.</span></li>
+   <li><span lang="el"><b>Έκπτωση για τον 2ο όροφο.</b> Ζήτα ≈2.300.000 AED, ή να πληρώσουν αυτοί το 2% του ADGM (48.400 AED). Οι κατασκευαστικές το κάνουν συχνά.</span><span lang="en"><b>A discount for the 2nd floor.</b> Ask for ≈AED 2,300,000, or for them to pay the 2% ADGM fee (AED 48,400). Developers often do.</span></li>
+   <li><span lang="el"><b>Τι βλέπει ο 2ος όροφος.</b> Φωτογραφία ή βίντεο από εκείνο το ύψος. Η κάτοψη γράφει «sea view», αλλά από τον 2ο όροφο μπορεί να βλέπεις το podium, δρόμο ή δέντρα.</span><span lang="en"><b>What the 2nd floor sees.</b> A photo or video from that height. The plan says «sea view», but from floor 2 you may see the podium, a road or trees.</span></li>
+   <li><span lang="el"><b>Το 70% στις 31/12/2027:</b> να γράφει ότι πληρώνεται <b>με την παράδοση των κλειδιών</b>, όχι σε σταθερή ημερομηνία ακόμα κι αν το κτίριο καθυστερήσει.</span><span lang="en"><b>The 70% on 31/12/2027:</b> it must say it is paid <b>on handover of the keys</b>, not on a fixed date even if the building is late.</span></li>
+   <li><span lang="el"><b>Καμία προμήθεια μεσίτη.</b> Η πρόταση δεν γράφει προμήθεια. Όταν αγοράζεις από την κατασκευαστική, συνήθως την πληρώνει εκείνη.</span><span lang="en"><b>No agent's fee.</b> The offer lists none. When you buy from the developer, it usually pays the agent.</span></li>
+   <li><span lang="el"><b>Κοινόχρηστα</b> ανά ft² τον χρόνο, και <b>γραπτή επιβεβαίωση για το Golden Visa</b> μετά την παράδοση.</span><span lang="en"><b>Service charges</b> per ft² a year, and <b>written confirmation of the Golden Visa</b> after handover.</span></li>
+  </ol>
+ </div>
+ <a class="next" href="#price"><span lang="el">Επόμενο: Η πρώτη πρόταση & οι αγγελίες →</span><span lang="en">Next: The first offer & the listings →</span></a>
 </section>
 
 <!-- 2 HOME & PRICE -->
@@ -494,7 +592,7 @@ footer{font-size:13.5px;color:var(--muted);border-top:1px solid var(--line);padd
    <div class="bar"><span class="lab"><span lang="el">Νέα έργα Al Reem</span><span lang="en">New Al Reem projects</span><small><span lang="el">Thoraya έως Seamont</span><span lang="en">Thoraya to Seamont</span></small></span><div class="track"><div class="fill" style="width:76%"></div><span class="val"><span class="nm">16.000</span>–<span class="nm">29.000</span> AED</span></div></div>
    <div class="bar"><span class="lab"><span lang="el">Ακριβότερο Al Reem</span><span lang="en">Priciest Al Reem</span></span><div class="track"><div class="fill" style="width:100%"></div><span class="val"><span class="nm">38.000</span> AED</span></div></div>
   </div>
-  <p class="muted"><span lang="el">Το Radisson δεν αναφέρεται με το όνομά του στην έκθεση. Η τιμή ανά m² είναι ≈7% κάτω από τον μέσο όρο του Al Reem. Αυτό δεν αλλάζει το βασικό: στον ίδιο πύργο το ίδιο διαμέρισμα ζητείται φθηνότερα (καρτέλα 2).</span><span lang="en">Radisson is not named in the report. Its price per m² is ≈7% below the Al Reem average. That does not change the main point: the same apartment in the same tower is listed for less (tab 2).</span></p>
+  <p class="muted"><span lang="el">Το Radisson δεν αναφέρεται με το όνομά του στην έκθεση. Η τιμή ανά m² είναι ≈7% κάτω από τον μέσο όρο του Al Reem. Αυτό δεν αλλάζει το βασικό: στον ίδιο πύργο το ίδιο διαμέρισμα ζητείται φθηνότερα (καρτέλα 3).</span><span lang="en">Radisson is not named in the report. Its price per m² is ≈7% below the Al Reem average. That does not change the main point: the same apartment in the same tower is listed for less (tab 3).</span></p>
  </div>
 
  <div class="two">
@@ -552,7 +650,7 @@ footer{font-size:13.5px;color:var(--muted);border-top:1px solid var(--line);padd
  <div class="card">
   <p><span lang="el">Δεν είμαι αδειοδοτημένος χρηματοοικονομικός σύμβουλος ή δικηγόρος. Αυτή είναι δική μου ανάλυση με δημόσια στοιχεία και δικές μου παραδοχές. Οι πιθανότητες είναι δική μου κρίση. Οι προβλέψεις δεν είναι εγγυήσεις. Πριν επενδύσεις, μίλα με ανεξάρτητο σύμβουλο.</span><span lang="en">I am not a licensed financial adviser or lawyer. This is my own analysis with public data and my own assumptions. The odds are my own judgement. Forecasts are not guarantees. Before investing, talk to an independent adviser.</span></p>
   <ul>
-   <li><span lang="el">Ο φάκελός σου: σημείωμα τιμής, σύμβαση κράτησης, κάτοψη, διαφάνειες κατασκευαστικής, έκθεση ADREC α΄ εξάμηνο 2026.</span><span lang="en">Your folder: price note, reservation agreement, floor plan, developer slides, ADREC H1 2026 report.</span></li>
+   <li><span lang="el">Ο φάκελός σου: σημείωμα τιμής, σύμβαση κράτησης, κάτοψη, διαφάνειες κατασκευαστικής, έκθεση ADREC α΄ εξάμηνο 2026, νέα πρόταση της κατασκευαστικής για τη μονάδα RR1-4-208 (5 Οκτ 2026).</span><span lang="en">Your folder: price note, reservation agreement, floor plan, developer slides, ADREC H1 2026 report, the developer's new offer for unit RR1-4-208 (5 Oct 2026).</span></li>
    <li><a href="https://www.propertyfinder.ae/en/buy/abu-dhabi/2-bedroom-apartments-for-sale-al-reem-island-city-of-lights-radisson-residences.html" target="_blank" rel="noopener">Property Finder</a> · <a href="https://www.bayut.com/for-sale/2-bedroom-apartments/abu-dhabi/al-reem-island/city-of-lights/radisson-residences/" target="_blank" rel="noopener">Bayut</a> · <a href="https://www.bayut.com/property-market-analysis/index/rent/properties/abu-dhabi/al-reem-island/" target="_blank" rel="noopener">Bayut rent index</a></li>
    <li><a href="https://www.cushwake.ae/en/marketbeats/marketbeat-residential-q2-2026-abu-dhabi-uae" target="_blank" rel="noopener">Cushman &amp; Wakefield Q2 2026</a> · <a href="https://valustrat.com/products/abu-dhabi-q1-2026-property-market-research-report" target="_blank" rel="noopener">ValuStrat Q1 2026</a> · <a href="https://www.thenationalnews.com/business/property/2026/07/22/abu-dhabi-home-prices-surge-in-first-half-of-2026-despite-iran-war-uncertainty/" target="_blank" rel="noopener">The National (H1 2026)</a> · <a href="https://www.agbi.com/real-estate/2026/09/inside-abu-dhabis-war-defying-property-surge/" target="_blank" rel="noopener">AGBI</a> · <a href="https://www.bis.org/statistics/pp_box_nov15.pdf" target="_blank" rel="noopener">BIS</a></li>
    <li><a href="https://en.wikipedia.org/wiki/Disneyland_Abu_Dhabi" target="_blank" rel="noopener">Disneyland Abu Dhabi</a> · <a href="https://themainstreetmouse.com/2026/08/23/everything-we-know-about-disneyland-abu-dhabi-location-opening-timeline-and-what-to-expect/" target="_blank" rel="noopener">Disney timeline</a> · <a href="https://www.adgm.com/about-adgm/alreemisland" target="_blank" rel="noopener">ADGM – Al Reem</a> · <a href="https://economymiddleeast.com/news/adgm-completes-integration-of-al-reem-island-into-its-jurisdiction/" target="_blank" rel="noopener">ADGM integration</a> · <a href="https://en.wikipedia.org/wiki/Al_Maryah_Island" target="_blank" rel="noopener">Al Maryah Island</a></li>
@@ -570,8 +668,8 @@ footer{font-size:13.5px;color:var(--muted);border-top:1px solid var(--line);padd
  function setL(l){nums.forEach(function(e){e.textContent=(l==='en'?e._en:e._el)});document.body.classList.toggle('en',l==='en');document.documentElement.lang=l;el.setAttribute('aria-pressed',l==='el');en.setAttribute('aria-pressed',l==='en');try{localStorage.setItem('rad-lang',l)}catch(e){}}
  el.addEventListener('click',function(){setL('el')});en.addEventListener('click',function(){setL('en')});
  var s=null;try{s=localStorage.getItem('rad-lang')}catch(e){}setL(s==='en'?'en':'el');
- var ids=['summary','price','future','years','choose','visa','adrec','sources'];
- var map={report:'adrec',forecast:'future',plan:'years',options:'choose',evidence:'price'};
+ var ids=['summary','offer','price','future','years','choose','visa','adrec','sources'];
+ var map={report:'adrec',new:'offer',forecast:'future',plan:'years',options:'choose',evidence:'price'};
  function show(id){id=map[id]||id;if(ids.indexOf(id)<0)id='summary';ids.forEach(function(x){document.getElementById(x).classList.toggle('on',x===id)});
   [].forEach.call(document.querySelectorAll('.tabs a'),function(a){var on=a.getAttribute('href')==='#'+id;a.setAttribute('aria-current',on?'true':'false');if(on&&a.scrollIntoView)a.scrollIntoView({block:'nearest',inline:'center'})});}
  function fromHash(){show((location.hash||'#summary').slice(1))}

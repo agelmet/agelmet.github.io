@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-04",
+ "updated": "2026-10-07",
  "note": "SALES tab in the CRM Meta view — posted only by hand («Post on Instagram + Facebook» / TikTok), never scheduled.",
  "posts": [
   {
@@ -77,6 +77,48 @@
    ],
    "cover": "sales/C-ti-tha-paei-strava-cover.jpg",
    "group": "pin"
+  },
+  {
+   "id": "sales-J-asthenis",
+   "type": "reel",
+   "title": "«Ένας ασθενής σάς έψαξε στο Google»",
+   "kind": "NEW · φωνή Theon · vogiatzis-dent.gr, eye-orl.gr",
+   "caption": "Ένας ασθενής σάς έψαξε στο Google.\nΒρήκε τον συνάδελφό σας. Με ιστοσελίδα.\nΕκεί έκλεισε ραντεβού.\n\nΤην επόμενη φορά, να βρουν εσάς.\n\nΚατασκευή ιστοσελίδας: 5̶0̶0̶€̶ ̶–̶ ̶5̶.̶0̶0̶0̶€̶ 0€. Μόνο 10,83€ τον μήνα, χωρίς προκαταβολή, με απεριόριστες αλλαγές. 220+ ιστοσελίδες live, 125+ κριτικές στο Google, όλες 5 αστέρων.\n\nLink στο bio, ή στείλτε μας «ΣΕΛΙΔΑ» σε μήνυμα.",
+   "hashtags": "#κατασκευήιστοσελίδων #ιστοσελίδα #webdesign #advonmedia #reels #οδοντίατρος #γιατρός",
+   "tiktok": "Ένας ασθενής σάς έψαξε στο Google… και βρήκε τον συνάδελφό σας. Με ιστοσελίδα. #ιστοσελίδα #οδοντίατρος #γιατρός #webdesign #advonmedia",
+   "media": [
+    "sales/J-asthenis.mp4"
+   ],
+   "cover": "sales/J-asthenis-cover.jpg",
+   "group": "organic"
+  },
+  {
+   "id": "sales-K-xrysos-odigos",
+   "type": "reel",
+   "title": "«Ο Χρυσός Οδηγός ήταν πολύ ωραίος»",
+   "kind": "NEW · φωνή Theon · banos-panagiotis-psychologist.gr, mariamalapetsa-mentalhealth.gr",
+   "caption": "Ο Χρυσός Οδηγός ήταν πολύ ωραίος. Το 2005.\n\nΤώρα όλοι ψάχνουν στο κινητό — και διαλέγουν αυτόν που τους εμπνέει εμπιστοσύνη με την πρώτη ματιά.\n\nΚατασκευή ιστοσελίδας: 5̶0̶0̶€̶ ̶–̶ ̶5̶.̶0̶0̶0̶€̶ 0€. Μόνο 10,83€ τον μήνα, χωρίς προκαταβολή, με απεριόριστες αλλαγές. 220+ ιστοσελίδες live, 125+ κριτικές στο Google, όλες 5 αστέρων.\n\nLink στο bio, ή στείλτε μας «ΣΕΛΙΔΑ» σε μήνυμα.",
+   "hashtags": "#κατασκευήιστοσελίδων #ιστοσελίδα #webdesign #advonmedia #reels #ψυχολόγος #ψυχοθεραπεία",
+   "tiktok": "Ο Χρυσός Οδηγός ήταν πολύ ωραίος. Το 2005. Τώρα όλοι ψάχνουν στο κινητό. #ιστοσελίδα #ψυχολόγος #webdesign #advonmedia",
+   "media": [
+    "sales/K-xrysos-odigos.mp4"
+   ],
+   "cover": "sales/K-xrysos-odigos-cover.jpg",
+   "group": "organic"
+  },
+  {
+   "id": "sales-L-fortwnei",
+   "type": "reel",
+   "title": "«Η ιστοσελίδα σας φορτώνει…»",
+   "kind": "NEW · φωνή Theon · anthithoma-psychologist.gr, charatzoanou.gr",
+   "caption": "Η ιστοσελίδα σας φορτώνει… ακόμα φορτώνει.\nΟ επισκέπτης έφυγε. Πήγε στον επόμενο.\n\nΜην αφήνετε κανέναν να περιμένει.\n\nΚατασκευή ιστοσελίδας: 5̶0̶0̶€̶ ̶–̶ ̶5̶.̶0̶0̶0̶€̶ 0€. Μόνο 10,83€ τον μήνα, χωρίς προκαταβολή, με απεριόριστες αλλαγές. 220+ ιστοσελίδες live, 125+ κριτικές στο Google, όλες 5 αστέρων.\n\nLink στο bio, ή στείλτε μας «ΣΕΛΙΔΑ» σε μήνυμα.",
+   "hashtags": "#κατασκευήιστοσελίδων #ιστοσελίδα #webdesign #advonmedia #reels #ψυχολόγος #ψυχοθεραπεία",
+   "tiktok": "Η ιστοσελίδα σας φορτώνει… ακόμα φορτώνει. Ο επισκέπτης έφυγε. #ιστοσελίδα #ψυχολόγος #webdesign #advonmedia",
+   "media": [
+    "sales/L-fortwnei.mp4"
+   ],
+   "cover": "sales/L-fortwnei-cover.jpg",
+   "group": "organic"
   },
   {
    "id": "sales-I-doctoranytime",

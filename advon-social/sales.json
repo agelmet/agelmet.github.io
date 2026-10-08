@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-07",
+ "updated": "2026-10-08",
  "note": "SALES tab in the CRM Meta view — posted only by hand («Post on Instagram + Facebook» / TikTok), never scheduled.",
  "posts": [
   {
@@ -79,20 +79,6 @@
    "group": "pin"
   },
   {
-   "id": "sales-M-2347",
-   "type": "reel",
-   "title": "«Είναι 23:47. Το παιδί έχει πυρετό»",
-   "kind": "NEW · φωνή Panos · chatzistratis-paidiatros.gr, thanos-paidiatros.gr",
-   "caption": "Είναι 23:47. Το παιδί έχει πυρετό και η μαμά ψάχνει παιδίατρο στο κινητό.\nΗ γραμματέας σας κοιμάται. Η ιστοσελίδα σας, όχι.\n\nΩράριο, τηλέφωνο, πού βρίσκεστε — όλα με ένα άγγιγμα, όποια ώρα κι αν σας ψάχνουν.\n\nΚατασκευή ιστοσελίδας: 5̶0̶0̶€̶ ̶–̶ ̶5̶.̶0̶0̶0̶€̶ 0€. Μόνο 10,83€ τον μήνα, χωρίς προκαταβολή, με απεριόριστες αλλαγές. 220+ ιστοσελίδες live, 125+ κριτικές στο Google, όλες 5 αστέρων.\n\nLink στο bio, ή στείλτε μας «ΣΕΛΙΔΑ» σε μήνυμα.",
-   "hashtags": "#κατασκευήιστοσελίδων #ιστοσελίδα #webdesign #advonmedia #reels #παιδίατρος #γιατρός",
-   "tiktok": "Είναι 23:47. Το παιδί έχει πυρετό. Η γραμματέας σας κοιμάται… η ιστοσελίδα σας, όχι. #παιδίατρος #γιατρός #ιστοσελίδα #advonmedia",
-   "media": [
-    "sales/M-2347.mp4"
-   ],
-   "cover": "sales/M-2347-cover.jpg",
-   "group": "organic"
-  },
-  {
    "id": "sales-N-mathimatika",
    "type": "reel",
    "title": "«Ένα γρήγορο μάθημα μαθηματικών»",
@@ -129,7 +115,7 @@
    "hashtags": "#κατασκευήιστοσελίδων #ιστοσελίδα #webdesign #advonmedia #reels #οδοντίατρος #γιατρός",
    "tiktok": "Ένας ασθενής σάς έψαξε στο Google… και βρήκε τον συνάδελφό σας. Με ιστοσελίδα. #ιστοσελίδα #οδοντίατρος #γιατρός #webdesign #advonmedia",
    "media": [
-    "sales/J-asthenis.mp4"
+    "sales/J-asthenis-v2.mp4"
    ],
    "cover": "sales/J-asthenis-cover.jpg",
    "group": "organic"

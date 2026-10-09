@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="el">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="color-scheme" content="light only">
+<title>Αυτοματοποίηση για επιχειρήσεις — Advon Media (προσχέδιο)</title>
+<link rel="preload" href="assets/fonts/manrope-greek-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/a.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230E1A33'/%3E%3Cpath d='M9 22l7-12 7 12' stroke='%23fff' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<style>
+.draft{background:var(--amber-s);border-bottom:1px solid #F3D9A8;color:#7A4A00;font-size:14px;font-weight:600;text-align:center;padding:9px 16px}
+.ohero{background:var(--deep);color:#E7EBF5;padding:96px 0 104px;position:relative;overflow:hidden;border:0}
+.ohero:before{content:"";position:absolute;width:720px;height:720px;right:-180px;top:-260px;border-radius:50%;background:radial-gradient(circle,rgba(35,70,232,.55),transparent 65%);animation:drift 22s ease-in-out infinite alternate}
+.ohero:after{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.08) 1px,transparent 1px);background-size:26px 26px;mask-image:linear-gradient(to bottom,#000,transparent)}
+@keyframes drift{to{transform:translate(-80px,60px)}}
+.ohero .wrap{position:relative;z-index:1}
+.ohero h1{color:#fff;max-width:900px}
+.ohero h1 span{color:#9FB4FF}
+.ohero .lead{color:#C2CBE0;max-width:720px}
+.ohero .tag{background:rgba(255,255,255,.1);color:#C9D4FF}
+.ohero .btn.ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.25);box-shadow:none}
+.chk{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:30px;font-weight:600;font-size:15px;color:#DCE3F3}
+.chk span:before{content:"✓";color:#7FE0B0;margin-right:8px;font-weight:800}
+.pain{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.pain .card{font-weight:600;font-size:16.5px;line-height:1.45}
+.pain .card span{display:block;font-size:13px;font-weight:800;letter-spacing:.08em;color:var(--red);margin-bottom:8px}
+.how{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.how .card{position:relative;padding-top:58px}
+.how .n{position:absolute;top:20px;left:24px;font-size:13px;font-weight:800;letter-spacing:.1em;color:var(--blue)}
+.ex{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.ex .card h3{font-size:18px}
+.ex .card p{font-size:15px;color:var(--ink2)}
+.guar{display:grid;grid-template-columns:auto 1fr;gap:30px;align-items:center;background:var(--card);border:2px solid var(--green);border-radius:24px;padding:36px;box-shadow:var(--sh2)}
+.seal{width:120px;height:120px;border-radius:50%;border:3px solid var(--green);display:grid;place-items:center;text-align:center;font-weight:800;color:var(--green);font-size:14px;line-height:1.25;transform:rotate(-8deg)}
+.pr{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.pr .card{display:flex;flex-direction:column}
+.pr .amt{font-size:32px;font-weight:800;letter-spacing:-.03em;margin:8px 0}
+.pr .amt small{font-size:15px;color:var(--ink3);font-weight:600}
+.pr .hl{border:2px solid var(--blue);box-shadow:var(--sh2)}
+.pr ul{font-size:15px}
+.safe{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.safe .card{padding:20px}
+.safe h3{font-size:16.5px}
+.safe p{font-size:14.5px;color:var(--ink2)}
+.faq details{background:var(--card);border:1px solid var(--line);border-radius:14px;margin-bottom:10px;padding:0 20px}
+.faq summary{cursor:pointer;font-weight:700;padding:16px 30px 16px 0;list-style:none;position:relative}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:after{content:"+";position:absolute;right:0;top:12px;font-size:22px;color:var(--ink3)}
+.faq details[open] summary:after{content:"–"}
+.faq p{color:var(--ink2)}
+.cta{background:var(--deep);color:#E7EBF5;border-radius:28px;padding:56px;text-align:center}
+.cta h2{color:#fff}
+.cta p{color:#C2CBE0;max-width:620px;margin:0 auto 24px}
+@media (max-width:980px){.pain,.ex{grid-template-columns:1fr 1fr}.safe{grid-template-columns:1fr 1fr}}
+@media (max-width:680px){.pain,.ex,.how,.pr,.safe{grid-template-columns:1fr}.guar{grid-template-columns:1fr;text-align:center;padding:26px}.seal{margin:0 auto}.ohero{padding:64px 0 72px}.cta{padding:36px 20px}}
+@media (prefers-reduced-motion:reduce){.ohero:before{animation:none}}
+</style>
+</head>
+<body>
+<script>document.documentElement.classList.add('js')</script>
+<header class="top"><div class="wrap">
+ <a class="brand" href="index.html"><i>A</i><span>Advon Automation</span> <small>draft</small></a>
+ <nav class="tabs"><a href="index.html">The plan</a><a href="demo.html">Client demo</a><a class="on" href="offer.html">Offer page</a></nav>
+</div></header>
+<div class="draft">ΠΡΟΣΧΕΔΙΟ — η σελίδα που θα έβλεπε ένας υποψήφιος πελάτης. Δεν είναι δημοσιευμένη.</div>
+
+<main>
+<section class="ohero"><div class="wrap">
+ <span class="tag">Advon Media · Αυτοματοποίηση για επιχειρήσεις</span>
+ <h1 style="margin-top:20px">Οι επαναλαμβανόμενες δουλειές της επιχείρησής σας, <span>να γίνονται μόνες τους.</span></h1>
+ <p class="lead">Διαλέγουμε μαζί τη δουλειά που σας παίρνει τις περισσότερες ώρες κάθε εβδομάδα — αναφορές, Excel, απόθεμα, απλήρωτα — και την αυτοματοποιούμε σε δύο εβδομάδες. Η πρώτη γίνεται χωρίς χρέωση και πληρώνετε μόνο αφού δείτε το αποτέλεσμα.</p>
+ <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:28px"><a class="btn" href="mailto:angelos@advonmedia.com?subject=%CE%91%CF%85%CF%84%CE%BF%CE%BC%CE%B1%CF%84%CE%BF%CF%80%CE%BF%CE%AF%CE%B7%CF%83%CE%B7%20%E2%80%94%20%CF%81%CE%B1%CE%BD%CF%84%CE%B5%CE%B2%CE%BF%CF%8D%2020%CE%BB">Κλείστε μια συνάντηση 20 λεπτών</a><a class="btn ghost" href="demo.html">Δείτε ένα παράδειγμα</a></div>
+ <div class="chk"><span>Πρώτος αυτοματισμός χωρίς χρέωση</span><span>Έτοιμος σε 2 εβδομάδες</span><span>Χωρίς προκαταβολή</span><span>Χωρίς δέσμευση</span><span>Τα δεδομένα μένουν σε εσάς</span></div>
+</div></section>
+
+<section><div class="wrap">
+ <div class="kick">Σας θυμίζει κάτι;</div>
+ <h2>Ώρες που χάνονται κάθε εβδομάδα</h2>
+ <div class="pain" style="margin-top:24px">
+  <div class="card rv"><span>ΚΑΘΕ ΠΡΩΙ</span>Κάποιος ενώνει Excel από τα καταστήματα για να δείτε πώς πήγε η χθεσινή μέρα.</div>
+  <div class="card rv"><span>ΑΠΟΘΕΜΑ</span>Μαθαίνετε ότι τελείωσε ένα προϊόν όταν το ζητήσει ο πελάτης.</div>
+  <div class="card rv"><span>ΑΠΛΗΡΩΤΑ</span>Τιμολόγια μένουν ανεξόφλητα μήνες, γιατί κανείς δεν προλαβαίνει να τα κυνηγήσει.</div>
+  <div class="card rv"><span>ΠΑΡΑΣΤΑΤΙΚΑ</span>Κατεβάζετε, μετονομάζετε και στέλνετε PDF στον λογιστή, ένα ένα.</div>
+  <div class="card rv"><span>ΕΡΩΤΗΣΕΙΣ</span>«Πόσο πουλήσαμε στη Θεσσαλονίκη;» — «Θα σας το βγάλω αύριο».</div>
+  <div class="card rv"><span>ΛΑΘΗ</span>Ένα λάθος στην αντιγραφή και η αναφορά του μήνα δεν βγαίνει σωστή.</div>
+ </div>
+</div></section>
+
+<section><div class="wrap">
+ <div class="kick">Πώς δουλεύουμε</div>
+ <h2>Τρία βήματα. Εσείς δεν αλλάζετε τίποτα.</h2>
+ <div class="how" style="margin-top:24px">
+  <div class="card rv"><span class="n">ΒΗΜΑ 1 · 20 ΛΕΠΤΑ</span><h3>Μας δείχνετε τι σας τρώει χρόνο</h3><p class="muted">Σε μια σύντομη συνάντηση καταγράφουμε τις 5 δουλειές που γίνονται στο χέρι, ποιος τις κάνει και πόσες ώρες παίρνουν.</p></div>
+  <div class="card rv"><span class="n">ΒΗΜΑ 2 · 2 ΕΒΔΟΜΑΔΕΣ</span><h3>Αυτοματοποιούμε την πρώτη</h3><p class="muted">Συνδεόμαστε με το σύστημά σας μόνο για ανάγνωση, φτιάχνουμε τον αυτοματισμό και τον δοκιμάζουμε δίπλα στον παλιό τρόπο.</p></div>
+  <div class="card rv"><span class="n">ΒΗΜΑ 3 · ΑΠΟΤΕΛΕΣΜΑ</span><h3>Βλέπετε τις ώρες που γλιτώσατε</h3><p class="muted">Σας δείχνουμε τα νούμερα πριν και μετά. Αν σας αρέσει, συνεχίζουμε με τις υπόλοιπες δουλειές με ένα σταθερό μηνιαίο.</p></div>
+ </div>
+</div></section>
+
+<section><div class="wrap">
+ <div class="kick">Τι αυτοματοποιούμε</div>
+ <h2>Μερικά παραδείγματα</h2>
+ <div class="ex" style="margin-top:24px">
+  <div class="card rv"><h3>Πρωινή αναφορά στο κινητό</h3><p>Πωλήσεις, απόθεμα και ό,τι θέλει προσοχή, κάθε πρωί στις 8:00 — χωρίς να την ετοιμάσει κανείς.</p></div>
+  <div class="card rv"><h3>Απόθεμα και παραγγελίες</h3><p>Ειδοποίηση πριν τελειώσει ένα προϊόν, με έτοιμη πρόταση παραγγελίας ανά προμηθευτή.</p></div>
+  <div class="card rv"><h3>Ένας πίνακας αντί για δέκα Excel</h3><p>Τα στοιχεία όλων των καταστημάτων σε μία οθόνη, πάντα ενημερωμένη.</p></div>
+  <div class="card rv"><h3>Υπενθυμίσεις για απλήρωτα</h3><p>Λίστα ανεξόφλητων τιμολογίων με έτοιμο, ευγενικό μήνυμα για κάθε πελάτη.</p></div>
+  <div class="card rv"><h3>Παραστατικά προς τον λογιστή</h3><p>Τα τιμολόγια που έρχονται με e‑mail αρχειοθετούνται και φτάνουν στον λογιστή μόνα τους.</p></div>
+  <div class="card rv"><h3>Ερωτήσεις στα δεδομένα σας</h3><p>Γράφετε «πόσο πουλήσαμε στην Κρήτη τον Σεπτέμβριο;» και παίρνετε την απάντηση αμέσως.</p></div>
+ </div>
+</div></section>
+
+<section><div class="wrap">
+ <div class="guar rv">
+  <div class="seal">ΧΩΡΙΣ<br>ΡΙΣΚΟ</div>
+  <div><h2 style="font-size:clamp(24px,3vw,34px)">Η εγγύησή μας</h2><p class="lead" style="margin:0">Πριν ξεκινήσουμε, συμφωνούμε γραπτά πόσες ώρες την εβδομάδα πρέπει να σας γλιτώνει ο πρώτος αυτοματισμός. Αν δεν τις γλιτώνει, δεν πληρώνετε τίποτα — και τα αρχεία που φτιάξαμε μένουν σε εσάς.</p></div>
+ </div>
+</div></section>
+
+<section><div class="wrap">
+ <div class="kick">Κόστος</div>
+ <h2>Σταθερό μηνιαίο, χωρίς δέσμευση</h2>
+ <p class="lead">Μετά τον πρώτο αυτοματισμό χωρίς χρέωση. Οι τιμές δεν περιλαμβάνουν ΦΠΑ.</p>
+ <div class="pr" style="margin-top:24px">
+  <div class="card rv"><h3>Ξεκίνημα</h3><div class="amt">390€ <small>/μήνα</small></div><ul class="clean"><li>Έως 3 αυτοματισμοί</li><li>Πρωινή αναφορά</li><li>Διορθώσεις και προσαρμογές</li><li>Μηνιαία αναφορά ωρών που γλιτώσατε</li></ul></div>
+  <div class="card hl rv"><h3>Επιχείρηση</h3><div class="amt">890€ <small>/μήνα</small></div><ul class="clean"><li>Έως 8 αυτοματισμοί</li><li>Δικό σας panel στο κινητό και στον υπολογιστή</li><li>Ένας νέος αυτοματισμός κάθε μήνα</li><li>Αιτήματα αλλαγών, συνήθως την ίδια μέρα</li></ul></div>
+  <div class="card rv"><h3>Όμιλος</h3><div class="amt">από 1.800€ <small>/μήνα</small></div><ul class="clean"><li>Πλήρης σύνδεση με το ERP</li><li>Πολλά τμήματα και καταστήματα</li><li>Ερωτήσεις στα δεδομένα για τη διοίκηση</li><li>Προτεραιότητα και τριμηνιαία συνάντηση</li></ul></div>
+ </div>
+</div></section>
+
+<section><div class="wrap">
+ <div class="kick">Ασφάλεια</div>
+ <h2>Τα δεδομένα σας μένουν δικά σας</h2>
+ <div class="safe" style="margin-top:24px">
+  <div class="card rv"><h3>Μόνο ανάγνωση</h3><p>Ξεκινάμε με χρήστη που μπορεί μόνο να διαβάζει. Τίποτα δεν γράφεται στο ERP χωρίς τη γραπτή σας έγκριση.</p></div>
+  <div class="card rv"><h3>Σύμβαση GDPR</h3><p>Υπογράφουμε σύμβαση επεξεργασίας δεδομένων πριν αγγίξουμε οτιδήποτε.</p></div>
+  <div class="card rv"><h3>Δεν αλλάζουμε το ERP</h3><p>Μόνο «μιλάμε» μαζί του. Ο συνεργάτης σας για το ERP μένει υπεύθυνος γι' αυτό.</p></div>
+  <div class="card rv"><h3>Όλα είναι δικά σας</h3><p>Κώδικας, λογαριασμοί και γραπτό εγχειρίδιο. Αν σταματήσουμε, τα κρατάτε.</p></div>
+ </div>
+</div></section>
+
+<section><div class="wrap narrow">
+ <div class="kick">Συχνές ερωτήσεις</div>
+ <h2>Ό,τι θα θέλατε να ρωτήσετε</h2>
+ <div class="faq" style="margin-top:20px">
+  <details><summary>Χρειάζεται να αγοράσουμε νέο πρόγραμμα;</summary><p>Όχι. Δουλεύουμε με ό,τι ήδη έχετε: το ERP, το eshop, τα Excel, το e‑mail σας.</p></details>
+  <details><summary>Θα χρειαστεί να εκπαιδευτεί το προσωπικό;</summary><p>Ελάχιστα. Τα περισσότερα έρχονται έτοιμα στο κινητό ή στο e‑mail. Όπου υπάρχει panel, σας το δείχνουμε σε 15 λεπτά.</p></details>
+  <details><summary>Με ποια ERP δουλεύετε;</summary><p>Με τα περισσότερα που χρησιμοποιούνται στην Ελλάδα, εφόσον επιτρέπουν σύνδεση άλλων προγραμμάτων. Το ελέγχουμε στην πρώτη συνάντηση μαζί με τον συνεργάτη σας.</p></details>
+  <details><summary>Πόσο γρήγορα βλέπουμε αποτέλεσμα;</summary><p>Ο πρώτος αυτοματισμός λειτουργεί μέσα σε δύο εβδομάδες.</p></details>
+  <details><summary>Μπορούμε να το σταματήσουμε;</summary><p>Ναι, όποτε θέλετε, χωρίς ποινή. Δεν υπάρχει ελάχιστη διάρκεια.</p></details>
+  <details><summary>Κόβετε τιμολόγιο;</summary><p>Ναι, κάθε μήνα, από την Advon Media, με ΦΠΑ.</p></details>
+ </div>
+</div></section>
+
+<section><div class="wrap">
+ <div class="cta rv">
+  <h2>Ποια δουλειά θα θέλατε να μην ξανακάνετε ποτέ;</h2>
+  <p>Πείτε μας σε 20 λεπτά. Αν μπορούμε να την αυτοματοποιήσουμε, η πρώτη γίνεται χωρίς χρέωση.</p>
+  <a class="btn" href="mailto:angelos@advonmedia.com">Κλείστε μια συνάντηση</a>
+ </div>
+</div></section>
+</main>
+<footer class="foot"><div class="wrap">Advon Media · advonmedia.com · Προσχέδιο σελίδας, Οκτώβριος 2026</div></footer>
+<script>
+(function(){var els=[].slice.call(document.querySelectorAll('.rv'));
+ if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion:reduce)').matches||document.hidden){els.forEach(function(e){e.classList.add('in')});return}
+ var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px',threshold:.04});els.forEach(function(e){io.observe(e)});setTimeout(function(){els.forEach(function(e){e.classList.add('in')})},4000)})();
+</script>
+</body>
+</html>

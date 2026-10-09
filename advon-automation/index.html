@@ -1,0 +1,503 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="color-scheme" content="light only">
+<title>Advon Automation — The Plan</title>
+<link rel="preload" href="assets/fonts/manrope-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/a.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230E1A33'/%3E%3Cpath d='M9 22l7-12 7 12' stroke='%23fff' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<style>
+.hero{padding:72px 0 40px}
+.hero h1 span{color:var(--blue)}
+.verdict{display:grid;grid-template-columns:1.1fr .9fr;gap:22px;margin-top:34px}
+.vbig{font-size:22px;font-weight:700;line-height:1.4}
+.vbig em{font-style:normal;color:var(--green)}
+.cmp td:first-child{font-weight:700;color:var(--ink2);width:26%}
+.cmp td:nth-child(2){color:var(--ink2)}
+.cmp td:nth-child(3){font-weight:600}
+.price{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.price .card{display:flex;flex-direction:column}
+.price .amt{font-size:34px;font-weight:800;letter-spacing:-.03em;margin:6px 0 2px}
+.price .amt small{font-size:15px;font-weight:600;color:var(--ink3)}
+.price .card.hl{border:2px solid var(--blue);box-shadow:var(--sh2)}
+.price ul{font-size:14.5px;margin-top:10px}
+.calc{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start}
+.field{margin-bottom:20px}
+.field label{display:flex;justify-content:space-between;font-weight:700;font-size:15px;margin-bottom:8px}
+.field label output{color:var(--blue)}
+.field small{display:block;color:var(--ink3);font-size:13px;margin-top:4px}
+input[type=range]{width:100%;accent-color:var(--blue)}
+select{width:100%;font:600 15px Manrope,sans-serif;padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:#fff;color:var(--ink)}
+.res .row{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.1);font-size:15px}
+.res .row b{font-size:18px;color:#fff}
+.res .big{font-size:44px;font-weight:800;color:#fff;letter-spacing:-.03em;line-height:1.1;margin:6px 0}
+.res .verdictline{margin-top:16px;padding:12px 14px;border-radius:12px;font-weight:700;font-size:15px}
+.ok{background:rgba(31,138,91,.22);color:#9FE6C2}.mid{background:rgba(227,155,38,.2);color:#FFD592}.bad{background:rgba(199,65,47,.22);color:#FFB4A8}
+.niche td:nth-child(2),.niche td:nth-child(3),.niche td:nth-child(4),.niche td:nth-child(5){white-space:nowrap}
+.niche tr.top td{background:#F4F6FF}
+.rec{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.rec .card{padding:20px}
+.rec .ba{font-size:14px;color:var(--ink2);margin:10px 0 0}
+.rec .ba b{color:var(--ink)}
+.rec .hrs{display:inline-block;margin-top:12px;font-size:12.5px;font-weight:800;color:var(--green);background:var(--green-s);border-radius:99px;padding:4px 10px}
+.layers{display:grid;gap:14px}
+.layer{display:grid;grid-template-columns:64px 1fr;gap:18px;align-items:start;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}
+.layer .n{width:64px;height:64px;border-radius:16px;display:grid;place-items:center;font-size:26px;font-weight:800;color:#fff}
+.who td{font-size:14.5px}
+.who td:first-child{font-weight:600}
+.yes{color:var(--green);font-weight:800}.no{color:var(--red);font-weight:800}.part{color:#9A5E00;font-weight:800}
+.flow{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+.flow div{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;font-size:14px}
+.flow div b{display:block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);margin-bottom:6px}
+.script p{margin:0 0 10px}
+.script .say{font-weight:600}
+.script .say:before{content:"Εσύ: ";color:var(--blue);font-weight:800}
+.faq details{background:var(--card);border:1px solid var(--line);border-radius:14px;margin-bottom:10px;padding:0 20px}
+.faq summary{cursor:pointer;font-weight:700;padding:16px 0;list-style:none;position:relative;padding-right:30px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:after{content:"+";position:absolute;right:0;top:12px;font-size:22px;color:var(--ink3)}
+.faq details[open] summary:after{content:"–"}
+.faq details p{color:var(--ink2);padding-bottom:6px}
+.tl{position:relative;padding-left:28px}
+.tl:before{content:"";position:absolute;left:8px;top:6px;bottom:6px;width:2px;background:var(--line)}
+.tl>div{position:relative;margin-bottom:18px}
+.tl>div:before{content:"";position:absolute;left:-26px;top:6px;width:14px;height:14px;border-radius:50%;background:#fff;border:3px solid var(--blue)}
+.tl b{display:block}
+.tl span{color:var(--ink2);font-size:15px}
+.todo .wk{margin-bottom:26px}
+.todo h4{font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:10px}
+.todo label{display:flex;gap:12px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:8px;cursor:pointer;font-size:15px}
+.todo input{width:20px;height:20px;margin-top:1px;accent-color:var(--green);flex:none}
+.todo label.done span{text-decoration:line-through;color:var(--ink3)}
+.prog{height:10px;border-radius:5px;background:#E9E5DB;overflow:hidden;margin:6px 0 26px}
+.prog i{display:block;height:100%;width:0;background:var(--green);transition:width .4s}
+.money{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}
+.money .card b{display:block;font-size:30px;letter-spacing:-.03em}
+@media (max-width:980px){.price{grid-template-columns:1fr 1fr}.rec{grid-template-columns:1fr 1fr}.flow{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:680px){.verdict,.calc,.price,.rec,.money{grid-template-columns:1fr}.flow{grid-template-columns:1fr 1fr}.layer{grid-template-columns:48px 1fr;gap:14px;padding:16px}.layer .n{width:48px;height:48px;font-size:20px;border-radius:12px}.hero{padding:44px 0 20px}}
+</style>
+</head>
+<body>
+<script>document.documentElement.classList.add('js')</script>
+<header class="top"><div class="wrap">
+ <a class="brand" href="#top"><i>A</i><span>Advon Automation</span> <small>draft · internal</small></a>
+ <nav class="tabs"><a class="on" href="index.html">The plan</a><a href="demo.html">Client demo</a><a href="offer.html">Offer page</a></nav>
+</div></header>
+
+<main id="top">
+<div class="hero"><div class="wrap">
+ <span class="tag">Internal plan · 9 Oct 2026 · for Angelo only</span>
+ <h1 style="margin-top:18px">Selling what we built for Advon<br>to <span>Greek businesses</span>.</h1>
+ <p class="lead">Everything from our chat, plus more: the verdict, the offer, prices, which businesses to call, what we automate, how they use it, what to say in the meeting, the 2‑week pilot and a 90‑day to‑do list you can tick off. Three pages: this plan, a <a href="demo.html">clickable demo</a> of what a client would get, and a <a href="offer.html">Greek offer page</a> draft.</p>
+ <nav class="toc">
+  <a href="#verdict">1 · Verdict</a><a href="#offer">2 · The offer</a><a href="#pricing">3 · Prices & money</a><a href="#value">4 · Value calculator</a><a href="#niches">5 · Who to sell to</a><a href="#recipes">6 · What we automate</a><a href="#use">7 · How they use it</a><a href="#build">8 · How we build it</a><a href="#sell">9 · How to explain & sell</a><a href="#pilot">10 · The pilot</a><a href="#todo">11 · 90‑day to‑do</a><a href="#risks">12 · Risks</a><a href="#tips">13 · Tips</a>
+ </nav>
+</div></div>
+
+<!-- 1 VERDICT -->
+<section id="verdict"><div class="wrap">
+ <div class="kick"><b>1</b> Verdict</div>
+ <h2>Is it worth pursuing? Yes — as a second line, started small.</h2>
+ <div class="verdict">
+  <div class="card rv">
+   <p class="vbig">Your instinct is right. <em>Almost every Greek business runs on Excel, Viber and someone's memory.</em> Nobody is offering to fix that in plain Greek, done for them, with a price that is obviously worth it.</p>
+   <p class="muted" style="margin:0">You are your own proof: CRM, chats, reminders, morning brief, backups, auto‑posting — all of it runs by itself now. That story sells better than any brochure.</p>
+  </div>
+  <div class="card dark rv">
+   <h3>Three conditions</h3>
+   <ul class="clean" style="color:#E7EBF5">
+    <li><b>It must not eat the website business</b> or the ads launch. Max 1 day a week until 3 clients pay.</li>
+    <li><b>One pilot first</b> — the homeware company you know. Get a real number (hours saved), then sell.</li>
+    <li><b>Sell hours and money, never "AI".</b> The client buys «η Μαρία δεν κάνει πια 6 ώρες Excel», not technology.</li>
+   </ul>
+  </div>
+ </div>
+ <h3 style="margin-top:44px">Why it's a different business from websites</h3>
+ <div class="tbl rv"><table class="cmp">
+  <tr><th></th><th>Advon websites</th><th>Advon automation</th></tr>
+  <tr><td>What they buy</td><td>A finished product, same shape every time</td><td>A custom fix for their own mess</td></tr>
+  <tr><td>Price</td><td>130€/year</td><td>~400–2,000€/month</td></tr>
+  <tr><td>How many clients</td><td>Hundreds</td><td>5–15 is already a big business</td></tr>
+  <tr><td>Your cost per client</td><td>Almost zero</td><td>Real time at the start (~15–30 h), then a few hours a month</td></tr>
+  <tr><td>Who decides</td><td>The doctor, on one call</td><td>Owner + the person who does the work + sometimes the accountant</td></tr>
+  <tr><td>Sales cycle</td><td>Days</td><td>2–6 weeks</td></tr>
+  <tr><td>Why "free" works</td><td>Building costs you nothing</td><td>Only for ONE small first task — never the whole company</td></tr>
+ </table></div>
+ <p class="muted" style="margin-top:14px;font-size:14px">The hours above are estimates from what we built for Advon. You'll know the real numbers after the pilot.</p>
+</div></section>
+
+<!-- 2 OFFER -->
+<section id="offer"><div class="wrap">
+ <div class="kick"><b>2</b> The offer</div>
+ <h2>The «feel stupid to say no» offer</h2>
+ <p class="lead">Hormozi's recipe: make the result big, make it fast, make it effortless for them, and take away the risk. That's exactly what the free‑website offer does. Here's the same idea for automation:</p>
+ <div class="quote gr rv">«Δείξτε μου τις 5 δουλειές που γίνονται στο χέρι και σας τρώνε ώρες κάθε εβδομάδα. Διαλέγουμε μαζί αυτή που σας κουράζει περισσότερο και την αυτοματοποιώ σε 2 εβδομάδες, χωρίς χρέωση. Αν δεν σας γλιτώνει τις ώρες που θα συμφωνήσουμε από την αρχή, δεν πληρώνετε τίποτα. Αν σας αρέσει, συνεχίζουμε με τις υπόλοιπες με ένα σταθερό μηνιαίο — χωρίς δέσμευση, το σταματάτε όποτε θέλετε.»<small>What you say at the end of the first meeting.</small></div>
+
+ <div class="grid g4" style="margin-top:22px">
+  <div class="card rv"><span class="tag green">Result</span><h3 style="margin-top:12px">A number they can see</h3><p class="muted">«6 ώρες την εβδομάδα → 20 λεπτά». Written down before you start.</p></div>
+  <div class="card rv"><span class="tag">Speed</span><h3 style="margin-top:12px">2 weeks</h3><p class="muted">The first automation works within 14 days. No 6‑month project.</p></div>
+  <div class="card rv"><span class="tag amber">Effort</span><h3 style="margin-top:12px">Done for them</h3><p class="muted">They show you the task once. They don't install, learn or change software.</p></div>
+  <div class="card rv"><span class="tag red">Risk</span><h3 style="margin-top:12px">Zero</h3><p class="muted">No upfront payment. No result → no payment. No lock‑in after.</p></div>
+ </div>
+
+ <div class="grid g2" style="margin-top:22px">
+  <div class="card rv">
+   <h3>What «unlimited» means here (careful!)</h3>
+   <p class="muted">With websites a change takes 10 minutes. Here a «small change» can be a whole new system. So:</p>
+   <ul class="clean">
+    <li><b>Unlimited fixes and adjustments</b> to automations already running — included.</li>
+    <li><b>New automations</b> = a new mini‑project inside the plan (e.g. one new per month in the middle package).</li>
+    <li>Write every automation's scope in one paragraph the client signs. That paragraph protects you.</li>
+   </ul>
+  </div>
+  <div class="card rv">
+   <h3>Words to use / avoid</h3>
+   <table>
+    <tr><th>Say</th><th>Don't say</th></tr>
+    <tr><td>«δοκιμή χωρίς χρέωση», «πληρώνετε αφού δείτε αποτέλεσμα»</td><td>«δωρεάν» to a big company (sounds unserious)</td></tr>
+    <tr><td>«γλιτώνει ώρες», «χωρίς λάθη αντιγραφής»</td><td>«τεχνητή νοημοσύνη», «agents», «API»</td></tr>
+    <tr><td>«για να μην χάνει η Μαρία 6 ώρες»</td><td>«για να αντικαταστήσουμε υπαλλήλους»</td></tr>
+    <tr><td>«τα δεδομένα μένουν στο σύστημά σας»</td><td>«τα ανεβάζουμε στο AI»</td></tr>
+   </table>
+  </div>
+ </div>
+</div></section>
+
+<!-- 3 PRICING -->
+<section id="pricing"><div class="wrap">
+ <div class="kick"><b>3</b> Prices & money</div>
+ <h2>A simple price ladder</h2>
+ <p class="lead">Starting suggestion — adjust after the first 3 clients. All prices + ΦΠΑ, monthly, no lock‑in (offer ~10% off for paying a year upfront, like the websites).</p>
+ <div class="price">
+  <div class="card rv"><span class="tag green">Step 0</span><h3 style="margin-top:12px">Pilot</h3><div class="amt">0€</div><p class="muted" style="font-size:14px">One automation, 2 weeks, measured.</p><ul class="clean"><li>The most painful task</li><li>Hours measured before & after</li><li>Results meeting with numbers</li></ul></div>
+  <div class="card rv"><span class="tag">Small</span><h3 style="margin-top:12px">Ξεκίνημα</h3><div class="amt">390€ <small>/μήνα</small></div><p class="muted" style="font-size:14px">5–20 employees, Excel‑heavy.</p><ul class="clean"><li>Up to 3 automations running</li><li>Morning report on Viber/e‑mail</li><li>Fixes & adjustments included</li><li>Monthly «hours saved» report</li></ul></div>
+  <div class="card hl rv"><span class="tag">Most clients</span><h3 style="margin-top:12px">Επιχείρηση</h3><div class="amt">890€ <small>/μήνα</small></div><p class="muted" style="font-size:14px">ERP + eshop + several departments.</p><ul class="clean"><li>Up to 8 automations</li><li>Their own panel (like the <a href="demo.html">demo</a>)</li><li>1 new automation every month</li><li>Requests chat, same‑day fixes</li></ul></div>
+  <div class="card rv"><span class="tag amber">Large</span><h3 style="margin-top:12px">Όμιλος</h3><div class="amt">από 1.800€ <small>/μήνα</small></div><p class="muted" style="font-size:14px">Chains, groups, many locations.</p><ul class="clean"><li>Deep ERP connection</li><li>Several teams & panels</li><li>Priority, quarterly review on site</li><li>«Ask your data» for managers</li></ul></div>
+ </div>
+ <h3 style="margin-top:44px">What it means for your €20,000/month goal</h3>
+ <div class="money">
+  <div class="card rv"><span class="muted">5 clients (year 1, realistic)</span><b>≈ 3.450€/μ</b><span class="muted" style="font-size:14px">2 Ξεκίνημα + 3 Επιχείρηση</span></div>
+  <div class="card rv"><span class="muted">10 clients</span><b>≈ 9.200€/μ</b><span class="muted" style="font-size:14px">3 + 5 + 2 Όμιλος — the same as ~850 website clients</span></div>
+  <div class="card dark rv"><span class="muted">15 clients</span><b style="color:#fff">≈ 14.100€/μ</b><span class="muted" style="font-size:14px">4 + 8 + 3 Όμιλος. At this point you need one helper — see Risks</span></div>
+ </div>
+ <p class="muted" style="margin-top:14px;font-size:14px">Before ΦΠΑ and before costs (servers, tools, any Claude seats you pay for them). These are planning numbers, not promises.</p>
+</div></section>
+
+<!-- 4 VALUE CALC -->
+<section id="value"><div class="wrap">
+ <div class="kick"><b>4</b> Value calculator</div>
+ <h2>Is the price «stupid to say no» for this client?</h2>
+ <p class="lead">Use this in the meeting (or before it). Rule of thumb: what they get back should be <b>at least 3× the price</b>. Hours alone are often not enough for a small company — so also count the money effects (sales not lost to empty shelves, unpaid invoices collected, fewer mistakes).</p>
+ <div class="calc">
+  <div class="card rv">
+   <div class="field"><label>Hours of manual work saved per week <output id="o_h">30</output></label><input type="range" id="h" min="1" max="60" value="30"><small>Add up every person's time on the tasks you automate.</small></div>
+   <div class="field"><label>Cost of one employee hour <output id="o_c">12€</output></label><input type="range" id="c" min="7" max="40" value="12"><small>Salary + εισφορές ÷ hours. ~9–12€ for a typical office employee, much more for a manager/accountant.</small></div>
+   <div class="field"><label>Extra money per month (fewer lost sales, invoices collected, fewer errors) <output id="o_m">1.500€</output></label><input type="range" id="m" min="0" max="5000" step="50" value="1500"><small>Be conservative. Ask them: «πόσες φορές τον μήνα τελειώνει κάτι και δεν το ξέρετε;»</small></div>
+   <div class="field" style="margin:0"><label>Package</label><select id="p" aria-label="Package"><option value="390">Ξεκίνημα — 390€/μήνα</option><option value="890" selected>Επιχείρηση — 890€/μήνα</option><option value="1800">Όμιλος — 1.800€/μήνα</option></select><small>Try 8 hours + «Επιχείρηση» to see why a small company belongs in «Ξεκίνημα».</small></div>
+  </div>
+  <div class="card dark res rv" aria-live="polite">
+   <span class="muted">What they get back per year</span>
+   <div class="big" id="r_val">—</div>
+   <div class="row"><span>Hours saved / year</span><b id="r_h">—</b></div>
+   <div class="row"><span>Value of those hours</span><b id="r_hv">—</b></div>
+   <div class="row"><span>Extra money / year</span><b id="r_m">—</b></div>
+   <div class="row"><span>Cost of the package / year</span><b id="r_p">—</b></div>
+   <div class="row" style="border:0"><span>Return on every 1€</span><b id="r_x">—</b></div>
+   <div class="verdictline" id="r_v">—</div>
+  </div>
+ </div>
+</div></section>
+
+<!-- 5 NICHES -->
+<section id="niches"><div class="wrap">
+ <div class="kick"><b>5</b> Who to sell to</div>
+ <h2>Which Greek businesses have the money and the pain</h2>
+ <p class="lead">Four things matter: (1) they have money, (2) they already use a system with a way in (ERP, eshop, Google/Microsoft), (3) someone does boring Excel work every day, (4) the person who feels the pain can say yes.</p>
+ <div class="tbl rv"><table class="niche">
+  <tr><th>Business type</th><th>Money</th><th>System to connect</th><th>Daily pain</th><th>Fast «yes»</th><th>Verdict</th></tr>
+  <tr class="top"><td><b>Wholesale / distribution / production with ERP + eshop</b><br><span class="muted" style="font-size:14px">homeware, clothing, food, cosmetics, building materials</span></td><td><div class="score"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i></div></td><td><div class="score"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i></div></td><td><div class="score"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i></div></td><td><div class="score"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i></i></div></td><td><span class="tag green">Start here</span></td></tr>
+  <tr class="top"><td><b>Accounting offices (λογιστικά γραφεία)</b><br><span class="muted" style="font-size:14px">myDATA, chasing documents, deadlines</span></td><td><div class="score"><i class="f"></i><i class="f"></i><i class="f"></i><i></i><i></i></div></td><td><div class="score"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i></i></div></td><td><div class="score"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i></div></td><td><div class="score"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i></div></td><td><span class="tag green">Channel</span></td></tr>
+  <tr><td><b>Store chains / retail with many shops</b></td><td><div class="score"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i></i></div></td><td><div class="score"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i></i></div></td><td><div class="score"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i></i></div></td><td><div class="score"><i class="f"></i><i class="f"></i><i class="f"></i><i></i><i></i></div></td><td><span class="tag">Wave 2</span></td></tr>
+  <tr><td><b>Private clinics, diagnostic centres, dental groups</b><br><span class="muted" style="font-size:14px">you already speak their language</span></td><td><div class="score"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i></i></div></td><td><div class="score"><i class="f"></i><i class="f"></i><i class="f"></i><i></i><i></i></div></td><td><div class="score"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i></i></div></td><td><div class="score"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i></i></div></td><td><span class="tag">Wave 2</span></td></tr>
+  <tr><td><b>Hotels & short‑stay property managers</b></td><td><div class="score"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i></i></div></td><td><div class="score"><i class="f"></i><i class="f"></i><i class="f"></i><i></i><i></i></div></td><td><div class="score"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i></i></div></td><td><div class="score"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i></i></div></td><td><span class="tag amber">Seasonal — sell in winter</span></td></tr>
+  <tr><td><b>Transport & logistics</b></td><td><div class="score"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i></i></div></td><td><div class="score"><i class="f"></i><i class="f"></i><i class="f"></i><i></i><i></i></div></td><td><div class="score"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i></div></td><td><div class="score"><i class="f"></i><i class="f"></i><i class="f"></i><i></i><i></i></div></td><td><span class="tag">Wave 2</span></td></tr>
+  <tr><td><b>Real estate agencies, construction, law firms</b></td><td><div class="score"><i class="f"></i><i class="f"></i><i class="f"></i><i></i><i></i></div></td><td><div class="score"><i class="f"></i><i class="f"></i><i></i><i></i><i></i></div></td><td><div class="score"><i class="f"></i><i class="f"></i><i class="f"></i><i></i><i></i></div></td><td><div class="score"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i></i></div></td><td><span class="tag amber">Later</span></td></tr>
+  <tr><td><b>Very small shops · public sector</b></td><td colspan="4" class="muted">No budget for a monthly fee · public tenders are slow and rigid</td><td><span class="tag red">Not now</span></td></tr>
+ </table></div>
+ <div class="grid g3" style="margin-top:22px">
+  <div class="card rv"><h3>1 · The pilot</h3><p class="muted">The homeware company you know. Warm door, ERP + eshop + Excels — the perfect first case.</p></div>
+  <div class="card rv"><h3>2 · Lookalikes</h3><p class="muted">3–5 similar wholesalers. Same ERP problems, so the same automations, reused. That's how this becomes a product, not custom work every time.</p></div>
+  <div class="card rv"><h3>3 · Accountants</h3><p class="muted">Each one advises 100–500 businesses. Win 3 accountants and they send you clients — offer them a referral fee.</p></div>
+ </div>
+ <p class="note" style="margin-top:18px"><b>Which ERP?</b> Most Greek mid‑size companies run SoftOne (Soft1), Entersoft or Epsilon Net (Pylon). All of them have some way for outside programs to read data (web services / API) — but what's open depends on their licence and version. First question to ask: «ποιο ERP έχετε και ποιος σας το υποστηρίζει;»</p>
+</div></section>
+
+<!-- 6 RECIPES -->
+<section id="recipes"><div class="wrap">
+ <div class="kick"><b>6</b> What we automate</div>
+ <h2>12 ready «recipes» — the menu you show them</h2>
+ <p class="lead">Most companies need the same 10–15 things. Build each one once, reuse it everywhere. Hours are typical, for one mid‑size company — measure the real ones in the pilot.</p>
+ <div class="rec">
+  <div class="card rv"><h3>Πρωινή αναφορά</h3><p class="muted">Yesterday's sales, stock problems, what needs attention — on the owner's Viber/e‑mail at 08:00.</p><p class="ba"><b>Before:</b> someone builds it in Excel every morning.</p><span class="hrs">≈ 4–5 h/week</span></div>
+  <div class="card rv"><h3>Απόθεμα & παραγγελίες</h3><p class="muted">Alerts when a product drops below its limit per store, plus a ready reorder list.</p><p class="ba"><b>Before:</b> empty shelves noticed by the customer.</p><span class="hrs">≈ 3–6 h/week + lost sales</span></div>
+  <div class="card rv"><h3>Excel → ζωντανός πίνακας</h3><p class="muted">The weekly Excels from every store merged into one live screen, by itself.</p><p class="ba"><b>Before:</b> copy‑paste from 10 files, with mistakes.</p><span class="hrs">≈ 5–8 h/week</span></div>
+  <div class="card rv"><h3>Απλήρωτα τιμολόγια</h3><p class="muted">List of overdue invoices + ready polite reminder texts, sent or copied with one tap.</p><p class="ba"><b>Before:</b> nobody chases until it's months late.</p><span class="hrs">≈ 2 h/week + money collected</span></div>
+  <div class="card rv"><h3>Παραστατικά από e‑mail</h3><p class="muted">Invoices/receipts that arrive by e‑mail get read, named and filed for the accountant.</p><p class="ba"><b>Before:</b> downloading and renaming PDFs by hand.</p><span class="hrs">≈ 2–4 h/week</span></div>
+  <div class="card rv"><h3>Eshop ↔ ERP έλεγχος</h3><p class="muted">Checks every day that eshop orders, stock and prices match the ERP; flags differences.</p><p class="ba"><b>Before:</b> sold online, out of stock in reality.</p><span class="hrs">≈ 2–3 h/week + fewer angry customers</span></div>
+  <div class="card rv"><h3>Πελάτες & follow‑ups (CRM)</h3><p class="muted">Like your CRM: every lead, call and «call back Tuesday» in one place, with reminders.</p><p class="ba"><b>Before:</b> notes on paper and in heads.</p><span class="hrs">≈ 3 h/week + sales not forgotten</span></div>
+  <div class="card rv"><h3>Ραντεβού & υπενθυμίσεις</h3><p class="muted">Calendar synced, reminders to customers, «how did it go?» after meetings.</p><p class="ba"><b>Before:</b> no‑shows and forgotten follow‑ups.</p><span class="hrs">≈ 2 h/week</span></div>
+  <div class="card rv"><h3>Αναφορά διοίκησης</h3><p class="muted">A clean weekly/monthly PDF for the owner or partners — built and sent by itself.</p><p class="ba"><b>Before:</b> half a day at the end of every month.</p><span class="hrs">≈ 4 h/month</span></div>
+  <div class="card rv"><h3>Κριτικές Google</h3><p class="muted">After a purchase or visit, a polite review request goes out; new reviews show up on the panel.</p><p class="ba"><b>Before:</b> nobody asks, so nobody writes.</p><span class="hrs">More reviews, more trust</span></div>
+  <div class="card rv"><h3>Αντίγραφα & έλεγχος</h3><p class="muted">Backups of their important files and a daily check that eshop/site/systems are up.</p><p class="ba"><b>Before:</b> they find out when it's already broken.</p><span class="hrs">Peace of mind</span></div>
+  <div class="card rv"><h3>«Ρωτήστε τα δεδομένα σας»</h3><p class="muted">The owner writes «τι πούλησε η Κρήτη τον Σεπτέμβριο;» and gets the answer. Read‑only.</p><p class="ba"><b>Before:</b> «θα σας το βγάλω αύριο».</p><span class="hrs">The «wow» moment in demos</span></div>
+ </div>
+ <p style="margin-top:20px"><a class="btn ghost" href="demo.html">See them in the clickable demo →</a></p>
+</div></section>
+
+<!-- 7 USE -->
+<section id="use"><div class="wrap">
+ <div class="kick"><b>7</b> How they use it</div>
+ <h2>How will clients actually use it?</h2>
+ <p class="lead">Three layers — from «they touch nothing» to «they ask for things». Most clients mostly live in layers 1 and 2.</p>
+ <div class="layers">
+  <div class="layer rv"><div class="n" style="background:var(--green)">1</div><div><h3>Runs by itself</h3><p class="muted" style="margin:0">Scheduled jobs read their systems and send a message, a report or an alert — exactly like your morning brief and watchdog. They just read it on their phone. Nothing new to learn.</p></div></div>
+  <div class="layer rv"><div class="n" style="background:var(--blue)">2</div><div><h3>A screen they use</h3><p class="muted" style="margin:0">One simple page per company, in their colours, works on the phone — like your CRM. Stock alerts, orders to chase, one‑click actions. It reads (and only when agreed, writes) to their ERP. See the <a href="demo.html">demo</a>.</p></div></div>
+  <div class="layer rv"><div class="n" style="background:var(--amber)">3</div><div><h3>Asking for changes</h3><p class="muted" style="margin:0">A request chat — like your client Chats. They write «θέλω η αναφορά να βγαίνει και ανά πωλητή», you and Claude do it, usually the same day. Included in the monthly fee.</p></div></div>
+ </div>
+
+ <h3 style="margin-top:44px">«Will they have Claude like I do, to change things themselves?»</h3>
+ <p class="lead" style="font-size:17px">Short answer: <b>they can have Claude to ask questions — but you keep the building and changing.</b> Here's why, and the three options:</p>
+ <div class="grid g3">
+  <div class="card hl rv" style="border:2px solid var(--blue)"><span class="tag">Recommended start</span><h3 style="margin-top:12px">A · You are their Claude</h3><p class="muted">They ask in the request chat, you and Claude do it. Simple, safe, and it's what they pay for. Nothing breaks because nobody untrained touches it.</p></div>
+  <div class="card rv"><span class="tag green">Easy add‑on</span><h3 style="margin-top:12px">B · Claude for questions</h3><p class="muted">The owner/managers get a Claude business seat connected <b>read‑only</b> to their data (reports, Drive, a copy of the numbers), with a short «manual» you write. They ask anything; they can't break anything.</p></div>
+  <div class="card rv"><span class="tag amber">Big clients, later</span><h3 style="margin-top:12px">C · A trained power user</h3><p class="muted">One person on their team gets Claude + a written playbook + training from you, and makes small changes. You review before anything touches the ERP.</p></div>
+ </div>
+ <div class="tbl rv" style="margin-top:20px"><table class="who">
+  <tr><th>Who can…</th><th>Client staff</th><th>Client with Claude (B)</th><th>You + Claude</th></tr>
+  <tr><td>Read reports & the panel</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
+  <tr><td>Ask questions about their data</td><td class="part">Via you</td><td class="yes">Yes, any time</td><td class="yes">Yes</td></tr>
+  <tr><td>Change how a report looks</td><td class="part">Ask in chat</td><td class="part">Ask in chat</td><td class="yes">Yes</td></tr>
+  <tr><td>Build a new automation</td><td class="no">No</td><td class="no">No</td><td class="yes">Yes</td></tr>
+  <tr><td>Write anything into the ERP</td><td class="no">No</td><td class="no">No</td><td class="yes">Only with their written OK</td></tr>
+ </table></div>
+ <div class="note" style="margin-top:18px"><b>Why buying Claude isn't the same as buying you:</b> what makes your setup work is not the Claude subscription — it's months of rules, tools, checks and context we built together (the CLAUDE.md, the scripts, the guard rails). That is the product. Say it like this: «Το Claude είναι το εργαλείο. Εμείς είμαστε αυτοί που ξέρουν να το στήσουν για την επιχείρησή σας και να το κρατάνε να δουλεύει.»</div>
+</div></section>
+
+<!-- 8 BUILD -->
+<section id="build"><div class="wrap">
+ <div class="kick"><b>8</b> How we build it</div>
+ <h2>How it works underneath — in plain words</h2>
+ <div class="grid g2">
+  <div class="card rv">
+   <h3>The pieces (the same ones we use for Advon)</h3>
+   <ul class="dot">
+    <li><b>The way in:</b> their ERP's web‑service/API, their eshop's API, their Google or Microsoft account, or — if nothing else — a shared folder where the Excels already land.</li>
+    <li><b>The worker:</b> small programs that run on a schedule (every morning, every hour) on a server in the EU. Like the Netlify scheduled functions we use for reminders and the watchdog.</li>
+    <li><b>The screen:</b> one page per company, like the CRM — fast, on the phone, their logo.</li>
+    <li><b>The messages:</b> e‑mail, Telegram, or Viber copy‑paste texts (the same pattern as your reminders).</li>
+    <li><b>The brain:</b> Claude, for reading messy e‑mails/PDFs, writing summaries in Greek and answering questions.</li>
+    <li><b>The safety net:</b> backups, logs of everything it did, and a watchdog that tells you if something stopped.</li>
+   </ul>
+  </div>
+  <div class="card rv">
+   <h3>Safety rules for every client (non‑negotiable)</h3>
+   <ul class="clean">
+    <li>Start <b>read‑only</b>. A separate ERP user with only «read» rights.</li>
+    <li>Nothing writes into the ERP without a written OK, and every write is logged.</li>
+    <li>Data stays in their systems; copies only where needed, in the EU.</li>
+    <li>Signed contract + <b>DPA</b> (GDPR processor agreement) before touching anything.</li>
+    <li>They own their code and accounts. You leave a written manual — «what happens if Angelo disappears».</li>
+    <li>Never change the ERP itself — only talk to it. The ERP's support company stays responsible for the ERP.</li>
+    <li>Check the AI tool's business terms before promising «your data isn't used for training» (Anthropic's business plans say they don't train on it by default — confirm the current wording).</li>
+   </ul>
+  </div>
+ </div>
+</div></section>
+
+<!-- 9 SELL -->
+<section id="sell"><div class="wrap">
+ <div class="kick"><b>9</b> How to explain & sell</div>
+ <h2>Don't explain it. Show it.</h2>
+ <p class="lead">Never open with «AI» or «automation». Open with your phone and their pain. The whole first meeting is ~20 minutes:</p>
+ <div class="flow">
+  <div class="rv"><b>Min 0–3</b>Show your phone: morning brief, CRM, chats, reminders.</div>
+  <div class="rv"><b>Min 3–5</b>Ask the one question.</div>
+  <div class="rv"><b>Min 5–12</b>List their 5 tasks: who, how often, how many hours.</div>
+  <div class="rv"><b>Min 12–14</b>Pick the most painful one together.</div>
+  <div class="rv"><b>Min 14–17</b>Say the offer + the hours goal.</div>
+  <div class="rv"><b>Min 17–20</b>Next step: a sample file + who gives read access.</div>
+ </div>
+
+ <div class="grid g2" style="margin-top:22px">
+  <div class="card script rv">
+   <h3>The script (Greek)</h3>
+   <p class="say">«Πριν σας πω οτιδήποτε, να σας δείξω κάτι από τη δική μου επιχείρηση.» <span class="muted">(show the phone)</span></p>
+   <p class="say">«Αυτά τρέχουν μόνα τους κάθε πρωί. Πριν έξι μήνες τα έκανα όλα στο χέρι.»</p>
+   <p class="say">«Ποια δουλειά κάνετε κάθε εβδομάδα στο χέρι, που θα θέλατε να μην ξανακάνετε ποτέ;»</p>
+   <p class="muted">… let them talk, write down every task, who does it and the hours …</p>
+   <p class="say">«Αν η Μαρία δεν έκανε αυτό, πόσες ώρες θα της έμεναν την εβδομάδα;»</p>
+   <p class="say">«Σας προτείνω κάτι απλό: διαλέγουμε αυτή τη μία δουλειά, την αυτοματοποιώ σε δύο εβδομάδες χωρίς χρέωση, και αν δεν γλιτώνει τις ώρες που είπαμε, δεν πληρώνετε τίποτα.»</p>
+   <p class="say">«Είναι σαν να προσλαμβάνετε έναν υπάλληλο που δεν φεύγει ποτέ, δεν κάνει λάθος αντιγραφής και κοστίζει λιγότερο από μισό μισθό.»</p>
+   <p class="say">«Για να ξεκινήσουμε χρειάζομαι ένα δείγμα από το Excel και να μιλήσω με αυτόν που σας υποστηρίζει το ERP.»</p>
+  </div>
+  <div class="card rv">
+   <h3>10 questions to find the gold</h3>
+   <ol style="padding-left:20px;margin:0">
+    <li>Ποιο ERP / πρόγραμμα έχετε και ποιος το υποστηρίζει;</li>
+    <li>Τι Excel φτιάχνετε κάθε μέρα ή κάθε εβδομάδα; Ποιος;</li>
+    <li>Πόσες ώρες παίρνει; Πόσα λάθη βγαίνουν;</li>
+    <li>Τι μαθαίνετε πάντα αργά; (απόθεμα, απλήρωτα, παράπονα)</li>
+    <li>Τι ρωτάτε συχνά και περιμένετε μέρες για απάντηση;</li>
+    <li>Πού χάνονται πράγματα; (e‑mail, Viber, χαρτιά)</li>
+    <li>Πόσες φορές τον μήνα τελειώνει ένα προϊόν χωρίς να το ξέρετε;</li>
+    <li>Πόσα τιμολόγια είναι απλήρωτα πάνω από 60 μέρες;</li>
+    <li>Τι κάνει ο λογιστής σας που θα μπορούσε να έρχεται έτοιμο;</li>
+    <li>Αν είχατε 10 ώρες παραπάνω την εβδομάδα, πού θα τις βάζατε;</li>
+   </ol>
+  </div>
+ </div>
+
+ <h3 style="margin-top:40px">What they'll ask — and your answer</h3>
+ <div class="faq">
+  <details class="rv"><summary>«Είναι ασφαλή τα δεδομένα μου;»</summary><p>«Τα δεδομένα μένουν στο δικό σας σύστημα. Ξεκινάμε μόνο με δικαίωμα ανάγνωσης — δεν μπορούμε να αλλάξουμε τίποτα. Υπογράφουμε σύμβαση επεξεργασίας δεδομένων (GDPR) πριν αγγίξουμε οτιδήποτε, και βλέπετε τι κάνει το σύστημα κάθε μέρα.»</p></details>
+  <details class="rv"><summary>«Θα χαλάσει το ERP μας;»</summary><p>«Δεν αλλάζουμε το ERP. Μόνο «μιλάμε» μαζί του, όπως κάνει ήδη το eshop σας. Ο συνεργάτης σας για το ERP μένει υπεύθυνος για το ERP.»</p></details>
+  <details class="rv"><summary>«Τι γίνεται αν φύγεις / κλείσεις;»</summary><p>«Ο κώδικας και οι λογαριασμοί είναι δικοί σας. Σας αφήνω γραπτό εγχειρίδιο για το τι τρέχει και πώς. Μπορεί να το συνεχίσει οποιοσδήποτε.»</p></details>
+  <details class="rv"><summary>«Θα μείνει χωρίς δουλειά η υπάλληλός μου;»</summary><p>«Όχι — θα σταματήσει να κάνει τη βαρετή αντιγραφή και θα κάνει αυτό για το οποίο την πληρώνετε: πωλήσεις, πελάτες, έλεγχο. Συνήθως είναι η πρώτη που χαίρεται.»</p></details>
+  <details class="rv"><summary>«Γιατί να μην το κάνει ο συνεργάτης μας για το ERP;»</summary><p>«Μπορεί, με χρέωση έργου και χρόνο αναμονής. Εμείς δουλεύουμε μηνιαίο, χωρίς δέσμευση, και ξεκινάμε σε δύο εβδομάδες με δοκιμή χωρίς χρέωση. Μπορούμε να δουλέψουμε και μαζί.»</p></details>
+  <details class="rv"><summary>«Μας κόβετε τιμολόγιο;»</summary><p>«Ναι, από την Advon Media, με ΦΠΑ, κάθε μήνα.»</p></details>
+  <details class="rv"><summary>«Και αν θέλουμε να το σταματήσουμε;»</summary><p>«Το σταματάτε όποτε θέλετε, χωρίς ποινή. Τα αρχεία και ο κώδικας μένουν σε εσάς.»</p></details>
+ </div>
+</div></section>
+
+<!-- 10 PILOT -->
+<section id="pilot"><div class="wrap">
+ <div class="kick"><b>10</b> The pilot</div>
+ <h2>The 2‑week pilot, day by day</h2>
+ <div class="grid g2">
+  <div class="tl rv">
+   <div><b>Day 0 · Sign & access</b><span>One‑page agreement + DPA. A read‑only ERP user. Name the one person you'll work with.</span></div>
+   <div><b>Days 1–2 · Watch & measure</b><span>Sit with the person who does the task. Record it (screen or notes). Write the «before»: hours, steps, mistakes. Get sample files.</span></div>
+   <div><b>Days 3–7 · Build</b><span>Build it with Claude. Test on old data first.</span></div>
+   <div><b>Days 8–9 · Run in parallel</b><span>Old way and new way side by side. Compare the numbers line by line.</span></div>
+   <div><b>Day 10 · Go live</b><span>The task now runs by itself. The person only checks.</span></div>
+   <div><b>Days 11–14 · Fix & measure the «after»</b><span>Fix anything odd, measure the hours again.</span></div>
+   <div><b>Day 14 · Results meeting</b><span>Show before/after numbers, screenshots, what it would save in a year. Offer the package. Ask for a one‑line quote you can use.</span></div>
+  </div>
+  <div>
+   <div class="card rv"><h3>Pick the pilot task by these rules</h3><ul class="clean"><li>Happens every day or every week (not once a year)</li><li>Someone obviously hates doing it</li><li>The data is already somewhere digital (ERP, Excel, e‑mail)</li><li>Reading only — nothing written into the ERP</li><li>The owner sees the result himself (e.g. his morning report)</li></ul></div>
+   <div class="card rv" style="margin-top:16px"><h3>Good first pilot for the homeware company</h3><p class="muted">The <b>morning report + stock alerts</b> per store, built from the ERP: the owner sees it on his phone every day, so the value is visible from day 10. Then the Excel merges they do by hand.</p></div>
+  </div>
+ </div>
+</div></section>
+
+<!-- 11 TODO -->
+<section id="todo"><div class="wrap">
+ <div class="kick"><b>11</b> 90‑day to‑do</div>
+ <h2>Your next 90 days</h2>
+ <p class="muted">Tick them off — it's remembered on this device.</p>
+ <div class="prog"><i id="pbar"></i></div>
+ <div class="todo grid g2" id="todo">
+  <div>
+   <div class="wk"><h4>Weeks 1–2 · Get ready</h4>
+    <label><input type="checkbox" data-k="t1"><span>Read this plan, change the prices if you disagree</span></label>
+    <label><input type="checkbox" data-k="t2"><span>Ask Claude to polish the offer page and the demo for the pilot company's sector</span></label>
+    <label><input type="checkbox" data-k="t3"><span>Get a one‑page service agreement + DPA template (accountant/lawyer checks it)</span></label>
+    <label><input type="checkbox" data-k="t4"><span>Call the homeware company's owner — book the 20‑minute meeting</span></label>
+    <label><input type="checkbox" data-k="t5"><span>In the meeting: the 5 tasks, the hours, the one to pilot</span></label>
+   </div>
+   <div class="wk"><h4>Weeks 3–4 · The pilot</h4>
+    <label><input type="checkbox" data-k="t6"><span>Find out the ERP + who supports it; get the read‑only user</span></label>
+    <label><input type="checkbox" data-k="t7"><span>Measure the «before» with the person who does the task</span></label>
+    <label><input type="checkbox" data-k="t8"><span>Build, run in parallel, go live (day 10)</span></label>
+    <label><input type="checkbox" data-k="t9"><span>Results meeting with numbers → first paying client</span></label>
+   </div>
+  </div>
+  <div>
+   <div class="wk"><h4>Weeks 5–6 · Turn it into proof</h4>
+    <label><input type="checkbox" data-k="t10"><span>Case study: before/after hours, screenshots, the owner's one‑line quote (real, with his OK)</span></label>
+    <label><input type="checkbox" data-k="t11"><span>A 45‑second video like the SALES videos, about this case</span></label>
+    <label><input type="checkbox" data-k="t12"><span>Turn what you built into a reusable «recipe» for the next client</span></label>
+   </div>
+   <div class="wk"><h4>Weeks 7–12 · First real clients</h4>
+    <label><input type="checkbox" data-k="t13"><span>List 30 lookalike companies (same sector, same size) + 10 accountants</span></label>
+    <label><input type="checkbox" data-k="t14"><span>10 meetings → 3 pilots → 2–3 paying clients</span></label>
+    <label><input type="checkbox" data-k="t15"><span>Offer accountants a referral fee for every client they send</span></label>
+    <label><input type="checkbox" data-k="t16"><span>Re‑check prices after 3 clients (too cheap? too much work?)</span></label>
+    <label><input type="checkbox" data-k="t17"><span>Add an «Automation» card on advonmedia.com — only when the case study exists</span></label>
+   </div>
+  </div>
+ </div>
+</div></section>
+
+<!-- 12 RISKS -->
+<section id="risks"><div class="wrap">
+ <div class="kick"><b>12</b> Risks</div>
+ <h2>What could go wrong — and the guard rail for each</h2>
+ <div class="tbl rv"><table>
+  <tr><th>Risk</th><th>Guard rail</th></tr>
+  <tr><td><b>It eats your time</b> and websites/ads suffer</td><td>Max 1 day a week until 3 clients pay. The website business stays the engine.</td></tr>
+  <tr><td><b>Scope creep</b> — «και αυτό, και εκείνο»</td><td>One paragraph per automation, signed. New things = next month's new automation.</td></tr>
+  <tr><td><b>You are the only person who knows how it works</b></td><td>A written manual per client, backups, a watchdog, and a CLAUDE.md per client so any session (or a future helper) can pick it up.</td></tr>
+  <tr><td><b>Something writes wrong data into the ERP</b></td><td>Read‑only by default; writes only with written OK, logged, tested on a copy first.</td></tr>
+  <tr><td><b>Data / GDPR problem</b></td><td>DPA signed, EU servers, minimum data copied, access list kept.</td></tr>
+  <tr><td><b>The ERP partner sees you as competition</b></td><td>Never touch the ERP itself. Offer to work with them — they can even refer you.</td></tr>
+  <tr><td><b>«AI hype» expectations</b></td><td>Promise hours and money, measured. Never «it does everything».</td></tr>
+  <tr><td><b>Priced too low</b></td><td>Use the calculator: they get ≥3× back. If a client only saves 5 h/week, it's the Ξεκίνημα package, not a discount.</td></tr>
+  <tr><td><b>15+ clients and you can't keep up</b></td><td>That's the moment for one technical helper — a good problem to have, not now.</td></tr>
+ </table></div>
+</div></section>
+
+<!-- 13 TIPS -->
+<section id="tips"><div class="wrap">
+ <div class="kick"><b>13</b> Tips</div>
+ <h2>Small things that make a big difference</h2>
+ <div class="grid g3">
+  <div class="card rv"><h3>Make the employee the hero</h3><p class="muted">The person who does the Excel is your best ally — or your enemy. Present it as «σου παίρνουμε τη βαρετή δουλειά».</p></div>
+  <div class="card rv"><h3>Measure before you build</h3><p class="muted">No «before» number = no proof = no sale. Write it down on day 1, with their name next to it.</p></div>
+  <div class="card rv"><h3>Name it after them</h3><p class="muted">«Ο βοηθός της Ολυμπία» feels like theirs. People keep paying for things that feel like theirs.</p></div>
+  <div class="card rv"><h3>Deliver where they already are</h3><p class="muted">Viber‑ready text, e‑mail, phone. Not another app to download.</p></div>
+  <div class="card rv"><h3>Reuse, reuse, reuse</h3><p class="muted">Every automation you build should become a recipe. Client 5 should take a third of the time of client 1.</p></div>
+  <div class="card rv"><h3>Monthly «hours saved» report</h3><p class="muted">Every month, one line: «Αυτόν τον μήνα γλιτώσατε 46 ώρες». That line is why they never cancel.</p></div>
+  <div class="card rv"><h3>Check for subsidies</h3><p class="muted">Greece regularly runs «digital transformation» programmes (ΕΣΠΑ/Ταμείο Ανάκαμψης) for SMEs. If one is open, it can pay part of the fee — ask an accountant what's open now.</p></div>
+  <div class="card rv"><h3>Use your website clients carefully</h3><p class="muted">Most are single doctors — too small. But clinic groups and dental chains among them are warm doors.</p></div>
+  <div class="card rv"><h3>Don't build the website first</h3><p class="muted">No «Automation» page on advonmedia.com until the first case study exists. Proof first, marketing second.</p></div>
+ </div>
+</div></section>
+</main>
+
+<footer class="foot"><div class="wrap">Advon Media · internal draft, 9 Oct 2026 · Not for clients. Numbers are planning estimates — replace them with the pilot's real ones.</div></footer>
+
+<script>
+(function(){
+ /* reveal */
+ var els=[].slice.call(document.querySelectorAll('.rv'));
+ if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion:reduce)').matches||document.hidden){els.forEach(function(e){e.classList.add('in')});}
+ else{var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px',threshold:.04});els.forEach(function(e){io.observe(e)});setTimeout(function(){els.forEach(function(e){e.classList.add('in')})},4000);}
+ /* calculator */
+ var $=function(i){return document.getElementById(i)};
+ var f=function(n){return Math.round(n).toLocaleString('el-GR')};
+ function calc(){
+  var h=+$('h').value,c=+$('c').value,m=+$('m').value,p=+$('p').value;
+  $('o_h').textContent=h;$('o_c').textContent=c+'€';$('o_m').textContent=f(m)+'€';
+  var hy=h*48,hv=hy*c,my=m*12,py=p*12,val=hv+my,x=val/py;
+  $('r_val').textContent=f(val)+'€';$('r_h').textContent=f(hy)+' h';$('r_hv').textContent=f(hv)+'€';$('r_m').textContent=f(my)+'€';$('r_p').textContent=f(py)+'€';$('r_x').textContent=x.toFixed(1).replace('.',',')+'€';
+  var v=$('r_v');
+  if(x>=3){v.className='verdictline ok';v.textContent='Stupid to say no. Sell it with confidence.'}
+  else if(x>=1.5){v.className='verdictline mid';v.textContent='Worth it, but not a no‑brainer. Find more money effects or use a smaller package.'}
+  else{v.className='verdictline bad';v.textContent='Not worth it for them yet. Smaller package or a more painful task.'}
+ }
+ ['h','c','m','p'].forEach(function(i){$(i).addEventListener('input',calc)});calc();
+ /* checklist */
+ var KEY='advon-auto-todo',st={};
+ try{st=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){st={}}
+ var boxes=[].slice.call(document.querySelectorAll('#todo input'));
+ function paint(){var d=0;boxes.forEach(function(b){b.parentNode.classList.toggle('done',b.checked);if(b.checked)d++});$('pbar').style.width=(d/boxes.length*100)+'%'}
+ boxes.forEach(function(b){b.checked=!!st[b.dataset.k];b.addEventListener('change',function(){st[b.dataset.k]=b.checked;try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}paint()})});
+ paint();
+})();
+</script>
+</body>
+</html>

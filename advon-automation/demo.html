@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="el">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="color-scheme" content="light only">
+<title>Ολυμπία Home — Panel (demo)</title>
+<link rel="preload" href="assets/fonts/manrope-greek-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/a.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230E1A33'/%3E%3Cpath d='M9 22l7-12 7 12' stroke='%23fff' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<style>
+body{background:#F1EFE9}
+.demo-bar{background:var(--amber-s);border-bottom:1px solid #F3D9A8;color:#7A4A00;font-size:14px;font-weight:600;text-align:center;padding:9px 16px}
+.app{display:grid;grid-template-columns:240px 1fr;max-width:1320px;margin:0 auto;gap:0}
+.side{position:sticky;top:62px;align-self:start;height:calc(100vh - 62px);padding:26px 16px;border-right:1px solid var(--line)}
+.co{display:flex;gap:12px;align-items:center;margin:0 8px 26px}
+.co i{width:42px;height:42px;border-radius:12px;background:linear-gradient(140deg,#1F3A5F,#2E6E8E);display:grid;place-items:center;color:#fff;font-style:normal;font-weight:800;font-size:18px}
+.co b{display:block;font-size:15px}.co span{font-size:12.5px;color:var(--ink3)}
+.side a{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;color:var(--ink2);text-decoration:none;font-weight:600;font-size:15px;margin-bottom:2px}
+.side a.on{background:#fff;color:var(--ink);box-shadow:var(--sh1)}
+.side a em{margin-left:auto;font-style:normal;font-size:12px;font-weight:800;background:var(--red-s);color:var(--red);padding:2px 8px;border-radius:99px}
+.side .sb{margin-top:26px;padding:14px;background:var(--deep);border-radius:14px;color:#C9D2E8;font-size:13px}
+.side .sb b{display:block;color:#fff;font-size:26px;letter-spacing:-.02em}
+.main{padding:28px 32px 80px;min-width:0}
+.blk{scroll-margin-top:80px;margin-bottom:34px}
+.hd{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:14px;flex-wrap:wrap}
+.hd h2{font-size:24px;margin:0}
+.hd .muted{font-size:14px}
+.hello h1{font-size:clamp(26px,3vw,36px);margin:0 0 4px}
+.sync{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;color:var(--ink3);font-weight:600}
+.dotl{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 rgba(31,138,91,.5);animation:pl 2s infinite}
+@keyframes pl{70%{box-shadow:0 0 0 8px rgba(31,138,91,0)}100%{box-shadow:0 0 0 0 rgba(31,138,91,0)}}
+.kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:20px}
+.kpi .card{padding:18px}
+.kpi span{font-size:13px;color:var(--ink3);font-weight:600}
+.kpi b{display:block;font-size:28px;letter-spacing:-.03em;margin:4px 0 2px}
+.kpi small{font-weight:700;font-size:13px}
+.up{color:var(--green)}.dn{color:var(--red)}
+.brief{display:grid;grid-template-columns:1.25fr .75fr;gap:14px}
+.phone{background:#E5DED3;border-radius:22px;padding:16px;font-size:14.5px}
+.msg{background:#fff;border-radius:4px 16px 16px 16px;padding:14px 16px;box-shadow:var(--sh1);max-width:560px;white-space:pre-line;line-height:1.55}
+.msg .t{display:block;text-align:right;font-size:11.5px;color:var(--ink3);margin-top:6px}
+.from{font-size:12.5px;font-weight:700;color:#6B4FB8;margin-bottom:6px}
+.saved b{font-size:52px;letter-spacing:-.04em;display:block;line-height:1;color:#fff;margin:8px 0}
+table.t{font-size:14.5px}
+table.t td,table.t th{padding:11px 12px}
+table.t tr.sel td{background:#F4F6FF}
+.lvl{display:inline-block;min-width:34px;text-align:center;font-weight:800;padding:2px 8px;border-radius:8px}
+.lvl.r{background:var(--red-s);color:var(--red)}.lvl.a{background:var(--amber-s);color:#9A5E00}
+input[type=checkbox]{width:18px;height:18px;accent-color:var(--blue)}
+.act{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.po{display:none;margin-top:14px}
+.po.on{display:block}
+.po pre{white-space:pre-wrap;font:500 14px/1.6 Manrope,sans-serif;background:#FAF9F6;border:1px dashed var(--line);border-radius:12px;padding:14px;margin:10px 0 0}
+.seg{display:inline-flex;background:#E7E3D9;border-radius:10px;padding:3px}
+.seg button{border:0;background:transparent;font:700 13.5px Manrope,sans-serif;padding:7px 12px;border-radius:8px;color:var(--ink2);cursor:pointer}
+.seg button.on{background:#fff;color:var(--ink);box-shadow:var(--sh1)}
+.bars{display:grid;gap:9px}
+.bar{display:grid;grid-template-columns:150px 1fr 90px;gap:12px;align-items:center;font-size:14px}
+.bar .tr{height:16px;background:#EFECE4;border-radius:6px;overflow:hidden}
+.bar .fl{height:100%;width:0;background:var(--blue);border-radius:6px;transition:width .7s cubic-bezier(.2,.7,.2,1)}
+.bar.e .fl{background:#2E6E8E}
+.bar .v{text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
+.inv{display:grid;gap:10px}
+.inv .card{display:grid;grid-template-columns:1fr auto auto;gap:16px;align-items:center;padding:16px 18px}
+.inv b{display:block}
+.inv .d{font-weight:800}
+.autos{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.autos .card{padding:16px 18px;display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center}
+.autos .st{width:10px;height:10px;border-radius:50%;background:var(--green)}
+.autos small{color:var(--ink3);font-size:13px}
+.autos .h{font-weight:800;color:var(--green);font-size:14px;white-space:nowrap}
+.chat{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh1);overflow:hidden}
+.chat .log{padding:18px;display:flex;flex-direction:column;gap:10px;max-height:420px;overflow:auto}
+.bub{max-width:80%;padding:11px 14px;border-radius:14px;font-size:14.5px;line-height:1.5;white-space:pre-line}
+.bub.me{align-self:flex-end;background:var(--blue);color:#fff;border-bottom-right-radius:4px}
+.bub.ai{align-self:flex-start;background:#F2F0EA;border-bottom-left-radius:4px}
+.bub.ai .src{display:block;margin-top:6px;font-size:12px;color:var(--ink3)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;padding:0 18px 14px}
+.chips button{border:1px solid var(--line);background:#fff;border-radius:99px;padding:7px 12px;font:600 13.5px Manrope,sans-serif;color:var(--ink2);cursor:pointer}
+.chips button:hover{border-color:var(--blue);color:var(--blue)}
+.inp{display:flex;gap:10px;border-top:1px solid var(--line);padding:12px}
+.inp input{flex:1;min-width:0;border:1px solid var(--line);border-radius:10px;padding:11px 12px;font:500 15px Manrope,sans-serif;background:#FAF9F6}
+.inp button{border:0;background:var(--ink);color:#fff;border-radius:10px;padding:0 16px;font:700 14px Manrope,sans-serif;cursor:pointer}
+.typing{display:inline-flex;gap:4px}.typing i{width:6px;height:6px;border-radius:50%;background:var(--ink3);animation:ty 1s infinite}.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes ty{50%{opacity:.25}}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,30px);opacity:0;background:var(--ink);color:#fff;padding:12px 18px;border-radius:12px;font-weight:600;font-size:14.5px;box-shadow:var(--sh2);transition:all .3s;z-index:99;pointer-events:none}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+.mnav{display:none}
+@media (max-width:1060px){.kpi{grid-template-columns:repeat(2,1fr)}.brief{grid-template-columns:1fr}.autos{grid-template-columns:1fr}}
+@media (max-width:860px){.app{grid-template-columns:1fr}.side{display:none}.main{padding:18px 16px 70px}
+ .mnav{display:flex;gap:6px;overflow-x:auto;position:sticky;top:62px;z-index:20;background:#F1EFE9;padding:10px 16px;border-bottom:1px solid var(--line);scrollbar-width:none}
+ .mnav::-webkit-scrollbar{display:none}
+ .mnav a{flex:none;font-size:13.5px;font-weight:700;text-decoration:none;color:var(--ink2);background:#fff;border:1px solid var(--line);padding:7px 12px;border-radius:99px}
+ .bar{grid-template-columns:100px 1fr 74px;font-size:13px}
+ .inv .card{grid-template-columns:1fr auto}.inv .card .btn{grid-column:1/-1;justify-content:center}
+ .hide-s{display:none}
+ table.t{font-size:13px} table.t td,table.t th{padding:9px 7px}
+ .blk{scroll-margin-top:120px}}
+</style>
+</head>
+<body>
+<script>document.documentElement.classList.add('js')</script>
+<header class="top"><div class="wrap">
+ <a class="brand" href="index.html"><i>A</i><span>Advon Automation</span> <small>draft</small></a>
+ <nav class="tabs"><a href="index.html">The plan</a><a class="on" href="demo.html">Client demo</a><a href="offer.html">Offer page</a></nav>
+</div></header>
+<div class="demo-bar">DEMO — φανταστική εταιρεία, φανταστικά νούμερα. Έτσι θα έβλεπε ο πελάτης το δικό του panel, στο κινητό ή στον υπολογιστή.</div>
+<nav class="mnav"><a href="#simera">Σήμερα</a><a href="#apothema">Απόθεμα</a><a href="#poliseis">Πωλήσεις</a><a href="#apliroto">Απλήρωτα</a><a href="#auto">Αυτοματισμοί</a><a href="#rotiste">Ρωτήστε</a><a href="#aitimata">Αιτήματα</a></nav>
+
+<div class="app">
+ <aside class="side">
+  <div class="co"><i>Ο</i><div><b>Ολυμπία Home Α.Ε.</b><span>9 καταστήματα + eshop</span></div></div>
+  <a href="#simera" class="on">Σήμερα</a>
+  <a href="#apothema">Απόθεμα <em>8</em></a>
+  <a href="#poliseis">Πωλήσεις</a>
+  <a href="#apliroto">Απλήρωτα <em>4</em></a>
+  <a href="#auto">Αυτοματισμοί</a>
+  <a href="#rotiste">Ρωτήστε τα δεδομένα</a>
+  <a href="#aitimata">Αιτήματα</a>
+  <div class="sb">Ώρες που γλιτώσατε τον Οκτώβριο<b data-count="46">46</b>ίσον ~1,2 εβδομάδα ενός υπαλλήλου</div>
+ </aside>
+
+ <main class="main">
+  <!-- TODAY -->
+  <div class="blk hello" id="simera">
+   <span class="sync"><span class="dotl"></span>Συγχρονισμός με το ERP πριν από 4 λεπτά</span>
+   <h1 style="margin-top:8px">Καλημέρα, κ. Παπαδόπουλε.</h1>
+   <p class="muted" style="margin:0">Παρασκευή 9 Οκτωβρίου · Τρία πράγματα θέλουν την προσοχή σας σήμερα.</p>
+   <div class="kpi">
+    <div class="card rv"><span>Πωλήσεις χθες</span><b>18.420€</b><small class="up">+6% από την ίδια μέρα πέρσι</small></div>
+    <div class="card rv"><span>Παραγγελίες eshop χθες</span><b>64</b><small class="up">+11 από τον μέσο όρο</small></div>
+    <div class="card rv"><span>Προϊόντα κάτω από το όριο</span><b>8</b><small class="dn">3 σε 0 τεμάχια</small></div>
+    <div class="card rv"><span>Απλήρωτα πάνω από 60 ημέρες</span><b>12.300€</b><small class="dn">4 πελάτες χονδρικής</small></div>
+   </div>
+  </div>
+
+  <div class="blk">
+   <div class="hd"><h2>Η πρωινή αναφορά</h2><span class="muted">Ήρθε στο Viber σας στις 08:00 — χωρίς να την ετοιμάσει κανείς</span></div>
+   <div class="brief">
+    <div class="phone rv"><div class="from">Ολυμπία · Βοηθός</div><div class="msg">Καλημέρα κ. Παπαδόπουλε. Η χθεσινή μέρα σε 30 δευτερόλεπτα:
+
+<b>Πωλήσεις:</b> 18.420€ (+6% από πέρσι). Καλύτερο κατάστημα: Γλυφάδα, 2.940€. Πιο αδύναμο: Λάρισα, 820€ (−18%).
+<b>Eshop:</b> 64 παραγγελίες, 5.210€. 2 παραγγελίες έχουν προϊόν που στην πραγματικότητα έχει τελειώσει.
+<b>Απόθεμα:</b> 3 κωδικοί σε 0 (σεντόνι Satin λευκό στη Γλυφάδα και στο Μαρούσι). Η πρόταση παραγγελίας είναι έτοιμη στο panel.
+<b>Απλήρωτα:</b> ο πελάτης «Σπίτι & Κήπος ΟΕ» πέρασε τις 90 ημέρες (4.150€).
+
+Τίποτα άλλο επείγον. Καλή μέρα.<span class="t">08:00 ✓✓</span></div></div>
+    <div class="card dark saved rv"><span class="muted">Ώρες που γλιτώσατε αυτόν τον μήνα</span><b data-count="46">46</b><p style="margin:0;color:#C9D2E8;font-size:14.5px">Η αναφορά, οι ειδοποιήσεις αποθέματος και η ένωση των Excel των καταστημάτων γίνονται πλέον μόνες τους. Πριν, τα έκανε η κα Μαρία κάθε πρωί.</p></div>
+   </div>
+  </div>
+
+  <!-- STOCK -->
+  <div class="blk" id="apothema">
+   <div class="hd"><h2>Απόθεμα κάτω από το όριο</h2><span class="muted">Επιλέξτε και πατήστε «Πρόταση παραγγελίας»</span></div>
+   <div class="tbl rv"><table class="t" id="stock">
+    <tr><th></th><th>Προϊόν</th><th>Κατάστημα</th><th>Απόθεμα</th><th class="hide-s">Όριο</th><th class="hide-s">Πωλ./εβδ.</th><th>Πρόταση</th></tr>
+   </table></div>
+   <div class="act"><button class="btn" id="mkpo">Πρόταση παραγγελίας</button><button class="btn ghost" id="selall">Επιλογή όλων</button></div>
+   <div class="card po" id="po"><h3>Πρόταση παραγγελίας ανά προμηθευτή</h3><p class="muted" style="margin:0">Υπολογισμένη από τις πωλήσεις των τελευταίων 4 εβδομάδων, για 3 εβδομάδες απόθεμα.</p><pre id="potext"></pre><div class="act"><button class="btn ghost" id="copypo">Αντιγραφή για e‑mail</button></div></div>
+  </div>
+
+  <!-- SALES -->
+  <div class="blk" id="poliseis">
+   <div class="hd"><h2>Πωλήσεις ανά κατάστημα</h2><div class="seg" id="seg"><button data-p="d" class="on">Χθες</button><button data-p="w">Εβδομάδα</button><button data-p="m">Μήνας</button></div></div>
+   <div class="card rv"><div class="bars" id="bars" role="list" aria-label="Πωλήσεις ανά κατάστημα"></div></div>
+  </div>
+
+  <!-- INVOICES -->
+  <div class="blk" id="apliroto">
+   <div class="hd"><h2>Απλήρωτα τιμολόγια χονδρικής</h2><span class="muted">Έτοιμο ευγενικό μήνυμα για κάθε πελάτη</span></div>
+   <div class="inv" id="inv"></div>
+  </div>
+
+  <!-- AUTOMATIONS -->
+  <div class="blk" id="auto">
+   <div class="hd"><h2>Τι τρέχει μόνο του</h2><span class="muted">6 αυτοματισμοί · όλοι εντάξει</span></div>
+   <div class="autos">
+    <div class="card rv"><span class="st"></span><div><b>Πρωινή αναφορά</b><br><small>Κάθε μέρα 08:00 · τελευταία φορά σήμερα 08:00</small></div><span class="h">12 ώρες</span></div>
+    <div class="card rv"><span class="st"></span><div><b>Ειδοποιήσεις αποθέματος</b><br><small>Κάθε ώρα · τελευταία φορά 10:00</small></div><span class="h">9 ώρες</span></div>
+    <div class="card rv"><span class="st"></span><div><b>Ένωση Excel καταστημάτων</b><br><small>Κάθε Δευτέρα 07:00</small></div><span class="h">14 ώρες</span></div>
+    <div class="card rv"><span class="st"></span><div><b>Έλεγχος eshop ↔ ERP</b><br><small>Κάθε 2 ώρες · 2 διαφορές σήμερα</small></div><span class="h">5 ώρες</span></div>
+    <div class="card rv"><span class="st"></span><div><b>Παραστατικά από e‑mail</b><br><small>Συνεχώς · 31 αρχεία αυτόν τον μήνα</small></div><span class="h">4 ώρες</span></div>
+    <div class="card rv"><span class="st"></span><div><b>Μηνιαία αναφορά διοίκησης</b><br><small>1η κάθε μήνα · επόμενη 1/11</small></div><span class="h">2 ώρες</span></div>
+   </div>
+  </div>
+
+  <!-- ASK -->
+  <div class="blk" id="rotiste">
+   <div class="hd"><h2>Ρωτήστε τα δεδομένα σας</h2><span class="muted">Γράψτε όπως θα ρωτούσατε έναν συνεργάτη · μόνο ανάγνωση</span></div>
+   <div class="chat rv">
+    <div class="log" id="asklog"><div class="bub ai">Καλημέρα. Ρωτήστε με οτιδήποτε για πωλήσεις, απόθεμα ή πελάτες. Στο demo απαντώ στις έτοιμες ερωτήσεις παρακάτω.</div></div>
+    <div class="chips" id="askchips"></div>
+    <form class="inp" id="askf"><input id="askin" placeholder="π.χ. Ποιο κατάστημα πήγε καλύτερα τον Σεπτέμβριο;" aria-label="Ερώτηση"><button>Ρώτα</button></form>
+   </div>
+  </div>
+
+  <!-- REQUESTS -->
+  <div class="blk" id="aitimata">
+   <div class="hd"><h2>Αιτήματα προς την Advon</h2><span class="muted">Ζητήστε μια αλλαγή — συνήθως γίνεται την ίδια μέρα</span></div>
+   <div class="chat rv">
+    <div class="log" id="reqlog">
+     <div class="bub me">Θα μπορούσε η πρωινή αναφορά να δείχνει και τις πωλήσεις ανά πωλητή χονδρικής;</div>
+     <div class="bub ai">Βεβαίως. Από αύριο το πρωί η αναφορά θα έχει μία γραμμή για κάθε πωλητή, με τον τζίρο της προηγούμενης μέρας.<span class="src">Advon · Δευ 5/10, 11:42 · ✓ Έγινε</span></div>
+     <div class="bub me">Τέλεια, ευχαριστώ!</div>
+    </div>
+    <form class="inp" id="reqf"><input id="reqin" placeholder="Γράψτε τι θα θέλατε να αλλάξει ή να προστεθεί…" aria-label="Αίτημα"><button>Αποστολή</button></form>
+   </div>
+  </div>
+  <p class="muted" style="font-size:13px">Panel από την Advon Media · Τα δεδομένα διαβάζονται από το ERP σας με δικαίωμα μόνο ανάγνωσης.</p>
+ </main>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+ var $=function(i){return document.getElementById(i)};
+ var eur=function(n){return Math.round(n).toLocaleString('el-GR')+'€'};
+ function toast(t){var e=$('toast');e.textContent=t;e.classList.add('on');clearTimeout(e._t);e._t=setTimeout(function(){e.classList.remove('on')},2400)}
+ function copy(t){try{navigator.clipboard.writeText(t).then(function(){toast('Αντιγράφηκε')},function(){toast('Αντιγράφηκε')})}catch(e){toast('Αντιγράφηκε')}}
+
+ /* reveal */
+ var els=[].slice.call(document.querySelectorAll('.rv'));
+ if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion:reduce)').matches||document.hidden){els.forEach(function(e){e.classList.add('in')})}
+ else{var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px',threshold:.04});els.forEach(function(e){io.observe(e)});setTimeout(function(){els.forEach(function(e){e.classList.add('in')})},4000)}
+
+ /* count-up */
+ [].forEach.call(document.querySelectorAll('[data-count]'),function(el){var to=+el.dataset.count;if(document.hidden||matchMedia('(prefers-reduced-motion:reduce)').matches)return;var t0=null;el.textContent='0';function st(t){if(!t0)t0=t;var k=Math.min(1,(t-t0)/1200);el.textContent=Math.round(to*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(st)}requestAnimationFrame(st);setTimeout(function(){el.textContent=to},1600)});
+
+ /* stock */
+ var S=[['Σεντόνι υπέρδιπλο Satin λευκό','Γλυφάδα',0,12,9,'Λινοβάμβακας ΑΕ'],['Σεντόνι υπέρδιπλο Satin λευκό','Μαρούσι',0,10,7,'Λινοβάμβακας ΑΕ'],['Σετ πετσέτες Cotton 3τμχ γκρι','Θεσσαλονίκη',0,15,11,'Υφαντουργία Βορρά'],['Κουβέρτα fleece ανθρακί','Πειραιάς',3,10,6,'Υφαντουργία Βορρά'],['Μαξιλάρι ύπνου Memory','Eshop',4,20,14,'SleepWell ΙΚΕ'],['Πάπλωμα μονό 4 εποχών','Πάτρα',2,8,4,'SleepWell ΙΚΕ'],['Κουρτίνα έτοιμη 140x270 μπεζ','Ηράκλειο',2,6,3,'Deco Textiles'],['Χαλάκι μπάνιου βαμβακερό','Αθήνα Ερμού',5,12,8,'Λινοβάμβακας ΑΕ']];
+ var tb=$('stock');
+ S.forEach(function(r,i){var q=Math.max(0,Math.ceil(r[4]*3-r[2]));r.push(q);var tr=document.createElement('tr');tr.innerHTML='<td><input type="checkbox" data-i="'+i+'" aria-label="Επιλογή"></td><td><b>'+r[0]+'</b></td><td>'+r[1]+'</td><td><span class="lvl '+(r[2]===0?'r':'a')+'">'+r[2]+'</span></td><td class="hide-s">'+r[3]+'</td><td class="hide-s">'+r[4]+'</td><td><b>'+q+' τεμ.</b></td>';tb.appendChild(tr)});
+ tb.addEventListener('change',function(e){if(e.target.type==='checkbox')e.target.closest('tr').classList.toggle('sel',e.target.checked)});
+ $('selall').onclick=function(){[].forEach.call(tb.querySelectorAll('input'),function(b){b.checked=true;b.closest('tr').classList.add('sel')})};
+ $('mkpo').onclick=function(){var sel=[].map.call(tb.querySelectorAll('input:checked'),function(b){return S[+b.dataset.i]});if(!sel.length){toast('Επιλέξτε τουλάχιστον ένα προϊόν');return}
+  var g={};sel.forEach(function(r){(g[r[5]]=g[r[5]]||[]).push(r)});var out='';Object.keys(g).forEach(function(s){out+=s+'\n';g[s].forEach(function(r){out+='  • '+r[0]+' — '+r[6]+' τεμ. (για '+r[1]+')\n'});out+='\n'});
+  $('potext').textContent=out.trim();$('po').classList.add('on');$('po').scrollIntoView({behavior:'smooth',block:'nearest'});toast('Η πρόταση είναι έτοιμη')};
+ $('copypo').onclick=function(){copy('Καλημέρα σας,\n\nθα θέλαμε να παραγγείλουμε:\n\n'+$('potext').textContent+'\n\nΕυχαριστούμε,\nΟλυμπία Home')};
+
+ /* sales */
+ var stores=['Γλυφάδα','Αθήνα Ερμού','Μαρούσι','Eshop','Θεσσαλονίκη','Πειραιάς','Ηράκλειο','Πάτρα','Ιωάννινα','Λάρισα'];
+ var D={d:[2940,2610,2380,5210,2150,1640,1290,1080,950,820],w:[18900,17600,15800,33400,14900,11200,9100,7600,6900,6100],m:[78200,74100,66900,141500,62300,47800,38900,32100,29400,26800]};
+ var bars=$('bars');stores.forEach(function(s,i){var d=document.createElement('div');d.className='bar'+(s==='Eshop'?' e':'');d.setAttribute('role','listitem');d.innerHTML='<span>'+s+'</span><div class="tr"><div class="fl"></div></div><span class="v"></span>';bars.appendChild(d)});
+ function drawBars(p){var v=D[p],mx=Math.max.apply(null,v);[].forEach.call(bars.children,function(b,i){b.querySelector('.fl').style.width=(v[i]/mx*100)+'%';b.querySelector('.v').textContent=eur(v[i]);b.setAttribute('aria-label',stores[i]+': '+eur(v[i]))})}
+ setTimeout(function(){drawBars('d')},300);
+ $('seg').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;[].forEach.call(this.children,function(x){x.classList.toggle('on',x===b)});drawBars(b.dataset.p)});
+
+ /* invoices */
+ var I=[['Σπίτι & Κήπος ΟΕ','Λάρισα',4150,94,'ΤΔΑ 2231'],['Home Style Κρήτης','Ηράκλειο',3480,77,'ΤΔΑ 2287'],['Δρακόπουλος Ι. & ΣΙΑ','Πάτρα',2890,68,'ΤΔΑ 2302'],['Ξενοδοχείο Αιγαίο','Νάξος',1780,63,'ΤΔΑ 2310']];
+ I.forEach(function(r){var c=document.createElement('div');c.className='card rv in';c.innerHTML='<div><b>'+r[0]+'</b><span class="muted" style="font-size:13.5px">'+r[1]+' · τιμολόγιο '+r[4]+'</span></div><div style="text-align:right"><b>'+eur(r[2])+'</b><span class="d '+(r[3]>90?'dn':'')+'" style="font-size:13px">'+r[3]+' ημέρες</span></div><button class="btn ghost">Αντιγραφή υπενθύμισης</button>';
+  c.querySelector('button').onclick=function(){copy('Καλημέρα σας,\n\nσας υπενθυμίζουμε ευγενικά ότι το τιμολόγιο '+r[4]+' ύψους '+eur(r[2])+' παραμένει ανεξόφλητο εδώ και '+r[3]+' ημέρες. Αν έχει ήδη εξοφληθεί, παρακαλούμε αγνοήστε αυτό το μήνυμα.\n\nΘα μπορούσατε να μας ενημερώσετε πότε να το περιμένουμε;\n\nΕυχαριστούμε,\nΟλυμπία Home – Λογιστήριο')};
+  $('inv').appendChild(c)});
+
+ /* ask your data */
+ var QA=[
+  ['Ποιο κατάστημα πήγε καλύτερα τον Σεπτέμβριο;','Τον Σεπτέμβριο πρώτο ήταν το eshop με 141.500€. Από τα φυσικά καταστήματα πρώτη η Γλυφάδα με 78.200€ (+9% από τον Αύγουστο) και δεύτερο η Ερμού με 74.100€.','Πωλήσεις ERP · 1–30/9'],
+  ['Τι πούλησε η Κρήτη τον Σεπτέμβριο;','Το Ηράκλειο έκανε 38.900€ τον Σεπτέμβριο (−4% από πέρσι). Τα 3 πιο δυνατά προϊόντα: σετ πετσέτες Cotton (212 τεμ.), σεντόνια Satin (148 τεμ.), κουβέρτες fleece (96 τεμ.).','Πωλήσεις ERP · κατάστημα Ηρακλείου'],
+  ['Ποια προϊόντα δεν πουλάνε καθόλου;','17 κωδικοί δεν έχουν καμία πώληση τις τελευταίες 90 ημέρες, με απόθεμα αξίας περίπου 6.400€. Οι μισοί είναι χριστουγεννιάτικα είδη του 2025. Θέλετε να ετοιμάσω λίστα για προσφορά;','Απόθεμα + πωλήσεις ERP · 90 ημέρες'],
+  ['Πόσα μας χρωστάνε οι πελάτες χονδρικής;','Σύνολο ανοιχτών υπολοίπων χονδρικής: 47.800€. Από αυτά τα 12.300€ είναι πάνω από 60 ημέρες, σε 4 πελάτες. Ο μεγαλύτερος: «Σπίτι & Κήπος ΟΕ» με 4.150€ στις 94 ημέρες.','Υπόλοιπα πελατών ERP']
+ ];
+ var log=$('asklog'),chips=$('askchips');
+ QA.forEach(function(q){var b=document.createElement('button');b.type='button';b.textContent=q[0];b.onclick=function(){ask(q[0])};chips.appendChild(b)});
+ function add(l,cls,html){var d=document.createElement('div');d.className='bub '+cls;d.innerHTML=html;l.appendChild(d);l.scrollTop=l.scrollHeight;return d}
+ function esc(s){return s.replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+ function norm(s){return s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'')}
+ function ask(t){if(!t.trim())return;add(log,'me',esc(t));var w=add(log,'ai','<span class="typing"><i></i><i></i><i></i></span>');
+  var n=norm(t),hit=QA.filter(function(q){return norm(q[0])===n})[0]||QA.filter(function(q){var k=norm(q[0]).split(/\s+/).filter(function(x){return x.length>4});return k.filter(function(x){return n.indexOf(x)>-1}).length>=2})[0];
+  setTimeout(function(){w.innerHTML=hit?esc(hit[1])+'<span class="src">Πηγή: '+hit[2]+'</span>':'Στο demo απαντώ μόνο στις έτοιμες ερωτήσεις. Στο πραγματικό panel θα απαντούσα από τα δεδομένα του ERP σας.';log.scrollTop=log.scrollHeight},900)}
+ $('askf').onsubmit=function(e){e.preventDefault();ask($('askin').value);$('askin').value=''};
+
+ /* requests */
+ $('reqf').onsubmit=function(e){e.preventDefault();var v=$('reqin').value.trim();if(!v)return;var l=$('reqlog');add(l,'me',esc(v));$('reqin').value='';setTimeout(function(){add(l,'ai','Το λάβαμε, ευχαριστούμε. Θα σας ενημερώσουμε εδώ μόλις γίνει — συνήθως την ίδια μέρα.<span class="src">Advon · μόλις τώρα</span>')},800)};
+
+ /* side nav highlight */
+ var links=[].slice.call(document.querySelectorAll('.side a'));
+ if('IntersectionObserver' in window){var so=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){links.forEach(function(a){a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id)})}})},{rootMargin:'-30% 0px -60% 0px'});['simera','apothema','poliseis','apliroto','auto','rotiste','aitimata'].forEach(function(i){so.observe($(i))})}
+})();
+</script>
+</body>
+</html>

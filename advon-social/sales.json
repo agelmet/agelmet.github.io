@@ -1,7 +1,75 @@
 {
- "updated": "2026-10-08",
+ "updated": "2026-10-09",
  "note": "SALES tab in the CRM Meta view — posted only by hand («Post on Instagram + Facebook» / TikTok), never scheduled.",
  "posts": [
+  {
+   "id": "sales-X1-master-pro",
+   "type": "reel",
+   "title": "ΝΕΑ · ΔΙΑΦΗΜΙΣΗ 1 PRO · Panos · 53 s",
+   "kind": "Η master διαφήμιση με νέα, πιο επαγγελματικά εφέ · 9:16 + 4:5 · allsmiles.gr, davou-ofthalmiatros.gr, marthaplessa-psychotherapy.gr, dpapaioannou-psychologist.gr",
+   "caption": "Δωρεάν κατασκευή ιστοσελίδας.\n\nΠληρώνετε μόνο φιλοξενία & domain: 130€ τον χρόνο, δηλαδή 10,83€ τον μήνα. Χωρίς προκαταβολή: πρώτα βλέπετε ένα draft, και μετά πληρώνετε. Όσες αλλαγές θέλετε, μέχρι να είναι ακριβώς όπως τη φανταστήκατε.\n\n220+ ιστοσελίδες online · 125+ κριτικές στο Google, όλες 5 αστέρων.\n\nΣυμπληρώστε τη φόρμα στο advonmedia.com ή κλείστε online ραντεβού. Χωρίς καμία δέσμευση.",
+   "hashtags": "#κατασκευήιστοσελίδων #ιστοσελίδα #webdesign #advonmedia #δωρεάν #γιατρός #ψυχολόγος",
+   "tiktok": "Δωρεάν κατασκευή ιστοσελίδας. Μόνο 10,83€/μήνα για φιλοξενία & domain, χωρίς προκαταβολή. #ιστοσελίδα #advonmedia",
+   "media": [
+    "sales/X1-master.mp4"
+   ],
+   "media45": [
+    "sales/X1-master-4x5.mp4"
+   ],
+   "cover": "sales/X1-master-cover.jpg",
+   "group": "ads10"
+  },
+  {
+   "id": "sales-X2-variation",
+   "type": "reel",
+   "title": "ΝΕΑ · ΔΙΑΦΗΜΙΣΗ 2 · άλλες σελίδες & κριτικές · 53 s",
+   "kind": "Ίδιο κείμενο & φωνή · 9:16 + 4:5 · dentalphilosophy.gr, anthithoma-psychologist.gr, evelina-apostolaki.gr",
+   "caption": "Δωρεάν κατασκευή ιστοσελίδας.\n\nΠληρώνετε μόνο φιλοξενία & domain: 130€ τον χρόνο, δηλαδή 10,83€ τον μήνα. Χωρίς προκαταβολή: πρώτα βλέπετε ένα draft, και μετά πληρώνετε. Όσες αλλαγές θέλετε, μέχρι να είναι ακριβώς όπως τη φανταστήκατε.\n\n220+ ιστοσελίδες online · 125+ κριτικές στο Google, όλες 5 αστέρων.\n\nΣυμπληρώστε τη φόρμα στο advonmedia.com ή κλείστε online ραντεβού. Χωρίς καμία δέσμευση.",
+   "hashtags": "#κατασκευήιστοσελίδων #ιστοσελίδα #webdesign #advonmedia #δωρεάν #γιατρός #ψυχολόγος",
+   "tiktok": "Δωρεάν κατασκευή ιστοσελίδας. Μόνο 10,83€/μήνα για φιλοξενία & domain, χωρίς προκαταβολή. #ιστοσελίδα #advonmedia",
+   "media": [
+    "sales/X2-variation.mp4"
+   ],
+   "media45": [
+    "sales/X2-variation-4x5.mp4"
+   ],
+   "cover": "sales/X2-variation-cover.jpg",
+   "group": "ads10"
+  },
+  {
+   "id": "sales-X3-spoudes",
+   "type": "reel",
+   "title": "ΝΕΑ · ΔΙΑΦΗΜΙΣΗ 3 · «Χρόνια σπουδών… ένα όνομα σε μια λίστα» · 52 s",
+   "kind": "Hook φωνή Panos · 9:16 + 4:5 · kk-dental.gr, diadromes.org, ioannapagani.gr",
+   "caption": "Χρόνια σπουδών, μεταπτυχιακό, ειδικότητα… και στο ίντερνετ είστε ένα όνομα σε μια λίστα, με ένα τηλέφωνο και μια διεύθυνση.\n\nΌλος αυτός ο κόπος αξίζει να φαίνεται. Φτιάχνουμε την ιστοσελίδα σας δωρεάν — πληρώνετε μόνο φιλοξενία & domain, 10,83€ τον μήνα. Χωρίς προκαταβολή.\n\nΣυμπληρώστε τη φόρμα στο advonmedia.com ή κλείστε online ραντεβού. Χωρίς καμία δέσμευση.",
+   "hashtags": "#κατασκευήιστοσελίδων #ιστοσελίδα #webdesign #advonmedia #δωρεάν #γιατρός #ψυχολόγος",
+   "tiktok": "Χρόνια σπουδών… και στο ίντερνετ ένα όνομα σε μια λίστα. Αξίζει να φαίνεται. #γιατρός #ψυχολόγος #ιστοσελίδα #advonmedia",
+   "media": [
+    "sales/X3-spoudes.mp4"
+   ],
+   "media45": [
+    "sales/X3-spoudes-4x5.mp4"
+   ],
+   "cover": "sales/X3-spoudes-cover.jpg",
+   "group": "ads10"
+  },
+  {
+   "id": "sales-X4-google-test",
+   "type": "reel",
+   "title": "ΝΕΑ · ΔΙΑΦΗΜΙΣΗ 4 · «Κάντε ένα μικρό τεστ» · 49 s",
+   "kind": "Hook φωνή Panos · 9:16 + 4:5 · mourtzinos-dentist.gr, vasileiou-psychologist.gr",
+   "caption": "Κάντε ένα μικρό τεστ: γράψτε το όνομά σας στο Google. Τι βρίσκει κάποιος που σας ψάχνει για πρώτη φορά;\n\nΑν δεν βρει μια σελίδα που να του δείχνει ποιος είστε, πολύ πιθανό να καλέσει τον επόμενο. Φτιάχνουμε την ιστοσελίδα σας δωρεάν — πληρώνετε μόνο 10,83€ τον μήνα για φιλοξενία & domain. Πρώτα βλέπετε το draft, μετά πληρώνετε.\n\nΣυμπληρώστε τη φόρμα στο advonmedia.com ή κλείστε online ραντεβού. Χωρίς καμία δέσμευση.",
+   "hashtags": "#κατασκευήιστοσελίδων #ιστοσελίδα #webdesign #advonmedia #δωρεάν #γιατρός #ψυχολόγος",
+   "tiktok": "Κάντε ένα τεστ: γράψτε το όνομά σας στο Google. Τι βρίσκουν; #γιατρός #ψυχολόγος #ιστοσελίδα #advonmedia",
+   "media": [
+    "sales/X4-google-test.mp4"
+   ],
+   "media45": [
+    "sales/X4-google-test-4x5.mp4"
+   ],
+   "cover": "sales/X4-google-test-cover.jpg",
+   "group": "ads10"
+  },
   {
    "id": "sales-N3-master-ad-sound",
    "type": "reel",
@@ -406,6 +474,11 @@
   ]
  },
  "groups": [
+  {
+   "k": "ads10",
+   "t": "0 · ΝΕΕΣ διαφημίσεις — έτοιμες για Meta Ads (9 Οκτ.)",
+   "d": "4 διαφημίσεις με νέα εφέ, φωνή Panos. Η καθεμία σε 9:16 (Reels, Stories) και 4:5 (Feed). Τα αρχεία πλήρους ποιότητας για το Ads Manager: ADVON-CLIENTS/_social/ads/batch10."
+  },
   {
    "k": "ads",
    "t": "1 · Διαφημίσεις (Meta Ads)",

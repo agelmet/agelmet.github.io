@@ -26,4 +26,11 @@ async function share(list){const fs=await files(list);if(navigator.canShare&&nav
 document.getElementById('sh').onclick=()=>share([F[cur]]).catch(()=>{});
 let pack=0;document.getElementById('all').onclick=async()=>{const n=Math.ceil(F.length/10);const st=document.getElementById('st');
  try{await share(F.slice(pack*10,pack*10+10));pack++;st.textContent=pack>=n?'Όλα έτοιμα ✓':'Πακέτο '+pack+'/'+n+' — πατήστε ξανά για το επόμενο';if(pack>=n)pack=0}catch(e){}};
+
+// sender: opened by the Business Suite tab as a popup → hands it the requested stories, then closes
+(async()=>{const m=location.hash.match(/^#send=(\d+)-(\d+)$/);if(!m||!window.opener)return;
+ const a=+m[1],b=+m[2];const list=F.filter(n=>{const k=parseInt(n,10);return k>=a&&k<=b});
+ document.body.innerHTML='<h1 style="padding:40px">Αποστολή '+list.length+' stories…</h1>';
+ const files=await Promise.all(list.map(async n=>new File([await (await fetch(n,{cache:'no-store'})).blob()],n,{type:'image/jpeg'})));
+ window.opener.postMessage({kr:1,files},'*');setTimeout(()=>window.close(),1500)})();
 </script></body></html>

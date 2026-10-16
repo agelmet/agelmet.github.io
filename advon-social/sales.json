@@ -1,7 +1,24 @@
 {
- "updated": "2026-10-09",
+ "updated": "2026-10-16",
  "note": "SALES tab in the CRM Meta view — posted only by hand («Post on Instagram + Facebook» / TikTok), never scheduled.",
  "posts": [
+  {
+   "id": "sales-Y-logariasmos",
+   "type": "reel",
+   "title": "ΝΕΟ · Ο ΛΟΓΑΡΙΑΣΜΟΣ · Panos · 40 s",
+   "kind": "130€ τον χρόνο vs 1 πελάτης · σας βρίσκουν / σας εμπιστεύονται · πραγματικά νούμερα Google · 9:16 + 4:5 · pefanis-therapy.gr, patridou-psychologist.gr, oikonomou-psyxologos.gr",
+   "caption": "130€ τον χρόνο. Και ένας μόνο πελάτης. Κάντε τον λογαριασμό.\n\nΈνας νέος πελάτης που έρχεται 20 φορές τον χρόνο, στα 50€ τη συνεδρία, είναι 1.000€. Η ιστοσελίδα έχει πληρωθεί από τις πρώτες συνεδρίες — τα υπόλοιπα είναι κέρδος.\n\nΓιατί έρχεται ο πελάτης; Σας βρίσκει στο Google (περιοχή, υπηρεσίες, όνομα) και σας εμπιστεύεται, γιατί βλέπει μια δική σας σελίδα — όχι μια γραμμή σε κατάλογο.\n\nΗ κατασκευή δεν χρεώνεται. 130€ + ΦΠΑ τον χρόνο (10,83€/μήνα), χωρίς προκαταβολή — τη βλέπετε πρώτα έτοιμη.\n\nadvonmedia.com",
+   "hashtags": "#ιστοσελίδα #κατασκευήιστοσελίδων #ψυχολόγος #γιατρός #webdesign #advonmedia",
+   "tiktok": "130€ τον χρόνο vs 1 πελάτης. Κάντε τον λογαριασμό. #ιστοσελίδα #ψυχολόγος #advonmedia",
+   "media": [
+    "sales/Y-logariasmos.mp4"
+   ],
+   "media45": [
+    "sales/Y-logariasmos-4x5.mp4"
+   ],
+   "cover": "sales/Y-logariasmos-cover.jpg",
+   "group": "ads11"
+  },
   {
    "id": "sales-X1-master-pro",
    "type": "reel",
@@ -474,6 +491,11 @@
   ]
  },
  "groups": [
+  {
+   "k": "ads11",
+   "t": "0 · ΝΕΟ · «Ο λογαριασμός» (16 Οκτ.)",
+   "d": "40 δευτερόλεπτα, μόνο φωνή Panos (χωρίς μουσική): 130€ τον χρόνο απέναντι σε έναν πελάτη, οι δύο λόγοι (σας βρίσκουν · σας εμπιστεύονται) και πραγματικά νούμερα από το Google Search Console. 9:16 (Reels, Stories) + 4:5 (Feed). Για Instagram, Facebook, TikTok και διαφήμιση."
+  },
   {
    "k": "ads10",
    "t": "0 · ΝΕΕΣ διαφημίσεις — έτοιμες για Meta Ads (9 Οκτ.)",

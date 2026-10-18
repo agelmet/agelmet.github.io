@@ -1,0 +1,683 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="color-scheme" content="light only">
+<title>Advon — The €100k Plan</title>
+<meta name="description" content="How Advon Media gets from €10.83 a month per client to €100,000 net a month: one product, the exact offer, the math, the outreach, the costs and the 18-month path.">
+<style>
+:root{
+  --paper:#F7F5F0;--card:#FFFFFF;--ink:#16201F;--ink2:#3F4A48;--mute:#7A8582;--line:#E3DFD5;
+  --acc:#0F5B4E;--acc2:#0A443A;--acc-soft:#E4EFEA;--gold:#B8862B;--gold-soft:#F6EEDC;--red:#B4452F;--red-soft:#F7E6E1;
+  --r:18px;--max:1120px;
+}
+*{box-sizing:border-box}
+html{color-scheme:light only;scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,"Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--acc)}
+h1,h2,h3,h4{line-height:1.15;letter-spacing:-.015em;margin:0 0 .5em}
+h1{font-size:clamp(38px,5.4vw,70px);font-weight:800}
+h2{font-size:clamp(28px,3.4vw,42px);font-weight:800;margin-top:.2em}
+h3{font-size:22px;font-weight:700}
+h4{font-size:17px;font-weight:700;margin-bottom:.3em}
+p{margin:0 0 1em}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+.lead{font-size:clamp(18px,1.6vw,21px);color:var(--ink2)}
+.k{display:inline-block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);font-weight:700;margin-bottom:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px 28px;box-shadow:0 1px 0 rgba(0,0,0,.02),0 14px 40px -28px rgba(22,32,31,.25)}
+.grid{display:grid;gap:18px}.grid>*,.two>*{min-width:0}html,body{overflow-x:clip}
+.g2{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
+@media(max-width:900px){.g2,.g3,.g4{grid-template-columns:1fr}}
+section{padding:84px 0;border-top:1px solid var(--line);scroll-margin-top:56px}
+section.first{border-top:0}
+.num{font-size:clamp(34px,4vw,54px);font-weight:800;letter-spacing:-.03em;color:var(--acc);line-height:1}
+.num small{font-size:.45em;color:var(--mute);font-weight:600;letter-spacing:0}
+.mute{color:var(--mute)}
+.gold{color:var(--gold)}
+.red{color:var(--red)}
+.tag{display:inline-block;background:var(--acc-soft);color:var(--acc2);border-radius:999px;padding:4px 12px;font-size:13px;font-weight:700}
+.tag.g{background:var(--gold-soft);color:#7a5614}.tag.r{background:var(--red-soft);color:var(--red)}
+table{width:100%;border-collapse:collapse;font-size:15px;background:var(--card);border-radius:var(--r);overflow:hidden;border:1px solid var(--line)}
+th,td{padding:12px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+th{background:#F1EEE6;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink2)}
+tr:last-child td{border-bottom:0}
+td.r,th.r{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.tscroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.quote{border-left:4px solid var(--gold);padding:6px 0 6px 20px;font-size:19px;font-style:italic;color:var(--ink2);margin:26px 0}
+.gr{background:#F4F1EA;border:1px dashed #D5CFC0;border-radius:14px;padding:18px 20px;font-size:15.5px;white-space:pre-wrap;line-height:1.6}
+.gr b{color:var(--acc2)}
+.gr .lbl{display:block;font-style:normal;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);margin-bottom:8px;font-weight:700}
+ol,ul{padding-left:22px}li{margin-bottom:.45em}
+.steps{counter-reset:s;list-style:none;padding:0;margin:0}
+.steps li{position:relative;padding-left:56px;margin-bottom:22px}
+.steps li::before{counter-increment:s;content:counter(s);position:absolute;left:0;top:-2px;width:40px;height:40px;border-radius:50%;background:var(--acc);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:17px}
+.bar{display:grid;grid-template-columns:120px 1fr 110px;gap:12px;align-items:center;margin:8px 0;font-size:14.5px}
+.bar .t{height:22px;background:var(--acc-soft);border-radius:8px;overflow:hidden;position:relative}
+.bar .t i{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,var(--acc2),var(--acc));border-radius:8px;width:0;transition:width 1.4s cubic-bezier(.2,.8,.2,1)}
+.bar .t i.c{background:linear-gradient(90deg,#8d6a22,var(--gold))}
+.bar .r{text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
+.on .bar .t i{width:var(--w)}
+.hero{padding:90px 0 60px;background:radial-gradient(900px 420px at 15% -10%,#E4EFEA 0%,rgba(228,239,234,0) 60%),radial-gradient(700px 400px at 95% 10%,#F6EEDC 0%,rgba(246,238,220,0) 60%)}
+.hero .big{display:flex;gap:40px;flex-wrap:wrap;align-items:flex-end;margin-top:34px}
+.hero .big div{min-width:180px}
+.toc{position:sticky;top:0;z-index:5;background:rgba(247,245,240,.9);backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--line)}
+.toc .wrap{display:flex;gap:4px;overflow-x:auto;padding:10px 20px;scrollbar-width:none}
+.toc a{white-space:nowrap;text-decoration:none;color:var(--ink2);font-size:13.5px;font-weight:600;padding:7px 12px;border-radius:999px}
+.toc a:hover{background:var(--acc-soft);color:var(--acc2)}
+.verdict{background:var(--ink);color:#EEF1EE;border-radius:24px;padding:40px 44px}
+.verdict h2{color:#fff}.verdict .k{color:#9CD3C3}.verdict p{color:#CBD3D0}
+.verdict strong{color:#fff}
+.two{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:start}
+@media(max-width:900px){.two{grid-template-columns:1fr}}
+.pill-row{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 0}
+.check li{list-style:none;position:relative;padding-left:28px}
+.check li::before{content:"";position:absolute;left:0;top:7px;width:16px;height:16px;border-radius:50%;background:var(--acc);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%23000' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round' d='M3 8.5l3 3 7-7'/%3E%3C/svg%3E") center/100% no-repeat,linear-gradient(#000,#000);-webkit-mask-composite:xor;mask-composite:exclude}
+.price{position:relative;padding-top:34px}
+.price .top{position:absolute;top:-14px;left:28px}
+.price .p{font-size:40px;font-weight:800;letter-spacing:-.03em;margin:6px 0 2px}
+.price .p small{font-size:15px;color:var(--mute);font-weight:600;letter-spacing:0}
+.price.hi{border-color:var(--acc);box-shadow:0 20px 50px -30px rgba(15,91,78,.45)}
+.rv{opacity:0;transform:translateY(14px);transition:opacity .55s ease,transform .55s ease}
+.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.bar .t i{transition:none}}
+.foot{padding:50px 0 70px;color:var(--mute);font-size:14px}
+.callout{border-left:4px solid var(--acc);background:var(--acc-soft);padding:16px 20px;border-radius:0 14px 14px 0;margin:20px 0}
+.callout.g{border-color:var(--gold);background:var(--gold-soft)}
+.callout.r{border-color:var(--red);background:var(--red-soft)}
+.small{font-size:14px}
+.cmp td:first-child{font-weight:700}
+.day{display:grid;grid-template-columns:110px 1fr;gap:14px;padding:12px 0;border-bottom:1px solid var(--line)}
+.day:last-child{border-bottom:0}
+.day b{color:var(--acc)}
+.phase{border-top:4px solid var(--acc);padding-top:18px}
+.phase.g{border-color:var(--gold)}
+hr.sp{border:0;border-top:1px solid var(--line);margin:40px 0}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="k">Advon Media · Mastermind plan · 18 Oct 2026</span>
+    <h1>From €10.83 a month per client<br>to €100,000 net a month.</h1>
+    <p class="lead" style="max-width:820px">You asked me to answer as someone who has built and sold big companies, with no limiting beliefs — and to be realistic enough that you can start tomorrow. Both at once. Here is my honest verdict, the one product I would bet the company on, the exact offer, the math, every script, every cost, and what I need from you.</p>
+    <div class="big">
+      <div><div class="num">€130<small> /year</small></div><div class="mute small">what a client pays you today (€10.83 a month)</div></div>
+      <div><div class="num">€245<small> /month</small></div><div class="mute small">what the same client pays for the new product</div></div>
+      <div><div class="num">22×</div><div class="mute small">more revenue per «yes» — same calls, same meetings</div></div>
+      <div><div class="num gold">15–18<small> months</small></div><div class="mute small">to €100k net, if we execute the plan below</div></div>
+    </div>
+  </div>
+</header>
+
+<nav class="toc"><div class="wrap">
+  <a href="#verdict">Verdict</a><a href="#product">The product</a><a href="#why">Why this</a><a href="#offer">The offer</a><a href="#math">The math</a><a href="#how">How it works</a><a href="#law">Law & GDPR</a><a href="#outreach">Outreach A–Z</a><a href="#onboarding">Onboarding</a><a href="#plan">30 / 90 / 540 days</a><a href="#costs">Costs</a><a href="#you">What I need from you</a><a href="#risks">Risks</a><a href="#bigger">Bigger</a>
+</div></nav>
+
+<main>
+
+<!-- ============ VERDICT ============ -->
+<section class="first" id="verdict">
+  <div class="wrap">
+    <div class="verdict rv">
+      <span class="k">The honest verdict</span>
+      <h2>You don't have a revenue problem. You have a price problem.</h2>
+      <p>Look at what you actually own: <strong>220+ live sites</strong> of Greek health professionals who trust you, <strong>125+ five-star Google reviews</strong>, a cold-call → 15-minute-Meet → close machine that converts at ~50%, a CRM that runs itself, a lead pool of 2,455 phones plus the 7,000 doctoranytime premium profiles (people who already <em>pay</em> €100–250 a month for patient flow), and me — an engineer, operator and analyst who works 24/7 for a flat fee. That is a serious company's asset list.</p>
+      <p>And you sell it for <strong>€10.83 a month</strong>. 220 clients × €130 = €28,600 a year. To reach €100k a month with websites you would need 770 new sites <em>every month</em>. It cannot be done, and it was never meant to be: <strong>the free website is the best lead magnet in Greek health care — it is not the business.</strong> You have been running a lead magnet as a business.</p>
+      <p>The people who make €100k a day are not smarter than you. They sell something a buyer values at €300–3,000 a month, to buyers who can pay it, through a channel they control. You already have the channel and the buyers. What is missing is the product that costs the doctor <strong>€245 a month and is obviously worth €2,000.</strong></p>
+      <p>I looked at everything on the table — the generic «automation for businesses» plan, the Nef Nef ERP work, Google Ads only, the student app, eshops. One product wins on every axis that matters (you can see its value in 60 seconds, the doctor can see it in 60 seconds, I can build it in 2 weeks, it is recurring, and it reuses your entire machine):</p>
+      <p style="font-size:22px;font-weight:800;color:#fff;margin:22px 0 6px">The 24/7 AI receptionist for private practices — «Ψηφιακή Γραμματεία» — bundled with the Google growth system you already half-do, sold as «no appointment ever lost again».</p>
+      <p>Same 60 calls a day, same 4 meetings, same free website as the door-opener. One extra sentence in the meeting and the yes is worth 22× more. Below is the whole thing, A to Z.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRODUCT ============ -->
+<section id="product">
+  <div class="wrap">
+    <span class="k">01 · The product</span>
+    <h2>«Ψηφιακή Γραμματεία» — the practice that always answers.</h2>
+    <div class="two">
+      <div>
+        <p class="lead">Picture Dr. Παπαδοπούλου, a dentist in Αμπελόκηποι. She is drilling. Her phone rings — a new patient found her on Google and wants a cleaning. Nobody answers. He calls the next dentist in the list. That appointment (€60) and that patient (€1,500 over the years) are gone, and she never even knew he called.</p>
+        <p>In the US study of 85 small businesses, <strong>62% of calls went unanswered</strong>; <strong>82% of consumers say they would call a competitor</strong> after an unanswered call; health-care phone leads convert at ~40% when answered (Invoca, 60M calls). A solo Greek practice is <em>worse</em>: one person, in session, no secretary. You know this feeling — it is exactly why your own CRM reminders feel like gold to you. This is the same relief, sold to the people who feel it ten times a day.</p>
+        <p><strong>What the doctor gets, in her words:</strong></p>
+        <ul class="check">
+          <li><strong>Her number stays the same.</strong> When she doesn't pick up by the 4th ring (or at night, or at lunch), the call quietly forwards to her digital receptionist.</li>
+          <li><strong>It answers in natural Greek (and English)</strong>, introduces itself as the practice's digital assistant, and does the four things a receptionist does: books an appointment into her calendar, answers the practical questions (where, when, how much, parking, insurance, first-visit info), takes a message, and tells emergencies to call 166/112.</li>
+          <li><strong>The patient gets an SMS confirmation</strong> on the spot and a reminder 24 hours before (no-shows fall by half). She gets a Viber/SMS summary after every call: «Νέος ασθενής, Νίκος Κ., καθαρισμός, Πέμπτη 17:30, 694…».</li>
+          <li><strong>Google works for her:</strong> her Business Profile fully set up, a review request sent to every patient she taps «send» for, her site (free, as today) ranking for «οδοντίατρος Αμπελόκηποι», and a one-page monthly report: calls answered, appointments booked, reviews gained, Google position.</li>
+          <li><strong>Recalls</strong> (dentists: «6 months since your cleaning»), birthday-free, zero software to learn. She changes anything by sending you a Viber.</li>
+        </ul>
+        <div class="callout"><strong>The 60-second demo that closes.</strong> During the 15-minute Meet you say: «Πάρτε τώρα από το κινητό σας το 21x xxx xxxx και ζητήστε ραντεβού για Πέμπτη.» They hear it book them, their phone buzzes with the SMS, and the calendar on your shared screen fills in. Nobody needs to «understand AI». They heard it.</div>
+      </div>
+      <div>
+        <div class="card rv">
+          <h3>What a missed call costs her</h3>
+          <table class="small">
+            <tr><td>New-patient calls a solo practice misses</td><td class="r">6–15 / week</td></tr>
+            <tr><td>Share that never calls back</td><td class="r">~1 in 3</td></tr>
+            <tr><td>First visit (dentist / doctor / psychologist)</td><td class="r">€50–150</td></tr>
+            <tr><td>Lifetime value of one dental patient</td><td class="r">€1,000–2,500</td></tr>
+            <tr><td><strong>Lost per month, conservatively</strong></td><td class="r"><strong>€600–2,000</strong></td></tr>
+            <tr><td><strong>Price of the receptionist</strong></td><td class="r"><strong>€149–249</strong></td></tr>
+          </table>
+          <p class="small mute" style="margin-top:12px">Sources: 411 Locals 30-day study (62% unanswered), CallRail 2025 consumer survey (82% would call a competitor), Invoca 2025 (healthcare phone-lead conversion ~40%). We will replace these with the client's <em>own</em> numbers after month 1 — the system logs every call it saved.</p>
+        </div>
+        <div class="card rv" style="margin-top:18px">
+          <h3>Who it is for (in this order)</h3>
+          <ol>
+            <li><strong>Dentists</strong> — most calls, highest patient value, recalls. Your DENTISTS list (1,165) and 445-review KDENTAL types.</li>
+            <li><strong>Doctors in private practice</strong> — παθολόγοι, παιδίατροι, γυναικολόγοι, δερματολόγοι, καρδιολόγοι, ΩΡΛ, οφθαλμίατροι (your 1,848-lead backlog).</li>
+            <li><strong>Psychologists</strong> — fewer calls but <em>always</em> in session; buy the Basic tier for reminders + no-shows. Your best converters today.</li>
+            <li><strong>Physios, dietitians, speech therapists</strong> — same pain, lower price sensitivity than you think.</li>
+            <li><strong>Clinics</strong> (dental clinics, πολυϊατρεία, διαγνωστικά) — 3–10 lines, the €590+ tier. Later, but this is where €100k gets easy.</li>
+          </ol>
+          <p class="small mute">Greece has 69,937 registered doctors, 13,840 dentists and 11,447 physiotherapists (ΕΛΣΤΑΤ 2024) — plus ~10,000 psychologists. Even 1% of them is 1,000 clients.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY THIS ============ -->
+<section id="why">
+  <div class="wrap">
+    <span class="k">02 · Why this and not the others</span>
+    <h2>I scored every idea on the five things that decide whether a one-man company can scale it.</h2>
+    <p class="lead" style="max-width:860px">The earlier «automation for Greek businesses» plan was correct in spirit and wrong in product. You told me the truth: you don't see the value, because <em>you</em> never ran an ERP. If the founder can't feel it, he can't sell it in 15 minutes. The receptionist you feel instantly — it is your own reminders, for them.</p>
+    <div class="tscroll"><table class="cmp">
+      <thead><tr><th></th><th>Buyer sees value in 60s</th><th>You sell it with your current motion</th><th>I build it in ≤ 2 weeks, then copy-paste per client</th><th>Recurring, €200+/mo</th><th>Proof you already own</th><th>Verdict</th></tr></thead>
+      <tbody>
+        <tr><td>AI receptionist + Google growth</td><td>Yes — they hear it</td><td>Yes — same leads, same Meet</td><td>Yes</td><td>Yes</td><td>220 clients, 125 reviews, health niche</td><td><span class="tag">Build now</span></td></tr>
+        <tr><td>Generic business automation (ERP/Excel)</td><td>No — needs discovery</td><td>No — new buyers, long cycle</td><td>No — every client is custom</td><td>Yes</td><td>None</td><td><span class="tag r">Park</span></td></tr>
+        <tr><td>Nef Nef–style ERP integration</td><td>Only for that one owner</td><td>No</td><td>No — months, risk on their data</td><td>One client</td><td>Relationship</td><td><span class="tag g">Do as a one-off project if he asks, €5–15k, no priority</span></td></tr>
+        <tr><td>Google Ads management only</td><td>Yes</td><td>Yes</td><td>Yes</td><td>€150/mo + spend</td><td>Clients asking</td><td><span class="tag g">Add-on, not core — see Law</span></td></tr>
+        <tr><td>Social media packages</td><td>Yes</td><td>Yes</td><td>Yes</td><td>€49–99/mo</td><td>Your own posts</td><td><span class="tag g">Add-on</span></td></tr>
+        <tr><td>Student exam-prep app</td><td>Yes</td><td>No — consumers, no channel</td><td>No — product + content + support</td><td>€10–30/mo, consumer churn</td><td>None</td><td><span class="tag r">Later, with cash flow</span></td></tr>
+        <tr><td>Shopify eshops</td><td>Yes</td><td>Partly</td><td>No — each is a project</td><td>Weak</td><td>None</td><td><span class="tag r">Only on request</span></td></tr>
+      </tbody>
+    </table></div>
+    <div class="callout g" style="margin-top:26px"><strong>Think bigger, correctly.</strong> «Bigger» is not «more kinds of things». Bigger is one thing, priced right, sold to 1,000 people, then the same thing in Cyprus, the UAE and the UK at 3× the price. Every billion-dollar service company you can name did exactly that before it did anything else.</div>
+  </div>
+</section>
+
+<!-- ============ OFFER ============ -->
+<section id="offer">
+  <div class="wrap">
+    <span class="k">03 · The offer — «stupid to say no»</span>
+    <h2>Zero setup. First month free. Their number stays. If it books nothing they would have missed, they pay nothing.</h2>
+    <p class="lead" style="max-width:860px">Hormozi's value equation: raise the dream outcome and the certainty, cut the time and the effort. Here is each dial turned all the way, in the spirit of your free-website model that already works.</p>
+    <div class="grid g3" style="margin:26px 0 34px">
+      <div class="card price rv"><span class="top tag">Βασικό</span><h3>Γραμματεία</h3><div class="p">€149<small> /μήνα</small></div>
+        <p class="small mute">Psychologists, counsellors, solo low-call practices</p>
+        <ul class="check small"><li>Digital receptionist 24/7, EL + EN, on missed calls</li><li>Books into their Google Calendar (or any calendar with a link)</li><li>SMS confirmation + 24h reminder to the patient</li><li>Call summary to the doctor after every call</li><li>Website hosting included (the €130 disappears into this)</li><li>Monthly 1-page report</li></ul></div>
+      <div class="card price hi rv"><span class="top tag">Most will pick this</span><h3>Γραμματεία Plus</h3><div class="p">€249<small> /μήνα</small></div>
+        <p class="small mute">Dentists, doctors, physios</p>
+        <ul class="check small"><li>Everything in Βασικό</li><li>Google Business Profile set up and optimised (your €90 service, included)</li><li>Review engine: one tap sends the review SMS to the patient of the day</li><li>Recalls (6-month cleaning, annual check-up)</li><li>Website changes included (the €50 requests) + priority</li><li>Quarterly Google ranking check and fixes</li></ul></div>
+      <div class="card price rv"><span class="top tag g">Later — month 4+</span><h3>Κλινική</h3><div class="p">€590<small> /μήνα</small></div>
+        <p class="small mute">Dental clinics, πολυϊατρεία, διαγνωστικά, 2–10 doctors</p>
+        <ul class="check small"><li>Up to 5 lines, one calendar per doctor</li><li>Answers overflow during the day too (not only missed calls)</li><li>Front-desk dashboard for the staff</li><li>Monthly call with you</li><li>€990 for 10+ doctors</li></ul></div>
+    </div>
+
+    <div class="two">
+      <div class="card rv">
+        <h3>The four dials</h3>
+        <ol>
+          <li><strong>Dream outcome:</strong> «Δεν χάνετε ποτέ ξανά ραντεβού — ούτε όταν είστε με ασθενή, ούτε Σάββατο βράδυ.» Not «AI», not «automation». Lost appointments found.</li>
+          <li><strong>Certainty:</strong> they hear it live in the demo; the system logs every booked call so month 1 ends with «σας κλείσαμε 14 ραντεβού που θα χάνονταν»; 125 Google reviews behind you; 220 colleagues already with you.</li>
+          <li><strong>Time:</strong> live in 7 days. Their side: 20 minutes total (one call with you, forwarding set on their phone, hours & FAQ sent on Viber).</li>
+          <li><strong>Effort:</strong> nothing to learn, no app, no password. Everything they need comes as a Viber/SMS. Changes = a message to you.</li>
+        </ol>
+        <h3 style="margin-top:22px">The guarantee</h3>
+        <p>«<strong>Ο πρώτος μήνας είναι δωρεάν.</strong> Αν στον πρώτο μήνα η γραμματεία δεν κλείσει ούτε ένα ραντεβού που θα χανόταν, σταματάμε και δεν πληρώνετε τίποτα — ούτε ένα ευρώ.» You can afford it: the cost of a client-month is ~€20, and the system books something in week one for almost everybody.</p>
+        <h3 style="margin-top:22px">The stack (what they get vs what it is worth)</h3>
+        <table class="small">
+          <tr><td>Part-time secretary for the phone</td><td class="r">€600+/mo</td></tr>
+          <tr><td>Reminder SMS system (no-shows −50%)</td><td class="r">€40/mo</td></tr>
+          <tr><td>Website + hosting + changes</td><td class="r">€130/yr + €50/change</td></tr>
+          <tr><td>Google Business Profile setup</td><td class="r">€90</td></tr>
+          <tr><td>Review engine</td><td class="r">€30/mo</td></tr>
+          <tr><td><strong>Total if bought separately</strong></td><td class="r"><strong>€800+/mo</strong></td></tr>
+          <tr><td><strong>Γραμματεία Plus</strong></td><td class="r"><strong>€249/mo</strong></td></tr>
+        </table>
+      </div>
+      <div>
+        <div class="card rv">
+          <h3>Words to use / avoid</h3>
+          <table class="small">
+            <tr><th>Say</th><th>Never</th></tr>
+            <tr><td>Ψηφιακή γραμματεία · απαντάει όταν δεν μπορείτε · κλείνει ραντεβού · ο αριθμός σας μένει ίδιος</td><td>AI, bot, ρομπότ, τεχνητή νοημοσύνη (only when THEY ask: «ναι, είναι ψηφιακή βοηθός — το λέει και στον ασθενή»)</td></tr>
+            <tr><td>Ραντεβού που θα χάνονταν</td><td>«Αυτοματοποίηση», «σύστημα», «πλατφόρμα»</td></tr>
+            <tr><td>Δωρεάν ο πρώτος μήνας, ακυρώνετε όποτε θέλετε</td><td>«Πληρώνετε μόνο αν σας αρέσει» (you rejected this — it is not true)</td></tr>
+            <tr><td>Δεκάδες κριτικές · 220+ ιατρεία</td><td>Exact counts that go stale</td></tr>
+            <tr><td>Δεν δίνει ποτέ ιατρική συμβουλή</td><td>Anything that sounds like diagnosis</td></tr>
+          </table>
+          <h3 style="margin-top:22px">The one-liner</h3>
+          <div class="gr">«Είμαστε η Advon Media — φτιάχνουμε δωρεάν τις ιστοσελίδες 220 ιατρείων. Τώρα βάζουμε στα ιατρεία μια ψηφιακή γραμματεία που απαντάει στα τηλέφωνα που χάνετε όταν είστε με ασθενή, κλείνει το ραντεβού στο ημερολόγιό σας και στέλνει SMS επιβεβαίωσης. Ο αριθμός σας μένει ίδιος, ο πρώτος μήνας είναι δωρεάν. Θέλετε να την ακούσετε?»</div>
+        </div>
+        <div class="card rv" style="margin-top:18px">
+          <h3>Founding price for your 220</h3>
+          <p>The first 30 existing clients get <strong>Plus at €149, locked for life</strong>, in exchange for a Google review of the receptionist and permission to use them as a reference («Ο Δρ. Χ δεν χάνει πια ραντεβού»). They are your proof, your case studies and your first €4.5k MRR — in 3 weeks, before any ad runs.</p>
+          <p class="small mute">Payment: monthly, by πάγια εντολή (standing order) or card (Viva Wallet — Greek, trusted, recurring). Not Stripe (your rule). Quarterly bank transfer with τιμολόγιο for those who insist. I set up the invoicing flow with Chiotis so it runs itself.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MATH ============ -->
+<section id="math">
+  <div class="wrap">
+    <span class="k">04 · The math to €100k net</span>
+    <h2>Same volume you already planned. 22× the value of each yes.</h2>
+    <div class="two">
+      <div>
+        <p class="lead">Your notebook plan was 2 websites a day. Keep exactly that rhythm — 60 calls, 4–5 meetings, 2 yeses — and attach the receptionist to roughly half of them with the live demo. Add your 220 existing clients, the ads from month 3, and one closer from month 5. That is the whole trick.</p>
+        <h3>Unit economics per client</h3>
+        <table class="small">
+          <tr><td>Blended price (40% Basic · 50% Plus · 10% Clinic)</td><td class="r">€245 / mo</td></tr>
+          <tr><td>Voice minutes (~120 min × $0.08, ElevenLabs Agents)</td><td class="r">≈ €9</td></tr>
+          <tr><td>Brain (Claude via API, ~$0.03/min)</td><td class="r">≈ €3.5</td></tr>
+          <tr><td>Greek phone number (SIP) + SMS (~60 × €0.045)</td><td class="r">≈ €6</td></tr>
+          <tr><td><strong>Direct cost per client-month</strong></td><td class="r"><strong>≈ €20</strong></td></tr>
+          <tr><td><strong>Gross margin</strong></td><td class="r"><strong>92%</strong></td></tr>
+          <tr><td>Cost to win a client (ads + your time; cold calls ≈ €0)</td><td class="r">€100–200</td></tr>
+          <tr><td>Payback</td><td class="r">&lt; 1 month</td></tr>
+          <tr><td>Churn assumption (SMB subscriptions, sticky because the phone depends on it)</td><td class="r">3% / mo</td></tr>
+          <tr><td>Lifetime value after direct costs (≈ 33 months × €225)</td><td class="r">≈ €7,400</td></tr>
+        </table>
+        <p class="small mute" style="margin-top:10px">ElevenLabs Agents: Pro $99 = 1,238 min, Scale $299 = 3,738 min, Business $990 = 12,375 min, extra minutes $0.08, LLM and telephony billed separately (elevenlabs.io/pricing/agents, Oct 2026). At 100+ clients we are on Business; at 400 clients the voice bill is ≈ $4,000/mo — already inside the €20/client above.</p>
+      </div>
+      <div class="card rv">
+        <h3>Where clients come from each month (steady state, month 6+)</h3>
+        <table class="small">
+          <tr><td>Cold calls: 60/day → 5 meetings → 2 website yes → <strong>1 receptionist yes</strong></td><td class="r">≈ 20 / mo</td></tr>
+          <tr><td>Existing 220 clients (25% over 6 months)</td><td class="r">≈ 9 / mo</td></tr>
+          <tr><td>Meta + Google ads (€1,500–3,000/mo, CPL €15, 25% to meeting, 30% close)</td><td class="r">≈ 8–15 / mo</td></tr>
+          <tr><td>Referrals (every client is asked at month 2; 1 in 5 sends one)</td><td class="r">≈ 5 / mo</td></tr>
+          <tr><td>Clinics (targeted, from month 4)</td><td class="r">1–2 / mo</td></tr>
+          <tr><td><strong>Gross new</strong></td><td class="r"><strong>≈ 40 / mo</strong></td></tr>
+          <tr><td>Churn at 300 clients (3%)</td><td class="r">−9 / mo</td></tr>
+          <tr><td><strong>Net growth</strong></td><td class="r"><strong>≈ +30 / mo</strong></td></tr>
+        </table>
+        <div class="callout" style="margin-top:16px">Everything above is the volume you have <em>already</em> committed to for websites. The receptionist is one more sentence in the same meeting. If the attach rate is only 1 in 3 instead of 1 in 2, the plan slips by ~3 months — it does not break.</div>
+      </div>
+    </div>
+
+    <h3 style="margin-top:44px">The ladder — monthly recurring revenue (MRR), and net after everything</h3>
+    <div class="card rv" id="ladder">
+      <div class="bar"><div>Nov 2026</div><div class="t"><i style="--w:2%"></i></div><div class="r">€1.5k · 10 clients</div></div>
+      <div class="bar"><div>Dec</div><div class="t"><i style="--w:6%"></i></div><div class="r">€8k · 35</div></div>
+      <div class="bar"><div>Jan 2027</div><div class="t"><i style="--w:12%"></i></div><div class="r">€16k · 70</div></div>
+      <div class="bar"><div>Feb</div><div class="t"><i style="--w:19%"></i></div><div class="r">€26k · 110</div></div>
+      <div class="bar"><div>Apr</div><div class="t"><i style="--w:32%"></i></div><div class="r">€44k · 180</div></div>
+      <div class="bar"><div>Jul</div><div class="t"><i style="--w:50%"></i></div><div class="r">€68k · 280</div></div>
+      <div class="bar"><div>Oct 2027</div><div class="t"><i style="--w:79%"></i></div><div class="r">€107k · 380 + add-ons</div></div>
+      <div class="bar"><div>Jan 2028</div><div class="t"><i class="c" style="--w:100%"></i></div><div class="r gold">€135k revenue</div></div>
+      <div class="bar"><div></div><div class="t"><i class="c" style="--w:74%"></i></div><div class="r gold">€100k+ net</div></div>
+    </div>
+    <div class="tscroll" style="margin-top:22px"><table>
+      <thead><tr><th>Month</th><th class="r">Clients</th><th class="r">MRR</th><th class="r">Direct costs</th><th class="r">Ads</th><th class="r">People</th><th class="r">Tools & other</th><th class="r">Net before your tax</th><th>What happens</th></tr></thead>
+      <tbody>
+        <tr><td>Nov 2026</td><td class="r">10</td><td class="r">€1,500</td><td class="r">€200</td><td class="r">€900</td><td class="r">—</td><td class="r">€450</td><td class="r">−€50</td><td>Build (weeks 1–2), Advon's own line first, 10 founding clients at €149</td></tr>
+        <tr><td>Dec</td><td class="r">35</td><td class="r">€8,000</td><td class="r">€700</td><td class="r">€900</td><td class="r">—</td><td class="r">€500</td><td class="r">€5,900</td><td>Existing-client wave, attach in every new-site meeting</td></tr>
+        <tr><td>Jan 2027</td><td class="r">70</td><td class="r">€16,000</td><td class="r">€1,400</td><td class="r">€1,500</td><td class="r">—</td><td class="r">€600</td><td class="r">€12,500</td><td>Cold calls switch to the missed-call pitch; ads start</td></tr>
+        <tr><td>Feb</td><td class="r">110</td><td class="r">€26,000</td><td class="r">€2,200</td><td class="r">€2,000</td><td class="r">—</td><td class="r">€900</td><td class="r">€20,900</td><td>First clinic; referral ask built into month-2 report</td></tr>
+        <tr><td>Apr</td><td class="r">180</td><td class="r">€44,000</td><td class="r">€3,600</td><td class="r">€3,000</td><td class="r">€2,500</td><td class="r">€1,200</td><td class="r">€33,700</td><td>Hire closer #1 on commission (month 5)</td></tr>
+        <tr><td>Jul</td><td class="r">280</td><td class="r">€68,000</td><td class="r">€5,600</td><td class="r">€4,000</td><td class="r">€5,000</td><td class="r">€1,800</td><td class="r">€51,600</td><td>Closer #2; Cyprus opens (same language, same product)</td></tr>
+        <tr><td>Oct 2027</td><td class="r">380</td><td class="r">€95,000 + €12,000 add-ons</td><td class="r">€7,600</td><td class="r">€5,000</td><td class="r">€8,000</td><td class="r">€2,500</td><td class="r">€83,900</td><td>Google Ads mgmt (€150) and social (€79) sold to ~30% of clients</td></tr>
+        <tr><td><strong>Jan 2028</strong></td><td class="r"><strong>450 + 30 clinics</strong></td><td class="r"><strong>€135,000</strong></td><td class="r">€10,000</td><td class="r">€6,000</td><td class="r">€12,000</td><td class="r">€3,000</td><td class="r"><strong>€104,000</strong></td><td>English tier for Cyprus expats / UAE at 3× price begins</td></tr>
+      </tbody>
+    </table></div>
+    <p class="small mute" style="margin-top:12px">«People» = 1–2 Greek closers paid mostly on commission (€400 base + €60 per client) and, from month 9, one part-time support person. Add-ons = Google Ads management €150/mo (where the law allows — see below) and social €49–99/mo. Net is before your personal income tax/ΕΦΚΑ; Chiotis will tell you the right structure (ΙΚΕ) once MRR passes ~€15k.</p>
+  </div>
+</section>
+
+<!-- ============ HOW ============ -->
+<section id="how">
+  <div class="wrap">
+    <span class="k">05 · How it works underneath — in plain words</span>
+    <h2>Five pieces, all of which we already use for Advon. I build it once; every new client is a copy with their details.</h2>
+    <div class="grid g2">
+      <div class="card rv">
+        <h3>The pieces</h3>
+        <ol>
+          <li><strong>A Greek phone number per client</strong> (210 / 2310 / their area code) from a Greek VoIP provider connected by SIP — the same type of line as your Inter Telecom 210 number. The doctor's own phone forwards to it <em>only</em> when they don't answer («conditional forwarding», set once with a code or one call to Cosmote/Vodafone/Nova). A fixed-line number matters: forwarding to a fixed number is inside their flat-rate bundle, so it costs them nothing.</li>
+          <li><strong>The voice</strong> — ElevenLabs Agents (the account you already have), a warm Greek voice, interrupts naturally, speaks English when the caller does. Connected to the SIP number (ElevenLabs supports SIP trunking from any standards provider).</li>
+          <li><strong>The brain</strong> — Claude, with a per-practice «sheet» (hours, address, services, prices they allow us to say, parking, insurance, FAQ, what to do with emergencies) and three tools: check the calendar, book a slot, send an SMS. Hard rules baked in: never medical advice, always «ψηφιακή βοηθός του ιατρείου», emergencies → 166/112, unknown question → takes a message.</li>
+          <li><strong>The calendar</strong> — Google Calendar (free; most already have Gmail) or any calendar we can read. doctoranytime has no API, so for clients who book there we book into Google and they mirror — or we simply take the message and they confirm. Clinics: one calendar per doctor.</li>
+          <li><strong>The back office</strong> — our Netlify-functions + private-repo pattern (exactly like the CRM): every call logged with transcript, outcome and the booked slot; SMS via a Greek gateway; the monthly report generated automatically; a «control room» page where I review every call daily for the first 60 days and flag anything odd. Your CRM gets a «Receptionist» card per client: calls answered, bookings, MRR, renewal.</li>
+        </ol>
+      </div>
+      <div>
+        <div class="card rv">
+          <h3>Week 1–2 build list (mine)</h3>
+          <ul class="check small">
+            <li>Advon's own receptionist on your 210 number: answers Advon's missed calls, books the 15-min Meet in your «Advon Media» calendar. Eat our own cooking, and it is the demo.</li>
+            <li>Demo practice «Ιατρείο Δρ. Παπαδοπούλου» with its own number — the one prospects call during meetings.</li>
+            <li>20 recorded Greek test calls (names with τόνους, dates «την άλλη Πέμπτη», interruptions, a rude caller, an emergency, an English speaker). We don't sell until these are clean.</li>
+            <li>Per-client template: the sheet, the calendar connection, the SMS texts (confirmation, reminder, review ask, recall), the call-summary message.</li>
+            <li>Control room + daily review task; monthly report PDF; CRM card.</li>
+            <li>DPA + terms + privacy wording (below), Viva Wallet/πάγια εντολή flow, the 7-day onboarding checklist.</li>
+            <li>Landing page advonmedia.com/grammateia with click-to-call demo, the hook video, FAQ — same style as /dorean.</li>
+          </ul>
+        </div>
+        <div class="card rv" style="margin-top:18px">
+          <h3>Quality gates (non-negotiable)</h3>
+          <ul class="small">
+            <li>The Greek must sound like a Greek secretary. If the voice mispronounces a surname or stumbles on dates, we fix it before anyone pays. This is the moat — foreign tools can't do Greek well, and Greek competitors are few.</li>
+            <li>Answer within 2 rings of the forward; never a silent line; if anything fails, the call falls back to the doctor's voicemail/mobile — the patient is never stuck.</li>
+            <li>Every booking is confirmed by SMS to the patient AND to the doctor. Double-booking impossible (calendar is checked at booking time).</li>
+            <li>I read every transcript for the first 60 days of each client. Anything wrong → fixed the same day → the doctor hears about it from us first.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LAW ============ -->
+<section id="law">
+  <div class="wrap">
+    <span class="k">06 · Law & GDPR — this is a moat, not a problem</span>
+    <h2>Doctors may not advertise in Greece. They may absolutely have a secretary.</h2>
+    <div class="grid g3">
+      <div class="card rv">
+        <h3>Κώδικας Ιατρικής Δεοντολογίας (Ν. 3418/2005, άρθ. 17–18)</h3>
+        <p class="small">Doctors are forbidden «προσωπική διαφήμιση ή συστηματική δημόσια παρουσία» and may not publish thank-you letters or success stories for advertising. They <em>may</em> keep a website with factual information (άρθ. 18) and inform the public. Dentists have a similar code.</p>
+        <p class="small"><strong>What this means for us:</strong> the receptionist, the website, the Business Profile with facts, SMS reminders and patients posting their own Google reviews are all information and service — fully compliant. <strong>Paid Google/Meta ads for ιατροί and οδοντίατροι are a grey zone</strong> many do anyway; we do not make them the core. We sell ads only to ψυχολόγοι, φυσικοθεραπευτές, διαιτολόγοι, λογοθεραπευτές (not under this code) and to clinics framed as information — and we tell doctors honestly why. That honesty wins trust and makes the «organic patient system» the obvious choice.</p>
+      </div>
+      <div class="card rv">
+        <h3>GDPR — health data</h3>
+        <ul class="small">
+          <li>A caller's reason for visiting is health data (Art. 9). The receptionist collects the <strong>minimum</strong>: name, phone, the slot, and a short free-text reason only if the patient offers it. No ID numbers, no history.</li>
+          <li>Advon = <strong>processor</strong>, the practice = controller. One signed DPA per client (ours, 2 pages, Greek), listing sub-processors: ElevenLabs (EU data residency setting on), the LLM provider, the SIP provider, the SMS gateway. I draft it; a lawyer reviews it once (€300–500).</li>
+          <li>Audio recording <strong>off</strong> by default; text transcripts kept 90 days then deleted; patient SMS only for the appointment itself; review requests only to patients the doctor taps «send» for.</li>
+          <li>Professional secrecy (άρθ. 13 ΚΙΔ): confidentiality clause in our contract; access to transcripts only you and me.</li>
+          <li>The practice's privacy page gets a paragraph on the digital receptionist — I add it to every site we host.</li>
+        </ul>
+      </div>
+      <div class="card rv">
+        <h3>EU AI Act, Article 50 (in force since 2 Aug 2026)</h3>
+        <p class="small">Anyone talking to an AI must be told. Our receptionist opens with «Ιατρείο Δρ. Παπαδοπούλου, είμαι η ψηφιακή βοηθός του ιατρείου». That single sentence is the whole obligation — and honestly, patients prefer it to a voicemail. No high-risk classification applies (booking appointments is not medical decision-making), and the agent is forbidden to give medical advice, which keeps it that way.</p>
+        <div class="callout small" style="margin:14px 0 0"><strong>Why this is a moat:</strong> a 19-year-old reseller of an American voice bot will not do the DPA, the Greek privacy page, the medical-code honesty or the EU residency. You will — and you will say so in the meeting.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ OUTREACH ============ -->
+<section id="outreach">
+  <div class="wrap">
+    <span class="k">07 · Outreach A–Z — the exact method</span>
+    <h2>Five channels, in the order we switch them on. Every script below is ready to use.</h2>
+
+    <div class="phase rv">
+      <h3>A · Your 220 existing clients (weeks 3–6) — the founding wave</h3>
+      <p>Warmest money on earth. They trust you, you already talk on Viber, their site is already in your hands (so the Business Profile and reviews piece is half-done). Send in batches of 20 a day so you can answer. <strong>Nothing goes out without your yes</strong> — this is the draft.</p>
+      <div class="gr"><span class="lbl">Viber / CRM chat · to an existing client (you approve, you send)</span>Καλησπέρα σας κ. Παπαδοπούλου, Άγγελος από την Advon Media.
+
+Σας γράφω γιατί ξεκινήσαμε κάτι νέο και θέλω να το δώσω πρώτα στα ιατρεία που είναι ήδη μαζί μας.
+
+Βάλαμε στα ιατρεία μια <b>ψηφιακή γραμματεία</b>: όταν δεν μπορείτε να απαντήσετε (είστε με ασθενή, μεσημέρι, βράδυ), το τηλέφωνο προωθείται σε αυτήν, απαντάει στα ελληνικά σαν γραμματέας, κλείνει το ραντεβού στο ημερολόγιό σας και στέλνει SMS επιβεβαίωσης στον ασθενή και σε εσάς. Ο αριθμός σας μένει ίδιος.
+
+Για τους πρώτους 30 πελάτες μας είναι 149€ τον μήνα για πάντα (κανονικά 249€), με τον πρώτο μήνα δωρεάν και χωρίς δέσμευση — και μέσα περιλαμβάνεται πλέον και η φιλοξενία της ιστοσελίδας σας.
+
+Θέλετε να την ακούσετε? Καλέστε 1 λεπτό στο <b>21x xxx xxxx</b> και ζητήστε ένα ραντεβού — είναι το δοκιμαστικό ιατρείο μας. Αν σας αρέσει, τη βάζουμε σε 7 ημέρες.</div>
+      <p class="small mute" style="margin-top:10px">Follow-up after 3 silent days: one line — «Την ακούσατε? Αν θέλετε, 10΄ online την Τετάρτη να σας δείξω πώς μπαίνει.» Expected: 30 yes from 220 in six weeks (14%); the rest hear about it again at renewal time and in the monthly site report.</p>
+    </div>
+
+    <div class="phase rv" style="margin-top:40px">
+      <h3>B · Every new-website meeting (from day 15, forever) — the attach</h3>
+      <p>You already book 4–5 Meets a day. The website stays free. In the last 4 minutes of the Meet, after the website yes:</p>
+      <div class="gr"><span class="lbl">In the Meet · after the website «yes»</span>«Μια τελευταία ερώτηση, γιατί το ακούω από όλους τους γιατρούς: πόσα τηλέφωνα χάνετε τη μέρα όταν είστε με ασθενή? … Ακριβώς. Γι' αυτό φτιάξαμε και κάτι ακόμα. Πάρτε τώρα, από το κινητό σας, το <b>21x xxx xxxx</b> και ζητήστε ραντεβού για Πέμπτη.»
+
+[they call — it books — their phone buzzes with the SMS — your shared screen shows the calendar]
+
+«Αυτό θα απαντάει στο ιατρείο σας όταν δεν προλαβαίνετε. Ο αριθμός σας μένει ίδιος. 249€ τον μήνα, ο πρώτος δωρεάν, κι αν τον πρώτο μήνα δεν κλείσει ούτε ένα ραντεβού που θα χανόταν, δεν πληρώνετε τίποτα. Μέσα είναι και η φιλοξενία και οι αλλαγές της ιστοσελίδας. Να το βάλουμε μαζί με την ιστοσελίδα?»</div>
+      <p class="small mute" style="margin-top:10px">Target attach rate 40–50% with the live demo. If they hesitate: «Κανένα πρόβλημα — ξεκινάμε την ιστοσελίδα, και όταν είναι έτοιμη σε 7 μέρες σας δείχνω τη γραμματεία πάνω στη δική σας σελίδα.» The CRM «Also interested in» chip + reminder already exist for this.</p>
+    </div>
+
+    <div class="phase rv" style="margin-top:40px">
+      <h3>C · Cold calls with the missed-call hook (from month 3) — your 2,455 pool + the weekly doctoranytime harvest</h3>
+      <p>The genius of this product for cold calling: <strong>when they don't answer your call, that IS the pitch.</strong> Your CRM already parks no-answers — now every no-answer gets an SMS automatically (I wire it into the Leads tab):</p>
+      <div class="gr"><span class="lbl">SMS · sent automatically after a no-answer (your name, the Advon 210 number)</span>Καλησπέρα κ. Παπαδοπούλου, Άγγελος Μετρίδης από την Advon Media (φτιάχνουμε τις ιστοσελίδες 220+ ιατρείων). Σας κάλεσα πριν λίγο και δεν απαντήσατε — όπως 4 στις 10 κλήσεις ασθενών προς ιατρεία. Καλέστε 1 λεπτό στο 21x xxx xxxx να ακούσετε τι θα άκουγε ένας ασθενής σας αν είχατε τη δική μας ψηφιακή γραμματεία. Αν σας αρέσει, 15΄ online: advonmedia.com/ραντεβού</div>
+      <div class="gr" style="margin-top:12px"><span class="lbl">Cold call · when they DO answer (30 seconds)</span>«Καλησπέρα σας, κ. Παπαδοπούλου? Άγγελος Μετρίδης από την Advon Media — φτιάχνουμε δωρεάν τις ιστοσελίδες σε πάνω από 220 ιατρεία. Σας παίρνω για 30 δευτερόλεπτα: είδα ότι έχετε προφίλ στο doctoranytime αλλά όχι δική σας ιστοσελίδα — αυτήν τη φτιάχνουμε δωρεάν. Και κάτι που ρωτάνε όλοι οι γιατροί: όταν είστε με ασθενή και χτυπάει το τηλέφωνο, ποιος απαντάει? … Αυτό ακριβώς λύνουμε. Μπορώ να σας δείξω και τα δύο σε 15 λεπτά online — αύριο 12:30 ή 17:00 σας βολεύει?»</div>
+      <p class="small mute" style="margin-top:10px">Lead order: dentists first (your DENTISTS list from #293 + the Crete/Thessaloniki columns), then the 1,848-profile specialist backlog, then psychologists for the Basic tier. Regional cities: 80–90% have no website and fewer competitors — same pitch, better odds.</p>
+    </div>
+
+    <div class="phase rv" style="margin-top:40px">
+      <h3>D · Meta + Google ads (from month 3, €1,500 → €5,000/mo)</h3>
+      <p>Your voiced hook-video style already works. New hooks, all ending on the click-to-call demo number and the booking page:</p>
+      <ul class="small">
+        <li>«Το ιατρείο σας δεν απάντησε. Ο ασθενής κάλεσε τον επόμενο.» (phone rings over a dental chair, then the receptionist's voice books it)</li>
+        <li>«Είναι 14:10. Είστε με ασθενή. Ακούστε ποιος απάντησε.» — a real recorded demo call as the ad.</li>
+        <li>«Μια γραμματέας κοστίζει 900€. Αυτή κοστίζει 249€ και δεν αρρωσταίνει ποτέ.»</li>
+        <li>Carousel: «3 ραντεβού που ο Δρ. Χ θα είχε χάσει αυτή την εβδομάδα» (anonymised real log, with the client's permission).</li>
+      </ul>
+      <p class="small">Targeting: Greece, 30–60, interests dentistry/medicine/psychology + job titles; lookalikes of your 220 clients' e-mails. Landing: advonmedia.com/grammateia — hero with «Καλέστε το δοκιμαστικό ιατρείο» (tel: link on mobile), 125 reviews, 220 sites, FAQ, book 15΄. Google Search ads for «γραμματεία ιατρείου», «τηλεφωνικό κέντρο ιατρείου», «γραμματειακή υποστήριξη ιατρείο» — these people are literally searching to hire a secretary. <strong>Budget math:</strong> CPL €15 → 25% book → €60/meeting → 30% close → €200/client, paid back in the first month. I run and optimise them; you get a weekly plain-words report (your rule: no budget change without your yes).</p>
+    </div>
+
+    <div class="phase rv" style="margin-top:40px">
+      <h3>E · Referrals, reviews, and the clinic channel</h3>
+      <ul class="small">
+        <li><strong>Month-2 report ends with one line:</strong> «Αν ξέρετε συνάδελφο που χάνει τηλέφωνα, στείλτε του αυτόν τον σύνδεσμο — ο επόμενος μήνας σας είναι δωρεάν.» 1 in 5 does.</li>
+        <li><strong>Review ask</strong> at month 1 (the moment the first report shows «14 ραντεβού που θα χάνονταν») — your Google profile goes from 125 to 300 reviews within the year, and now they mention the receptionist.</li>
+        <li><strong>Clinics:</strong> from month 4, a list of 300 dental clinics / πολυϊατρεία / διαγνωστικά in Αττική + Θεσσαλονίκη (I build it from Google Maps + doctoranytime), direct call to the manager: «Πόσες κλήσεις χάνει το κέντρο σας στην αναμονή?» — demo, then a 2-week free pilot on one line. €590–990/mo each; 30 of them = €20k MRR.</li>
+        <li><strong>Associations and events</strong> (month 6+): Οδοντιατρικός Σύλλογος newsletters, ΣΕΨ, a 20-minute talk «Το ιατρείο που απαντάει πάντα» — one talk = 20 leads.</li>
+      </ul>
+    </div>
+
+    <hr class="sp">
+    <h3>Objections — and the answer</h3>
+    <div class="tscroll"><table class="small">
+      <tr><th style="width:34%">They say</th><th>You say</th></tr>
+      <tr><td>«Οι ασθενείς μου δεν θέλουν να μιλάνε με μηχάνημα.»</td><td>«Σήμερα μιλάνε με τον τηλεφωνητή — ή με κανέναν. Το δοκιμάσατε πριν λίγο: κλείνει το ραντεβού σε 40 δευτερόλεπτα και λέει καθαρά ότι είναι η ψηφιακή βοηθός. Οι ασθενείς προτιμούν να κλείσουν ραντεβού από το να ξανακαλέσουν.»</td></tr>
+      <tr><td>«Έχω το doctoranytime.»</td><td>«Τέλεια — κρατήστε το. Το doctoranytime δεν απαντάει στο τηλέφωνό σας. Οι μισοί ασθενείς παίρνουν τηλέφωνο, δεν κλείνουν online. Αυτούς πιάνουμε.»</td></tr>
+      <tr><td>«Και αν πει κάτι λάθος?»</td><td>«Δεν δίνει ποτέ ιατρική συμβουλή — μόνο ραντεβού, ώρες, διεύθυνση, και ό,τι εσείς μας πείτε. Ό,τι δεν ξέρει, κρατάει μήνυμα. Και κάθε κλήση την ελέγχουμε εμείς τους πρώτους δύο μήνες.»</td></tr>
+      <tr><td>«Είναι νόμιμο? GDPR?»</td><td>«Ναι: υπογράφουμε σύμβαση επεξεργασίας, δεν ηχογραφούμε, κρατάμε μόνο όνομα-τηλέφωνο-ραντεβού, δεδομένα στην ΕΕ, και ο ασθενής ενημερώνεται ότι μιλά με ψηφιακή βοηθό όπως ορίζει ο ευρωπαϊκός νόμος.»</td></tr>
+      <tr><td>«249€ είναι πολλά.»</td><td>«Ένα χαμένο ραντεβού καθαρισμού είναι 60€ — τέσσερα τον μήνα και πληρώθηκε. Και ο πρώτος μήνας είναι δωρεάν: αν δεν σας κλείσει ούτε ένα ραντεβού που θα χανόταν, δεν πληρώνετε τίποτα.»</td></tr>
+      <tr><td>«Θα το σκεφτώ.»</td><td>«Φυσικά. Να το αφήσω να απαντάει δωρεάν 30 μέρες, να δείτε στον λογαριασμό σας πόσα ραντεβού έπιασε, και αποφασίζετε με αριθμούς?»</td></tr>
+    </table></div>
+  </div>
+</section>
+
+<!-- ============ ONBOARDING ============ -->
+<section id="onboarding">
+  <div class="wrap">
+    <span class="k">08 · Onboarding — live in 7 days, 20 minutes of their time</span>
+    <h2>Their side is three Viber messages and one phone code. Our side is a checklist I run.</h2>
+    <div class="grid g2">
+      <div class="card rv">
+        <h3>Client's 20 minutes</h3>
+        <ol class="steps">
+          <li><strong>Day 0 — the yes.</strong> They get one Viber: «Στείλτε μου: ωράριο, διεύθυνση, υπηρεσίες και τιμές που θέλετε να λέει, πώς δέχεστε (ΕΟΠΥΥ/ιδιωτικά), parking/μετρό, και τι να κάνει σε επείγον.» (5 min — or we take it from their site and they just confirm.)</li>
+          <li><strong>Day 1 — calendar.</strong> They share their Google Calendar with the receptionist's address (2 taps, I send the screenshots) — or tell us their slots and we create one for them.</li>
+          <li><strong>Day 3 — the test call.</strong> They call their new number, hear themselves described, we fix any wording. They sign the DPA (e-sign link, 1 min).</li>
+          <li><strong>Day 5 — forwarding.</strong> On their office phone they dial the no-answer forwarding code (I send the exact code per provider — Cosmote, Vodafone, Nova) or we call the provider together — 3 minutes. Mobile-only practices forward the mobile the same way.</li>
+          <li><strong>Day 7 — live.</strong> First real call usually lands within 48 hours. They get the summary SMS, and on day 30 the first report: «X κλήσεις απαντήθηκαν, Y ραντεβού κλείστηκαν, Z θα είχαν χαθεί».</li>
+        </ol>
+      </div>
+      <div class="card rv">
+        <h3>My checklist per client (copy-paste, ~2 hours of machine time)</h3>
+        <ul class="check small">
+          <li>Provision Greek SIP number (their area code) → attach to a cloned agent with their «sheet»</li>
+          <li>Voice: same warm voice unless they want male/female; pronunciation of their name tested</li>
+          <li>Calendar connected, slot rules (duration, buffers, days), test booking + cancel</li>
+          <li>SMS templates with their name, address link, cancellation line</li>
+          <li>Google Business Profile claimed/optimised (Plus), review link SMS ready</li>
+          <li>Privacy page paragraph added to their site; DPA signed; Viva Wallet / πάγια εντολή set</li>
+          <li>CRM card: tier, number, MRR, start date, renewal, «referral asked» flag</li>
+          <li>Control room: daily transcript review for 60 days; weekly summary to you</li>
+        </ul>
+        <p class="small mute">This is the same «factory» discipline as the websites: one CLAUDE.md, one checklist, one QA pass, every time.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PLAN ============ -->
+<section id="plan">
+  <div class="wrap">
+    <span class="k">09 · The calendar</span>
+    <h2>Your first 30 days, day by day. Then 90. Then 18 months.</h2>
+    <div class="grid g2">
+      <div class="card rv">
+        <h3>Days 1–30 (starting the day you say «go»)</h3>
+        <div class="day"><b>Day 1</b><div>You: say yes to the direction and the prices; upgrade ElevenLabs to Pro ($99); I pick the Greek SIP provider and the SMS gateway (you pay ≈ €80 to open both). I start building.</div></div>
+        <div class="day"><b>Days 2–7</b><div>I build Advon's own receptionist on your 210 line + the demo practice. You keep cold-calling websites exactly as now.</div></div>
+        <div class="day"><b>Days 8–10</b><div>20 test calls — you, me, two friends, Chiotis. We fix every stumble. Landing page + DPA + terms drafted; lawyer review booked.</div></div>
+        <div class="day"><b>Days 11–14</b><div>Three friendly existing clients get it free for 3 months as pilots (I suggest one dentist, one doctor, one psychologist). Forwarding set, first real calls logged.</div></div>
+        <div class="day"><b>Day 15</b><div>You start the attach in every Meet (script B). CRM gets the Receptionist card and the no-answer SMS.</div></div>
+        <div class="day"><b>Days 16–30</b><div>Founding wave to the 220 (script A), 20 messages a day, you approve each batch. Target: 10 paying by day 30, 30 by day 45. First pilot results → first case-study numbers → first hook video.</div></div>
+      </div>
+      <div class="card rv">
+        <h3>Days 31–90</h3>
+        <ul class="small">
+          <li>Switch cold calls to the missed-call pitch (script C) — pool + weekly harvest.</li>
+          <li>Ads live at €1,500/mo with the demo-call hook; weekly report to you.</li>
+          <li>Month-1 reports go out; review and referral asks start.</li>
+          <li>First clinic pilot. Tier pricing finalised from real data (if the Plus attach rate is &gt;60%, Basic goes to €179).</li>
+          <li>Target end of day 90: <strong>70 clients, €16k MRR</strong>, 90% of your time still on calls and meetings.</li>
+        </ul>
+        <h3 style="margin-top:22px">Months 4–18</h3>
+        <ul class="small">
+          <li><strong>Month 5:</strong> hire closer #1 (commission-first; I write the training, the scripts live in the CRM, their meetings run the same 15-min demo). Your job shifts to 2 hours of calls + the clinic deals.</li>
+          <li><strong>Month 7:</strong> Cyprus (Greek, same product, higher prices — €299/€349), closer #2.</li>
+          <li><strong>Month 9:</strong> add-ons sold to the base (Google Ads for the professions allowed, social €49–99); part-time support person.</li>
+          <li><strong>Month 12:</strong> 380 clients, ~€95k MRR; English receptionist tier for expat practices in Cyprus and a first UAE pilot (Abu Dhabi/Dubai clinics pay $800–2,000/mo for exactly this — you are already looking at the UAE).</li>
+          <li><strong>Month 15–18:</strong> €100k+ net. Decide: scale Greece to 1,000 or push UAE/UK. Both are now funded by cash flow, not hope.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COSTS ============ -->
+<section id="costs">
+  <div class="wrap">
+    <span class="k">10 · Every cost — so you feel as safe as you do with websites</span>
+    <h2>You can start with under €300 out of pocket. It is positive cash flow from month 2.</h2>
+    <div class="grid g2">
+      <div class="card rv">
+        <h3>One-time, to start (weeks 1–4)</h3>
+        <table class="small">
+          <tr><td>Greek SIP/VoIP account + 2 numbers (Advon line already exists; demo + first client)</td><td class="r">≈ €30</td></tr>
+          <tr><td>SMS gateway prepaid (Yuboto / Routee class, Greek sender name)</td><td class="r">€50</td></tr>
+          <tr><td>ElevenLabs Agents Pro (first month)</td><td class="r">$99</td></tr>
+          <tr><td>Claude API key for the brain (prepaid)</td><td class="r">€50</td></tr>
+          <tr><td>Lawyer: DPA + terms review (recommended, once)</td><td class="r">€300–500</td></tr>
+          <tr><td>Viva Wallet account (free) / πάγια εντολή instructions</td><td class="r">€0</td></tr>
+          <tr><td>Landing page, videos, scripts, CRM changes, control room</td><td class="r">€0 (me)</td></tr>
+          <tr><td><strong>Total to the first paying client</strong></td><td class="r"><strong>≈ €550–750</strong></td></tr>
+        </table>
+      </div>
+      <div class="card rv">
+        <h3>Monthly, at each stage</h3>
+        <div class="tscroll"><table class="small">
+          <thead><tr><th></th><th class="r">35 clients</th><th class="r">180 clients</th><th class="r">450 clients</th></tr></thead>
+          <tr><td>Voice (ElevenLabs plan + minutes)</td><td class="r">$299</td><td class="r">$990 + ~$700</td><td class="r">≈ $4,300</td></tr>
+          <tr><td>Brain (Claude API)</td><td class="r">€120</td><td class="r">€630</td><td class="r">€1,600</td></tr>
+          <tr><td>Numbers + SMS</td><td class="r">€210</td><td class="r">€1,080</td><td class="r">€2,700</td></tr>
+          <tr><td>Hosting/functions/data (Netlify, GitHub — mostly free tiers)</td><td class="r">€30</td><td class="r">€80</td><td class="r">€200</td></tr>
+          <tr><td>Claude Max (you already pay)</td><td class="r">€200</td><td class="r">€200</td><td class="r">€200</td></tr>
+          <tr><td>Ads</td><td class="r">€900</td><td class="r">€3,000</td><td class="r">€6,000</td></tr>
+          <tr><td>People (closers on commission, support)</td><td class="r">—</td><td class="r">€2,500</td><td class="r">€12,000</td></tr>
+          <tr><td>Accounting (Chiotis, monthly invoices)</td><td class="r">€100</td><td class="r">€250</td><td class="r">€500</td></tr>
+          <tr><td><strong>Total</strong></td><td class="r"><strong>≈ €1,900</strong></td><td class="r"><strong>≈ €9,400</strong></td><td class="r"><strong>≈ €27,500</strong></td></tr>
+          <tr><td><strong>MRR</strong></td><td class="r"><strong>€8,000</strong></td><td class="r"><strong>€44,000</strong></td><td class="r"><strong>€135,000</strong></td></tr>
+        </table></div>
+        <p class="small mute" style="margin-top:10px">No office, no software licences beyond these, no stock. The business is 92% gross margin and the fixed costs are people you add only when revenue is already there.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ YOU ============ -->
+<section id="you">
+  <div class="wrap">
+    <span class="k">11 · What I need from you</span>
+    <h2>Eight decisions and about four hours. Everything else is mine.</h2>
+    <div class="grid g2">
+      <div class="card rv">
+        <ol>
+          <li><strong>«Go»</strong> on the product and the three prices (or tell me the numbers you want).</li>
+          <li><strong>Upgrade ElevenLabs to Pro</strong> ($99) and give me the go to open the SIP + SMS accounts (I choose; you pay the ≈ €80).</li>
+          <li><strong>Twenty test calls</strong> over two days, with brutal feedback on the Greek.</li>
+          <li><strong>Three pilot clients</strong> — tell me which three of your 220 you trust most (one dentist, one doctor, one psychologist).</li>
+          <li><strong>Approve the founding-wave message</strong> and send it in batches (or let the CRM chat send it after your tap).</li>
+          <li><strong>Payment choice</strong>: Viva Wallet recurring card, πάγια εντολή, or quarterly transfer — I set up whichever you pick, with Chiotis for the τιμολόγια.</li>
+          <li><strong>Keep the rhythm</strong>: 60 calls, 4–5 Meets a day — and add the 4-minute demo to each.</li>
+          <li><strong>Ads yes</strong> at month 3 (€1,500), with the usual rule: no budget change without your yes, screenshots before anything goes live.</li>
+        </ol>
+      </div>
+      <div class="card rv">
+        <h3>What I do, without asking</h3>
+        <ul class="check small">
+          <li>Build, test and run the receptionist; every onboarding; every DPA; every report</li>
+          <li>Read every transcript for the first 60 days of every client; fix and tell you</li>
+          <li>Run the ads and send weekly plain-words results</li>
+          <li>Wire the no-answer SMS, the Receptionist card and the MRR goal into the CRM</li>
+          <li>Write the closer training and interview scripts when we reach month 5</li>
+          <li>Keep this page updated as the live plan: real numbers replace the estimates every month</li>
+        </ul>
+        <div class="callout g small"><strong>Your time does not increase.</strong> It changes shape: fewer €130 yeses, more €249 yeses, and from month 5, two people doing your meetings while you do clinics and Cyprus.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RISKS ============ -->
+<section id="risks">
+  <div class="wrap">
+    <span class="k">12 · What could go wrong — and the guard rail</span>
+    <h2>I would rather you hear these from me now than from a client in March.</h2>
+    <div class="tscroll"><table class="small">
+      <tr><th style="width:30%">Risk</th><th>Guard rail</th></tr>
+      <tr><td><strong>The Greek voice isn't good enough</strong> (names, dates, accent) and a doctor is embarrassed in front of a patient.</td><td>We do not sell until 20 test calls are clean; pilots run 2 weeks before anyone pays; I review every transcript for 60 days; a second voice vendor is tested in week 2 as a fallback so we are never hostage to one supplier.</td></tr>
+      <tr><td><strong>Psychologists get few calls</strong> and feel €149 is a lot for «two calls a week».</td><td>For them the value is reminders and no-shows, not volume — the report shows «3 ραντεβού που δεν χάθηκαν = 180€». If the data says the tier doesn't hold, Basic becomes €99 with SMS-only for them; the margin still works.</td></tr>
+      <tr><td><strong>A medical association objects</strong> («advertising»).</td><td>The receptionist and factual information are explicitly allowed; we never run ads for ιατροί/οδοντίατροι; we have the lawyer's letter ready. Being the conservative, compliant option is the pitch.</td></tr>
+      <tr><td><strong>GDPR incident</strong> (a transcript leaks, a wrong SMS).</td><td>Minimum data, no recordings, 90-day deletion, EU residency, DPA with every client, access limited to two people, a written incident plan. The same discipline as our privacy & cookies rule on sites.</td></tr>
+      <tr><td><strong>Supplier price hikes</strong> (ElevenLabs, LLM).</td><td>Direct cost is 8% of price; a 50% hike moves margin from 92% to 88%. The architecture keeps the voice layer swappable.</td></tr>
+      <tr><td><strong>You are the bottleneck</strong> at ~150 clients.</td><td>Closer #1 at month 5 is not optional — it is in the model. I handle hiring prep, training and the CRM so the handover is clean.</td></tr>
+      <tr><td><strong>Churn higher than 3%.</strong></td><td>Monthly report + referral ask + quarterly «what else should it do?» call keep it sticky; because the phone line depends on it, switching off feels like firing a secretary. If churn is 5%, the plan slips ~4 months; it does not break.</td></tr>
+      <tr><td><strong>A competitor copies it.</strong></td><td>They will — in 2027. By then you have 300 Greek references, 300 Google reviews mentioning it, the DPA/legal package, and Cyprus. Speed is the moat; this is why we start in November, not «after the ads».</td></tr>
+    </table></div>
+  </div>
+</section>
+
+<!-- ============ BIGGER ============ -->
+<section id="bigger">
+  <div class="wrap">
+    <span class="k">13 · Bigger — what this becomes</span>
+    <h2>€100k a month is a milestone, not the destination. Here is what the same engine does next.</h2>
+    <div class="grid g4">
+      <div class="card rv"><span class="tag">Month 7+</span><h3>Cyprus</h3><p class="small">Same language, same product, €299–349. ~1,600 doctors, 1,000 dentists, every one reachable by phone. No translation, no new build.</p></div>
+      <div class="card rv"><span class="tag">Month 12+</span><h3>UAE / UK English tier</h3><p class="small">Clinics in Abu Dhabi, Dubai and London pay $800–2,000/mo for this today. Your Greek engine, an English voice, 3× the price. You already know the UAE.</p></div>
+      <div class="card rv"><span class="tag">Month 12+</span><h3>White-label to agencies</h3><p class="small">Hundreds of small Greek web agencies have doctors as clients and no product like this. Sell it to them at €99, they resell at €249. Distribution without hiring.</p></div>
+      <div class="card rv"><span class="tag g">Month 18+</span><h3>The practice OS</h3><p class="small">Once 500 practices' phones run through us, the reminders, recalls, reviews and the little CRM they already love become the product — the «ERP» you couldn't picture, built from the one feature they already pay for. That is the automation business, entered through the front door.</p></div>
+    </div>
+    <div class="quote">You asked me to think like someone who has done this before. Everyone who has will tell you the same thing: the fortune was never in the tenth idea. It was in the first one, priced properly, sold relentlessly, to a market you already own. You own this one. Let's build it this week.</div>
+    <p class="small mute">Sources used for the external numbers: <a href="https://elevenlabs.io/pricing/agents">ElevenLabs Agents pricing</a> · <a href="https://elevenlabs.io/docs/agents-platform/phone-numbers/sip-trunking">ElevenLabs SIP trunking</a> · <a href="https://schedulingkit.com/statistics/missed-call-statistics">missed-call statistics (411 Locals, CallRail, Invoca)</a> · <a href="https://nextdeal.gr/epikairotita/ygeia/100938/diafimisi-iatreioy-kai-iatrikon-ypiresion-ti-epitrepetai">Κώδικας Ιατρικής Δεοντολογίας άρθ. 17–18</a> · <a href="https://www.forin.gr/articles/article/88376/elstat-aukshsh-17-shmeiwsan-perusi-oi-eggegrammenoi-epaggelmaties-ugeias">ΕΛΣΤΑΤ 2024 health professionals</a> · <a href="https://www.cooley.com/news/insight/2026/2026-08-03-eu-ai-act-transparency-obligations-take-effect-2-august-2026">EU AI Act Art. 50</a>. Projections are mine and are estimates until the first 30 clients replace them with real data.</p>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot"><div class="wrap">Advon Media · internal plan · drafts.advonmedia.com/advon-100k · The earlier plan («automation for Greek businesses») stays at <a href="../advon-automation/">/advon-automation/</a> for reference.</div></footer>
+
+<script>
+(function(){
+  var rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var els=document.querySelectorAll('.rv');
+  if(rm||!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});document.getElementById('ladder').classList.add('on');return}
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');if(e.target.id==='ladder')e.target.classList.add('on');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px'});
+  els.forEach(function(e){io.observe(e)});
+  setTimeout(function(){els.forEach(function(e){e.classList.add('in')});document.getElementById('ladder').classList.add('on')},4000);
+})();
+</script>
+</body>
+</html>

@@ -1,6 +1,6 @@
 /* Advon AI — the AI office assistant (MVP). Light only, Greek, no build step.
-   Data lives in this browser (localStorage). AI = Claude API called directly from the browser with the owner's key
-   (fine for testing — for client pilots the key moves to a small server). Voice = the browser's Greek speech recognition.
+   v2: data in Supabase (Frankfurt) with live sync between devices (cloud.js); AI through the server function «ai»
+   (the Claude key never reaches the browser); reminders as push notifications + e-mail by the server function «notify».
    21 Oct 2026 */
 (function(){
 'use strict';
@@ -9,6 +9,7 @@ var KEY='advon_ai_v1', KKEY='advon_ai_key';
 var PRICES={'claude-haiku-5-5':{i:0.10,o:0.50,cr:0.01,cw:0.125},'claude-sonnet-5-5':{i:2,o:10,cr:0.10,cw:2.5}};
 var MODELS=[['claude-haiku-5-5','Haiku 5.5 — γρήγορο, πολύ φθηνό'],['claude-sonnet-5-5','Sonnet 5.5 — πιο έξυπνο (έγγραφα, προτάσεις)']];
 var S=null, d=document;
+S={v:1, niche:null, office:{name:'',owner:''}, clients:[], items:[], reminders:[], activity:[], chat:[], api:[], brief:null, settings:{model:'claude-haiku-5-5', approve:true, cap_usd:40}, usage:{}};
 function $(s,r){return (r||d).querySelector(s)} function $$(s,r){return [].slice.call((r||d).querySelectorAll(s))}
 function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
 function norm(s){ return String(s||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase(); }
@@ -48,12 +49,12 @@ var IC={
 
 /* ================= state ================= */
 function blank(){ return {v:1, niche:null, office:{name:'',owner:''}, clients:[], items:[], reminders:[], activity:[], chat:[], api:[], brief:null, settings:{model:'claude-haiku-5-5', approve:true}, usage:{}}; }
-function load(){ try{ var o=JSON.parse(localStorage.getItem(KEY)||'null'); if(o&&o.v===1){ S=Object.assign(blank(),o); return true; } }catch(e){} S=blank(); return false; }
-var saveT; function save(){ clearTimeout(saveT); saveT=setTimeout(saveNow,120); }
-function saveNow(){ try{ S.chat=S.chat.slice(-80); S.api=S.api.slice(-60); localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){ toast('Δεν χωράει άλλο στη μνήμη του browser — κάνε εξαγωγή από τις Ρυθμίσεις'); } }
-function apiKey(){ try{ return localStorage.getItem(KKEY)||''; }catch(e){ return ''; } }
-function NI(){ return N[S.niche]||N.asf; }
+var READY=false;
+var saveT; function save(){ clearTimeout(saveT); saveT=setTimeout(saveNow,150); }
+function saveNow(){ S.chat=S.chat.slice(-80); S.api=S.api.slice(-60); if(window.CLOUD) CLOUD.persist(S); }
+function apiKey(){ return (window.CLOUD && CLOUD.status && CLOUD.status.ai) ? 'server' : ''; }
 function client(id){ for(var i=0;i<S.clients.length;i++) if(S.clients[i].id===id) return S.clients[i]; return null; }
+function NI(){ return N[S.niche]||N.asf; }
 function item(id){ for(var i=0;i<S.items.length;i++) if(S.items[i].id===id) return S.items[i]; return null; }
 function rem(id){ for(var i=0;i<S.reminders.length;i++) if(S.reminders[i].id===id) return S.reminders[i]; return null; }
 function itemsOf(cid){ return S.items.filter(function(i){return i.clientId===cid}); }
@@ -84,11 +85,11 @@ function cleanReminder(text,c){ var s=String(text).replace(/^\s*(θύμισέ μ
 
 /* ================= router + chrome ================= */
 var VIEW='today', PARAM=null;
-function route(){ var h=(location.hash||'#today').slice(1).split('/'); VIEW=h[0]||'today'; PARAM=h[1]||null; if(!S.niche){ onboarding(); return; } render(); scrollTo(0,0); }
+function route(){ if(!READY) return; var h=(location.hash||'#today').slice(1).split('/'); VIEW=h[0]||'today'; PARAM=h[1]||null; if(!S.niche){ onboarding(); return; } render(); scrollTo(0,0); }
 addEventListener('hashchange',route);
 function go(v){ location.hash=v; }
 function render(){ applyTheme(); $$('[data-nav]').forEach(function(a){ var v=a.getAttribute('data-nav'); a.classList.toggle('on', v===VIEW || (VIEW==='client'&&v==='clients')); });
-  $('#itemsNav').textContent=NI().items; $('#officeName').textContent=S.office.name||NI().label; $('#aiState').innerHTML=apiKey()? '<i class="ok"></i>AI ενεργό · '+(S.settings.model.indexOf('sonnet')>0?'Sonnet':'Haiku') : '<i></i>Χωρίς AI κλειδί · <a href="#settings">βάλε κλειδί</a>';
+  $('#itemsNav').textContent=NI().items; $('#officeName').textContent=S.office.name||NI().label; $('#aiState').innerHTML=(apiKey()? '<i class="ok"></i>AI ενεργό · '+(S.settings.model.indexOf('sonnet')>0?'Sonnet':'Haiku') : '<i></i>AI: λείπει το κλειδί στο Supabase')+(window.CLOUD?'<br><span class="syncst" id="syncSt">'+CLOUD.syncLabel()+'</span>':'');
   var m=$('#main'); d.body.dataset.view=VIEW;
   var f={today:vToday, clients:vClients, client:vClient, items:vItems, reminders:vReminders, assistant:vAssistant, import:vImport, settings:vSettings}[VIEW]||vToday; m.innerHTML=''; f(m);
   renderChat(); }
@@ -100,15 +101,34 @@ function chipsHtml(){ return '<div class="chips">'+NI().chips.map(function(c){re
 function wireChips(root){ $$('[data-ask]',root).forEach(function(b){ b.onclick=function(){ ask(b.getAttribute('data-ask')); }; }); }
 
 /* ================= voice ================= */
-var REC=null;
-function voice(inp,btn){ var SR=window.SpeechRecognition||window.webkitSpeechRecognition; if(!SR){ toast('Η φωνή δεν υποστηρίζεται εδώ — δοκίμασε Chrome ή Safari (ή το μικρόφωνο του πληκτρολογίου)'); inp.focus(); return; }
+var REC=null, MREC=null;
+function useRecorder(){ var SR=window.SpeechRecognition||window.webkitSpeechRecognition; var standalone=(window.matchMedia&&matchMedia('(display-mode: standalone)').matches)||navigator.standalone; var ios=/iPad|iPhone|iPod/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1); return !SR || (ios && standalone); }
+function listen(btn,onFinal,onInterim,inp){
   if(REC){ try{REC.stop()}catch(e){} return; }
-  var r=new SR(); REC=r; r.lang='el-GR'; r.interimResults=true; r.maxAlternatives=1; var fin='';
-  btn.classList.add('rec'); inp.placeholder='Σας ακούω…';
-  r.onresult=function(e){ var s=''; for(var i=e.resultIndex;i<e.results.length;i++){ if(e.results[i].isFinal) fin+=e.results[i][0].transcript; else s+=e.results[i][0].transcript; } inp.value=(fin+' '+s).trim(); };
-  r.onerror=function(e){ if(e.error==='not-allowed') toast('Δώσε άδεια στο μικρόφωνο από τον browser'); else if(e.error!=='no-speech' && e.error!=='aborted') toast('Δεν άκουσα καλά — ξαναδοκίμασε'); };
-  r.onend=function(){ REC=null; btn.classList.remove('rec'); inp.placeholder='Ρωτήστε ή πείτε κάτι…'; var v=inp.value.trim(); if(v){ inp.value=''; ask(v,{voice:true}); } };
-  try{ r.start(); }catch(e){ REC=null; btn.classList.remove('rec'); } }
+  if(MREC){ try{MREC.stop()}catch(e){} return; }
+  if(!useRecorder()){
+    var SR=window.SpeechRecognition||window.webkitSpeechRecognition, r=new SR(); REC=r; r.lang='el-GR'; r.interimResults=true; r.maxAlternatives=1; var fin='', all='';
+    btn.classList.add('rec'); if(inp) inp.placeholder='Σας ακούω… (πατήστε ξανά για τέλος)';
+    r.onresult=function(e){ var s=''; for(var i=e.resultIndex;i<e.results.length;i++){ if(e.results[i].isFinal) fin+=e.results[i][0].transcript; else s+=e.results[i][0].transcript; } all=(fin+' '+s).trim(); if(onInterim) onInterim(all); };
+    r.onerror=function(e){ if(e.error==='not-allowed') toast('Δώστε άδεια στο μικρόφωνο από τον browser'); else if(e.error!=='no-speech'&&e.error!=='aborted') toast('Δεν άκουσα καλά — ξαναδοκιμάστε'); };
+    r.onend=function(){ REC=null; btn.classList.remove('rec'); if(inp) inp.placeholder='Ρωτήστε ή πείτε κάτι…'; if(all.trim()) onFinal(all.trim()); };
+    try{ r.start(); }catch(e){ REC=null; btn.classList.remove('rec'); }
+    return; }
+  if(!navigator.mediaDevices||!window.MediaRecorder){ toast('Η φωνή δεν υποστηρίζεται εδώ — χρησιμοποιήστε το μικρόφωνο του πληκτρολογίου'); if(inp) inp.focus(); return; }
+  navigator.mediaDevices.getUserMedia({audio:true}).then(function(stream){
+    var mime=['audio/webm;codecs=opus','audio/webm','audio/mp4','audio/aac'].filter(function(t){ return MediaRecorder.isTypeSupported&&MediaRecorder.isTypeSupported(t); })[0]||'';
+    var mr=new MediaRecorder(stream,mime?{mimeType:mime}:undefined), chunks=[], t0=Date.now(); MREC=mr;
+    btn.classList.add('rec'); if(inp) inp.placeholder='Σας ακούω… πατήστε ξανά όταν τελειώσετε';
+    var cap=setTimeout(function(){ try{mr.stop()}catch(e){} },60000);
+    mr.ondataavailable=function(e){ if(e.data&&e.data.size) chunks.push(e.data); };
+    mr.onstop=async function(){ clearTimeout(cap); MREC=null; btn.classList.remove('rec'); stream.getTracks().forEach(function(t){t.stop()}); if(inp) inp.placeholder='Μετατρέπω τη φωνή σε κείμενο…';
+      try{ var blob=new Blob(chunks,{type:mr.mimeType||mime||'audio/webm'}); if(Date.now()-t0<700||!blob.size){ if(inp) inp.placeholder='Ρωτήστε ή πείτε κάτι…'; return; }
+        var text=await CLOUD.transcribe(blob); if(inp) inp.placeholder='Ρωτήστε ή πείτε κάτι…'; if(text) onFinal(text); else toast('Δεν άκουσα κάτι — ξαναδοκιμάστε'); }
+      catch(e){ if(inp) inp.placeholder='Ρωτήστε ή πείτε κάτι…'; toast(e.message); } };
+    mr.start();
+  }).catch(function(){ toast('Δώστε άδεια στο μικρόφωνο'); });
+}
+function voice(inp,btn){ listen(btn,function(v){ inp.value=''; ask(v,{voice:true}); },function(v){ inp.value=v; },inp); }
 
 /* ================= VIEW: Σήμερα ================= */
 function upcoming(){ var n=NI(); return S.items.filter(function(i){ var k=daysTo(i.date); return n.activeStatus.indexOf(i.status)>=0 && k<=n.alertDays && k>=-7; }).sort(function(a,b){ return a.date<b.date?-1:1; }); }
@@ -217,7 +237,7 @@ function vReminders(m){ var rs=openRems(), g={late:[],today:[],tom:[],week:[],la
    (done.length? '<section class="card faded"><div class="ch"><h2>Ολοκληρώθηκαν</h2></div>'+done.map(function(r){ var c=client(r.clientId); return '<div class="row"><span class="ck on">'+IC.check+'</span><div class="rm"><b>'+esc(r.text)+'</b><span>'+(c?esc(c.name)+' · ':'')+fmtDate(r.date)+'</span></div><button type="button" class="lnk" data-undone="'+r.id+'">Επαναφορά</button></div>'; }).join('')+'</section>' : '')+'</div>';
   wireRows(m); $('#newR',m).onclick=function(){ remForm({}); };
   var qa=$('#qadd',m); function addQ(){ var v=qa.value.trim(); if(!v) return; quickReminder(v); } $('#qaddB',m).onclick=addQ; qa.onkeydown=function(e){ if(e.key==='Enter'){ e.preventDefault(); addQ(); } };
-  $('#qmic',m).onclick=function(){ var SR=window.SpeechRecognition||window.webkitSpeechRecognition; if(!SR){ toast('Η φωνή δεν υποστηρίζεται εδώ'); return; } var r=new SR(), b=$('#qmic',m); r.lang='el-GR'; b.classList.add('rec'); r.onresult=function(e){ qa.value=e.results[0][0].transcript; }; r.onend=function(){ b.classList.remove('rec'); if(qa.value.trim()) addQ(); }; r.start(); };
+  $('#qmic',m).onclick=function(){ listen($('#qmic',m),function(v){ qa.value=v; addQ(); },function(v){ qa.value=v; },qa); };
   $$('[data-undone]',m).forEach(function(b){ b.onclick=function(){ var r=rem(b.getAttribute('data-undone')); r.done=false; save(); render(); }; });
   $$('.rrow',m).forEach(function(row){ row.addEventListener('dblclick',function(){ remForm(rem(row.getAttribute('data-rid'))); }); }); }
 
@@ -282,16 +302,10 @@ function dataIndex(){ var n=NI(), L=['ΔΕΔΟΜΕΝΑ ΓΡΑΦΕΙΟΥ (ενη�
   openRems().forEach(function(r){ L.push(r.id+' | '+r.date+' '+(r.time||'')+' | '+(r.clientId||'')+' | '+r.text); });
   var acts=S.activity.slice(-60); if(acts.length){ L.push('','ΠΡΟΣΦΑΤΕΣ ΣΗΜΕΙΩΣΕΙΣ — client_id | ημερομηνία | κείμενο'); acts.forEach(function(a){ L.push(a.clientId+' | '+U.iso(new Date(a.at))+' | '+a.text); }); }
   var s=L.join('\n'); return s.length>120000? s.slice(0,120000)+'\n…(περικόπηκε — χρησιμοποίησε search_data)' : s; }
-async function callClaude(messages,withTools,maxT){ var key=apiKey(); if(!key) throw new Error('Δεν υπάρχει AI κλειδί');
+async function callClaude(messages,withTools,maxT){
   var body={model:S.settings.model,max_tokens:maxT||1500,system:[{type:'text',text:sysPrompt()},{type:'text',text:dataIndex(),cache_control:{type:'ephemeral'}}],messages:messages};
   if(withTools) body.tools=TOOLS;
-  var r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'content-type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify(body)});
-  var j=await r.json().catch(function(){ return {}; });
-  if(!r.ok){ var msg=(j.error&&j.error.message)||('HTTP '+r.status); if(r.status===401) msg='Το AI κλειδί δεν είναι σωστό — έλεγξέ το στις Ρυθμίσεις.'; else if(/credit|balance/i.test(msg)) msg='Δεν υπάρχει υπόλοιπο στον λογαριασμό API — πρόσθεσε credit στο console.'; throw new Error(msg); }
-  track(j.usage); return j; }
-function track(u){ if(!u) return; var mk=U.iso(new Date()).slice(0,7), P=PRICES[S.settings.model]||PRICES['claude-haiku-5-5'], x=S.usage[mk]=S.usage[mk]||{calls:0,inT:0,outT:0,cr:0,cw:0,usd:0};
-  var cr=u.cache_read_input_tokens||0, cw=u.cache_creation_input_tokens||0; x.calls++; x.inT+=u.input_tokens||0; x.outT+=u.output_tokens||0; x.cr+=cr; x.cw+=cw;
-  x.usd+=((u.input_tokens||0)*P.i+(u.output_tokens||0)*P.o+cr*P.cr+cw*P.cw)/1e6; }
+  return await CLOUD.ai(body); }
 async function ask(text,opt){ opt=opt||{}; if(BUSY) return; if(innerWidth<1180 && VIEW!=='assistant'){ location.hash='assistant'; }
   S.chat.push({role:'user',text:text,voice:!!opt.voice,img:!!opt.image}); var ai={role:'assistant',parts:[]}; S.chat.push(ai); save(); BUSY=true; renderChat();
   try{ if(!apiKey()) localAnswer(text,ai,opt); else await agent(text,ai,opt); }
@@ -358,7 +372,7 @@ function localAnswer(text,ai,opt){ var t=norm(text), n=NI(), h=H();
 
 /* ---------- read a document / notebook photo ---------- */
 function toB64(file,max){ return new Promise(function(res,rej){ var img=new Image(), u=URL.createObjectURL(file); img.onload=function(){ var s=Math.min(1,(max||1600)/Math.max(img.width,img.height)), cv=d.createElement('canvas'); cv.width=Math.round(img.width*s); cv.height=Math.round(img.height*s); cv.getContext('2d').drawImage(img,0,0,cv.width,cv.height); URL.revokeObjectURL(u); res({type:'image/jpeg',data:cv.toDataURL('image/jpeg',.85).split(',')[1]}); }; img.onerror=rej; img.src=u; }); }
-async function readDoc(file,c){ if(!apiKey()){ toast('Η ανάγνωση εγγράφων χρειάζεται AI κλειδί (Ρυθμίσεις)'); return; } var im=await toB64(file,1600);
+async function readDoc(file,c){ if(!apiKey()){ toast('Η ανάγνωση εγγράφων χρειάζεται το AI κλειδί στο Supabase'); return; } var im=await toB64(file,1600);
   ask(c? 'Διάβασε αυτό το έγγραφο για τον/την '+c.name+' (client_id '+c.id+'). Πρόσθεσε ή ενημέρωσε ό,τι χρειάζεται (items, ημερομηνίες, στοιχεία) και πες μου τι βρήκες.' : 'Διάβασε αυτή τη φωτογραφία (τετράδιο / κατάλογος / έγγραφο) και πέρασε όλους τους πελάτες και τα στοιχεία τους με add_client και add_item. Στο τέλος πες μου πόσους πέρασες και τι δεν διαβαζόταν.',{image:im}); }
 
 /* ================= VIEW: εισαγωγή ================= */
@@ -387,25 +401,46 @@ function doImport(rows,map){ var n=NI(), byName={}, nc=0, ni=0; S.clients.forEac
   save(); return {c:nc,i:ni}; }
 
 /* ================= VIEW: ρυθμίσεις ================= */
-function vSettings(m){ var n=NI(), mk=U.iso(new Date()).slice(0,7), u=S.usage[mk]||{calls:0,inT:0,outT:0,cr:0,cw:0,usd:0}, key=apiKey();
+function vSettings(m){ var n=NI(), st=CLOUD.status||{}, u=st.usage||{calls:0,in_tokens:0,out_tokens:0,cache_read:0,cache_write:0,usd:0}, usd=Number(u.usd||0), me=CLOUD.me||{}, push=CLOUD.pushState();
   m.innerHTML='<div class="pg narrow"><header class="ph"><h1>Ρυθμίσεις</h1></header>'+
-   '<section class="card"><div class="ch"><h2>Γραφείο</h2></div><div class="form"><label>Όνομα γραφείου<input id="sO" value="'+esc(S.office.name)+'"></label><label>Το όνομά σας<input id="sW" value="'+esc(S.office.owner)+'"></label><label>Κλάδος<select id="sN">'+Object.keys(N).map(function(k){return '<option value="'+k+'"'+(k===S.niche?' selected':'')+'>'+N[k].label+'</option>'}).join('')+'</select></label></div></section>'+
-   '<section class="card"><div class="ch"><h2>'+IC.spark+' AI βοηθός</h2><span class="pill '+(key?'ok':'')+'">'+(key?'Ενεργό':'Χωρίς κλειδί')+'</span></div><div class="form">'+
-    '<label>Claude API κλειδί<input id="sK" type="password" placeholder="sk-ant-…" value="'+esc(key)+'" autocomplete="off"></label>'+
-    '<p class="fine">Φτιάχνεται στο <b>platform.claude.com</b> → API Keys (με προπληρωμένο υπόλοιπο, π.χ. 10$). Μένει <b>μόνο σε αυτή τη συσκευή</b>. Για δοκιμές από εσάς — σε πελάτες το κλειδί μπαίνει σε server, ποτέ στον browser τους.</p>'+
-    '<label>Μοντέλο<select id="sM">'+MODELS.map(function(x){return '<option value="'+x[0]+'"'+(S.settings.model===x[0]?' selected':'')+'>'+x[1]+'</option>'}).join('')+'</select></label>'+
+   '<section class="card"><div class="ch"><h2>'+IC.bell+' Ειδοποιήσεις</h2><span class="pill '+(push.on?'ok':'')+'">'+(push.on?'Ενεργές σε αυτή τη συσκευή':'Ανενεργές εδώ')+'</span></div>'+
+    '<p class="fine" style="margin-bottom:10px">Οι υπενθυμίσεις με ώρα έρχονται στην ώρα τους — ακόμα κι αν η εφαρμογή είναι κλειστή. Κάθε πρωί έρχεται η ενημέρωση της ημέρας.</p>'+
+    (push.hint?'<div class="hint">'+push.hint+'</div>':'')+
+    '<div class="row2 wrap">'+(push.can&&!push.on?'<button type="button" class="btn pri" id="pOn">'+IC.bell+' Ενεργοποίηση σε αυτή τη συσκευή</button>':'')+(push.on?'<button type="button" class="btn" id="pOff">Απενεργοποίηση εδώ</button>':'')+'<button type="button" class="btn" id="pTest">Δοκιμαστική ειδοποίηση</button><button type="button" class="btn" id="pDig">Στείλε μου την πρωινή ενημέρωση τώρα</button></div>'+
+    '<div class="form" style="margin-top:12px"><label class="chk"><input type="checkbox" id="nMail"'+(me.notify_email!==false?' checked':'')+'> Και με e-mail στο '+esc(me.email||CLOUD.email()||'')+(st.email?'':' <em class="warn">(λείπει το RESEND_API_KEY στο Supabase)</em>')+'</label><label class="chk"><input type="checkbox" id="nPush"'+(me.notify_push!==false?' checked':'')+'> Ειδοποιήσεις στο κινητό / υπολογιστή</label><label>Ώρα πρωινής ενημέρωσης<select id="nTime">'+['07:00','07:30','08:00','08:30','09:00','09:30','10:00'].map(function(t){return '<option'+((me.digest_time||'08:30')===t?' selected':'')+'>'+t+'</option>'}).join('')+'</select></label></div><div id="pRes" class="fine" style="margin-top:8px"></div></section>'+
+   '<section class="card"><div class="ch"><h2>Γραφείο</h2></div><div class="form"><label>Όνομα γραφείου<input id="sO" value="'+esc(S.office.name)+'"></label><label>Το όνομά σας<input id="sW" value="'+esc(S.office.owner)+'"></label><label>Κλάδος<select id="sN">'+Object.keys(N).map(function(k){return '<option value="'+k+'"'+(k===S.niche?' selected':'')+'>'+N[k].label+'</option>'}).join('')+'</select></label><div class="row2"><button type="button" class="btn pri" id="sSave">Αποθήκευση</button></div></div></section>'+
+   '<section class="card"><div class="ch"><h2>'+IC.user+' Ομάδα</h2><span class="pill">'+(CLOUD.members||[]).length+' '+((CLOUD.members||[]).length===1?'άτομο':'άτομα')+'</span></div>'+
+    '<p class="fine">Οι συνεργάτες σας μπαίνουν με τον κωδικό ομάδας και βλέπουν τα ίδια στοιχεία, ζωντανά.</p><div class="code"><b>'+esc(CLOUD.org.invite_code)+'</b><button type="button" class="btn" id="cInv">Αντιγραφή πρόσκλησης</button></div>'+
+    (CLOUD.members||[]).map(function(x){ return '<div class="row"><span class="av">'+esc(initials(x.name||x.email))+'</span><div class="rm"><b>'+esc(x.name||x.email)+'</b><span>'+esc(x.email)+' · '+(x.role==='owner'?'ιδιοκτήτης':'μέλος')+'</span></div></div>'; }).join('')+'</section>'+
+   '<section class="card"><div class="ch"><h2>'+IC.spark+' AI βοηθός</h2><span class="pill '+(st.ai?'ok':'')+'">'+(st.ai?'Ενεργό':'Λείπει το κλειδί')+'</span></div>'+
+    (st.ai?'':'<div class="hint">Βάλτε το Claude κλειδί στο Supabase → Edge Functions → Secrets με όνομα <b>ANTHROPIC_API_KEY</b>. Δεν μπαίνει ποτέ στον browser.</div>')+
+    '<div class="form"><label>Μοντέλο<select id="sM">'+MODELS.map(function(x){return '<option value="'+x[0]+'"'+(S.settings.model===x[0]?' selected':'')+'>'+x[1]+'</option>'}).join('')+'</select></label>'+
     '<label class="chk"><input type="checkbox" id="sA"'+(S.settings.approve?' checked':'')+'> Ζητά έγκριση πριν αλλάξει υπάρχοντα στοιχεία</label>'+
-    '<div class="row2"><button type="button" class="btn pri" id="sSave">Αποθήκευση</button><button type="button" class="btn" id="sTest">Δοκιμή σύνδεσης</button></div></div></section>'+
-   '<section class="card"><div class="ch"><h2>Κόστος AI αυτόν τον μήνα</h2></div><div class="cost"><div><b>'+u.calls+'</b><span>κλήσεις</span></div><div><b>'+Math.round((u.inT+u.cr+u.cw)/1000)+'k</b><span>tokens εισόδου</span></div><div><b>'+Math.round(u.outT/1000)+'k</b><span>tokens εξόδου</span></div><div class="hl"><b>$'+u.usd.toFixed(u.usd<1?3:2)+'</b><span>≈ '+(u.usd*0.93).toFixed(2).replace('.',',')+'€</span></div></div><p class="fine">Μετράει πραγματικά ό,τι στέλνει και λαμβάνει ο βοηθός, με τις τιμές του '+(S.settings.model.indexOf('sonnet')>0?'Sonnet':'Haiku')+' 5.5 — για να δεις πόσο θα κοστίζει ένα πραγματικό γραφείο.</p></section>'+
-   '<section class="card"><div class="ch"><h2>Δεδομένα</h2></div><p class="fine">Όλα μένουν σε αυτόν τον browser. Κάνε εξαγωγή για αντίγραφο ή για να τα πας σε άλλη συσκευή.</p><div class="row2 wrap"><button type="button" class="btn" id="dExp">Εξαγωγή (αρχείο)</button><label class="btn">Εισαγωγή αρχείου<input type="file" id="dImp" accept=".json" hidden></label><button type="button" class="btn" id="dDemo">Δοκιμαστικά στοιχεία ξανά</button><button type="button" class="btn danger" id="dDel">Διαγραφή όλων</button></div></section>'+
-   '<p class="fine center">Advon AI · MVP · '+esc(n.label)+' · <a href="https://advonmedia.com" target="_blank" rel="noopener">Advon Media</a></p></div>';
-  $('#sSave',m).onclick=function(){ S.office.name=$('#sO',m).value.trim(); S.office.owner=$('#sW',m).value.trim(); var nn=$('#sN',m).value; S.settings.model=$('#sM',m).value; S.settings.approve=$('#sA',m).checked; try{ var k=$('#sK',m).value.trim(); if(k) localStorage.setItem(KKEY,k); else localStorage.removeItem(KKEY); }catch(e){}
-    if(nn!==S.niche){ if(confirm('Αλλαγή κλάδου σε «'+N[nn].label+'»; Να φορτωθούν δοκιμαστικά στοιχεία του νέου κλάδου (τα τωρινά θα σβηστούν);')){ S.niche=nn; seed(); } else S.niche=nn; } save(); render(); toast('Αποθηκεύτηκε'); };
-  $('#sTest',m).onclick=async function(){ var k=$('#sK',m).value.trim(); if(!k){ toast('Βάλε πρώτα το κλειδί'); return; } try{ localStorage.setItem(KKEY,k); }catch(e){} try{ var r=await callClaude([{role:'user',content:'Απάντησε μόνο: ΟΚ'}],false,10); toast('Σύνδεση OK — ο βοηθός είναι ενεργός'); render(); }catch(e){ toast(e.message); } };
+    '<label>Μηνιαίο όριο κόστους AI (USD)<input id="sCap" type="number" min="1" step="1" value="'+esc(S.settings.cap_usd||40)+'"></label>'+
+    '<div class="row2"><button type="button" class="btn pri" id="sAI">Αποθήκευση</button><button type="button" class="btn" id="sTest">Δοκιμή AI</button></div></div>'+
+    '<div class="cost" style="margin-top:14px"><div><b>'+(u.calls||0)+'</b><span>κλήσεις μήνα</span></div><div><b>'+Math.round(((u.in_tokens||0)+(u.cache_read||0)+(u.cache_write||0))/1000)+'k</b><span>tokens εισόδου</span></div><div><b>'+Math.round((u.out_tokens||0)/1000)+'k</b><span>tokens εξόδου</span></div><div class="hl"><b>$'+usd.toFixed(usd<1?3:2)+'</b><span>≈ '+(usd*0.93).toFixed(2).replace('.',',')+'€ / όριο $'+(st.cap||S.settings.cap_usd||40)+'</span></div></div><p class="fine">Πραγματικό κόστος όλου του γραφείου αυτόν τον μήνα, όπως το μετράει ο server.</p></section>'+
+   '<section class="card"><div class="ch"><h2>Δεδομένα</h2><span class="pill ok">Συγχρονισμός</span></div><p class="fine">Όλα αποθηκεύονται στη βάση σας στην Ευρώπη (Supabase, Φρανκφούρτη) και συγχρονίζονται ζωντανά σε κάθε συσκευή.</p><div class="row2 wrap"><button type="button" class="btn" id="dExp">Εξαγωγή (αρχείο)</button><label class="btn">Εισαγωγή αρχείου<input type="file" id="dImp" accept=".json" hidden></label><button type="button" class="btn" id="dDemo">Δοκιμαστικά στοιχεία ξανά</button><button type="button" class="btn danger" id="dDel">Διαγραφή όλων</button></div></section>'+
+   '<section class="card"><div class="ch"><h2>Λογαριασμός</h2></div><p class="fine">Συνδεδεμένος ως <b>'+esc(CLOUD.email())+'</b>'+((CLOUD.orgs||[]).length>1?' · γραφεία: '+CLOUD.orgs.map(function(o){ return o.id===CLOUD.org.id?'<b>'+esc(o.name||'—')+'</b>':'<a data-org="'+o.id+'">'+esc(o.name||'—')+'</a>'; }).join(' · '):'')+'</p><div class="row2 wrap" style="margin-top:10px"><button type="button" class="btn" id="aNew">Νέο γραφείο</button><button type="button" class="btn danger" id="aOut">Αποσύνδεση</button></div></section>'+
+   '<p class="fine center">Advon AI · '+esc(n.label)+' · <a href="https://advonmedia.com" target="_blank" rel="noopener">Advon Media</a></p></div>';
+  function res(t){ var e=$('#pRes',m); if(e) e.innerHTML=t; }
+  var pOn=$('#pOn',m); if(pOn) pOn.onclick=async function(){ pOn.disabled=true; try{ await CLOUD.enablePush(); toast('Οι ειδοποιήσεις ενεργοποιήθηκαν'); render(); }catch(e){ toast(e.message); pOn.disabled=false; } };
+  var pOff=$('#pOff',m); if(pOff) pOff.onclick=async function(){ await CLOUD.disablePush(); render(); };
+  $('#pTest',m).onclick=async function(){ res('Στέλνω…'); try{ var r=await CLOUD.notify('test'); res('Ειδοποίηση: '+(r.push.devices? r.push.sent+' από '+r.push.devices+' συσκευές'+(r.push.errors&&r.push.errors.length?' · σφάλμα: '+esc(r.push.errors[0]):'') : 'καμία συσκευή ενεργή — πατήστε «Ενεργοποίηση»')+' · E-mail: '+(r.email.ok?'στάλθηκε':esc(r.email.skipped||r.email.detail||'όχι'))); }catch(e){ res(esc(e.message)); } };
+  $('#pDig',m).onclick=async function(){ res('Στέλνω…'); try{ var r=await CLOUD.notify('digest'); res('Στάλθηκε: '+esc(r.summary)+' · ειδοποίηση '+r.push.sent+' · e-mail '+(r.email.ok?'ναι':esc(r.email.skipped||'όχι'))); }catch(e){ res(esc(e.message)); } };
+  ['nMail','nPush','nTime'].forEach(function(id){ $('#'+id,m).onchange=function(){ CLOUD.saveMe({notify_email:$('#nMail',m).checked, notify_push:$('#nPush',m).checked, digest_time:$('#nTime',m).value}).then(function(){ toast('Αποθηκεύτηκε'); }); }; });
+  $('#cInv',m).onclick=function(){ copy('Μπες στο γραφείο «'+(S.office.name||n.label)+'» στο Advon AI:\n'+CLOUD.appUrl()+'?join='+CLOUD.org.invite_code+'\n(κωδικός ομάδας: '+CLOUD.org.invite_code+')'); };
+  $('#sSave',m).onclick=async function(){ S.office.name=$('#sO',m).value.trim(); S.office.owner=$('#sW',m).value.trim(); var nn=$('#sN',m).value;
+    if(nn!==S.niche){ if(confirm('Αλλαγή κλάδου σε «'+N[nn].label+'»; Να φορτωθούν δοκιμαστικά στοιχεία του νέου κλάδου (τα τωρινά θα σβηστούν);')){ S.niche=nn; seed(); } else S.niche=nn; }
+    await CLOUD.saveOrg({name:S.office.name, niche:S.niche}); await CLOUD.saveMe({name:S.office.owner}); save(); render(); toast('Αποθηκεύτηκε'); };
+  $('#sAI',m).onclick=async function(){ S.settings.model=$('#sM',m).value; S.settings.approve=$('#sA',m).checked; S.settings.cap_usd=Math.max(1,parseFloat($('#sCap',m).value)||40); await CLOUD.saveOrg({settings:S.settings}); toast('Αποθηκεύτηκε'); render(); };
+  $('#sTest',m).onclick=async function(){ try{ var r=await callClaude([{role:'user',content:'Απάντησε μόνο: ΟΚ'}],false,10); await CLOUD.refreshStatus(); toast('Ο βοηθός απαντά — όλα σωστά'); render(); }catch(e){ toast(e.message); } };
   $('#dExp',m).onclick=function(){ var b=new Blob([JSON.stringify(Object.assign({},S,{api:[]}),null,1)],{type:'application/json'}), a=d.createElement('a'); a.href=URL.createObjectURL(b); a.download='advon-ai-'+today()+'.json'; d.body.appendChild(a); a.click(); a.remove(); };
-  $('#dImp',m).onchange=async function(e){ var f=e.target.files[0]; if(!f) return; try{ var o=JSON.parse(await f.text()); if(o.v!==1) throw 0; S=Object.assign(blank(),o); save(); render(); toast('Τα στοιχεία φορτώθηκαν'); }catch(err){ toast('Μη έγκυρο αρχείο'); } };
-  $('#dDemo',m).onclick=function(){ if(confirm('Να αντικατασταθούν όλα με δοκιμαστικά στοιχεία;')){ seed(); save(); go('today'); } };
-  $('#dDel',m).onclick=function(){ if(confirm('Διαγραφή ΟΛΩΝ των στοιχείων από αυτή τη συσκευή;')){ var keep={niche:S.niche,office:S.office,settings:S.settings,usage:S.usage}; S=Object.assign(blank(),keep); save(); go('today'); } }; }
+  $('#dImp',m).onchange=async function(e){ var f=e.target.files[0]; if(!f) return; try{ var o=JSON.parse(await f.text()); if(o.v!==1) throw 0; ['clients','items','reminders','activity'].forEach(function(k){ S[k]=o[k]||[]; }); save(); render(); toast('Τα στοιχεία φορτώθηκαν'); }catch(err){ toast('Μη έγκυρο αρχείο'); } };
+  $('#dDemo',m).onclick=function(){ if(confirm('Να αντικατασταθούν όλα με δοκιμαστικά στοιχεία; (για όλη την ομάδα)')){ seed(); save(); go('today'); } };
+  $('#dDel',m).onclick=function(){ if(confirm('Διαγραφή ΟΛΩΝ των στοιχείων του γραφείου (για όλη την ομάδα); Δεν αναιρείται.')){ S.clients=[]; S.items=[]; S.reminders=[]; S.activity=[]; S.chat=[]; S.api=[]; S.brief=null; save(); go('today'); } };
+  $('#aOut',m).onclick=function(){ CLOUD.signOut(); };
+  $('#aNew',m).onclick=function(){ S.niche=null; READY=true; onboarding(true); };
+  $$('[data-org]',m).forEach(function(a){ a.onclick=function(){ CLOUD.switchOrg(a.getAttribute('data-org')); }; }); }
 
 /* ================= forms (modal) ================= */
 function modal(title,body,onOk,okLabel){ var w=d.createElement('div'); w.className='modal'; w.innerHTML='<div class="mbox"><div class="mt"><b>'+esc(title)+'</b><button type="button" class="mx">'+IC.x+'</button></div><form class="form">'+body+'<div class="row2"><button type="submit" class="btn pri">'+(okLabel||'Αποθήκευση')+'</button><button type="button" class="btn mc">Άκυρο</button></div></form></div>';
@@ -430,18 +465,35 @@ function remForm(r){ var isNew=!r.id;
 
 /* ================= onboarding ================= */
 function seed(){ var g=NI().demo(); S.clients=g.clients; S.items=g.items; S.reminders=g.reminders; S.activity=g.activity||[]; S.chat=[]; S.api=[]; S.brief=null; }
-function onboarding(){ var m=$('#main'); d.body.dataset.view='onb'; m.innerHTML='<div class="onb"><div class="orb big">'+IC.spark+'</div><h1>Καλώς ήρθατε στο <em>Advon AI</em></h1><p>Ο AI βοηθός του γραφείου σας. Διαλέξτε κλάδο — θα ξεκινήσετε με δοκιμαστικά στοιχεία για να το δείτε να δουλεύει αμέσως.</p>'+
+function onboarding(extra){ var m=$('#main'); d.body.dataset.view='onb'; var code=(new URLSearchParams(location.search).get('join')||'');
+  m.innerHTML='<div class="onb"><div class="orb big">'+IC.spark+'</div><h1>Καλώς ήρθατε στο <em>Advon AI</em></h1><p>Ο AI βοηθός του γραφείου σας. Διαλέξτε κλάδο — μπορείτε να ξεκινήσετε με δοκιμαστικά στοιχεία για να το δείτε να δουλεύει αμέσως.</p>'+
+  (code?'<div class="card joinc"><b>Σας προσκάλεσαν σε γραφείο</b><p class="fine">Κωδικός ομάδας: '+esc(code)+'</p><div class="form"><label>Το όνομά σας<input id="jW" placeholder="π.χ. Μαρία"></label><button type="button" class="btn pri" id="jGo">Μπείτε στην ομάδα</button></div></div><p class="fine" style="margin:14px 0">ή φτιάξτε δικό σας γραφείο:</p>':'')+
   '<div class="onb3">'+Object.keys(N).map(function(k){ return '<button type="button" class="ob" data-n="'+k+'" style="--b:'+N[k].color+';--bs:'+N[k].soft+'"><b>'+N[k].label+'</b><span>'+esc(N[k].chips[0])+'</span></button>'; }).join('')+'</div>'+
-  '<div class="form onbf"><label>Όνομα γραφείου (προαιρετικό)<input id="oO" placeholder="π.χ. Ασφάλειες Λαμπρόπουλος"></label><label>Το όνομά σας (προαιρετικό)<input id="oW" placeholder="π.χ. Άγγελος"></label><label class="chk"><input type="checkbox" id="oD" checked> Με δοκιμαστικά στοιχεία</label></div></div>';
-  $$('.ob',m).forEach(function(b){ b.onclick=function(){ S.niche=b.getAttribute('data-n'); S.office.name=$('#oO').value.trim(); S.office.owner=$('#oW').value.trim(); if($('#oD').checked) seed(); save(); location.hash='today'; route(); }; }); }
+  '<div class="form onbf"><label>Όνομα γραφείου<input id="oO" placeholder="π.χ. Ασφάλειες Λαμπρόπουλος"></label><label>Το όνομά σας<input id="oW" placeholder="π.χ. Άγγελος"></label><label class="chk"><input type="checkbox" id="oD" checked> Με δοκιμαστικά στοιχεία</label>'+
+  (code?'':'<details class="jd"><summary>Έχω κωδικό ομάδας</summary><div class="form"><label>Κωδικός ομάδας<input id="jC" placeholder="π.χ. 3F9A1C2B"></label><label>Το όνομά σας<input id="jW" placeholder="π.χ. Μαρία"></label><button type="button" class="btn pri" id="jGo">Μπείτε στην ομάδα</button></div></details>')+
+  (extra?'<button type="button" class="btn" id="oBack" style="margin-top:6px">Πίσω</button>':'')+'</div></div>';
+  $$('.ob',m).forEach(function(b){ b.onclick=async function(){ var nk=b.getAttribute('data-n'); $$('.ob',m).forEach(function(x){x.disabled=true}); b.classList.add('busy');
+    try{ await CLOUD.createOrg($('#oO').value.trim(), nk, $('#oW').value.trim(), $('#oD').checked); }catch(e){ toast(e.message); $$('.ob',m).forEach(function(x){x.disabled=false}); b.classList.remove('busy'); } }; });
+  var jg=$('#jGo',m); if(jg) jg.onclick=async function(){ var c=code||($('#jC',m)?$('#jC',m).value.trim():''); if(!c){ toast('Γράψτε τον κωδικό ομάδας'); return; } jg.disabled=true; try{ await CLOUD.joinOrg(c, $('#jW',m).value.trim()); history.replaceState(null,'',location.pathname+'#today'); }catch(e){ toast(e.message); jg.disabled=false; } };
+  var bk=$('#oBack',m); if(bk) bk.onclick=function(){ CLOUD.switchOrg(CLOUD.org.id); }; }
 
 /* ================= boot ================= */
-load();
 $$('[data-nav]').forEach(function(a){ a.addEventListener('click',function(){ var mm=$('#moreMenu'); if(mm) mm.classList.remove('on'); }); });
 var fab=$('#fab'); if(fab) fab.onclick=function(){ location.hash='assistant/voice'; };
 var more=$('#moreB'); if(more) more.onclick=function(){ $('#moreMenu').classList.toggle('on'); };
 var side=$('#sideBar'); if(side){ side.innerHTML=aiBar(false); wireAiBar(side); }
 var clr=$('#clrSide'); if(clr) clr.onclick=clearChat;
-route();
+var pendingRender=false;
+function typing(){ var a=d.activeElement; return !!($('.modal') || (a && /INPUT|TEXTAREA|SELECT/.test(a.tagName) && a.value)); }
 window.ADVON_AI={state:function(){return S}, ask:ask, parseWhen:parseWhen, findClient:findClient};
+window.ADVON_APP={
+  boot:function(st){ S=Object.assign(S,st); READY=true; route(); },
+  state:function(){ return S; },
+  setColl:function(k,arr){ S[k]=arr; },
+  refresh:function(){ if(!READY||!S.niche) return; if(typing()||BUSY){ pendingRender=true; return; } render(); },
+  route:route, onboarding:onboarding, seed:seed, save:save, saveNow:saveNow, toast:toast, esc:esc, IC:IC, setReady:function(v){ READY=v; }
+};
+setInterval(function(){ if(pendingRender && !typing() && !BUSY){ pendingRender=false; render(); } },2500);
+d.addEventListener('focusout',function(){ setTimeout(function(){ if(pendingRender && !typing() && !BUSY){ pendingRender=false; render(); } },300); });
+if(window.CLOUD) CLOUD.start();
 })();

@@ -340,3 +340,30 @@ table.pv select{font-size:12px;border:1px solid var(--line);border-radius:8px;pa
 .toast button{border:0;background:rgba(255,255,255,.16);color:#7CF0B5;border-radius:999px;padding:4px 10px;font-weight:800;font-size:13px}
 @media(max-width:899px){.toast{bottom:92px}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* ---------- v2: sign-in, team, notifications ---------- */
+body[data-view=auth] .app{display:block}
+body[data-view=auth] .nav,body[data-view=auth] .side,body[data-view=auth] .tabs{display:none!important}
+body[data-view=auth] #main{padding:24px 16px 60px}
+.auth{max-width:400px;margin:7vh auto 0;text-align:center}
+.auth h1{font-size:34px;margin:16px 0 2px}
+.auth h1 em{font-style:normal;color:#2F6FE0}
+.auth .sub{color:var(--mute);margin-bottom:18px}
+.auth .form{text-align:left;background:#fff;border:1px solid var(--line);border-radius:20px;padding:18px;box-shadow:var(--sh);margin-bottom:12px}
+.auth .form .btn{width:100%;padding:12px}
+.auth .lnk{align-self:center;margin-top:2px}
+.seg{display:flex;background:#fff;border:1px solid var(--line);border-radius:14px;padding:4px;margin-bottom:12px;box-shadow:var(--sh)}
+.seg button{flex:1;border:0;background:transparent;border-radius:10px;padding:9px;font-weight:750;color:var(--mute)}
+.seg button.on{background:var(--ink);color:#fff}
+.hint{background:#FFF8E6;border:1px solid #F3DFAE;color:#6B4A0F;border-radius:14px;padding:11px 13px;font-size:13.5px;line-height:1.45;margin:0 0 12px;text-align:left}
+.code{display:flex;align-items:center;gap:12px;background:var(--bg);border-radius:14px;padding:10px 12px;margin:10px 0 6px}
+.code b{font-size:22px;letter-spacing:.12em;font-variant-numeric:tabular-nums;flex:1}
+.syncst{font-size:11.5px;color:var(--mute)}
+em.warn{font-style:normal;color:var(--hold);font-weight:600}
+.joinc{max-width:420px;margin:0 auto 6px;text-align:left}
+.joinc>b{display:block;font-size:16px;margin-bottom:2px}
+details.jd{margin-top:6px}
+details.jd summary{cursor:pointer;font-weight:750;color:var(--b);font-size:14px}
+details.jd .form{margin-top:10px}
+.ob.busy{opacity:.6;pointer-events:none}
+.ob:disabled{cursor:wait}

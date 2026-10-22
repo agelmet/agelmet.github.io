@@ -1,0 +1,822 @@
+<!doctype html>
+<html lang="el">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="color-scheme" content="light only">
+<title>Advon Media — Πώς χτίζουμε την ιστοσελίδα σας</title>
+<link rel="preload" href="fonts/manrope-greek-800-normal.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:Manrope;font-weight:400;font-display:swap;src:url(fonts/manrope-greek-400-normal.woff2) format('woff2');unicode-range:U+0370-03FF,U+1F00-1FFF}
+@font-face{font-family:Manrope;font-weight:400;font-display:swap;src:url(fonts/manrope-latin-400-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2190-21FF,U+2212,U+2215}
+@font-face{font-family:Manrope;font-weight:500;font-display:swap;src:url(fonts/manrope-greek-500-normal.woff2) format('woff2');unicode-range:U+0370-03FF,U+1F00-1FFF}
+@font-face{font-family:Manrope;font-weight:500;font-display:swap;src:url(fonts/manrope-latin-500-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2190-21FF,U+2212,U+2215}
+@font-face{font-family:Manrope;font-weight:600;font-display:swap;src:url(fonts/manrope-greek-600-normal.woff2) format('woff2');unicode-range:U+0370-03FF,U+1F00-1FFF}
+@font-face{font-family:Manrope;font-weight:600;font-display:swap;src:url(fonts/manrope-latin-600-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2190-21FF,U+2212,U+2215}
+@font-face{font-family:Manrope;font-weight:700;font-display:swap;src:url(fonts/manrope-greek-700-normal.woff2) format('woff2');unicode-range:U+0370-03FF,U+1F00-1FFF}
+@font-face{font-family:Manrope;font-weight:700;font-display:swap;src:url(fonts/manrope-latin-700-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2190-21FF,U+2212,U+2215}
+@font-face{font-family:Manrope;font-weight:800;font-display:swap;src:url(fonts/manrope-greek-800-normal.woff2) format('woff2');unicode-range:U+0370-03FF,U+1F00-1FFF}
+@font-face{font-family:Manrope;font-weight:800;font-display:swap;src:url(fonts/manrope-latin-800-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2190-21FF,U+2212,U+2215}
+
+:root{color-scheme:light only;--ink:#0c1620;--paper:#f4f3ef;--acc:#08709f;--cy:#47c8f5;--bl:#5b7cf0}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:#0b0c10;overflow:hidden;font-family:Manrope,Arial,sans-serif;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
+button{font-family:inherit;cursor:pointer}
+/* slides */
+#stage{position:fixed;left:0;top:0;width:1920px;height:1080px;transform-origin:0 0;background:#0b0c10}
+.sl{position:absolute;left:0;top:0;width:1920px;height:1080px;overflow:hidden;opacity:0;visibility:hidden;transition:opacity .45s ease,visibility 0s linear .45s}
+.sl.on{opacity:1;visibility:visible;transition:opacity .45s ease,visibility 0s}
+.sl *{margin:0;box-sizing:border-box}
+.sl p,.sl h1,.sl h2,.sl h3{overflow-wrap:normal}
+.sl h1,.sl h2,.sl h3{font-weight:700}
+.sl hr{border:0;width:100%}
+.sl img{display:block}
+/* progress + controls */
+#bar{position:fixed;left:0;bottom:0;height:4px;width:0;background:linear-gradient(90deg,var(--cy),var(--bl));transition:width .45s ease;z-index:20}
+#ctl{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);display:flex;align-items:center;gap:6px;padding:8px;border-radius:999px;background:rgba(11,12,16,.78);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 10px 30px rgba(0,0,0,.35);z-index:30;transition:opacity .35s,transform .35s}
+#ctl.hide{opacity:0;transform:translate(-50%,12px);pointer-events:none}
+#ctl button{width:44px;height:44px;border:0;border-radius:999px;background:transparent;color:#f4f3ef;display:grid;place-items:center}
+#ctl button:hover{background:rgba(255,255,255,.12)}
+#ctl button.on{background:var(--cy);color:#0b0c10}
+#ctl svg{width:22px;height:22px}
+#cnt{color:#c7d0da;font-size:15px;font-weight:600;min-width:74px;text-align:center;font-variant-numeric:tabular-nums}
+#note{position:fixed;left:22px;bottom:90px;max-width:560px;padding:18px 22px;border-radius:16px;background:rgba(244,243,239,.96);color:var(--ink);font-size:17px;line-height:1.5;box-shadow:0 20px 50px rgba(0,0,0,.35);z-index:30;display:none}
+#note.show{display:block}
+#note b{display:block;font-size:12px;letter-spacing:2px;color:var(--acc);margin-bottom:6px}
+/* start screen */
+#start{position:fixed;inset:0;z-index:50;background:radial-gradient(1200px 700px at 85% -10%,#dff3fc 0,rgba(223,243,252,0) 60%),var(--paper);color:var(--ink);display:flex;align-items:center;justify-content:center;padding:32px;overflow:auto}
+#start .in{max-width:1080px;width:100%;display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center}
+#start img.logo{width:190px;height:auto;display:block;margin-bottom:34px}
+#start .eyebrow{font-size:14px;font-weight:700;letter-spacing:3px;color:var(--acc);margin:0 0 14px}
+#start h1{font-size:clamp(38px,5vw,64px);line-height:1.04;letter-spacing:-1.5px;font-weight:800;margin:0 0 18px}
+#start h1 span{color:var(--acc)}
+#start p.sub{font-size:19px;line-height:1.55;color:#4a5866;margin:0 0 30px;max-width:520px}
+.btns{display:flex;flex-wrap:wrap;gap:12px}
+.b1{border:0;border-radius:999px;padding:18px 30px;font-size:18px;font-weight:800;color:#0b0c10;background:linear-gradient(135deg,var(--cy),var(--bl));box-shadow:0 14px 34px rgba(71,200,245,.38);display:inline-flex;align-items:center;gap:10px;transition:transform .2s}
+.b1:hover{transform:translateY(-2px)}
+.b2{border:2px solid #d6dde3;border-radius:999px;padding:16px 26px;font-size:17px;font-weight:700;color:var(--ink);background:#fff}
+.b2:hover{border-color:var(--cy)}
+.keys{margin-top:26px;font-size:14px;color:#6b7783;line-height:1.8}
+.keys kbd{display:inline-block;min-width:26px;padding:1px 7px;border:1px solid #cfd6dc;border-bottom-width:2px;border-radius:6px;background:#fff;font-family:inherit;font-size:13px;color:var(--ink);text-align:center}
+#prev{position:relative;aspect-ratio:16/9;border-radius:18px;overflow:hidden;box-shadow:0 40px 90px rgba(12,22,32,.28),0 0 0 1px rgba(12,22,32,.06);background:#0b0c10}
+#prev .box{position:absolute;left:0;top:0;width:1920px;height:1080px;transform-origin:0 0}
+#prev .box .sl{opacity:1;visibility:visible}
+/* overview */
+#grid{position:fixed;inset:0;z-index:40;background:var(--paper);overflow:auto;padding:28px 28px 60px;display:none}
+#grid.show{display:block}
+#grid .top{display:flex;justify-content:space-between;align-items:center;max-width:1500px;margin:0 auto 20px}
+#grid h2{margin:0;font-size:22px;color:var(--ink)}
+#grid .list{max-width:1500px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px}
+#grid .th{border:0;padding:0;background:none;text-align:left}
+#grid .th .fr{position:relative;aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:#0b0c10;box-shadow:0 8px 22px rgba(12,22,32,.16);outline:3px solid transparent;transition:outline-color .2s,transform .2s}
+#grid .th:hover .fr{outline-color:var(--cy);transform:translateY(-2px)}
+#grid .th.cur .fr{outline-color:var(--bl)}
+#grid .th .box{position:absolute;left:0;top:0;width:1920px;height:1080px;transform-origin:0 0}
+#grid .th .box .sl{opacity:1;visibility:visible}
+#grid .th span{display:block;margin-top:7px;font-size:13px;font-weight:700;color:#4a5866}
+@media (hover:none){.keys{display:none}}
+#rot{position:fixed;left:50%;top:18px;transform:translateX(-50%);z-index:30;background:rgba(244,243,239,.95);color:#0c1620;font-size:14px;font-weight:700;padding:8px 14px;border-radius:999px;display:none;white-space:nowrap}
+@media (orientation:portrait) and (max-width:820px){body.live #rot{display:block}}
+@media (max-width:820px){#start .in{grid-template-columns:1fr;gap:28px}#prev{order:-1}#ctl{bottom:12px}#ctl button{width:40px;height:40px}}
+@media (prefers-reduced-motion:reduce){.sl,.sl.on{transition:none}}
+</style>
+</head>
+<body>
+<div id="stage">
+<section class="sl" data-id="cover" data-note="Εδώ κάνετε τη δική σας εισαγωγή. Μετά δείχνουμε ολόκληρες ιστοσελίδες και περνάμε την ιστοσελίδα κομμάτι κομμάτι." data-transition="fade" style="background:radial-gradient(ellipse at 88% 8%, #123a52 0%, #0b0c10 58%);color:#f4f3ef;font-family:'Manrope', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:end;gap:40px">
+<img src="img/advon-logo-light.png" alt="Advon Media" style="position:absolute;left:128px;top:96px;width:260px;height:131px;object-fit:contain">
+<div style="position:absolute;left:128px;top:300px;width:220px;height:8px;background:linear-gradient(90deg, #47c8f5, #5b7cf0);border-radius:4px"></div>
+<p style="font-size:32px;font-weight:600;letter-spacing:6px;color:#47c8f5">ADVON MEDIA</p>
+<h1 style="font-family:'Manrope', Arial, sans-serif;font-size:136px;font-weight:800;line-height:1.02;letter-spacing:-3px;color:#f4f3ef">Η ιστοσελίδα σας,<br><span style="color:#47c8f5">βήμα βήμα.</span></h1>
+<p style="font-size:40px;line-height:1.35;color:#c7d0da;width:1300px">Πώς χτίζουμε την ιστοσελίδα ενός επαγγελματία — με πραγματικές ιστοσελίδες που έχουμε φτιάξει.</p>
+<div style="display:flex;gap:24px">
+<p style="font-size:28px;font-weight:600;color:#f4f3ef;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.18);padding:14px 28px;border-radius:999px">220+ ιστοσελίδες live</p>
+<p style="font-size:28px;font-weight:600;color:#f4f3ef;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.18);padding:14px 28px;border-radius:999px">128 κριτικές στο Google · όλες 5★</p>
+<p style="font-size:28px;font-weight:600;color:#f4f3ef;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.18);padding:14px 28px;border-radius:999px">advonmedia.com</p>
+</div>
+
+</section>
+
+<section class="sl" data-id="structure" data-note="Η τυπική δομή. Όλα με τη σειρά που διαβάζει ο επισκέπτης: ποιος είστε, τι κάνετε, πώς ξεκινάει, τι λένε οι άλλοι, απαντήσεις και πώς σας βρίσκει." data-transition="fade" style="background:#f4f3ef;color:#0c1620;font-family:'Manrope', Arial, sans-serif;padding:96px 128px 88px;display:flex;flex-direction:row;gap:96px;align-items:start">
+<div style="flex:1;display:flex;flex-direction:column;gap:22px">
+<p style="font-size:26px;font-weight:700;letter-spacing:4px;color:#08709f">Η ΔΟΜΗ</p>
+<h2 style="font-size:64px;font-weight:800;letter-spacing:-1px;line-height:1.08;color:#0c1620">Από τι αποτελείται η ιστοσελίδα ενός επαγγελματία</h2>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:18px 32px">
+<div style="display:flex;flex-direction:row;gap:18px;align-items:center"><p style="font-size:28px;font-weight:800;color:#f4f3ef;background:linear-gradient(135deg, #47c8f5, #5b7cf0);border-radius:999px;padding:6px 18px">1</p><p style="font-size:32px;font-weight:700">Μενού</p></div>
+<div style="display:flex;flex-direction:row;gap:18px;align-items:center"><p style="font-size:28px;font-weight:800;color:#f4f3ef;background:linear-gradient(135deg, #47c8f5, #5b7cf0);border-radius:999px;padding:6px 18px">2</p><p style="font-size:32px;font-weight:700">Hero (πρώτη εικόνα)</p></div>
+<div style="display:flex;flex-direction:row;gap:18px;align-items:center"><p style="font-size:28px;font-weight:800;color:#f4f3ef;background:linear-gradient(135deg, #47c8f5, #5b7cf0);border-radius:999px;padding:6px 18px">3</p><p style="font-size:32px;font-weight:700">Υπηρεσίες</p></div>
+<div style="display:flex;flex-direction:row;gap:18px;align-items:center"><p style="font-size:28px;font-weight:800;color:#f4f3ef;background:linear-gradient(135deg, #47c8f5, #5b7cf0);border-radius:999px;padding:6px 18px">4</p><p style="font-size:32px;font-weight:700">Πορεία βήμα βήμα</p></div>
+<div style="display:flex;flex-direction:row;gap:18px;align-items:center"><p style="font-size:28px;font-weight:800;color:#f4f3ef;background:linear-gradient(135deg, #47c8f5, #5b7cf0);border-radius:999px;padding:6px 18px">5</p><p style="font-size:32px;font-weight:700">Κριτικές</p></div>
+<div style="display:flex;flex-direction:row;gap:18px;align-items:center"><p style="font-size:28px;font-weight:800;color:#f4f3ef;background:linear-gradient(135deg, #47c8f5, #5b7cf0);border-radius:999px;padding:6px 18px">6</p><p style="font-size:32px;font-weight:700">Λέξεις εμπιστοσύνης</p></div>
+<div style="display:flex;flex-direction:row;gap:18px;align-items:center"><p style="font-size:28px;font-weight:800;color:#f4f3ef;background:linear-gradient(135deg, #47c8f5, #5b7cf0);border-radius:999px;padding:6px 18px">7</p><p style="font-size:32px;font-weight:700">Συχνές ερωτήσεις</p></div>
+<div style="display:flex;flex-direction:row;gap:18px;align-items:center"><p style="font-size:28px;font-weight:800;color:#f4f3ef;background:linear-gradient(135deg, #47c8f5, #5b7cf0);border-radius:999px;padding:6px 18px">8</p><p style="font-size:32px;font-weight:700">Επικοινωνία &amp; footer</p></div>
+</div>
+<p style="font-size:30px;line-height:1.45;color:#4a5866;width:860px">Αυτή είναι η βασική σειρά. Πρώτα βλέπουμε ολόκληρες ιστοσελίδες και μετά κάθε κομμάτι με πολλές εκδοχές.</p>
+</div>
+<div style="width:560px;display:flex;flex-direction:column;gap:12px;background:#ffffff;border-radius:24px;padding:22px;box-shadow:0 30px 70px rgba(12,22,32,0.16)">
+<div style="display:flex;flex-direction:row;justify-content:space-between;align-items:center;background:#eef1f4;border-radius:12px;padding:12px 18px"><p style="font-size:24px;font-weight:800;color:#0c1620">1 · Λογότυπο</p><p style="font-size:24px;color:#4a5866">— — — —</p></div>
+<div style="display:flex;flex-direction:column;justify-content:end;height:170px;background:linear-gradient(135deg, #123a52, #2a6f97);border-radius:12px;padding:18px"><p style="font-size:30px;font-weight:800;color:#f4f3ef">2 · Hero</p><p style="font-size:24px;color:#cfe6f3">Φωτογραφία, τίτλος, κουμπί</p></div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px"><div style="background:#e6f6fd;border-radius:10px;height:70px"></div><div style="background:#e6f6fd;border-radius:10px;height:70px"></div><div style="background:#e6f6fd;border-radius:10px;height:70px"></div></div>
+<p style="font-size:24px;font-weight:700;color:#08709f">3 · Υπηρεσίες</p>
+<div style="display:flex;flex-direction:row;align-items:center;gap:8px;background:#f4f3ef;border-radius:10px;padding:12px 16px"><p style="font-size:24px;font-weight:700;color:#0c1620">4 · ① → ② → ③ → ④</p></div>
+<div style="display:flex;flex-direction:row;gap:10px;background:#f4f3ef;border-radius:10px;padding:12px 16px"><p style="font-size:24px;font-weight:700;color:#0c1620">5 · ★★★★★ «…»</p></div>
+<div style="display:flex;flex-direction:row;gap:10px;background:#e6f6fd;border-radius:10px;padding:12px 16px"><p style="font-size:24px;font-weight:700;color:#0c1620">6 · 10/10 · 15+ χρόνια</p></div>
+<div style="display:flex;flex-direction:row;gap:10px;background:#f4f3ef;border-radius:10px;padding:12px 16px"><p style="font-size:24px;font-weight:700;color:#0c1620">7 · Ερωτήσεις +</p></div>
+<div style="display:flex;flex-direction:row;gap:10px;background:#0b0c10;border-radius:10px;padding:14px 16px"><p style="font-size:24px;font-weight:700;color:#f4f3ef">8 · Τηλέφωνο · Χάρτης · Ωράριο</p></div>
+</div>
+
+</section>
+
+<section class="sl" data-id="full1" data-note="Ολόκληρη η ιστοσελίδα, κομμένη σε 4 στήλες: διαβάζεται σαν να κατεβαίνετε τη σελίδα. Πάνω το μενού και η πρώτη εικόνα, μετά «Σχετικά με εμένα», οι υπηρεσίες, η διαδρομή της θεραπείας, οι χώροι, οι κριτικές και στο τέλος η επικοινωνία." data-transition="fade" style="background:#f4f3ef;color:#0c1620;font-family:'Manrope', Arial, sans-serif;padding:88px 128px 72px;display:flex;flex-direction:column;gap:28px">
+<div style="display:flex;justify-content:space-between;align-items:end">
+<div style="display:flex;flex-direction:column;gap:8px">
+<p style="font-size:26px;font-weight:700;letter-spacing:4px;color:#08709f">ΟΛΟΚΛΗΡΗ ΙΣΤΟΣΕΛΙΔΑ · 1 ΑΠΟ 4</p>
+<h2 style="font-size:64px;font-weight:800;letter-spacing:-1px;line-height:1.05;color:#0c1620">Δρ. Χριστίνα Σιμιτσή — Ψυχολόγος</h2>
+</div>
+<div style="display:flex;flex-direction:column;gap:4px;align-items:end">
+<p style="font-size:28px;font-weight:700;color:#08709f;text-align:right">drsimitsi-psychologist.gr</p>
+<p style="font-size:24px;color:#4a5866;text-align:right">Από πάνω ως κάτω, στήλη-στήλη →</p>
+</div>
+</div>
+<img src="img/full-SIMITSI.webp" alt="Ολόκληρη η ιστοσελίδα της Δρ. Χριστίνας Σιμιτσή, σε τέσσερις στήλες" style="width:1664px;height:768px;object-fit:contain">
+
+</section>
+
+<section class="sl" data-id="full2" data-note="Εδώ βλέπουμε και ενότητα για την ομάδα συνεργατών: η δομή προσαρμόζεται σε ό,τι έχει ο κάθε επαγγελματίας." data-transition="fade" style="background:#f4f3ef;color:#0c1620;font-family:'Manrope', Arial, sans-serif;padding:88px 128px 72px;display:flex;flex-direction:column;gap:28px">
+<div style="display:flex;justify-content:space-between;align-items:end">
+<div style="display:flex;flex-direction:column;gap:8px">
+<p style="font-size:26px;font-weight:700;letter-spacing:4px;color:#08709f">ΟΛΟΚΛΗΡΗ ΙΣΤΟΣΕΛΙΔΑ · 2 ΑΠΟ 4</p>
+<h2 style="font-size:64px;font-weight:800;letter-spacing:-1px;line-height:1.05;color:#0c1620">Εύα Λαμπρινού — Mind Your Emotion</h2>
+</div>
+<div style="display:flex;flex-direction:column;gap:4px;align-items:end">
+<p style="font-size:28px;font-weight:700;color:#08709f;text-align:right">evalamprinou-psychologist.gr</p>
+<p style="font-size:24px;color:#4a5866;text-align:right">Από πάνω ως κάτω, στήλη-στήλη →</p>
+</div>
+</div>
+<img loading="lazy" decoding="async" src="img/full-LABRINOU2.webp" alt="Ολόκληρη η ιστοσελίδα της Εύας Λαμπρινού, σε τέσσερις στήλες" style="width:1664px;height:768px;object-fit:contain">
+
+</section>
+
+<section class="sl" data-id="full3" data-note="Μια πλήρης ιστοσελίδα με όλες τις ενότητες που θα δούμε σε λίγο: μενού, hero, υπηρεσίες, πορεία θεραπείας, κριτικές, συχνές ερωτήσεις και επικοινωνία." data-transition="fade" style="background:#f4f3ef;color:#0c1620;font-family:'Manrope', Arial, sans-serif;padding:88px 128px 72px;display:flex;flex-direction:column;gap:28px">
+<div style="display:flex;justify-content:space-between;align-items:end">
+<div style="display:flex;flex-direction:column;gap:8px">
+<p style="font-size:26px;font-weight:700;letter-spacing:4px;color:#08709f">ΟΛΟΚΛΗΡΗ ΙΣΤΟΣΕΛΙΔΑ · 3 ΑΠΟ 4</p>
+<h2 style="font-size:64px;font-weight:800;letter-spacing:-1px;line-height:1.05;color:#0c1620">Θοδωρής Δεμερούτης — Ψυχολόγος</h2>
+</div>
+<div style="display:flex;flex-direction:column;gap:4px;align-items:end">
+<p style="font-size:28px;font-weight:700;color:#08709f;text-align:right">demeroutis-psychverse.gr</p>
+<p style="font-size:24px;color:#4a5866;text-align:right">Από πάνω ως κάτω, στήλη-στήλη →</p>
+</div>
+</div>
+<img loading="lazy" decoding="async" src="img/full-DEMEROUTIS.webp" alt="Ολόκληρη η ιστοσελίδα του Θοδωρή Δεμερούτη, σε τέσσερις στήλες" style="width:1664px;height:768px;object-fit:contain">
+
+</section>
+
+<section class="sl" data-id="full4" data-note="Ένα ιατρείο με τελείως διαφορετικό ύφος: σκούρο μπλε, πιο κλινικό. Κάθε ιστοσελίδα έχει το δικό της χρώμα και χαρακτήρα, ανάλογα με το επάγγελμα." data-transition="fade" style="background:#f4f3ef;color:#0c1620;font-family:'Manrope', Arial, sans-serif;padding:88px 128px 72px;display:flex;flex-direction:column;gap:28px">
+<div style="display:flex;justify-content:space-between;align-items:end">
+<div style="display:flex;flex-direction:column;gap:8px">
+<p style="font-size:26px;font-weight:700;letter-spacing:4px;color:#08709f">ΟΛΟΚΛΗΡΗ ΙΣΤΟΣΕΛΙΔΑ · 4 ΑΠΟ 4</p>
+<h2 style="font-size:64px;font-weight:800;letter-spacing:-1px;line-height:1.05;color:#0c1620">Σταυρούλα Δάβου — Οφθαλμίατρος</h2>
+</div>
+<div style="display:flex;flex-direction:column;gap:4px;align-items:end">
+<p style="font-size:28px;font-weight:700;color:#08709f;text-align:right">davou-ofthalmiatros.gr</p>
+<p style="font-size:24px;color:#4a5866;text-align:right">Από πάνω ως κάτω, στήλη-στήλη →</p>
+</div>
+</div>
+<img loading="lazy" decoding="async" src="img/full-DAVOU.webp" alt="Ολόκληρη η ιστοσελίδα της Σταυρούλας Δάβου, σε τέσσερις στήλες" style="width:1664px;height:768px;object-fit:contain">
+
+</section>
+
+<section class="sl" data-id="ch1" data-note="Πρώτο κομμάτι: το μενού στην κορυφή της σελίδας." data-transition="fade" style="background:radial-gradient(ellipse at 85% 15%, #123a52 0%, #0b0c10 60%);color:#f4f3ef;font-family:'Manrope', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;justify-content:center;gap:20px">
+<p style="font-size:200px;font-weight:800;line-height:1;letter-spacing:-6px;background:linear-gradient(90deg, #47c8f5, #5b7cf0);background-clip:text;-webkit-text-fill-color:transparent">01</p>
+<h2 style="font-size:120px;font-weight:800;letter-spacing:-3px;line-height:1.05;color:#f4f3ef">Μενού</h2>
+<p style="font-size:40px;line-height:1.35;color:#aab6c2;width:1300px">Το λογότυπο σας γυρίζει στην αρχή και κάθε λέξη σάς πηγαίνει κατευθείαν στο σημείο της σελίδας.</p>
+<div style="position:absolute;left:128px;bottom:64px;width:1664px;display:flex;flex-direction:row;gap:12px">
+<p style="font-size:24px;font-weight:700;color:#0b0c10;background:#47c8f5;padding:8px 20px;border-radius:999px">Μενού</p>
+<p style="font-size:24px;color:#8995a1;border:1px solid #2b3440;padding:8px 20px;border-radius:999px">Hero</p>
+<p style="font-size:24px;color:#8995a1;border:1px solid #2b3440;padding:8px 20px;border-radius:999px">Υπηρεσίες</p>
+<p style="font-size:24px;color:#8995a1;border:1px solid #2b3440;padding:8px 20px;border-radius:999px">Πορεία</p>
+<p style="font-size:24px;color:#8995a1;border:1px solid #2b3440;padding:8px 20px;border-radius:999px">Κριτικές</p>
+<p style="font-size:24px;color:#8995a1;border:1px solid #2b3440;padding:8px 20px;border-radius:999px">Εμπιστοσύνη</p>
+<p style="font-size:24px;color:#8995a1;border:1px solid #2b3440;padding:8px 20px;border-radius:999px">Ερωτήσεις</p>
+<p style="font-size:24px;color:#8995a1;border:1px solid #2b3440;padding:8px 20px;border-radius:999px">Επικοινωνία</p>
+</div>
+
+</section>
+
+<section class="sl" data-id="nav" data-note="Το μενού μένει πάντα στην κορυφή. Το λογότυπο σας γυρίζει στην αρχή, κάθε λέξη σάς πάει στην ενότητα (π.χ. «Υπηρεσίες», «Κριτικές»), και δεξιά υπάρχει πάντα το κουμπί για ραντεβού ή τηλέφωνο. Στο κινητό γίνεται ένα κουμπάκι μενού. Αν δεν έχετε λογότυπο, σας φτιάχνουμε εμείς ένα σχετικό με το επάγγελμά σας." data-transition="fade" style="background:#f4f3ef;color:#0c1620;font-family:'Manrope', Arial, sans-serif;padding:80px 128px 72px;display:flex;flex-direction:column;gap:20px">
+<p style="font-size:26px;font-weight:700;letter-spacing:4px;color:#08709f">01 · ΜΕΝΟΥ</p>
+<h2 style="font-size:60px;font-weight:800;letter-spacing:-1px;line-height:1.05;color:#0c1620">Λογότυπο + λέξεις που σας πάνε στο σημείο</h2>
+<div style="display:flex;flex-direction:row;gap:20px">
+<p style="font-size:28px;font-weight:700;color:#0c1620;background:#ffffff;padding:12px 24px;border-radius:999px;border:2px solid #47c8f5">① Λογότυπο → γυρνάει στην αρχή</p>
+<p style="font-size:28px;font-weight:700;color:#0c1620;background:#ffffff;padding:12px 24px;border-radius:999px;border:2px solid #47c8f5">② Λέξεις → πάνε στην ενότητα</p>
+<p style="font-size:28px;font-weight:700;color:#0c1620;background:#ffffff;padding:12px 24px;border-radius:999px;border:2px solid #47c8f5">③ Κουμπί → ραντεβού / τηλέφωνο</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:6px;align-items:center">
+<img loading="lazy" decoding="async" src="img/nav-DEMEROUTIS.webp" alt="Μενού της ιστοσελίδας Δεμερούτη" style="width:1300px;height:159px;object-fit:contain">
+<img loading="lazy" decoding="async" src="img/nav-SIMITSI.webp" alt="Μενού της ιστοσελίδας Σιμιτσή" style="width:1300px;height:171px;object-fit:contain">
+<img loading="lazy" decoding="async" src="img/nav-DAVOU.webp" alt="Μενού της ιστοσελίδας Δάβου" style="width:1300px;height:168px;object-fit:contain">
+<img loading="lazy" decoding="async" src="img/nav-STRIGKONI.webp" alt="Μενού της ιστοσελίδας All Smiles" style="width:1300px;height:173px;object-fit:contain">
+</div>
+
+</section>
+
+<section class="sl" data-id="ch2" data-note="Το hero είναι η πρώτη εντύπωση. Θα δούμε 5 διαφορετικές εκδοχές και μετά άλλες 6 με μια ματιά." data-transition="fade" style="background:radial-gradient(ellipse at 85% 15%, #123a52 0%, #0b0c10 60%);color:#f4f3ef;font-family:'Manrope', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;justify-content:center;gap:20px">
+<p style="font-size:200px;font-weight:800;line-height:1;letter-spacing:-6px;background:linear-gradient(90deg, #47c8f5, #5b7cf0);background-clip:text;-webkit-text-fill-color:transparent">02</p>
+<h2 style="font-size:120px;font-weight:800;letter-spacing:-3px;line-height:1.05;color:#f4f3ef">Hero — η πρώτη εικόνα</h2>
+<p style="font-size:40px;line-height:1.35;color:#aab6c2;width:1300px">Ό,τι βλέπει ο επισκέπτης μόλις ανοίξει τη σελίδα. Μπορεί να γίνει με πολλούς τρόπους.</p>
+<div style="position:absolute;left:128px;bottom:64px;width:1664px;display:flex;flex-direction:row;gap:12px">
+<p style="font-size:24px;color:#8995a1;border:1px solid #2b3440;padding:8px 20px;border-radius:999px">Μενού</p>
+<p style="font-size:24px;font-weight:700;color:#0b0c10;background:#47c8f5;padding:8px 20px;border-radius:999px">Hero</p>
+<p style="font-size:24px;color:#8995a1;border:1px solid #2b3440;padding:8px 20px;border-radius:999px">Υπηρεσίες</p>
+<p style="font-size:24px;color:#8995a1;border:1px solid #2b3440;padding:8px 20px;border-radius:999px">Πορεία</p>
+<p style="font-size:24px;color:#8995a1;border:1px solid #2b3440;padding:8px 20px;border-radius:999px">Κριτικές</p>
+<p style="font-size:24px;color:#8995a1;border:1px solid #2b3440;padding:8px 20px;border-radius:999px">Εμπιστοσύνη</p>
+<p style="font-size:24px;color:#8995a1;border:1px solid #2b3440;padding:8px 20px;border-radius:999px">Ερωτήσεις</p>
+<p style="font-size:24px;color:#8995a1;border:1px solid #2b3440;padding:8px 20px;border-radius:999px">Επικοινωνία</p>
+</div>
+
+</section>
+
+<section class="sl" data-id="hero1" data-note="Αγγελική Βρεττού: η φωτογραφία της σε όλο το πλάτος, με τον τίτλο πάνω στη φωτογραφία." data-transition="fade" style="background:#f4f3ef;color:#0c1620;font-family:'Manrope', Arial, sans-serif;padding:96px 96px 96px 128px;display:flex;flex-direction:row;align-items:center;gap:40px">
+<div style="width:500px;display:flex;flex-direction:column;gap:24px">
+<p style="font-size:26px;font-weight:700;letter-spacing:4px;color:#08709f">02 · HERO · 1 ΑΠΟ 5</p>
+<h2 style="font-size:64px;font-weight:800;letter-spacing:-1px;line-height:1.08;color:#0c1620">Φωτογραφία σε όλη την οθόνη</h2>
+<p style="font-size:32px;line-height:1.45;color:#4a5866">Η φωτογραφία σας γεμίζει όλη την οθόνη και το κείμενο κάθεται πάνω της. Δυνατή, άμεση πρώτη εντύπωση.</p>
+<p style="font-size:26px;font-weight:700;color:#08709f">angelikivrettou.gr</p>
+</div>
+<img loading="lazy" decoding="async" src="img/hero-VRETTOU.webp" alt="Hero της Αγγελικής Βρεττού: φωτογραφία σε όλη την οθόνη" style="width:1140px;height:768px;object-fit:contain">
+
+</section>
+
+<section class="sl" data-id="hero2" data-note="Εύα Λαμπρινού, Mind Your Emotion: το κείμενο αριστερά σε κάρτα, η φωτογραφία της δεξιά." data-transition="fade" style="background:#f4f3ef;color:#0c1620;font-family:'Manrope', Arial, sans-serif;padding:96px 96px 96px 128px;display:flex;flex-direction:row;align-items:center;gap:40px">
+<div style="width:500px;display:flex;flex-direction:column;gap:24px">
+<p style="font-size:26px;font-weight:700;letter-spacing:4px;color:#08709f">02 · HERO · 2 ΑΠΟ 5</p>
+<h2 style="font-size:64px;font-weight:800;letter-spacing:-1px;line-height:1.08;color:#0c1620">Μισό κείμενο, μισό φωτογραφία</h2>
+<p style="font-size:32px;line-height:1.45;color:#4a5866">Split screen: αριστερά το μήνυμα και τα στοιχεία σας, δεξιά η φωτογραφία σας. Καθαρό και ισορροπημένο.</p>
+<p style="font-size:26px;font-weight:700;color:#08709f">evalamprinou-psychologist.gr</p>
+</div>
+<img loading="lazy" decoding="async" src="img/hero-LABRINOU2.webp" alt="Hero της Εύας Λαμπρινού: χωρισμένη οθόνη με κείμενο και φωτογραφία" style="width:1140px;height:768px;object-fit:contain">
+
+</section>
+
+<section class="sl" data-id="hero3" data-note="Δρ. Χριστίνα Σιμιτσή: ο χώρος του γραφείου ως φόντο και η φωτογραφία της σε καμάρα." data-transition="fade" style="background:#f4f3ef;color:#0c1620;font-family:'Manrope', Arial, sans-serif;padding:96px 96px 96px 128px;display:flex;flex-direction:row;align-items:center;gap:40px">
+<div style="width:500px;display:flex;flex-direction:column;gap:24px">
+<p style="font-size:26px;font-weight:700;letter-spacing:4px;color:#08709f">02 · HERO · 3 ΑΠΟ 5</p>
+<h2 style="font-size:64px;font-weight:800;letter-spacing:-1px;line-height:1.08;color:#0c1620">Ο χώρος σας + εσείς</h2>
+<p style="font-size:32px;line-height:1.45;color:#4a5866">Το γραφείο σας στο φόντο και η φωτογραφία σας σε κάδρο μπροστά. Ο επισκέπτης βλέπει και εσάς και πού θα έρθει.</p>
+<p style="font-size:26px;font-weight:700;color:#08709f">drsimitsi-psychologist.gr</p>
+</div>
+<img loading="lazy" decoding="async" src="img/hero-SIMITSI.webp" alt="Hero της Δρ. Χριστίνας Σιμιτσή: ο χώρος στο φόντο και η ίδια σε κάδρο" style="width:1140px;height:768px;object-fit:contain">
+
+</section>
+
+<section class="sl" data-id="hero4" data-note="Μάρθα Πλέσσα: απαλό φόντο με φύση και πουλιά, ο τίτλος στη μέση της προσοχής." data-transition="fade" style="background:#f4f3ef;color:#0c1620;font-family:'Manrope', Arial, sans-serif;padding:96px 96px 96px 128px;display:flex;flex-direction:row;align-items:center;gap:40px">
+<div style="width:500px;display:flex;flex-direction:column;gap:24px">
+<p style="font-size:26px;font-weight:700;letter-spacing:4px;color:#08709f">02 · HERO · 4 ΑΠΟ 5</p>
+<h2 style="font-size:64px;font-weight:800;letter-spacing:-1px;line-height:1.08;color:#0c1620">Μόνο φύση στο φόντο</h2>
+<p style="font-size:32px;line-height:1.45;color:#4a5866">Χωρίς φωτογραφία προσώπου: ένα ήρεμο φυσικό φόντο και ένα δυνατό μήνυμα. Ιδανικό για όσους δεν θέλουν να μπει η φωτογραφία τους πρώτη.</p>
+<p style="font-size:26px;font-weight:700;color:#08709f">marthaplessa-psychotherapy.gr</p>
+</div>
+<img loading="lazy" decoding="async" src="img/hero-PLESSA.webp" alt="Hero της Μάρθας Πλέσσα: φυσικό φόντο και μήνυμα" style="width:1140px;height:768px;object-fit:contain">
+
+</section>
+
+<section class="sl" data-id="hero5" data-note="Ανθή Θωμά: ζωντανό φόντο με χρώματα που κινούνται, το πορτρέτο σε στρογγυλό κάδρο και από κάτω κάρτες με αριθμούς (χρόνια εμπειρίας, βαθμολογία)." data-transition="fade" style="background:#f4f3ef;color:#0c1620;font-family:'Manrope', Arial, sans-serif;padding:96px 96px 96px 128px;display:flex;flex-direction:row;align-items:center;gap:40px">
+<div style="width:500px;display:flex;flex-direction:column;gap:24px">
+<p style="font-size:26px;font-weight:700;letter-spacing:4px;color:#08709f">02 · HERO · 5 ΑΠΟ 5</p>
+<h2 style="font-size:64px;font-weight:800;letter-spacing:-1px;line-height:1.08;color:#0c1620">Πορτρέτο + ζωντανό φόντο</h2>
+<p style="font-size:32px;line-height:1.45;color:#4a5866">Η φωτογραφία σας σε κάδρο, πίσω της απαλά σχήματα που κινούνται, και από κάτω οι αριθμοί σας.</p>
+<p style="font-size:26px;font-weight:700;color:#08709f">anthithoma-psychologist.gr</p>
+</div>
+<img loading="lazy" decoding="async" src="img/hero-THWMA.webp" alt="Hero της Ανθής Θωμά: πορτρέτο με κινούμενο φόντο" style="width:1140px;height:768px;object-fit:contain">
+
+</section>
+
+<section class="sl" data-id="heromore" data-note="Μερικές ακόμη εκδοχές: με τα χρώματα της επαγγελματικής κάρτας, με τον εξοπλισμό του ιατρείου, σε σκούρο φόντο, μόνο με κείμενο και σχέδιο. Διαλέγουμε ό,τι ταιριάζει στο επάγγελμα και στις φωτογραφίες σας." data-transition="fade" style="background:#f4f3ef;color:#0c1620;font-family:'Manrope', Arial, sans-serif;padding:80px 128px 72px;display:flex;flex-direction:column;gap:24px">
+<p style="font-size:26px;font-weight:700;letter-spacing:4px;color:#08709f">02 · HERO</p>
+<h2 style="font-size:60px;font-weight:800;letter-spacing:-1px;line-height:1.05;color:#0c1620">…και πολλοί ακόμη τρόποι</h2>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px 28px">
+<div style="display:flex;flex-direction:column;gap:6px"><img loading="lazy" decoding="async" src="img/herox-DIMITRA.webp" alt="Hero Σμαράγδας Δημητρά" style="width:536px;height:300px;object-fit:contain"><p style="font-size:24px;font-weight:700;color:#0c1620">Χρώμα από την κάρτα της · smaragdadimitra.gr</p></div>
+<div style="display:flex;flex-direction:column;gap:6px"><img loading="lazy" decoding="async" src="img/herox-DAVOU.webp" alt="Hero Σταυρούλας Δάβου" style="width:536px;height:300px;object-fit:contain"><p style="font-size:24px;font-weight:700;color:#0c1620">Ο εξοπλισμός του ιατρείου · davou-ofthalmiatros.gr</p></div>
+<div style="display:flex;flex-direction:column;gap:6px"><img loading="lazy" decoding="async" src="img/herox-FILIPPOPOULOU.webp" alt="Hero Φανής Φιλιπποπούλου" style="width:536px;height:300px;object-fit:contain"><p style="font-size:24px;font-weight:700;color:#0c1620">Σκούρο φόντο + πορτρέτο · filippopoulou-psyxologos.gr</p></div>
+<div style="display:flex;flex-direction:column;gap:6px"><img loading="lazy" decoding="async" src="img/herox-PAPPA.webp" alt="Hero Εμμανουέλας Παππά" style="width:536px;height:300px;object-fit:contain"><p style="font-size:24px;font-weight:700;color:#0c1620">Φωτογραφία στη μισή οθόνη · pappa-psyxologos.gr</p></div>
+<div style="display:flex;flex-direction:column;gap:6px"><img loading="lazy" decoding="async" src="img/herox-DIADROMES.webp" alt="Hero Διαδρομές" style="width:536px;height:300px;object-fit:contain"><p style="font-size:24px;font-weight:700;color:#0c1620">Μόνο κείμενο + σχέδιο · diadromes.org</p></div>
+<div style="display:flex;flex-direction:column;gap:6px"><img loading="lazy" decoding="async" src="img/herox-VERANIS.webp" alt="Hero Δρ. Σωτήρη Βεράνη" style="width:536px;height:300px;object-fit:contain"><p style="font-size:24px;font-weight:700;color:#0c1620">Σκούρο, κλινικό ύφος · veranis-neurosurgeon.gr</p></div>
+</div>
+
+</section>
+
+<section class="sl" data-id="ch3" data-note="Ξεκινάμε με την πιο απλή εκδοχή (Βρεττού) και μετά βλέπουμε 8 πιο ιδιαίτερες." data-transition="fade" style="background:radial-gradient(ellipse at 85% 15%, #123a52 0%, #0b0c10 60%);color:#f4f3ef;font-family:'Manrope', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;justify-content:center;gap:20px">
+<p style="font-size:200px;font-weight:800;line-height:1;letter-spacing:-6px;background:linear-gradient(90deg, #47c8f5, #5b7cf0);background-clip:text;-webkit-text-fill-color:transparent">03</p>
+<h2 style="font-size:120px;font-weight:800;letter-spacing:-3px;line-height:1.05;color:#f4f3ef">Υπηρεσίες</h2>
+<p style="font-size:40px;line-height:1.35;color:#aab6c2;width:1300px">Τι κάνετε, με απλά λόγια. Το ίδιο περιεχόμενο μπορεί να παρουσιαστεί με πολλούς τρόπους.</p>
+<div style="position:absolute;left:128px;bottom:64px;width:1664px;display:flex;flex-direction:row;gap:12px">
+<p style="font-size:24px;color:#8995a1;border:1px solid #2b3440;padding:8px 20px;border-radius:999px">Μενού</p>
+<p style="font-size:24px;color:#8995a1;border:1px solid #2b3440;padding:8px 20px;border-radius:999px">Hero</p>
+<p style="font-size:24px;font-weight:700;color:#0b0c10;background:#47c8f5;padding:8px 20px;border-radius:999px">Υπηρεσίες</p>
+<p style="font-size:24px;color:#8995a1;border:1px solid #2b3440;padding:8px 20px;border-radius:999px">Πορεία</p>
+<p style="font-size:24px;color:#8995a1;border:1px solid #2b3440;padding:8px 20px;border-radius:999px">Κριτικές</p>
+<p style="font-size:24px;color:#8995a1;border:1px solid #2b3440;padding:8px 20px;border-radius:999px">Εμπιστοσύνη</p>
+<p style="font-size:24px;color:#8995a1;border:1px solid #2b3440;padding:8px 20px;border-radius:999px">Ερωτήσεις</p>
+<p style="font-size:24px;color:#8995a1;border:1px solid #2b3440;padding:8px 20px;border-radius:999px">Επικοινωνία</p>
+</div>
+
+</section>
+
+<section class="sl" data-id="svc1" data-note="Η πιο απλή μορφή: έξι κάρτες, μία για κάθε υπηρεσία (ατομική, ζευγαριού, γονέων, ομαδική, online) και μια σκούρα κάρτα-κουμπί για ραντεβού." data-transition="fade" style="background:#f4f3ef;color:#0c1620;font-family:'Manrope', Arial, sans-serif;padding:96px 96px 96px 128px;display:flex;flex-direction:row;align-items:center;gap:48px">
+<div style="width:560px;display:flex;flex-direction:column;gap:24px">
+<p style="font-size:26px;font-weight:700;letter-spacing:4px;color:#08709f">03 · ΥΠΗΡΕΣΙΕΣ</p>
+<h2 style="font-size:64px;font-weight:800;letter-spacing:-1px;line-height:1.08;color:#0c1620">Πολύ απλά: μία κάρτα για κάθε υπηρεσία</h2>
+<p style="font-size:32px;line-height:1.45;color:#4a5866">Τίτλος και δύο γραμμές για το καθένα. Ο επισκέπτης βλέπει με μια ματιά τι κάνετε — και στο τέλος ένα κουμπί «Κάντε το πρώτο βήμα».</p>
+<p style="font-size:26px;font-weight:700;color:#08709f">angelikivrettou.gr</p>
+</div>
+<img loading="lazy" decoding="async" src="img/svc-VRETTOU.webp" alt="Υπηρεσίες της Αγγελικής Βρεττού σε απλές κάρτες" style="width:1088px;height:870px;object-fit:contain">
+
+</section>
+
+<section class="sl" data-id="svc2" data-note="Δημητρά: ως δικαστική ψυχολόγος, οι υπηρεσίες κρέμονται από μια ζυγαριά. Δεμερούτης: ως συστημικός, οι υπηρεσίες είναι ένας χάρτης με «εσάς» στη μέση." data-transition="fade" style="background:#f4f3ef;color:#0c1620;font-family:'Manrope', Arial, sans-serif;padding:80px 128px 72px;display:flex;flex-direction:column;gap:24px">
+<p style="font-size:26px;font-weight:700;letter-spacing:4px;color:#08709f">03 · ΥΠΗΡΕΣΙΕΣ · ΑΛΛΟΙ ΤΡΟΠΟΙ</p>
+<h2 style="font-size:60px;font-weight:800;letter-spacing:-1px;line-height:1.05;color:#0c1620">Με σχέδιο που λέει κάτι για εσάς</h2>
+<div style="display:flex;flex-direction:row;gap:48px">
+<div style="flex:1;display:flex;flex-direction:column;gap:10px"><img loading="lazy" decoding="async" src="img/svc-DIMITRA.webp" alt="Υπηρεσίες Σμαράγδας Δημητρά με ζυγαριά" style="width:808px;height:600px;object-fit:contain"><p style="font-size:32px;font-weight:800;color:#0c1620">Ζυγαριά: δύο κατηγορίες σε ισορροπία</p><p style="font-size:24px;font-weight:600;color:#08709f">smaragdadimitra.gr · Δικαστική Ψυχολόγος</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:10px"><img loading="lazy" decoding="async" src="img/svc-DEMEROUTIS.webp" alt="Υπηρεσίες Θοδωρή Δεμερούτη σε χάρτη" style="width:808px;height:600px;object-fit:contain"><p style="font-size:32px;font-weight:800;color:#0c1620">Χάρτης: πατάτε έναν κύκλο, ανοίγει η υπηρεσία</p><p style="font-size:24px;font-weight:600;color:#08709f">demeroutis-psychverse.gr · Συστημικός</p></div>
+</div>
+
+</section>
+
+<section class="sl" data-id="svc3" data-note="Όταν οι υπηρεσίες είναι πολλές, μια λίστα που ανοίγει κρατάει τη σελίδα καθαρή: ο επισκέπτης πατάει μόνο ό,τι τον ενδιαφέρει." data-transition="fade" style="background:#f4f3ef;color:#0c1620;font-family:'Manrope', Arial, sans-serif;padding:80px 128px 72px;display:flex;flex-direction:column;gap:24px">
+<p style="font-size:26px;font-weight:700;letter-spacing:4px;color:#08709f">03 · ΥΠΗΡΕΣΙΕΣ · ΑΛΛΟΙ ΤΡΟΠΟΙ</p>
+<h2 style="font-size:60px;font-weight:800;letter-spacing:-1px;line-height:1.05;color:#0c1620">Σε λίστα που ανοίγει με ένα κλικ</h2>
+<div style="display:flex;flex-direction:row;gap:48px">
+<div style="flex:1;display:flex;flex-direction:column;gap:10px"><img loading="lazy" decoding="async" src="img/svc-FILIPPOPOULOU.webp" alt="Υπηρεσίες Φανής Φιλιπποπούλου σε σκούρα λίστα" style="width:808px;height:600px;object-fit:contain"><p style="font-size:32px;font-weight:800;color:#0c1620">Σκούρα λίστα με μεγάλο αριθμό</p><p style="font-size:24px;font-weight:600;color:#08709f">filippopoulou-psyxologos.gr</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:10px"><img loading="lazy" decoding="async" src="img/svc-TZOANNOU.webp" alt="Υπηρεσίες Χαράς Τζοάνου σε λίστα που ανοίγει" style="width:808px;height:600px;object-fit:contain"><p style="font-size:32px;font-weight:800;color:#0c1620">Ανοιχτόχρωμη λίστα που ανοίγει</p><p style="font-size:24px;font-weight:600;color:#08709f">charatzoanou.gr</p></div>
+</div>
+
+</section>
+
+<section class="sl" data-id="svc4" data-note="Στα ιατρεία οι υπηρεσίες είναι συνήθως πολλές και τεχνικές: τις χωρίζουμε σε καρτέλες ή κάρτες με μικρά εικονίδια, ώστε να διαβάζονται εύκολα." data-transition="fade" style="background:#f4f3ef;color:#0c1620;font-family:'Manrope', Arial, sans-serif;padding:80px 128px 72px;display:flex;flex-direction:column;gap:24px">
+<p style="font-size:26px;font-weight:700;letter-spacing:4px;color:#08709f">03 · ΥΠΗΡΕΣΙΕΣ · ΑΛΛΟΙ ΤΡΟΠΟΙ</p>
+<h2 style="font-size:60px;font-weight:800;letter-spacing:-1px;line-height:1.05;color:#0c1620">Για οδοντιάτρους και ιατρεία</h2>
+<div style="display:flex;flex-direction:row;gap:48px">
+<div style="flex:1;display:flex;flex-direction:column;gap:10px"><img loading="lazy" decoding="async" src="img/svc-ZORMPA.webp" alt="Υπηρεσίες Θωμαής Ζορμπά σε καρτέλες με σχέδιο δοντιού" style="width:808px;height:600px;object-fit:contain"><p style="font-size:32px;font-weight:800;color:#0c1620">Καρτέλες με σχέδιο που αλλάζει</p><p style="font-size:24px;font-weight:600;color:#08709f">zormpa-dentist.gr · Οδοντίατρος</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:10px"><img loading="lazy" decoding="async" src="img/svc-STRIGKONI.webp" alt="Υπηρεσίες All Smiles σε κάρτες με φωτογραφία" style="width:808px;height:600px;object-fit:contain"><p style="font-size:32px;font-weight:800;color:#0c1620">Κάρτες + φωτογραφία του ιατρείου</p><p style="font-size:24px;font-weight:600;color:#08709f">allsmiles.gr · Οδοντίατρος</p></div>
+</div>
+
+</section>
+
+<section class="sl" data-id="svc5" data-note="Δύο ακόμη εκδοχές με κάρτες: η μία τονίζει μια υπηρεσία (π.χ. θεραπεία ζεύγους), η άλλη τις αριθμεί 01–05." data-transition="fade" style="background:#f4f3ef;color:#0c1620;font-family:'Manrope', Arial, sans-serif;padding:80px 128px 72px;display:flex;flex-direction:column;gap:24px">
+<p style="font-size:26px;font-weight:700;letter-spacing:4px;color:#08709f">03 · ΥΠΗΡΕΣΙΕΣ · ΑΛΛΟΙ ΤΡΟΠΟΙ</p>
+<h2 style="font-size:60px;font-weight:800;letter-spacing:-1px;line-height:1.05;color:#0c1620">Κάρτες με λίγη παραπάνω προσωπικότητα</h2>
+<div style="display:flex;flex-direction:row;gap:48px">
+<div style="flex:1;display:flex;flex-direction:column;gap:10px"><img loading="lazy" decoding="async" src="img/svc-SIMITSI.webp" alt="Υπηρεσίες Δρ. Χριστίνας Σιμιτσή σε κάρτες" style="width:808px;height:600px;object-fit:contain"><p style="font-size:32px;font-weight:800;color:#0c1620">Κάρτες, με μία που ξεχωρίζει</p><p style="font-size:24px;font-weight:600;color:#08709f">drsimitsi-psychologist.gr</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:10px"><img loading="lazy" decoding="async" src="img/svc-GKIOKA.webp" alt="Υπηρεσίες Μαρίας Γκιόκα σε αριθμημένες κάρτες" style="width:808px;height:600px;object-fit:contain"><p style="font-size:32px;font-weight:800;color:#0c1620">Αριθμημένες κάρτες με εικονίδια</p><p style="font-size:24px;font-weight:600;color:#08709f">mariagkioka.gr</p></div>
+</div>
+
+</section>
+
+<section class="sl" data-id="ch4" data-note="Το roadmap: τα βήματα από την πρώτη επαφή μέχρι τη θεραπεία. Συχνά η γραμμή «ζωγραφίζεται» καθώς ο επισκέπτης κατεβαίνει τη σελίδα." data-transition="fade" style="background:radial-gradient(ellipse at 85% 15%, #123a52 0%, #0b0c10 60%);color:#f4f3ef;font-family:'Manrope', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;justify-content:center;gap:20px">
+<p style="font-size:200px;font-weight:800;line-height:1;letter-spacing:-6px;background:linear-gradient(90deg, #47c8f5, #5b7cf0);background-clip:text;-webkit-text-fill-color:transparent">04</p>
+<h2 style="font-size:120px;font-weight:800;letter-spacing:-3px;line-height:1.05;color:#f4f3ef">Η πορεία, βήμα βήμα</h2>
+<p style="font-size:40px;line-height:1.35;color:#aab6c2;width:1300px">Πώς ξεκινάει κάποιος μαζί σας — από το πρώτο τηλεφώνημα μέχρι τις συνεδρίες. Ηρεμεί τον επισκέπτη.</p>
+<div style="position:absolute;left:128px;bottom:64px;width:1664px;display:flex;flex-direction:row;gap:12px">
+<p style="font-size:24px;color:#8995a1;border:1px solid #2b3440;padding:8px 20px;border-radius:999px">Μενού</p>
+<p style="font-size:24px;color:#8995a1;border:1px solid #2b3440;padding:8px 20px;border-radius:999px">Hero</p>
+<p style="font-size:24px;color:#8995a1;border:1px solid #2b3440;padding:8px 20px;border-radius:999px">Υπηρεσίες</p>
+<p style="font-size:24px;font-weight:700;color:#0b0c10;background:#47c8f5;padding:8px 20px;border-radius:999px">Πορεία</p>
+<p style="font-size:24px;color:#8995a1;border:1px solid #2b3440;padding:8px 20px;border-radius:999px">Κριτικές</p>
+<p style="font-size:24px;color:#8995a1;border:1px solid #2b3440;padding:8px 20px;border-radius:999px">Εμπιστοσύνη</p>
+<p style="font-size:24px;color:#8995a1;border:1px solid #2b3440;padding:8px 20px;border-radius:999px">Ερωτήσεις</p>
+<p style="font-size:24px;color:#8995a1;border:1px solid #2b3440;padding:8px 20px;border-radius:999px">Επικοινωνία</p>
+</div>
+
+</section>
+
+<section class="sl" data-id="road1" data-note="Διαδρομές: ο δρόμος σχεδιάζεται μόνος του όσο κατεβαίνετε τη σελίδα, και κάθε βήμα ανάβει όταν φτάνει η γραμμή. Γκιόκα: τέσσερα απλά βήματα και μια σημαντική σημείωση για τους γονείς." data-transition="fade" style="background:#f4f3ef;color:#0c1620;font-family:'Manrope', Arial, sans-serif;padding:80px 128px 72px;display:flex;flex-direction:column;gap:24px">
+<p style="font-size:26px;font-weight:700;letter-spacing:4px;color:#08709f">04 · Η ΠΟΡΕΙΑ</p>
+<h2 style="font-size:60px;font-weight:800;letter-spacing:-1px;line-height:1.05;color:#0c1620">Διαδρομή που ζωγραφίζεται καθώς κατεβαίνετε</h2>
+<div style="display:flex;flex-direction:row;gap:48px">
+<div style="flex:1;display:flex;flex-direction:column;gap:10px"><img loading="lazy" decoding="async" src="img/road-DIADROMES.webp" alt="Διαδρομή βήμα βήμα στο Διαδρομές" style="width:808px;height:600px;object-fit:contain"><p style="font-size:32px;font-weight:800;color:#0c1620">Δρόμος με στροφές, σε σκούρο φόντο</p><p style="font-size:24px;font-weight:600;color:#08709f">diadromes.org</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:10px"><img loading="lazy" decoding="async" src="img/road-GKIOKA.webp" alt="Πώς ξεκινάμε στη Μαρία Γκιόκα" style="width:808px;height:600px;object-fit:contain"><p style="font-size:32px;font-weight:800;color:#0c1620">4 βήματα σε μια γραμμή + σημείωση</p><p style="font-size:24px;font-weight:600;color:#08709f">mariagkioka.gr</p></div>
+</div>
+
+</section>
+
+<section class="sl" data-id="road2" data-note="Πιο σύντομη εκδοχή: τέσσερις στάσεις σε μία γραμμή — επικοινωνία, πρώτη συνάντηση, στόχοι, θεραπεία." data-transition="fade" style="background:#f4f3ef;color:#0c1620;font-family:'Manrope', Arial, sans-serif;padding:80px 128px 72px;display:flex;flex-direction:column;gap:24px">
+<p style="font-size:26px;font-weight:700;letter-spacing:4px;color:#08709f">04 · Η ΠΟΡΕΙΑ · ΑΛΛΟΙ ΤΡΟΠΟΙ</p>
+<h2 style="font-size:60px;font-weight:800;letter-spacing:-1px;line-height:1.05;color:#0c1620">Σύντομα και καθαρά: 4 στάσεις</h2>
+<div style="display:flex;flex-direction:column;gap:28px;align-items:center">
+<div style="display:flex;flex-direction:row;gap:40px;align-items:center"><img loading="lazy" decoding="async" src="img/road-DEMEROUTIS.webp" alt="Η πορεία της θεραπείας στον Θοδωρή Δεμερούτη" style="width:1000px;height:364px;object-fit:contain"><div style="width:560px;display:flex;flex-direction:column;gap:8px"><p style="font-size:32px;font-weight:800;color:#0c1620">Αριθμημένες στάσεις σε γραμμή</p><p style="font-size:24px;font-weight:600;color:#08709f">demeroutis-psychverse.gr</p></div></div>
+<div style="display:flex;flex-direction:row;gap:40px;align-items:center"><img loading="lazy" decoding="async" src="img/road-SIMITSI.webp" alt="Η διαδρομή της θεραπείας στη Δρ. Χριστίνα Σιμιτσή" style="width:1000px;height:364px;object-fit:contain"><div style="width:560px;display:flex;flex-direction:column;gap:8px"><p style="font-size:32px;font-weight:800;color:#0c1620">Κύκλοι που ενώνονται</p><p style="font-size:24px;font-weight:600;color:#08709f">drsimitsi-psychologist.gr</p></div></div>
+</div>
+
+</section>
+
+<section class="sl" data-id="road3" data-note="Παππά: μια σπείρα που ξετυλίγεται, για να δείξει ότι η θεραπεία είναι πορεία. Πλέσσα: ήρεμη κάθετη γραμμή με τρία βήματα." data-transition="fade" style="background:#f4f3ef;color:#0c1620;font-family:'Manrope', Arial, sans-serif;padding:80px 128px 72px;display:flex;flex-direction:column;gap:24px">
+<p style="font-size:26px;font-weight:700;letter-spacing:4px;color:#08709f">04 · Η ΠΟΡΕΙΑ · ΑΛΛΟΙ ΤΡΟΠΟΙ</p>
+<h2 style="font-size:60px;font-weight:800;letter-spacing:-1px;line-height:1.05;color:#0c1620">Με ένα σύμβολο που λέει την ιστορία</h2>
+<div style="display:flex;flex-direction:row;gap:48px">
+<div style="flex:1;display:flex;flex-direction:column;gap:10px"><img loading="lazy" decoding="async" src="img/road-PAPPA.webp" alt="Από το ψυχικό μπλοκάρισμα στην πορεία, στην Εμμανουέλα Παππά" style="width:808px;height:600px;object-fit:contain"><p style="font-size:32px;font-weight:800;color:#0c1620">Σπείρα: από το «μπλοκάρισμα» στην πορεία</p><p style="font-size:24px;font-weight:600;color:#08709f">pappa-psyxologos.gr</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:10px"><img loading="lazy" decoding="async" src="img/road-PLESSA.webp" alt="Πέρα από το προφανές, στη Μάρθα Πλέσσα" style="width:808px;height:600px;object-fit:contain"><p style="font-size:32px;font-weight:800;color:#0c1620">Κάθετη γραμμή με τρία βήματα</p><p style="font-size:24px;font-weight:600;color:#08709f">marthaplessa-psychotherapy.gr</p></div>
+</div>
+
+</section>
+
+<section class="sl" data-id="ch5" data-note="Βάζουμε μόνο αληθινές κριτικές, αυτούσιες. Ποτέ επινοημένες. Αν δεν υπάρχουν ακόμη κριτικές, η ενότητα απλώς δεν μπαίνει — και μπαίνει μόλις έρθουν." data-transition="fade" style="background:radial-gradient(ellipse at 85% 15%, #123a52 0%, #0b0c10 60%);color:#f4f3ef;font-family:'Manrope', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;justify-content:center;gap:20px">
+<p style="font-size:200px;font-weight:800;line-height:1;letter-spacing:-6px;background:linear-gradient(90deg, #47c8f5, #5b7cf0);background-clip:text;-webkit-text-fill-color:transparent">05</p>
+<h2 style="font-size:120px;font-weight:800;letter-spacing:-3px;line-height:1.05;color:#f4f3ef">Κριτικές</h2>
+<p style="font-size:40px;line-height:1.35;color:#aab6c2;width:1300px">Οι πραγματικές κριτικές σας από Google ή doctoranytime, λέξη προς λέξη, με 5 αστέρια και σύνδεσμο στην πηγή.</p>
+<div style="position:absolute;left:128px;bottom:64px;width:1664px;display:flex;flex-direction:row;gap:12px">
+<p style="font-size:24px;color:#8995a1;border:1px solid #2b3440;padding:8px 20px;border-radius:999px">Μενού</p>
+<p style="font-size:24px;color:#8995a1;border:1px solid #2b3440;padding:8px 20px;border-radius:999px">Hero</p>
+<p style="font-size:24px;color:#8995a1;border:1px solid #2b3440;padding:8px 20px;border-radius:999px">Υπηρεσίες</p>
+<p style="font-size:24px;color:#8995a1;border:1px solid #2b3440;padding:8px 20px;border-radius:999px">Πορεία</p>
+<p style="font-size:24px;font-weight:700;color:#0b0c10;background:#47c8f5;padding:8px 20px;border-radius:999px">Κριτικές</p>
+<p style="font-size:24px;color:#8995a1;border:1px solid #2b3440;padding:8px 20px;border-radius:999px">Εμπιστοσύνη</p>
+<p style="font-size:24px;color:#8995a1;border:1px solid #2b3440;padding:8px 20px;border-radius:999px">Ερωτήσεις</p>
+<p style="font-size:24px;color:#8995a1;border:1px solid #2b3440;padding:8px 20px;border-radius:999px">Επικοινωνία</p>
+</div>
+
+</section>
+
+<section class="sl" data-id="rev1" data-note="Δύο απλοί τρόποι: κριτικές που κυλούν μόνες τους, ή όλες μαζί σε πλέγμα με τη βαθμολογία πάνω." data-transition="fade" style="background:#f4f3ef;color:#0c1620;font-family:'Manrope', Arial, sans-serif;padding:80px 128px 72px;display:flex;flex-direction:column;gap:24px">
+<p style="font-size:26px;font-weight:700;letter-spacing:4px;color:#08709f">05 · ΚΡΙΤΙΚΕΣ</p>
+<h2 style="font-size:60px;font-weight:800;letter-spacing:-1px;line-height:1.05;color:#0c1620">Καρουζέλ ή πλέγμα με τη βαθμολογία σας</h2>
+<div style="display:flex;flex-direction:row;gap:48px">
+<div style="flex:1;display:flex;flex-direction:column;gap:10px"><img loading="lazy" decoding="async" src="img/rev-SIMITSI.webp" alt="Κριτικές σε καρουζέλ, Δρ. Χριστίνα Σιμιτσή" style="width:808px;height:600px;object-fit:contain"><p style="font-size:32px;font-weight:800;color:#0c1620">Καρουζέλ που γυρίζει μόνο του</p><p style="font-size:24px;font-weight:600;color:#08709f">drsimitsi-psychologist.gr</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:10px"><img loading="lazy" decoding="async" src="img/rev-GKIOKA.webp" alt="Κριτικές σε πλέγμα με βαθμό 10, Μαρία Γκιόκα" style="width:808px;height:600px;object-fit:contain"><p style="font-size:32px;font-weight:800;color:#0c1620">Μεγάλο «10» + πλέγμα κριτικών</p><p style="font-size:24px;font-weight:600;color:#08709f">mariagkioka.gr</p></div>
+</div>
+
+</section>
+
+<section class="sl" data-id="rev2" data-note="Όταν οι κριτικές είναι από doctoranytime, δείχνουμε και τις βαθμολογίες ανά κατηγορία (εξήγηση, συμπεριφορά, χώρος…)." data-transition="fade" style="background:#f4f3ef;color:#0c1620;font-family:'Manrope', Arial, sans-serif;padding:80px 128px 72px;display:flex;flex-direction:column;gap:24px">
+<p style="font-size:26px;font-weight:700;letter-spacing:4px;color:#08709f">05 · ΚΡΙΤΙΚΕΣ · ΑΛΛΟΙ ΤΡΟΠΟΙ</p>
+<h2 style="font-size:60px;font-weight:800;letter-spacing:-1px;line-height:1.05;color:#0c1620">Με τις βαθμολογίες ανά κατηγορία</h2>
+<div style="display:flex;flex-direction:row;gap:48px">
+<div style="flex:1;display:flex;flex-direction:column;gap:10px"><img loading="lazy" decoding="async" src="img/rev-DIMITRA.webp" alt="Κριτικές με βαθμολογίες ανά κατηγορία, Σμαράγδα Δημητρά" style="width:808px;height:600px;object-fit:contain"><p style="font-size:32px;font-weight:800;color:#0c1620">9,8 + μπάρες ανά κατηγορία</p><p style="font-size:24px;font-weight:600;color:#08709f">smaragdadimitra.gr</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:10px"><img loading="lazy" decoding="async" src="img/rev-DEMEROUTIS.webp" alt="Κριτικές σε σκούρο πλέγμα, Θοδωρής Δεμερούτης" style="width:808px;height:600px;object-fit:contain"><p style="font-size:32px;font-weight:800;color:#0c1620">Σκούρο φόντο, όλες οι κριτικές</p><p style="font-size:24px;font-weight:600;color:#08709f">demeroutis-psychverse.gr</p></div>
+</div>
+
+</section>
+
+<section class="sl" data-id="rev3" data-note="Κάθε κριτική έχει το σήμα της Google και κουμπί που ανοίγει τις αληθινές κριτικές στο Google — ο επισκέπτης μπορεί να το ελέγξει." data-transition="fade" style="background:#f4f3ef;color:#0c1620;font-family:'Manrope', Arial, sans-serif;padding:80px 128px 72px;display:flex;flex-direction:column;gap:24px">
+<p style="font-size:26px;font-weight:700;letter-spacing:4px;color:#08709f">05 · ΚΡΙΤΙΚΕΣ · ΑΛΛΟΙ ΤΡΟΠΟΙ</p>
+<h2 style="font-size:60px;font-weight:800;letter-spacing:-1px;line-height:1.05;color:#0c1620">Με το σήμα της Google για εμπιστοσύνη</h2>
+<div style="display:flex;flex-direction:row;gap:48px">
+<div style="flex:1;display:flex;flex-direction:column;gap:10px"><img loading="lazy" decoding="async" src="img/rev-DAVOU.webp" alt="Κριτικές Google σε πλέγμα, Σταυρούλα Δάβου" style="width:808px;height:600px;object-fit:contain"><p style="font-size:32px;font-weight:800;color:#0c1620">Κριτικές Google σε πλέγμα</p><p style="font-size:24px;font-weight:600;color:#08709f">davou-ofthalmiatros.gr</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:10px"><img loading="lazy" decoding="async" src="img/rev-FILIPPOPOULOU.webp" alt="Κριτικές με κινητό που δείχνει 5,0, Φανή Φιλιπποπούλου" style="width:808px;height:600px;object-fit:contain"><p style="font-size:32px;font-weight:800;color:#0c1620">Κινητό με «5,0» στη μέση</p><p style="font-size:24px;font-weight:600;color:#08709f">filippopoulou-psyxologos.gr</p></div>
+</div>
+
+</section>
+
+<section class="sl" data-id="rev4" data-note="Δύο ακόμη ύφη: ένα φωτεινό και χαρούμενο, ένα σκούρο και ήσυχο." data-transition="fade" style="background:#f4f3ef;color:#0c1620;font-family:'Manrope', Arial, sans-serif;padding:80px 128px 72px;display:flex;flex-direction:column;gap:24px">
+<p style="font-size:26px;font-weight:700;letter-spacing:4px;color:#08709f">05 · ΚΡΙΤΙΚΕΣ · ΑΛΛΟΙ ΤΡΟΠΟΙ</p>
+<h2 style="font-size:60px;font-weight:800;letter-spacing:-1px;line-height:1.05;color:#0c1620">Φωτεινό ή ήσυχο, ανάλογα με το ύφος σας</h2>
+<div style="display:flex;flex-direction:row;gap:48px">
+<div style="flex:1;display:flex;flex-direction:column;gap:10px"><img loading="lazy" decoding="async" src="img/rev-THWMA.webp" alt="Κριτικές με κάρτα βαθμολογίας, Ανθή Θωμά" style="width:808px;height:600px;object-fit:contain"><p style="font-size:32px;font-weight:800;color:#0c1620">Κάρτα βαθμολογίας + κριτικές</p><p style="font-size:24px;font-weight:600;color:#08709f">anthithoma-psychologist.gr</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:10px"><img loading="lazy" decoding="async" src="img/rev-PLESSA.webp" alt="Κριτικές σε σκούρο καρουζέλ, Μάρθα Πλέσσα" style="width:808px;height:600px;object-fit:contain"><p style="font-size:32px;font-weight:800;color:#0c1620">Σκούρο, ήσυχο καρουζέλ</p><p style="font-size:24px;font-weight:600;color:#08709f">marthaplessa-psychotherapy.gr</p></div>
+</div>
+
+</section>
+
+<section class="sl" data-id="ch6" data-note="Χρόνια εμπειρίας, βαθμολογία, τίτλοι σπουδών, άδεια, «online &amp; δια ζώσης» — σε μικρές κάρτες, σε λέξεις που κυλούν ή σε ολόκληρη ενότητα." data-transition="fade" style="background:radial-gradient(ellipse at 85% 15%, #123a52 0%, #0b0c10 60%);color:#f4f3ef;font-family:'Manrope', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;justify-content:center;gap:20px">
+<p style="font-size:200px;font-weight:800;line-height:1;letter-spacing:-6px;background:linear-gradient(90deg, #47c8f5, #5b7cf0);background-clip:text;-webkit-text-fill-color:transparent">06</p>
+<h2 style="font-size:120px;font-weight:800;letter-spacing:-3px;line-height:1.05;color:#f4f3ef">Λέξεις εμπιστοσύνης</h2>
+<p style="font-size:40px;line-height:1.35;color:#aab6c2;width:1300px">Αριθμοί, τίτλοι και λέξεις που δείχνουν με μια ματιά γιατί μπορεί να σας εμπιστευτεί.</p>
+<div style="position:absolute;left:128px;bottom:64px;width:1664px;display:flex;flex-direction:row;gap:12px">
+<p style="font-size:24px;color:#8995a1;border:1px solid #2b3440;padding:8px 20px;border-radius:999px">Μενού</p>
+<p style="font-size:24px;color:#8995a1;border:1px solid #2b3440;padding:8px 20px;border-radius:999px">Hero</p>
+<p style="font-size:24px;color:#8995a1;border:1px solid #2b3440;padding:8px 20px;border-radius:999px">Υπηρεσίες</p>
+<p style="font-size:24px;color:#8995a1;border:1px solid #2b3440;padding:8px 20px;border-radius:999px">Πορεία</p>
+<p style="font-size:24px;color:#8995a1;border:1px solid #2b3440;padding:8px 20px;border-radius:999px">Κριτικές</p>
+<p style="font-size:24px;font-weight:700;color:#0b0c10;background:#47c8f5;padding:8px 20px;border-radius:999px">Εμπιστοσύνη</p>
+<p style="font-size:24px;color:#8995a1;border:1px solid #2b3440;padding:8px 20px;border-radius:999px">Ερωτήσεις</p>
+<p style="font-size:24px;color:#8995a1;border:1px solid #2b3440;padding:8px 20px;border-radius:999px">Επικοινωνία</p>
+</div>
+
+</section>
+
+<section class="sl" data-id="trust1" data-note="Λίγες λέξεις που λένε πολλά: «30 χρόνια εμπειρίας», «10/10», «DDS, MSc», «Αρ. Άδειας». Μπαίνουν αμέσως κάτω από την πρώτη εικόνα." data-transition="fade" style="background:#f4f3ef;color:#0c1620;font-family:'Manrope', Arial, sans-serif;padding:80px 128px 72px;display:flex;flex-direction:column;gap:24px">
+<p style="font-size:26px;font-weight:700;letter-spacing:4px;color:#08709f">06 · ΛΕΞΕΙΣ ΕΜΠΙΣΤΟΣΥΝΗΣ</p>
+<h2 style="font-size:60px;font-weight:800;letter-spacing:-1px;line-height:1.05;color:#0c1620">Μικρές κάρτες με αριθμούς, κάτω από το hero</h2>
+<div style="display:flex;flex-direction:column;gap:32px">
+<div style="display:flex;flex-direction:row;gap:28px;align-items:center"><div style="width:400px;display:flex;flex-direction:column;gap:4px"><p style="font-size:30px;font-weight:800;color:#0c1620">Χρόνια &amp; βαθμός</p><p style="font-size:24px;font-weight:600;color:#08709f">anthithoma-psychologist.gr</p></div><img loading="lazy" decoding="async" src="img/st-THWMA.webp" alt="Κάρτες με αριθμούς, Ανθή Θωμά" style="width:1236px;height:166px;object-fit:contain"></div>
+<div style="display:flex;flex-direction:row;gap:28px;align-items:center"><div style="width:400px;display:flex;flex-direction:column;gap:4px"><p style="font-size:30px;font-weight:800;color:#0c1620">Τίτλοι σπουδών</p><p style="font-size:24px;font-weight:600;color:#08709f">zormpa-dentist.gr</p></div><img loading="lazy" decoding="async" src="img/st-ZORMPA.webp" alt="Κάρτες με τίτλους σπουδών, Θωμαή Ζορμπά" style="width:1236px;height:181px;object-fit:contain"></div>
+<div style="display:flex;flex-direction:row;gap:28px;align-items:center"><div style="width:400px;display:flex;flex-direction:column;gap:4px"><p style="font-size:30px;font-weight:800;color:#0c1620">Google, άδεια, online</p><p style="font-size:24px;font-weight:600;color:#08709f">filippopoulou-psyxologos.gr</p></div><img loading="lazy" decoding="async" src="img/st-FILIPPOPOULOU.webp" alt="Κάρτες με Google, σπουδές και άδεια, Φανή Φιλιπποπούλου" style="width:1236px;height:161px;object-fit:contain"></div>
+</div>
+
+</section>
+
+<section class="sl" data-id="trust2" data-note="Η ίδια ιδέα σε μπάρα: σπουδές, βαθμολογία Google ή doctoranytime, αριθμός άδειας, γλώσσες." data-transition="fade" style="background:#f4f3ef;color:#0c1620;font-family:'Manrope', Arial, sans-serif;padding:80px 128px 72px;display:flex;flex-direction:column;gap:24px">
+<p style="font-size:26px;font-weight:700;letter-spacing:4px;color:#08709f">06 · ΛΕΞΕΙΣ ΕΜΠΙΣΤΟΣΥΝΗΣ · ΑΛΛΟΙ ΤΡΟΠΟΙ</p>
+<h2 style="font-size:60px;font-weight:800;letter-spacing:-1px;line-height:1.05;color:#0c1620">Σε μπάρα, σκούρα ή ανοιχτή</h2>
+<div style="display:flex;flex-direction:column;gap:32px">
+<div style="display:flex;flex-direction:row;gap:28px;align-items:center"><div style="width:400px;display:flex;flex-direction:column;gap:4px"><p style="font-size:30px;font-weight:800;color:#0c1620">Σπουδές &amp; Google</p><p style="font-size:24px;font-weight:600;color:#08709f">davou-ofthalmiatros.gr</p></div><img loading="lazy" decoding="async" src="img/st-DAVOU.webp" alt="Μπάρα εμπιστοσύνης, Σταυρούλα Δάβου" style="width:1236px;height:187px;object-fit:contain"></div>
+<div style="display:flex;flex-direction:row;gap:28px;align-items:center"><div style="width:400px;display:flex;flex-direction:column;gap:4px"><p style="font-size:30px;font-weight:800;color:#0c1620">Βαθμοί &amp; άδεια</p><p style="font-size:24px;font-weight:600;color:#08709f">evelina-apostolaki.gr</p></div><img loading="lazy" decoding="async" src="img/st-APOSTOLAKI.webp" alt="Σκούρα μπάρα με αριθμούς, Εβελίνα Αποστολάκη" style="width:1236px;height:179px;object-fit:contain"></div>
+<div style="display:flex;flex-direction:row;gap:28px;align-items:center"><div style="width:400px;display:flex;flex-direction:column;gap:4px"><p style="font-size:30px;font-weight:800;color:#0c1620">Λέξεις + αριθμοί</p><p style="font-size:24px;font-weight:600;color:#08709f">demeroutis-psychverse.gr</p></div><img loading="lazy" decoding="async" src="img/st-DEMEROUTIS.webp" alt="Μπάρα με 10/10, δια ζώσης, EL-EN, Θοδωρής Δεμερούτης" style="width:1236px;height:211px;object-fit:contain"></div>
+</div>
+
+</section>
+
+<section class="sl" data-id="trust3" data-note="Οι λέξεις κυλούν αργά από δεξιά προς τα αριστερά — π.χ. «Συστημική οπτική · Sessions in English · Stigma-Free Zone» ή οι θεραπείες του ιατρείου." data-transition="fade" style="background:#f4f3ef;color:#0c1620;font-family:'Manrope', Arial, sans-serif;padding:80px 128px 72px;display:flex;flex-direction:column;gap:24px">
+<p style="font-size:26px;font-weight:700;letter-spacing:4px;color:#08709f">06 · ΛΕΞΕΙΣ ΕΜΠΙΣΤΟΣΥΝΗΣ · ΑΛΛΟΙ ΤΡΟΠΟΙ</p>
+<h2 style="font-size:60px;font-weight:800;letter-spacing:-1px;line-height:1.05;color:#0c1620">Λέξεις που κυλούν οριζόντια</h2>
+<div style="display:flex;flex-direction:column;gap:30px">
+<div style="display:flex;flex-direction:row;gap:28px;align-items:center"><div style="width:400px;display:flex;flex-direction:column;gap:4px"><p style="font-size:30px;font-weight:800;color:#0c1620">Μεγάλα πλάγια</p><p style="font-size:24px;font-weight:600;color:#08709f">demeroutis-psychverse.gr</p></div><img loading="lazy" decoding="async" src="img/tk-DEMEROUTIS.webp" alt="Λέξεις που κυλούν, Θοδωρής Δεμερούτης" style="width:1236px;height:119px;object-fit:contain"></div>
+<div style="display:flex;flex-direction:row;gap:28px;align-items:center"><div style="width:400px;display:flex;flex-direction:column;gap:4px"><p style="font-size:30px;font-weight:800;color:#0c1620">Σκούρα ταινία</p><p style="font-size:24px;font-weight:600;color:#08709f">pappa-psyxologos.gr</p></div><img loading="lazy" decoding="async" src="img/tk-PAPPA.webp" alt="Σκούρα ταινία με λέξεις, Εμμανουέλα Παππά" style="width:1236px;height:120px;object-fit:contain"></div>
+<div style="display:flex;flex-direction:row;gap:28px;align-items:center"><div style="width:400px;display:flex;flex-direction:column;gap:4px"><p style="font-size:30px;font-weight:800;color:#0c1620">Γερμένη ταινία</p><p style="font-size:24px;font-weight:600;color:#08709f">diadromes.org</p></div><img loading="lazy" decoding="async" src="img/tk-DIADROMES.webp" alt="Γερμένη ταινία με λέξεις, Διαδρομές" style="width:1236px;height:115px;object-fit:contain"></div>
+<div style="display:flex;flex-direction:row;gap:28px;align-items:center"><div style="width:400px;display:flex;flex-direction:column;gap:4px"><p style="font-size:30px;font-weight:800;color:#0c1620">Οι θεραπείες σας</p><p style="font-size:24px;font-weight:600;color:#08709f">allsmiles.gr</p></div><img loading="lazy" decoding="async" src="img/tk-STRIGKONI.webp" alt="Ταινία με θεραπείες, All Smiles" style="width:1236px;height:96px;object-fit:contain"></div>
+</div>
+
+</section>
+
+<section class="sl" data-id="trust4" data-note="Όταν υπάρχουν πολλά να πούμε (σπουδές, εκπαιδεύσεις, εμπειρία), γίνεται ολόκληρη ενότητα με αριθμούς και λόγους εμπιστοσύνης." data-transition="fade" style="background:#f4f3ef;color:#0c1620;font-family:'Manrope', Arial, sans-serif;padding:80px 128px 72px;display:flex;flex-direction:column;gap:24px">
+<p style="font-size:26px;font-weight:700;letter-spacing:4px;color:#08709f">06 · ΛΕΞΕΙΣ ΕΜΠΙΣΤΟΣΥΝΗΣ · ΑΛΛΟΙ ΤΡΟΠΟΙ</p>
+<h2 style="font-size:60px;font-weight:800;letter-spacing:-1px;line-height:1.05;color:#0c1620">Ή ολόκληρη ενότητα «Γιατί εμένα»</h2>
+<div style="display:flex;flex-direction:row;gap:48px">
+<div style="flex:1;display:flex;flex-direction:column;gap:10px"><img loading="lazy" decoding="async" src="img/trust-APOSTOLAKI.webp" alt="Ενότητα Γιατί να εμπιστευθείτε, Εβελίνα Αποστολάκη" style="width:808px;height:600px;object-fit:contain"><p style="font-size:32px;font-weight:800;color:#0c1620">«Γιατί να εμπιστευθείτε…» με αριθμούς</p><p style="font-size:24px;font-weight:600;color:#08709f">evelina-apostolaki.gr</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:10px"><img loading="lazy" decoding="async" src="img/trust-LABRINOU2.webp" alt="Ενότητα Γιατί να μας επιλέξετε, Εύα Λαμπρινού" style="width:808px;height:600px;object-fit:contain"><p style="font-size:32px;font-weight:800;color:#0c1620">«Γιατί να μας επιλέξετε» με 4 λόγους</p><p style="font-size:24px;font-weight:600;color:#08709f">evalamprinou-psychologist.gr</p></div>
+</div>
+
+</section>
+
+<section class="sl" data-id="ch7" data-note="Οι συχνές ερωτήσεις γλιτώνουν τηλέφωνα με τις ίδιες απορίες και βοηθούν να εμφανίζεται η σελίδα όταν κάποιος ρωτάει κάτι στο Google." data-transition="fade" style="background:radial-gradient(ellipse at 85% 15%, #123a52 0%, #0b0c10 60%);color:#f4f3ef;font-family:'Manrope', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;justify-content:center;gap:20px">
+<p style="font-size:200px;font-weight:800;line-height:1;letter-spacing:-6px;background:linear-gradient(90deg, #47c8f5, #5b7cf0);background-clip:text;-webkit-text-fill-color:transparent">07</p>
+<h2 style="font-size:120px;font-weight:800;letter-spacing:-3px;line-height:1.05;color:#f4f3ef">Συχνές ερωτήσεις</h2>
+<p style="font-size:40px;line-height:1.35;color:#aab6c2;width:1300px">Απαντάμε από πριν σε ό,τι ρωτάνε όλοι: κόστος, διάρκεια, online, πρώτη συνάντηση. Βοηθάει και στο Google.</p>
+<div style="position:absolute;left:128px;bottom:64px;width:1664px;display:flex;flex-direction:row;gap:12px">
+<p style="font-size:24px;color:#8995a1;border:1px solid #2b3440;padding:8px 20px;border-radius:999px">Μενού</p>
+<p style="font-size:24px;color:#8995a1;border:1px solid #2b3440;padding:8px 20px;border-radius:999px">Hero</p>
+<p style="font-size:24px;color:#8995a1;border:1px solid #2b3440;padding:8px 20px;border-radius:999px">Υπηρεσίες</p>
+<p style="font-size:24px;color:#8995a1;border:1px solid #2b3440;padding:8px 20px;border-radius:999px">Πορεία</p>
+<p style="font-size:24px;color:#8995a1;border:1px solid #2b3440;padding:8px 20px;border-radius:999px">Κριτικές</p>
+<p style="font-size:24px;color:#8995a1;border:1px solid #2b3440;padding:8px 20px;border-radius:999px">Εμπιστοσύνη</p>
+<p style="font-size:24px;font-weight:700;color:#0b0c10;background:#47c8f5;padding:8px 20px;border-radius:999px">Ερωτήσεις</p>
+<p style="font-size:24px;color:#8995a1;border:1px solid #2b3440;padding:8px 20px;border-radius:999px">Επικοινωνία</p>
+</div>
+
+</section>
+
+<section class="sl" data-id="faq1" data-note="Η απάντηση εμφανίζεται μόλις πατήσετε την ερώτηση. Ο τίτλος μπορεί να είναι πιο ζεστός, π.χ. «Πριν την πρώτη συνάντηση»." data-transition="fade" style="background:#f4f3ef;color:#0c1620;font-family:'Manrope', Arial, sans-serif;padding:80px 128px 72px;display:flex;flex-direction:column;gap:24px">
+<p style="font-size:26px;font-weight:700;letter-spacing:4px;color:#08709f">07 · ΣΥΧΝΕΣ ΕΡΩΤΗΣΕΙΣ</p>
+<h2 style="font-size:60px;font-weight:800;letter-spacing:-1px;line-height:1.05;color:#0c1620">Ερωτήσεις που ανοίγουν με ένα κλικ</h2>
+<div style="display:flex;flex-direction:row;gap:48px">
+<div style="flex:1;display:flex;flex-direction:column;gap:10px"><img loading="lazy" decoding="async" src="img/faq-GKIOKA.webp" alt="Συχνές ερωτήσεις, Μαρία Γκιόκα" style="width:808px;height:600px;object-fit:contain"><p style="font-size:32px;font-weight:800;color:#0c1620">Κάρτες ερωτήσεων, μία ανοιχτή</p><p style="font-size:24px;font-weight:600;color:#08709f">mariagkioka.gr</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:10px"><img loading="lazy" decoding="async" src="img/faq-PLESSA.webp" alt="Πριν την πρώτη συνάντηση, Μάρθα Πλέσσα" style="width:808px;height:600px;object-fit:contain"><p style="font-size:32px;font-weight:800;color:#0c1620">«Πριν την πρώτη συνάντηση»</p><p style="font-size:24px;font-weight:600;color:#08709f">marthaplessa-psychotherapy.gr</p></div>
+</div>
+
+</section>
+
+<section class="sl" data-id="faq2" data-note="Όταν οι ερωτήσεις είναι πολλές, τις χωρίζουμε σε θέματα (π.χ. «Συνεδρίες», «Κόστος», «Online») ώστε να βρίσκει κανείς γρήγορα αυτό που ψάχνει." data-transition="fade" style="background:#f4f3ef;color:#0c1620;font-family:'Manrope', Arial, sans-serif;padding:80px 128px 72px;display:flex;flex-direction:column;gap:24px">
+<p style="font-size:26px;font-weight:700;letter-spacing:4px;color:#08709f">07 · ΣΥΧΝΕΣ ΕΡΩΤΗΣΕΙΣ · ΑΛΛΟΙ ΤΡΟΠΟΙ</p>
+<h2 style="font-size:60px;font-weight:800;letter-spacing:-1px;line-height:1.05;color:#0c1620">Με θέματα και χρώματα</h2>
+<div style="display:flex;flex-direction:row;gap:48px">
+<div style="flex:1;display:flex;flex-direction:column;gap:10px"><img loading="lazy" decoding="async" src="img/faq-FILIPPOPOULOU.webp" alt="Απαντήσεις σε όσα σας απασχολούν, Φανή Φιλιπποπούλου" style="width:808px;height:600px;object-fit:contain"><p style="font-size:32px;font-weight:800;color:#0c1620">Με μικρή ετικέτα θέματος</p><p style="font-size:24px;font-weight:600;color:#08709f">filippopoulou-psyxologos.gr</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:10px"><img loading="lazy" decoding="async" src="img/faq-TZOANNOU.webp" alt="Συχνές ερωτήσεις σε κατηγορίες, Χαρά Τζοάνου" style="width:808px;height:600px;object-fit:contain"><p style="font-size:32px;font-weight:800;color:#0c1620">Χωρισμένες σε κατηγορίες</p><p style="font-size:24px;font-weight:600;color:#08709f">charatzoanou.gr</p></div>
+</div>
+
+</section>
+
+<section class="sl" data-id="faq3" data-note="Δύο ακόμη μορφές: σε δύο στήλες για να χωράνε πολλές ερωτήσεις, ή σε μία στήλη στη μέση." data-transition="fade" style="background:#f4f3ef;color:#0c1620;font-family:'Manrope', Arial, sans-serif;padding:80px 128px 72px;display:flex;flex-direction:column;gap:24px">
+<p style="font-size:26px;font-weight:700;letter-spacing:4px;color:#08709f">07 · ΣΥΧΝΕΣ ΕΡΩΤΗΣΕΙΣ · ΑΛΛΟΙ ΤΡΟΠΟΙ</p>
+<h2 style="font-size:60px;font-weight:800;letter-spacing:-1px;line-height:1.05;color:#0c1620">Σε δύο στήλες ή σε μία, καθαρή</h2>
+<div style="display:flex;flex-direction:row;gap:48px">
+<div style="flex:1;display:flex;flex-direction:column;gap:10px"><img loading="lazy" decoding="async" src="img/faq-DAVOU.webp" alt="Τι ρωτούν οι ασθενείς, Σταυρούλα Δάβου" style="width:808px;height:600px;object-fit:contain"><p style="font-size:32px;font-weight:800;color:#0c1620">Δύο στήλες για ιατρείο</p><p style="font-size:24px;font-weight:600;color:#08709f">davou-ofthalmiatros.gr</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:10px"><img loading="lazy" decoding="async" src="img/faq-DEMEROUTIS.webp" alt="Συχνές ερωτήσεις, Θοδωρής Δεμερούτης" style="width:808px;height:600px;object-fit:contain"><p style="font-size:32px;font-weight:800;color:#0c1620">Μία στήλη, πολύ καθαρή</p><p style="font-size:24px;font-weight:600;color:#08709f">demeroutis-psychverse.gr</p></div>
+</div>
+
+</section>
+
+<section class="sl" data-id="ch8" data-note="Το τελευταίο κομμάτι: πώς σας βρίσκει. Στο κινητό υπάρχει και μια μπάρα κάτω-κάτω με «Κλήση · Ραντεβού · Οδηγίες»." data-transition="fade" style="background:radial-gradient(ellipse at 85% 15%, #123a52 0%, #0b0c10 60%);color:#f4f3ef;font-family:'Manrope', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;justify-content:center;gap:20px">
+<p style="font-size:200px;font-weight:800;line-height:1;letter-spacing:-6px;background:linear-gradient(90deg, #47c8f5, #5b7cf0);background-clip:text;-webkit-text-fill-color:transparent">08</p>
+<h2 style="font-size:120px;font-weight:800;letter-spacing:-3px;line-height:1.05;color:#f4f3ef">Επικοινωνία &amp; footer</h2>
+<p style="font-size:40px;line-height:1.35;color:#aab6c2;width:1300px">Τηλέφωνο, e-mail, διεύθυνση, ωράριο και χάρτης — και στο τέλος της σελίδας όλα τα στοιχεία ξανά.</p>
+<div style="position:absolute;left:128px;bottom:64px;width:1664px;display:flex;flex-direction:row;gap:12px">
+<p style="font-size:24px;color:#8995a1;border:1px solid #2b3440;padding:8px 20px;border-radius:999px">Μενού</p>
+<p style="font-size:24px;color:#8995a1;border:1px solid #2b3440;padding:8px 20px;border-radius:999px">Hero</p>
+<p style="font-size:24px;color:#8995a1;border:1px solid #2b3440;padding:8px 20px;border-radius:999px">Υπηρεσίες</p>
+<p style="font-size:24px;color:#8995a1;border:1px solid #2b3440;padding:8px 20px;border-radius:999px">Πορεία</p>
+<p style="font-size:24px;color:#8995a1;border:1px solid #2b3440;padding:8px 20px;border-radius:999px">Κριτικές</p>
+<p style="font-size:24px;color:#8995a1;border:1px solid #2b3440;padding:8px 20px;border-radius:999px">Εμπιστοσύνη</p>
+<p style="font-size:24px;color:#8995a1;border:1px solid #2b3440;padding:8px 20px;border-radius:999px">Ερωτήσεις</p>
+<p style="font-size:24px;font-weight:700;color:#0b0c10;background:#47c8f5;padding:8px 20px;border-radius:999px">Επικοινωνία</p>
+</div>
+
+</section>
+
+<section class="sl" data-id="ct1" data-note="Τηλέφωνο, e-mail, διεύθυνση και ωράριο με εικονίδια, και δίπλα ο χάρτης. Αν υπάρχουν δύο γραφεία, μπαίνουν και τα δύο." data-transition="fade" style="background:#f4f3ef;color:#0c1620;font-family:'Manrope', Arial, sans-serif;padding:80px 128px 72px;display:flex;flex-direction:column;gap:24px">
+<p style="font-size:26px;font-weight:700;letter-spacing:4px;color:#08709f">08 · ΕΠΙΚΟΙΝΩΝΙΑ &amp; FOOTER</p>
+<h2 style="font-size:60px;font-weight:800;letter-spacing:-1px;line-height:1.05;color:#0c1620">Όλα τα στοιχεία, μαζί με τον χάρτη</h2>
+<div style="display:flex;flex-direction:row;gap:48px">
+<div style="flex:1;display:flex;flex-direction:column;gap:10px"><img loading="lazy" decoding="async" src="img/ct-DIADROMES.webp" alt="Επικοινωνία και footer, Διαδρομές" style="width:808px;height:600px;object-fit:contain"><p style="font-size:32px;font-weight:800;color:#0c1620">Σκούρα κάρτα + χάρτης + footer</p><p style="font-size:24px;font-weight:600;color:#08709f">diadromes.org</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:10px"><img loading="lazy" decoding="async" src="img/ct-SIMITSI.webp" alt="Επικοινωνία, Δρ. Χριστίνα Σιμιτσή" style="width:808px;height:600px;object-fit:contain"><p style="font-size:32px;font-weight:800;color:#0c1620">Στο χρώμα της ιστοσελίδας, 2 γραφεία</p><p style="font-size:24px;font-weight:600;color:#08709f">drsimitsi-psychologist.gr</p></div>
+</div>
+
+</section>
+
+<section class="sl" data-id="ct2" data-note="Το ωράριο μπορεί να δείχνει ζωντανά αν το γραφείο είναι ανοιχτό τώρα. Ο χάρτης εμφανίζεται με ένα πάτημα, σύμφωνα με τους κανόνες για τα cookies." data-transition="fade" style="background:#f4f3ef;color:#0c1620;font-family:'Manrope', Arial, sans-serif;padding:80px 128px 72px;display:flex;flex-direction:column;gap:24px">
+<p style="font-size:26px;font-weight:700;letter-spacing:4px;color:#08709f">08 · ΕΠΙΚΟΙΝΩΝΙΑ &amp; FOOTER · ΑΛΛΟΙ ΤΡΟΠΟΙ</p>
+<h2 style="font-size:60px;font-weight:800;letter-spacing:-1px;line-height:1.05;color:#0c1620">Με ωράριο και «Ανοιχτά τώρα»</h2>
+<div style="display:flex;flex-direction:row;gap:48px">
+<div style="flex:1;display:flex;flex-direction:column;gap:10px"><img loading="lazy" decoding="async" src="img/ct-DAVOU.webp" alt="Επικοινωνία και footer, Σταυρούλα Δάβου" style="width:808px;height:600px;object-fit:contain"><p style="font-size:32px;font-weight:800;color:#0c1620">Σκούρο μπλε, χάρτης + footer</p><p style="font-size:24px;font-weight:600;color:#08709f">davou-ofthalmiatros.gr</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:10px"><img loading="lazy" decoding="async" src="img/ct-FILIPPOPOULOU.webp" alt="Επικοινωνία με ωράριο, Φανή Φιλιπποπούλου" style="width:808px;height:600px;object-fit:contain"><p style="font-size:32px;font-weight:800;color:#0c1620">Ωράριο, χάρτης και κουμπιά</p><p style="font-size:24px;font-weight:600;color:#08709f">filippopoulou-psyxologos.gr</p></div>
+</div>
+
+</section>
+
+<section class="sl" data-id="ct3" data-note="Στο τέλος κάθε σελίδας: το λογότυπο, τα στοιχεία επικοινωνίας, το ωράριο και ο σύνδεσμος για την πολιτική απορρήτου." data-transition="fade" style="background:#f4f3ef;color:#0c1620;font-family:'Manrope', Arial, sans-serif;padding:80px 128px 72px;display:flex;flex-direction:column;gap:24px">
+<p style="font-size:26px;font-weight:700;letter-spacing:4px;color:#08709f">08 · ΕΠΙΚΟΙΝΩΝΙΑ &amp; FOOTER · ΑΛΛΟΙ ΤΡΟΠΟΙ</p>
+<h2 style="font-size:60px;font-weight:800;letter-spacing:-1px;line-height:1.05;color:#0c1620">Με κουμπί ραντεβού ή απλό footer</h2>
+<div style="display:flex;flex-direction:row;gap:48px">
+<div style="flex:1;display:flex;flex-direction:column;gap:10px"><img loading="lazy" decoding="async" src="img/ct-PAPPA.webp" alt="Επικοινωνία, Εμμανουέλα Παππά" style="width:808px;height:600px;object-fit:contain"><p style="font-size:32px;font-weight:800;color:#0c1620">«Ας κάνουμε το πρώτο βήμα μαζί»</p><p style="font-size:24px;font-weight:600;color:#08709f">pappa-psyxologos.gr</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:10px"><img loading="lazy" decoding="async" src="img/ct-GKIOKA.webp" alt="Footer, Μαρία Γκιόκα" style="width:808px;height:600px;object-fit:contain"><p style="font-size:32px;font-weight:800;color:#0c1620">Απλό footer με όλα τα στοιχεία</p><p style="font-size:24px;font-weight:600;color:#08709f">mariagkioka.gr</p></div>
+</div>
+
+</section>
+
+<section class="sl" data-id="timeline" data-note="Από τη στιγμή που έχουμε το υλικό, σε 4 έως 10 ημέρες στέλνουμε το πρώτο draft. Εκεί μας στέλνετε όλες τις αλλαγές που θέλετε, όσες θέλετε. Όταν είστε ευχαριστημένοι, αγοράζουμε και συνδέουμε το domain και ανεβαίνει." data-transition="fade" style="background:radial-gradient(ellipse at 15% 0%, #123a52 0%, #0b0c10 62%);color:#f4f3ef;font-family:'Manrope', Arial, sans-serif;padding:112px 128px 112px;display:flex;flex-direction:column;justify-content:space-between;gap:40px">
+<div style="display:flex;flex-direction:column;gap:20px">
+<p style="font-size:26px;font-weight:700;letter-spacing:4px;color:#47c8f5">ΠΩΣ ΠΡΟΧΩΡΑΜΕ</p>
+<h2 style="font-size:84px;font-weight:800;letter-spacing:-2px;line-height:1.05;color:#f4f3ef">Το πρώτο draft σε <span style="color:#47c8f5">4–10 ημέρες</span></h2>
+<p style="font-size:36px;line-height:1.4;color:#aab6c2;width:1400px">Μετά μας στέλνετε όλες τις αλλαγές που θέλετε — και τις κάνουμε, μέχρι να σας αρέσει.</p>
+</div>
+<div style="display:flex;flex-direction:row;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);border-radius:24px;padding:36px">
+<p style="font-size:26px;font-weight:800;color:#47c8f5">ΒΗΜΑ 1</p>
+<h3 style="font-size:44px;font-weight:800;color:#f4f3ef">Ξεκινάμε</h3>
+<p style="font-size:28px;line-height:1.45;color:#c7d0da">Μας στέλνετε φωτογραφίες, λογότυπο αν έχετε και ό,τι θέλετε να γράφει.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:linear-gradient(150deg, #47c8f5, #5b7cf0);border-radius:24px;padding:36px;box-shadow:0 30px 70px rgba(71,200,245,0.25)">
+<p style="font-size:26px;font-weight:800;color:#0b0c10">ΒΗΜΑ 2</p>
+<h3 style="font-size:44px;font-weight:800;color:#0b0c10">4–10 ημέρες</h3>
+<p style="font-size:28px;line-height:1.45;color:#0b1a26">Σας στέλνουμε το πρώτο draft: ολόκληρη την ιστοσελίδα σας, σε ένα link.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);border-radius:24px;padding:36px">
+<p style="font-size:26px;font-weight:800;color:#47c8f5">ΒΗΜΑ 3</p>
+<h3 style="font-size:44px;font-weight:800;color:#f4f3ef">Αλλαγές</h3>
+<p style="font-size:28px;line-height:1.45;color:#c7d0da">Μας λέτε όλες τις αλλαγές που θέλετε. Όσες θέλετε, χωρίς χρέωση.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);border-radius:24px;padding:36px">
+<p style="font-size:26px;font-weight:800;color:#47c8f5">ΒΗΜΑ 4</p>
+<h3 style="font-size:44px;font-weight:800;color:#f4f3ef">Live</h3>
+<p style="font-size:28px;line-height:1.45;color:#c7d0da">Αγοράζουμε και συνδέουμε το domain σας — η ιστοσελίδα ανεβαίνει.</p>
+</div>
+</div>
+
+</section>
+
+<section class="sl" data-id="seo" data-note="Τρία πράγματα: η περιοχή σας (π.χ. «ψυχολόγος Παλλήνη»), το όνομά σας και οι υπηρεσίες σας. Ενδεικτικά, μια ιστοσελίδα φέρνει 20–60+ επισκέψεις τον μήνα από το Google, δηλαδή περίπου 250–700+ τον χρόνο. Είναι εκτίμηση." data-transition="fade" style="background:#f4f3ef;color:#0c1620;font-family:'Manrope', Arial, sans-serif;padding:104px 128px 104px;display:flex;flex-direction:row;gap:64px;align-items:center">
+<div style="flex:1;display:flex;flex-direction:column;gap:28px">
+<p style="font-size:26px;font-weight:700;letter-spacing:4px;color:#08709f">GOOGLE · SEO</p>
+<h2 style="font-size:72px;font-weight:800;letter-spacing:-2px;line-height:1.05;color:#0c1620">Να σας βρίσκουν όταν σας ψάχνουν</h2>
+<p style="font-size:30px;line-height:1.45;color:#4a5866">Στήνουμε την ιστοσελίδα ώστε να βγαίνει στο Google για 3 πράγματα:</p>
+<div style="display:flex;flex-direction:column;gap:18px">
+<div style="display:flex;flex-direction:row;gap:24px;align-items:center"><p style="width:230px;font-size:32px;font-weight:800;color:#0c1620">Περιοχή</p><div style="display:flex;flex-direction:row;gap:14px;align-items:center;background:#ffffff;border:2px solid #dfe5ea;border-radius:999px;padding:12px 28px"><svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="#08709f" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4.2-4.2"/></svg><p style="font-size:30px;color:#0c1620">ψυχολόγος Παλλήνη</p></div></div>
+<div style="display:flex;flex-direction:row;gap:24px;align-items:center"><p style="width:230px;font-size:32px;font-weight:800;color:#0c1620">Όνομα</p><div style="display:flex;flex-direction:row;gap:14px;align-items:center;background:#ffffff;border:2px solid #dfe5ea;border-radius:999px;padding:12px 28px"><svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="#08709f" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4.2-4.2"/></svg><p style="font-size:30px;color:#0c1620">Μάρθα Πλέσσα</p></div></div>
+<div style="display:flex;flex-direction:row;gap:24px;align-items:center"><p style="width:230px;font-size:32px;font-weight:800;color:#0c1620">Υπηρεσίες</p><div style="display:flex;flex-direction:row;gap:14px;align-items:center;background:#ffffff;border:2px solid #dfe5ea;border-radius:999px;padding:12px 28px"><svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="#08709f" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4.2-4.2"/></svg><p style="font-size:30px;color:#0c1620">θεραπεία ζεύγους Παλλήνη</p></div></div>
+</div>
+</div>
+<div style="width:700px;display:flex;flex-direction:column;gap:28px;background:#0b0c10;border-radius:32px;padding:56px;box-shadow:0 40px 90px rgba(12,22,32,0.28)">
+<p style="font-size:26px;font-weight:700;letter-spacing:3px;color:#47c8f5">ΕΠΙΣΚΕΨΕΙΣ ΑΠΟ ΤΟ GOOGLE</p>
+<div style="display:flex;flex-direction:column;gap:4px"><p style="font-size:108px;font-weight:800;line-height:1;letter-spacing:-3px;color:#f4f3ef">20–60+</p><p style="font-size:32px;color:#aab6c2">τον μήνα</p></div>
+<hr style="border-top:1px solid #2b3440">
+<div style="display:flex;flex-direction:column;gap:4px"><p style="font-size:108px;font-weight:800;line-height:1;letter-spacing:-3px;background:linear-gradient(90deg, #47c8f5, #5b7cf0);background-clip:text;-webkit-text-fill-color:transparent">250–700+</p><p style="font-size:32px;color:#aab6c2">τον χρόνο</p></div>
+<p style="font-size:24px;line-height:1.45;color:#8995a1">Εκτίμηση — εξαρτάται από την περιοχή, την ειδικότητα και πόσο ψάχνεται.</p>
+</div>
+
+</section>
+
+<section class="sl" data-id="payment" data-note="Πληρώνετε τα 130€ + ΦΠΑ όταν σας παραδώσουμε το πρώτο draft, ώστε να μην καθυστερεί πολύ η πληρωμή — αλλά οι αλλαγές συνεχίζονται όσες θέλετε. Οι 365 ημέρες ξεκινούν να μετράνε από τη μέρα που τελειώνουμε και αγοράζουμε/συνδέουμε το domain, όχι από την πληρωμή." data-transition="fade" style="background:#f4f3ef;color:#0c1620;font-family:'Manrope', Arial, sans-serif;padding:112px 128px 112px;display:flex;flex-direction:column;justify-content:space-between;gap:48px">
+<div style="display:flex;flex-direction:column;gap:20px">
+<p style="font-size:26px;font-weight:700;letter-spacing:4px;color:#08709f">ΠΛΗΡΩΜΗ &amp; 365 ΗΜΕΡΕΣ</p>
+<h2 style="font-size:84px;font-weight:800;letter-spacing:-2px;line-height:1.05;color:#0c1620">Απλά και ξεκάθαρα</h2>
+</div>
+<div style="display:flex;flex-direction:row;gap:36px">
+<div style="flex:1;display:flex;flex-direction:column;gap:20px;background:#0b0c10;border-radius:28px;padding:48px;box-shadow:0 30px 70px rgba(12,22,32,0.22)">
+<p style="font-size:24px;font-weight:800;letter-spacing:3px;color:#47c8f5">ΠΟΤΕ ΠΛΗΡΩΝΕΤΕ</p>
+<p style="font-size:96px;font-weight:800;line-height:1;letter-spacing:-3px;color:#f4f3ef">130€</p>
+<p style="font-size:28px;font-weight:600;color:#aab6c2">+ ΦΠΑ</p>
+<p style="font-size:30px;line-height:1.45;color:#e3e8ed">Με την παράδοση του πρώτου draft — για να μην καθυστερεί η πληρωμή.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:20px;background:#ffffff;border:2px solid #dfe5ea;border-radius:28px;padding:48px">
+<p style="font-size:24px;font-weight:800;letter-spacing:3px;color:#08709f">ΑΛΛΑΓΕΣ</p>
+<p style="font-size:64px;font-weight:800;line-height:1.05;letter-spacing:-2px;color:#0c1620">Όσες θέλετε</p>
+<p style="font-size:30px;line-height:1.45;color:#4a5866">Και μετά την πληρωμή συνεχίζουμε τις αλλαγές, μέχρι η ιστοσελίδα να είναι όπως τη θέλετε.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:20px;background:linear-gradient(150deg, #e6f6fd, #eef0fe);border:2px solid #bfe7f8;border-radius:28px;padding:48px">
+<p style="font-size:24px;font-weight:800;letter-spacing:3px;color:#08709f">365 ΗΜΕΡΕΣ</p>
+<p style="font-size:64px;font-weight:800;line-height:1.05;letter-spacing:-2px;color:#0c1620">Μετράνε από το live</p>
+<p style="font-size:30px;line-height:1.45;color:#4a5866">Ξεκινούν τη μέρα που τελειώνουμε, αγοράζουμε και συνδέουμε το domain σας. Το domain περιλαμβάνεται.</p>
+</div>
+</div>
+
+</section>
+
+<section class="sl" data-id="closing" data-note="Κλείσιμο: τι χρειαζόμαστε (φωτογραφίες, λογότυπο αν υπάρχει) και πότε βλέπουν το πρώτο draft." data-transition="fade" style="background:radial-gradient(ellipse at 88% 8%, #123a52 0%, #0b0c10 58%);color:#f4f3ef;font-family:'Manrope', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:end;gap:36px">
+<img loading="lazy" decoding="async" src="img/advon-logo-light.png" alt="Advon Media" style="position:absolute;left:128px;top:96px;width:260px;height:131px;object-fit:contain">
+<h1 style="font-size:180px;font-weight:800;line-height:1;letter-spacing:-5px;color:#f4f3ef">Ξεκινάμε<span style="color:#47c8f5">;</span></h1>
+<p style="font-size:40px;line-height:1.35;color:#c7d0da;width:1400px">Στείλτε μας φωτογραφίες και λογότυπο — σε 4–10 ημέρες βλέπετε ολόκληρη την ιστοσελίδα σας.</p>
+<div style="width:220px;height:8px;background:linear-gradient(90deg, #47c8f5, #5b7cf0);border-radius:4px"></div>
+<div style="display:flex;flex-direction:row;gap:48px;align-items:center">
+<p style="font-size:36px;font-weight:800;color:#f4f3ef">Άγγελος Μετρίδης</p>
+<p style="font-size:36px;font-weight:600;color:#47c8f5">693 408 8046</p>
+<p style="font-size:36px;font-weight:600;color:#c7d0da">advonmedia.com</p>
+</div>
+
+</section>
+
+</div>
+<div id="bar"></div>
+<div id="rot">↻ Γυρίστε το κινητό οριζόντια</div>
+<div id="note"><b>ΣΗΜΕΙΩΣΕΙΣ</b><span></span></div>
+<div id="ctl" class="hide">
+<button id="bHome" title="Αρχική οθόνη" aria-label="Αρχική οθόνη"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg></button>
+<button id="bPrev" title="Προηγούμενη (←)" aria-label="Προηγούμενη"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+<span id="cnt">1 / 47</span>
+<button id="bNext" title="Επόμενη (→)" aria-label="Επόμενη"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
+<button id="bPlay" title="Αυτόματη προβολή (P)" aria-label="Αυτόματη προβολή"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button>
+<button id="bGrid" title="Όλες οι διαφάνειες (G)" aria-label="Όλες οι διαφάνειες"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></button>
+<button id="bNote" title="Σημειώσεις (N)" aria-label="Σημειώσεις"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 4h14v16H5z"/><path d="M9 9h6M9 13h6M9 17h3"/></svg></button>
+<button id="bFull" title="Πλήρης οθόνη (F)" aria-label="Πλήρης οθόνη"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
+</div>
+
+<div id="grid"><div class="top"><h2>Όλες οι διαφάνειες</h2><button class="b2" id="gClose">Κλείσιμο</button></div><div class="list"></div></div>
+
+<div id="start">
+<div class="in">
+<div>
+<img class="logo" src="img/advon-logo-dark.png" alt="Advon Media">
+<p class="eyebrow">ΠΑΡΟΥΣΙΑΣΗ · 47 ΔΙΑΦΑΝΕΙΕΣ</p>
+<h1>Η ιστοσελίδα σας, <span>βήμα βήμα.</span></h1>
+<p class="sub">Πώς χτίζουμε την ιστοσελίδα ενός επαγγελματία — με πραγματικές ιστοσελίδες που έχουμε φτιάξει.</p>
+<div class="btns">
+<button class="b1" id="sGo"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>Έναρξη παρουσίασης</button>
+<button class="b2" id="sGrid">Όλες οι διαφάνειες</button>
+</div>
+<div class="keys"><kbd>→</kbd> <kbd>Space</kbd> επόμενη · <kbd>←</kbd> προηγούμενη · <kbd>F</kbd> πλήρης οθόνη · <kbd>G</kbd> όλες · <kbd>N</kbd> σημειώσεις · <kbd>P</kbd> αυτόματα · <kbd>Esc</kbd> αρχική</div>
+</div>
+<div id="prev"><div class="box"></div></div>
+</div>
+</div>
+
+<script>
+(function(){
+var st=document.getElementById('stage'),S=[].slice.call(st.querySelectorAll('.sl')),N=S.length,i=0,
+ bar=document.getElementById('bar'),cnt=document.getElementById('cnt'),ctl=document.getElementById('ctl'),
+ start=document.getElementById('start'),grid=document.getElementById('grid'),note=document.getElementById('note'),
+ playing=null,AUTO=9000,live=false;
+function fit(){var w=innerWidth,h=innerHeight,s=Math.min(w/1920,h/1080);st.style.transform='translate('+((w-1920*s)/2)+'px,'+((h-1080*s)/2)+'px) scale('+s+')';fitBoxes()}
+function fitBoxes(){[].forEach.call(document.querySelectorAll('#prev .box,#grid .th .box'),function(b){var p=b.parentNode;b.style.transform='scale('+(p.clientWidth/1920)+')'})}
+function show(n){n=Math.max(0,Math.min(N-1,n));S[i].classList.remove('on');i=n;S[i].classList.add('on');
+ bar.style.width=((i+1)/N*100)+'%';cnt.textContent=(i+1)+' / '+N;
+ note.querySelector('span').textContent=S[i].getAttribute('data-note')||'—';
+ if(live)history.replaceState(null,'','#'+(i+1));
+ [S[i+1],S[i+2]].forEach(function(s){if(s)[].forEach.call(s.querySelectorAll('img[loading]'),function(im){im.loading='eager'})})}
+function next(){if(i<N-1)show(i+1);else stopPlay()} function prev(){show(i-1)}
+function begin(n){live=true;document.body.classList.add('live');start.style.display='none';grid.classList.remove('show');show(n||0);poke();
+ var d=document.documentElement;if(d.requestFullscreen&&!document.fullscreenElement&&matchMedia('(pointer:fine)').matches){d.requestFullscreen().catch(function(){})}}
+function home(){stopPlay();live=false;document.body.classList.remove('live');history.replaceState(null,'',location.pathname);start.style.display='flex';note.classList.remove('show');if(document.fullscreenElement)document.exitFullscreen();fitBoxes()}
+function full(){if(!document.fullscreenElement){(document.documentElement.requestFullscreen||function(){}).call(document.documentElement)}else document.exitFullscreen()}
+function togglePlay(){playing?stopPlay():startPlay()}
+function startPlay(){stopPlay();playing=setInterval(next,AUTO);document.getElementById('bPlay').classList.add('on')}
+function stopPlay(){if(playing)clearInterval(playing);playing=null;document.getElementById('bPlay').classList.remove('on')}
+function openGrid(){var L=grid.querySelector('.list');if(!L.childNodes.length){S.forEach(function(s,k){var b=document.createElement('button');b.className='th';
+ var c=s.cloneNode(true);c.classList.add('on');[].forEach.call(c.querySelectorAll('img'),function(im){im.loading='eager'});
+ var fr=document.createElement('div');fr.className='fr';var bx=document.createElement('div');bx.className='box';bx.appendChild(c);fr.appendChild(bx);b.appendChild(fr);
+ var t=(s.querySelector('h1,h2')||{}).textContent||'';var sp=document.createElement('span');sp.textContent=(k+1)+'. '+t.replace(/\s+/g,' ').trim().slice(0,60);b.appendChild(sp);
+ b.onclick=function(){begin(k)};L.appendChild(b)})}
+ [].forEach.call(L.children,function(b,k){b.classList.toggle('cur',k===i&&live)});grid.classList.add('show');fitBoxes();if(live){var c=L.children[i];c&&c.scrollIntoView({block:'center'})}}
+var t;function poke(){if(!live)return;ctl.classList.remove('hide');clearTimeout(t);t=setTimeout(function(){ctl.classList.add('hide')},2600)}
+document.getElementById('sGo').onclick=function(){begin(0)};
+document.getElementById('sGrid').onclick=openGrid;
+document.getElementById('gClose').onclick=function(){grid.classList.remove('show')};
+document.getElementById('bPrev').onclick=function(e){e.stopPropagation();prev()};
+document.getElementById('bNext').onclick=function(e){e.stopPropagation();next()};
+document.getElementById('bPlay').onclick=function(e){e.stopPropagation();togglePlay()};
+document.getElementById('bGrid').onclick=function(e){e.stopPropagation();openGrid()};
+document.getElementById('bNote').onclick=function(e){e.stopPropagation();note.classList.toggle('show')};
+document.getElementById('bFull').onclick=function(e){e.stopPropagation();full()};
+document.getElementById('bHome').onclick=function(e){e.stopPropagation();home()};
+st.addEventListener('click',function(e){if(!live)return;var x=e.clientX/innerWidth;x<0.3?prev():next();});
+addEventListener('mousemove',poke);
+var tx=null,ty=null;addEventListener('touchstart',function(e){tx=e.touches[0].clientX;ty=e.touches[0].clientY;poke()},{passive:true});
+addEventListener('touchend',function(e){if(tx===null||!live)return;var dx=e.changedTouches[0].clientX-tx,dy=e.changedTouches[0].clientY-ty;if(Math.abs(dx)>40&&Math.abs(dx)>Math.abs(dy)){dx<0?next():prev()}tx=null},{passive:true});
+addEventListener('keydown',function(e){var k=e.key;
+ if(!live){if(k==='Enter'||k===' '){e.preventDefault();begin(0)}else if(k==='g'||k==='G')openGrid();else if(k==='Escape')grid.classList.remove('show');return}
+ if(grid.classList.contains('show')){if(k==='Escape'||k==='g'||k==='G')grid.classList.remove('show');return}
+ if(k==='ArrowRight'||k==='PageDown'||k===' '||k==='Enter'){e.preventDefault();stopPlay();next()}
+ else if(k==='ArrowLeft'||k==='PageUp'||k==='Backspace'){e.preventDefault();stopPlay();prev()}
+ else if(k==='Home')show(0);else if(k==='End')show(N-1);
+ else if(k==='f'||k==='F')full();else if(k==='g'||k==='G')openGrid();
+ else if(k==='n'||k==='N')note.classList.toggle('show');else if(k==='p'||k==='P')togglePlay();
+ else if(k==='Escape'&&!document.fullscreenElement)home();poke()});
+// preview on start screen: the cover
+var pv=document.querySelector('#prev .box'),c0=S[0].cloneNode(true);c0.classList.add('on');pv.appendChild(c0);
+addEventListener('resize',fit);fit();
+S[0].classList.add('on');bar.style.width=(1/N*100)+'%';
+function fromHash(){var h=parseInt(location.hash.slice(1),10);if(h>=1&&h<=N&&h-1!==i||(h>=1&&h<=N&&!live)){begin(h-1)}}fromHash();addEventListener('hashchange',fromHash);
+})();
+</script>
+</body>
+</html>

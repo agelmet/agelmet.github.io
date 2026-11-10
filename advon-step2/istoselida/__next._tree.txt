@@ -1,3 +1,3 @@
 :HL["/advon-step2/_next/static/css/de2a236f8a6607a7.css","style"]
 :HL["/advon-step2/_next/static/css/9d579f0cdb809d72.css","style"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"istoselida","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"i1tK12q9uUBL5qdcrTCie"}
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"istoselida","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"4RU2UlvFao7Cl9I8kUOqB"}

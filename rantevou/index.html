@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light only">
+<meta name="theme-color" content="#0A0F16">
+<meta name="robots" content="noindex,nofollow">
+<title>Κλείστε δωρεάν κλήση γνωριμίας | Advon Media</title>
+<link rel="icon" href="img/advon-mark.png">
+<link rel="preload" href="fonts/manrope-greek-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<style id="advon-fonts">@font-face{font-family:Manrope;font-style:normal;font-weight:500;font-display:swap;src:url(fonts/manrope-greek-500-normal.woff2) format('woff2');unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF}@font-face{font-family:Manrope;font-style:normal;font-weight:500;font-display:swap;src:url(fonts/manrope-latin-500-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:Manrope;font-style:normal;font-weight:700;font-display:swap;src:url(fonts/manrope-greek-700-normal.woff2) format('woff2');unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF}@font-face{font-family:Manrope;font-style:normal;font-weight:700;font-display:swap;src:url(fonts/manrope-latin-700-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:Manrope;font-style:normal;font-weight:800;font-display:swap;src:url(fonts/manrope-greek-800-normal.woff2) format('woff2');unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF}@font-face{font-family:Manrope;font-style:normal;font-weight:800;font-display:swap;src:url(fonts/manrope-latin-800-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}</style>
+<style>
+:root{
+  --ink:#0E1621; --ink-2:#3B4757; --ink-3:#6B7686; --line:#E4E9F0; --line-2:#EEF2F6;
+  --paper:#F3F6FA; --card:#FFFFFF;
+  --night:#0A0F16; --night-2:#111A25;
+  --cy:#47C8F5; --cy-2:#8BE0FC; --bl:#1C6FD8; --bl-2:#1559B3;
+  --tint:#E8F5FD; --tint-2:#D3EDFB;
+  --ok:#14A06B; --err:#D6374A;
+  --r:20px; --rs:12px;
+  --sh:0 1px 2px rgba(14,22,33,.05),0 12px 40px -12px rgba(14,22,33,.18),0 40px 90px -40px rgba(28,111,216,.25);
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;color-scheme:light only}
+body{font-family:Manrope,system-ui,-apple-system,"Segoe UI",sans-serif;font-weight:500;color:var(--ink);background:var(--paper);min-height:100vh;min-height:100svh;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;line-height:1.5;overflow-x:hidden}
+button,input,textarea{font:inherit;color:inherit}
+button{cursor:pointer;background:none;border:0}
+a{color:inherit}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:2px solid var(--bl);outline-offset:2px;border-radius:8px}
+
+/* page background */
+.bg{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+.bg i{position:absolute;border-radius:50%;opacity:.55}
+.bg i:nth-child(1){width:720px;height:720px;left:-220px;top:-260px;background:radial-gradient(closest-side,rgba(71,200,245,.30),rgba(71,200,245,0))}
+.bg i:nth-child(2){width:820px;height:820px;right:-300px;bottom:-360px;background:radial-gradient(closest-side,rgba(28,111,216,.20),rgba(28,111,216,0))}
+
+/* demo bar */
+.demo{display:flex;align-items:center;justify-content:center;gap:10px 18px;flex-wrap:wrap;padding:10px 16px;background:#FFF6DB;border-bottom:1px solid #F1E2B0;color:#5E4A12;font-size:13.5px;text-align:center}
+.demo b{font-weight:800}
+.demo a{font-weight:700;color:#3F3008;text-decoration:none;border-bottom:1.5px solid #D9B85A;white-space:nowrap}
+
+.top{display:flex;justify-content:flex-end;max-width:1080px;margin:18px auto 0;padding:0 20px}
+.lang{display:inline-flex;background:#fff;border:1px solid var(--line);border-radius:999px;padding:3px;box-shadow:0 1px 2px rgba(14,22,33,.04)}
+.lang button{display:flex;align-items:center;gap:6px;padding:6px 11px;min-height:34px;border-radius:999px;font-size:13px;font-weight:700;color:var(--ink-3);transition:background .2s,color .2s}
+.lang button[aria-pressed="true"]{background:var(--night);color:#fff}
+.flag{display:block;width:18px;height:12px;overflow:hidden;line-height:0;border-radius:2px}
+.flag svg{display:block;width:100%;height:100%}
+
+/* card */
+.wrap{max-width:1080px;margin:14px auto 40px;padding:0 20px}
+.card{display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);background:var(--card);border-radius:var(--r);box-shadow:var(--sh);overflow:hidden;min-height:620px;opacity:0;transform:translateY(14px);animation:up .7s var(--ease) .05s forwards}
+@keyframes up{to{opacity:1;transform:none}}
+
+/* left panel */
+.info{position:relative;background:var(--night);color:#fff;padding:34px 30px 30px;display:flex;flex-direction:column;gap:22px;overflow:hidden;isolation:isolate}
+.info::before{content:"";position:absolute;z-index:-1;width:420px;height:420px;left:-140px;top:-170px;border-radius:50%;background:radial-gradient(closest-side,rgba(71,200,245,.32),rgba(71,200,245,0))}
+.info::after{content:"";position:absolute;z-index:-1;inset:0;background-image:radial-gradient(rgba(255,255,255,.07) 1px,transparent 1.2px);background-size:22px 22px;mask-image:linear-gradient(180deg,#000 0%,transparent 70%);-webkit-mask-image:linear-gradient(180deg,#000 0%,transparent 70%)}
+.logo{display:inline-flex;align-items:center;align-self:flex-start;background:#fff;border-radius:14px;padding:10px 16px;box-shadow:0 8px 24px -10px rgba(71,200,245,.6)}
+.logo img{display:block;height:44px;width:auto}
+.host{display:flex;align-items:center;gap:12px}
+.av{flex:none;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:17px;color:var(--night);background:linear-gradient(135deg,var(--cy-2),var(--cy));box-shadow:0 0 0 3px rgba(71,200,245,.18)}
+.host small{display:block;font-size:12.5px;color:rgba(255,255,255,.62);font-weight:500}
+.host b{font-weight:700;font-size:15px}
+.info h1{font-size:27px;line-height:1.15;font-weight:800;letter-spacing:-.02em}
+.meta{display:grid;gap:12px;list-style:none}
+.meta li{display:flex;gap:11px;align-items:flex-start;font-size:14.5px;color:rgba(255,255,255,.88)}
+.meta svg{flex:none;width:19px;height:19px;margin-top:1px;stroke:var(--cy);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.lead{font-size:14.5px;color:rgba(255,255,255,.72);line-height:1.6}
+.trust{margin-top:auto;display:grid;gap:8px;padding-top:20px;border-top:1px solid rgba(255,255,255,.1);font-size:13px;color:rgba(255,255,255,.7)}
+.trust>span{display:flex;align-items:center;gap:8px}.trust>span>span{display:inline}
+.stars{color:#FBBC05;letter-spacing:1px;font-size:13px}
+.trust b{color:#fff;font-weight:700}
+
+/* right side */
+.main{position:relative;padding:30px 32px 30px;min-width:0}
+.view{animation:fade .45s var(--ease)}
+@keyframes fade{from{opacity:0;transform:translateX(12px)}to{opacity:1;transform:none}}
+.view[hidden]{display:none}
+.h2{font-size:20px;font-weight:800;letter-spacing:-.01em;margin-bottom:20px}
+.pick{display:grid;grid-template-columns:minmax(0,1fr);gap:28px}
+.pick.has-day{grid-template-columns:minmax(0,1fr) minmax(0,220px)}
+
+/* calendar */
+.cal-h{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.cal-h strong{font-size:16px;font-weight:700}
+.nav{display:flex;gap:6px}
+.nav button{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;color:var(--bl);background:var(--tint);transition:background .2s,transform .15s}
+.nav button:hover{background:var(--tint-2)}
+.nav button:active{transform:scale(.94)}
+.nav button:disabled{background:none;color:#C3CBD6;cursor:default}
+.nav svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.dow,.days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px}
+.dow span{text-align:center;font-size:11.5px;font-weight:700;color:var(--ink-3);letter-spacing:.06em;text-transform:uppercase;padding:6px 0}
+.day{position:relative;aspect-ratio:1/1;max-height:54px;width:100%;margin:0 auto;border-radius:50%;display:grid;place-items:center;font-size:15px;font-weight:700;font-variant-numeric:tabular-nums;color:#B7C0CC;cursor:default}
+.day.on{color:var(--bl-2);background:var(--tint);cursor:pointer;transition:background .2s,color .2s,transform .15s}
+.day.on:hover{background:var(--tint-2)}
+.day.on:active{transform:scale(.94)}
+.day.sel{background:linear-gradient(135deg,var(--bl),#2AA8EE)!important;color:#fff!important;box-shadow:0 8px 20px -8px rgba(28,111,216,.7)}
+.day.today::after{content:"";position:absolute;bottom:14%;left:50%;width:4px;height:4px;margin-left:-2px;border-radius:50%;background:currentColor}
+.tz{display:flex;align-items:center;gap:8px;margin-top:18px;font-size:13px;color:var(--ink-3)}
+.tz svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.8}
+
+/* slots */
+.slots{min-width:0}
+.slots[hidden]{display:none}
+.slots h3{font-size:15px;font-weight:700;margin:6px 0 14px}
+.slist{display:grid;gap:9px;max-height:430px;overflow:auto;padding:2px 4px 2px 2px;scrollbar-width:thin}
+.slot{display:flex;gap:8px;animation:sl .35s var(--ease) both}
+@keyframes sl{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.slot .t{flex:1;min-height:48px;border:1.5px solid #BFD9F4;border-radius:var(--rs);color:var(--bl-2);font-weight:700;font-size:15px;font-variant-numeric:tabular-nums;transition:border-color .2s,background .2s,flex .3s var(--ease)}
+.slot .t:hover{border-color:var(--bl);background:var(--tint)}
+.slot .go{flex:0;width:0;padding:0;overflow:hidden;border-radius:var(--rs);background:linear-gradient(135deg,var(--bl),#2AA8EE);color:#fff;font-weight:800;font-size:14px;white-space:nowrap;transition:flex .3s var(--ease),width .3s var(--ease)}
+.slot.sel .t{flex:0 0 46%;background:#53637A;border-color:#53637A;color:#fff}
+.slot.sel .go{flex:1;width:auto}
+.none{font-size:14px;color:var(--ink-3);padding:14px;border:1.5px dashed var(--line);border-radius:var(--rs);text-align:center}
+
+/* form */
+.back{display:inline-flex;align-items:center;gap:6px;min-height:40px;padding:0 12px 0 6px;margin:-6px 0 12px -6px;border-radius:999px;color:var(--bl);font-weight:700;font-size:14px}
+.back:hover{background:var(--tint)}
+.back svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.chip{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;padding:14px 16px;border-radius:14px;background:var(--tint);color:var(--bl-2);font-weight:700;font-size:14.5px;margin-bottom:22px}
+.chip svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;vertical-align:-4px;margin-right:6px}
+.chip span{display:inline-flex;align-items:center}
+form{display:grid;gap:16px;max-width:560px}
+.row2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px}
+.f label{display:block;font-size:13.5px;font-weight:700;margin-bottom:7px}
+.f label i{font-style:normal;color:var(--err)}
+.f label em{font-style:normal;font-weight:500;color:var(--ink-3)}
+.f input,.f textarea{width:100%;min-height:50px;padding:12px 14px;border:1.5px solid var(--line);border-radius:var(--rs);background:#fff;font-size:16px;transition:border-color .2s,box-shadow .2s}
+.f textarea{min-height:92px;resize:vertical}
+.f input:focus,.f textarea:focus{outline:none;border-color:var(--bl);box-shadow:0 0 0 4px rgba(28,111,216,.12)}
+.f.err input{border-color:var(--err);box-shadow:0 0 0 4px rgba(214,55,74,.10)}
+.f .fe{display:none;margin-top:6px;font-size:13px;color:var(--err);font-weight:600}
+.f.err .fe{display:block}
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.seg label{position:relative;display:flex;align-items:center;gap:10px;min-height:54px;padding:10px 14px;border:1.5px solid var(--line);border-radius:var(--rs);cursor:pointer;font-weight:700;font-size:14.5px;margin:0;transition:border-color .2s,background .2s}
+.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg svg{flex:none;width:22px;height:22px;stroke:var(--ink-3);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:stroke .2s}
+.seg label:has(input:checked){border-color:var(--bl);background:var(--tint);color:var(--bl-2)}
+.seg label:has(input:checked) svg{stroke:var(--bl)}
+.seg label:has(input:focus-visible){outline:2px solid var(--bl);outline-offset:2px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:54px;padding:0 26px;border-radius:999px;background:linear-gradient(135deg,var(--bl),#2AA8EE);color:#fff;font-weight:800;font-size:16px;box-shadow:0 12px 26px -12px rgba(28,111,216,.8);transition:transform .15s,box-shadow .2s;position:relative;overflow:hidden}
+.btn:hover{box-shadow:0 16px 32px -12px rgba(28,111,216,.9)}
+.btn:active{transform:scale(.98)}
+.btn svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.btn.busy{pointer-events:none;opacity:.85}
+.note{display:flex;gap:10px;font-size:13.5px;color:var(--ink-2);line-height:1.55;padding:13px 15px;background:var(--line-2);border-radius:var(--rs)}
+.note svg{flex:none;width:18px;height:18px;margin-top:1px;stroke:var(--bl);fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.priv{font-size:12.5px;color:var(--ink-3)}
+
+/* done */
+.done{display:flex;flex-direction:column;align-items:center;text-align:center;max-width:520px;margin:14px auto 0}
+.ck{width:84px;height:84px;margin-bottom:20px}
+.ck circle{fill:var(--tint);stroke:var(--bl);stroke-width:3;stroke-dasharray:252;stroke-dashoffset:252;animation:draw .7s var(--ease) forwards}
+.ck path{fill:none;stroke:var(--bl);stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:60;stroke-dashoffset:60;animation:draw .45s var(--ease) .55s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.done h2{font-size:26px;font-weight:800;letter-spacing:-.02em;margin-bottom:8px}
+.done p{color:var(--ink-2);font-size:15px}
+.sum{width:100%;margin:22px 0;border:1px solid var(--line);border-radius:16px;text-align:left;overflow:hidden}
+.sum div{display:flex;gap:12px;align-items:center;padding:13px 16px;font-size:14.5px}
+.sum div+div{border-top:1px solid var(--line-2)}
+.sum svg{flex:none;width:19px;height:19px;stroke:var(--bl);fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.sum b{font-weight:700}
+.rem{width:100%;display:grid;gap:8px;margin-bottom:22px;text-align:left}
+.rem div{display:flex;gap:10px;align-items:center;font-size:14px;color:var(--ink-2)}
+.rem i{flex:none;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:#E3F6EE;color:var(--ok);font-style:normal;font-weight:800;font-size:12px}
+.adds{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.ghost{display:inline-flex;align-items:center;gap:8px;min-height:46px;padding:0 18px;border-radius:999px;border:1.5px solid var(--line);font-weight:700;font-size:14px;text-decoration:none;transition:border-color .2s,background .2s}
+.ghost:hover{border-color:#BFD9F4;background:var(--tint)}
+.ghost svg{width:17px;height:17px;stroke:var(--bl);fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.again{margin-top:18px;font-size:13.5px;color:var(--ink-3)}
+.again button{color:var(--bl);font-weight:700;text-decoration:underline;text-underline-offset:3px;min-height:36px}
+
+.foot{max-width:1080px;margin:0 auto 30px;padding:0 20px;display:flex;justify-content:center;gap:18px;font-size:12.5px;color:var(--ink-3)}
+.foot a{text-decoration:none}
+.foot a:hover{color:var(--bl)}
+
+/* phones / tablets */
+@media (max-width:900px){
+  .card{grid-template-columns:minmax(0,1fr);min-height:0}
+  .info{padding:24px 22px 22px;gap:16px}
+  .info h1{font-size:23px}
+  .lead,.trust{display:none}
+  .meta{grid-template-columns:1fr;gap:9px}
+  .main{padding:24px 20px 26px}
+  .pick.has-day{grid-template-columns:minmax(0,1fr)}
+  .slist{max-height:none;grid-template-columns:repeat(2,minmax(0,1fr))}
+  .slot.sel{grid-column:1/-1}
+}
+@media (max-width:520px){
+  .wrap{padding:0 10px;margin-top:10px}
+  .top{padding:0 10px;margin-top:12px}
+  .row2{grid-template-columns:minmax(0,1fr)}
+  .seg{grid-template-columns:minmax(0,1fr)}
+  .day{font-size:14px}
+  .dow,.days{gap:3px}
+  .btn{width:100%}
+  .demo{font-size:12.5px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;transition-duration:.01ms!important}
+  .card{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<div class="bg" aria-hidden="true"><i></i><i></i></div>
+
+<div class="demo" role="note">
+  <span data-t="demo"><b>Προεπισκόπηση</b> · Οι ώρες είναι ενδεικτικές και τίποτα δεν κλείνεται ακόμα.</span>
+  <a href="emails.html" data-t="demoLink">Δείτε τα email που θα λαμβάνει ο πελάτης →</a>
+</div>
+
+<div class="top">
+  <div class="lang" role="group" aria-label="Γλώσσα / Language">
+    <button type="button" data-lang="el" aria-pressed="true"><span class="flag" aria-hidden="true"><svg viewBox="0 0 27 18" preserveAspectRatio="xMidYMid slice"><rect width="27" height="18" fill="#0D5EAF"/><g fill="#fff"><rect y="2" width="27" height="2"/><rect y="6" width="27" height="2"/><rect y="10" width="27" height="2"/><rect y="14" width="27" height="2"/></g><rect width="10" height="10" fill="#0D5EAF"/><rect x="4" width="2" height="10" fill="#fff"/><rect y="4" width="10" height="2" fill="#fff"/></svg></span>ΕΛ</button>
+    <button type="button" data-lang="en" aria-pressed="false"><span class="flag" aria-hidden="true"><svg viewBox="0 0 60 30" preserveAspectRatio="xMidYMid slice"><clipPath id="uk"><path d="M0 0v30h60V0z"/></clipPath><g clip-path="url(#uk)"><path d="M0 0v30h60V0z" fill="#012169"/><path d="M0 0l60 30m0-30L0 30" stroke="#fff" stroke-width="6"/><path d="M0 0l60 30m0-30L0 30" stroke="#C8102E" stroke-width="4"/><path d="M30 0v30M0 15h60" stroke="#fff" stroke-width="10"/><path d="M30 0v30M0 15h60" stroke="#C8102E" stroke-width="6"/></g></svg></span>EN</button>
+  </div>
+</div>
+
+<main class="wrap">
+  <div class="card">
+    <aside class="info">
+      <a class="logo" href="https://advonmedia.com" aria-label="Advon Media"><img src="img/advon-logo.webp" width="235" height="125" alt="Advon Media"></a>
+      <div class="host">
+        <span class="av" aria-hidden="true">Α</span>
+        <div><small data-t="with">Με τον</small><b data-t="name">Άγγελο Μετρίδη</b></div>
+      </div>
+      <h1 data-t="title">Δωρεάν κλήση γνωριμίας</h1>
+      <ul class="meta">
+        <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span data-t="dur">15 λεπτά</span></li>
+        <li><svg viewBox="0 0 24 24"><rect x="3" y="6" width="13" height="12" rx="2.5"/><path d="M16 10.5l5-3v9l-5-3"/></svg><span data-t="how">Google Meet ή τηλέφωνο, όπως προτιμάτε</span></li>
+        <li><svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-3 8.2-7 10-4-1.8-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg><span data-t="free">Χωρίς χρέωση και χωρίς δέσμευση</span></li>
+      </ul>
+      <p class="lead" data-t="lead">Μας λέτε τι κάνετε και τι θα θέλατε. Σας εξηγούμε πώς δουλεύουμε, πόσο κοστίζει και σε πόσες μέρες θα δείτε την πρώτη εικόνα της ιστοσελίδας σας.</p>
+      <div class="trust">
+        <span><b>250+</b><span data-t="sites">ιστοσελίδες online</span></span>
+        <span><span class="stars" aria-hidden="true">★★★★★</span><b>135+</b><span data-t="revs">κριτικές στο Google</span></span>
+      </div>
+    </aside>
+
+    <section class="main">
+      <!-- step 1 -->
+      <div class="view" id="v1">
+        <h2 class="h2" data-t="pickH">Διαλέξτε ημέρα και ώρα</h2>
+        <div class="pick" id="pick">
+          <div class="cal">
+            <div class="cal-h">
+              <strong id="mon" aria-live="polite"></strong>
+              <div class="nav">
+                <button type="button" id="prev" aria-label="Προηγούμενος μήνας"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button>
+                <button type="button" id="next" aria-label="Επόμενος μήνας"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
+              </div>
+            </div>
+            <div class="dow" id="dow"></div>
+            <div class="days" id="days" role="grid"></div>
+            <div class="tz"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.7 5.6 3.7 9S14.5 18.4 12 21c-2.5-2.6-3.7-5.6-3.7-9S9.5 5.6 12 3z"/></svg><span data-t="tz">Ώρα Ελλάδας (Αθήνα)</span></div>
+          </div>
+          <div class="slots" id="slots" hidden>
+            <h3 id="slH"></h3>
+            <div class="slist" id="slist"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- step 2 -->
+      <div class="view" id="v2" hidden>
+        <button type="button" class="back" id="back"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg><span data-t="back">Αλλαγή ώρας</span></button>
+        <h2 class="h2" data-t="formH">Τα στοιχεία σας</h2>
+        <div class="chip" id="chip"></div>
+        <form id="form" novalidate>
+          <div class="row2">
+            <div class="f" id="fName"><label for="name"><span data-t="lName">Ονοματεπώνυμο</span> <i>*</i></label><input id="name" autocomplete="name" required><div class="fe" data-t="eName">Γράψτε το όνομά σας.</div></div>
+            <div class="f" id="fPhone"><label for="phone"><span data-t="lPhone">Κινητό τηλέφωνο</span> <i>*</i></label><input id="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="69x xxx xxxx" required><div class="fe" data-t="ePhone">Γράψτε ένα σωστό τηλέφωνο, π.χ. 694 123 4567.</div></div>
+          </div>
+          <div class="row2">
+            <div class="f" id="fMail"><label for="mail"><span data-t="lMail">Email</span> <i>*</i></label><input id="mail" type="email" inputmode="email" autocomplete="email" required><div class="fe" data-t="eMail">Γράψτε ένα σωστό email — εκεί στέλνουμε την επιβεβαίωση.</div></div>
+            <div class="f"><label for="job"><span data-t="lJob">Επάγγελμα ή επιχείρηση</span> <em data-t="opt">(προαιρετικό)</em></label><input id="job" autocomplete="organization" data-ph="phJob" placeholder="π.χ. ψυχολόγος, κομμωτήριο"></div>
+          </div>
+          <div class="f">
+            <label id="lHow" data-t="lHow">Πώς να τα πούμε;</label>
+            <div class="seg" role="radiogroup" aria-labelledby="lHow">
+              <label><input type="radio" name="how" value="meet" checked><svg viewBox="0 0 24 24"><rect x="3" y="6" width="13" height="12" rx="2.5"/><path d="M16 10.5l5-3v9l-5-3"/></svg><span data-t="meet">Google Meet (βίντεο)</span></label>
+              <label><input type="radio" name="how" value="tel"><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2"/></svg><span data-t="tel">Σας καλούμε στο κινητό</span></label>
+            </div>
+          </div>
+          <div class="f"><label for="msg"><span data-t="lMsg">Κάτι που θέλετε να ξέρουμε;</span> <em data-t="opt">(προαιρετικό)</em></label><textarea id="msg" data-ph="phMsg" placeholder="π.χ. έχω ήδη ιστοσελίδα και θέλω καινούργια"></textarea></div>
+          <div class="note"><svg viewBox="0 0 24 24"><path d="M6 8a6 6 0 1112 0c0 7 3 8 3 8H3s3-1 3-8"/><path d="M10 20a2 2 0 004 0"/></svg><span data-t="note">Θα σας στείλουμε email επιβεβαίωσης τώρα, υπενθύμιση την προηγούμενη μέρα και μία ακόμα 1 ώρα πριν.</span></div>
+          <div><button class="btn" type="submit" id="submit"><span data-t="book">Κλείσιμο ραντεβού</span><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>
+          <p class="priv" data-t="priv">Τα στοιχεία σας χρησιμοποιούνται μόνο για αυτό το ραντεβού.</p>
+        </form>
+      </div>
+
+      <!-- step 3 -->
+      <div class="view" id="v3" hidden>
+        <div class="done">
+          <svg class="ck" viewBox="0 0 84 84" aria-hidden="true"><circle cx="42" cy="42" r="39"/><path d="M27 43l10 10 20-21"/></svg>
+          <h2 data-t="doneH">Το ραντεβού σας κλείστηκε!</h2>
+          <p data-t="doneP">Σας στείλαμε email επιβεβαίωσης με όλες τις λεπτομέρειες.</p>
+          <div class="sum" id="sum"></div>
+          <div class="rem">
+            <div><i>✓</i><span data-t="r0">Email επιβεβαίωσης — τώρα</span></div>
+            <div><i>1</i><span data-t="r1">Υπενθύμιση — την προηγούμενη μέρα</span></div>
+            <div><i>2</i><span data-t="r2">Υπενθύμιση — 1 ώρα πριν</span></div>
+          </div>
+          <div class="adds">
+            <a class="ghost" id="gcal" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><span data-t="gcal">Google Calendar</span></a>
+            <a class="ghost" id="ics" download="advon-media-rantevou.ics"><svg viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg><span data-t="ics">Apple / Outlook</span></a>
+          </div>
+          <p class="again"><span data-t="change">Θέλετε άλλη ώρα;</span> <button type="button" id="restart" data-t="changeB">Αλλαγή ραντεβού</button></p>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer class="foot"><a href="https://advonmedia.com">advonmedia.com</a><span>·</span><a href="https://advonmedia.com/privacy" data-t="privL">Πολιτική απορρήτου</a></footer>
+
+<script>
+(function(){
+var T={
+ el:{demo:'<b>Προεπισκόπηση</b> · Οι ώρες είναι ενδεικτικές και τίποτα δεν κλείνεται ακόμα.',demoLink:'Δείτε τα email που θα λαμβάνει ο πελάτης →',with:'Με τον',name:'Άγγελο Μετρίδη',title:'Δωρεάν κλήση γνωριμίας',dur:'15 λεπτά',how:'Google Meet ή τηλέφωνο, όπως προτιμάτε',free:'Χωρίς χρέωση και χωρίς δέσμευση',lead:'Μας λέτε τι κάνετε και τι θα θέλατε. Σας εξηγούμε πώς δουλεύουμε, πόσο κοστίζει και σε πόσες μέρες θα δείτε την πρώτη εικόνα της ιστοσελίδας σας.',sites:'ιστοσελίδες online',revs:'κριτικές στο Google',pickH:'Διαλέξτε ημέρα και ώρα',tz:'Ώρα Ελλάδας (Αθήνα)',back:'Αλλαγή ώρας',formH:'Τα στοιχεία σας',lName:'Ονοματεπώνυμο',lPhone:'Κινητό τηλέφωνο',lMail:'Email',lJob:'Επάγγελμα ή επιχείρηση',opt:'(προαιρετικό)',phJob:'π.χ. ψυχολόγος, κομμωτήριο',lHow:'Πώς να τα πούμε;',meet:'Google Meet (βίντεο)',tel:'Σας καλούμε στο κινητό',lMsg:'Κάτι που θέλετε να ξέρουμε;',phMsg:'π.χ. έχω ήδη ιστοσελίδα και θέλω καινούργια',note:'Θα σας στείλουμε email επιβεβαίωσης τώρα, υπενθύμιση την προηγούμενη μέρα και μία ακόμα 1 ώρα πριν.',book:'Κλείσιμο ραντεβού',priv:'Τα στοιχεία σας χρησιμοποιούνται μόνο για αυτό το ραντεβού.',eName:'Γράψτε το όνομά σας.',ePhone:'Γράψτε ένα σωστό τηλέφωνο, π.χ. 694 123 4567.',eMail:'Γράψτε ένα σωστό email — εκεί στέλνουμε την επιβεβαίωση.',doneH:'Το ραντεβού σας κλείστηκε!',doneP:'Σας στείλαμε email επιβεβαίωσης με όλες τις λεπτομέρειες.',r0:'Email επιβεβαίωσης — τώρα',r1:'Υπενθύμιση — την προηγούμενη μέρα',r2:'Υπενθύμιση — 1 ώρα πριν',gcal:'Google Calendar',ics:'Apple / Outlook',change:'Θέλετε άλλη ώρα;',changeB:'Αλλαγή ραντεβού',privL:'Πολιτική απορρήτου',
+  months:['Ιανουάριος','Φεβρουάριος','Μάρτιος','Απρίλιος','Μάιος','Ιούνιος','Ιούλιος','Αύγουστος','Σεπτέμβριος','Οκτώβριος','Νοέμβριος','Δεκέμβριος'],
+  dow:['Δε','Τρ','Τε','Πε','Πα','Σα','Κυ'],loc:'el-GR',none:'Δεν υπάρχουν ελεύθερες ώρες αυτή τη μέρα.',next:'Συνέχεια',
+  prev:'Προηγούμενος μήνας',nextM:'Επόμενος μήνας',meetL:'Google Meet — ο σύνδεσμος είναι στο email',telL:'Σας καλούμε στο',calT:'Κλήση γνωριμίας με την Advon Media',calD:'Δωρεάν κλήση γνωριμίας 15 λεπτών με τον Άγγελο της Advon Media.',hostN:'Άγγελος Μετρίδης'},
+ en:{demo:'<b>Preview</b> · Times are sample times and nothing is booked yet.',demoLink:'See the emails the client will receive →',with:'With',name:'Angelo Metridis',title:'Free intro call',dur:'15 minutes',how:'Google Meet or phone, as you prefer',free:'Free and no commitment',lead:'Tell us what you do and what you need. We explain how we work, what it costs and in how many days you will see the first version of your website.',sites:'websites online',revs:'Google reviews',pickH:'Choose a day and time',tz:'Greece time (Athens)',back:'Change time',formH:'Your details',lName:'Full name',lPhone:'Mobile phone',lMail:'Email',lJob:'Profession or business',opt:'(optional)',phJob:'e.g. psychologist, hair salon',lHow:'How should we talk?',meet:'Google Meet (video)',tel:'We call your mobile',lMsg:'Anything we should know?',phMsg:'e.g. I already have a website and want a new one',note:'We send a confirmation email now, a reminder the day before and one more 1 hour before.',book:'Book the call',priv:'Your details are used only for this appointment.',eName:'Please write your name.',ePhone:'Please write a valid phone, e.g. 694 123 4567.',eMail:'Please write a valid email — we send the confirmation there.',doneH:'Your call is booked!',doneP:'We sent you a confirmation email with all the details.',r0:'Confirmation email — now',r1:'Reminder — the day before',r2:'Reminder — 1 hour before',gcal:'Google Calendar',ics:'Apple / Outlook',change:'Need another time?',changeB:'Change booking',privL:'Privacy policy',
+  months:['January','February','March','April','May','June','July','August','September','October','November','December'],
+  dow:['Mo','Tu','We','Th','Fr','Sa','Su'],loc:'en-GB',none:'No free times on this day.',next:'Next',
+  prev:'Previous month',nextM:'Next month',meetL:'Google Meet — the link is in the email',telL:'We call you on',calT:'Intro call with Advon Media',calD:'Free 15-minute intro call with Angelo from Advon Media.',hostN:'Angelo Metridis'}
+};
+var L='el',$=function(s){return document.getElementById(s)};
+var now=new Date(),today=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+var maxD=new Date(today);maxD.setDate(maxD.getDate()+30);
+var view=new Date(today.getFullYear(),today.getMonth(),1),selD=null,selT=null;
+
+function hash(s){var h=2166136261;for(var i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)}return (h>>>0)/4294967295}
+function key(d){return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate()}
+function slots(d){
+  var w=d.getDay(),list=[],h,m;
+  if(w===0||d<today||d>maxD)return list;
+  var start=w===6?[10,30]:[10,0],end=w===6?[11,45]:[18,30];
+  for(h=start[0],m=start[1];h*60+m<=end[0]*60+end[1];m+=30){if(m>=60){h++;m-=60}if(h*60+m>end[0]*60+end[1])break;
+    var t=('0'+h).slice(-2)+':'+('0'+m).slice(-2),dt=new Date(d.getFullYear(),d.getMonth(),d.getDate(),h,m);
+    if(dt-now<3*3600e3)continue;
+    if(hash(key(d)+t)<.34)continue;
+    list.push(t)}
+  return list}
+
+function fmtDay(d,o){return d.toLocaleDateString(T[L].loc,o)}
+function drawCal(){
+  var t=T[L];$('mon').textContent=t.months[view.getMonth()]+' '+view.getFullYear();
+  $('dow').innerHTML=t.dow.map(function(x){return '<span>'+x+'</span>'}).join('');
+  var first=(view.getDay()+6)%7,dim=new Date(view.getFullYear(),view.getMonth()+1,0).getDate(),h='';
+  for(var i=0;i<first;i++)h+='<span></span>';
+  for(var n=1;n<=dim;n++){var d=new Date(view.getFullYear(),view.getMonth(),n),ok=slots(d).length>0,
+    c='day'+(ok?' on':'')+(+d===+today?' today':'')+(selD&&+d===+selD?' sel':'');
+    h+=ok?'<button type="button" class="'+c+'" data-d="'+n+'" aria-label="'+fmtDay(d,{weekday:'long',day:'numeric',month:'long'})+'"'+(selD&&+d===+selD?' aria-pressed="true"':'')+'>'+n+'</button>':'<span class="'+c+'" aria-hidden="true">'+n+'</span>'}
+  $('days').innerHTML=h;
+  $('prev').disabled=view<=new Date(today.getFullYear(),today.getMonth(),1);
+  $('next').disabled=new Date(view.getFullYear(),view.getMonth()+1,1)>maxD;
+  $('prev').setAttribute('aria-label',t.prev);$('next').setAttribute('aria-label',t.nextM)}
+function drawSlots(){
+  if(!selD){$('slots').hidden=true;$('pick').classList.remove('has-day');return}
+  var t=T[L],s=slots(selD);$('pick').classList.add('has-day');$('slots').hidden=false;
+  $('slH').textContent=fmtDay(selD,{weekday:'long',day:'numeric',month:'long'});
+  $('slist').innerHTML=s.length?s.map(function(x,i){return '<div class="slot'+(x===selT?' sel':'')+'" style="animation-delay:'+(i*25)+'ms"><button type="button" class="t" data-t2="'+x+'">'+x+'</button><button type="button" class="go" tabindex="'+(x===selT?0:-1)+'">'+t.next+'</button></div>'}).join(''):'<p class="none">'+t.none+'</p>'}
+function firstFree(){for(var d=new Date(today);d<=maxD;d.setDate(d.getDate()+1))if(slots(d).length)return new Date(d);return null}
+
+$('days').addEventListener('click',function(e){var b=e.target.closest('.day.on');if(!b)return;selD=new Date(view.getFullYear(),view.getMonth(),+b.dataset.d);selT=null;drawCal();drawSlots();
+  if(innerWidth<=900)setTimeout(function(){$('slots').scrollIntoView({behavior:'smooth',block:'start'})},60)});
+$('slist').addEventListener('click',function(e){var b=e.target.closest('.t');if(b){selT=b.dataset.t2;drawSlots();var g=document.querySelector('.slot.sel .go');g&&g.focus({preventScroll:true});return}
+  if(e.target.closest('.go'))toForm()});
+$('prev').onclick=function(){view.setMonth(view.getMonth()-1);drawCal()};
+$('next').onclick=function(){view.setMonth(view.getMonth()+1);drawCal()};
+
+var I={cal:'<svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>',clk:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',vid:'<svg viewBox="0 0 24 24"><rect x="3" y="6" width="13" height="12" rx="2.5"/><path d="M16 10.5l5-3v9l-5-3"/></svg>',tel:'<svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2"/></svg>',usr:'<svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>'};
+function endT(t){var p=t.split(':'),m=+p[0]*60+ +p[1]+15;return ('0'+Math.floor(m/60)).slice(-2)+':'+('0'+m%60).slice(-2)}
+function chip(){$('chip').innerHTML='<span>'+I.cal+fmtDay(selD,{weekday:'long',day:'numeric',month:'long'})+'</span><span>'+I.clk+selT+' – '+endT(selT)+'</span>'}
+function show(n){['v1','v2','v3'].forEach(function(v,i){$(v).hidden=i!==n});if(innerWidth<=900)document.querySelector('.main').scrollIntoView({behavior:'smooth',block:'start'})}
+function toForm(){chip();show(1);setTimeout(function(){$('name').focus({preventScroll:true})},80)}
+$('back').onclick=function(){show(0);drawSlots()};
+
+function valid(){var ok=true,set=function(id,good){$(id).classList.toggle('err',!good);if(!good)ok=false};
+  set('fName',$('name').value.trim().length>=2);
+  var p=$('phone').value.replace(/[^\d+]/g,'').replace(/^\+30/,'').replace(/^0030/,'');set('fPhone',/^\d{10}$/.test(p)||/^\+\d{9,15}$/.test($('phone').value.replace(/[^\d+]/g,'')));
+  set('fMail',/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test($('mail').value.trim()));
+  if(!ok){var f=document.querySelector('.f.err input');f&&f.focus()}return ok}
+['name','phone','mail'].forEach(function(id){$(id).addEventListener('input',function(){this.closest('.f').classList.remove('err')})});
+
+function pad(n){return ('0'+n).slice(-2)}
+function stamp(d,t,add){var p=t.split(':'),x=new Date(d.getFullYear(),d.getMonth(),d.getDate(),+p[0],+p[1]+(add||0));return x.getFullYear()+pad(x.getMonth()+1)+pad(x.getDate())+'T'+pad(x.getHours())+pad(x.getMinutes())+'00'}
+$('form').addEventListener('submit',function(e){e.preventDefault();if(!valid())return;
+  var b=$('submit');b.classList.add('busy');
+  setTimeout(function(){b.classList.remove('busy');done()},650)});
+function done(){var t=T[L],how=document.querySelector('[name=how]:checked').value;
+  $('sum').innerHTML='<div>'+I.cal+'<b>'+fmtDay(selD,{weekday:'long',day:'numeric',month:'long',year:'numeric'})+'</b></div><div>'+I.clk+'<span>'+selT+' – '+endT(selT)+' · '+t.tz+'</span></div><div>'+(how==='meet'?I.vid+'<span>'+t.meetL+'</span>':I.tel+'<span>'+t.telL+' '+$('phone').value.trim()+'</span>')+'</div><div>'+I.usr+'<span>'+t.hostN+' · Advon Media</span></div>';
+  var s=stamp(selD,selT),en=stamp(selD,selT,15);
+  $('gcal').href='https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent(t.calT)+'&dates='+s+'/'+en+'&ctz=Europe/Athens&details='+encodeURIComponent(t.calD);
+  var ics=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Advon Media//Booking//EL','BEGIN:VEVENT','UID:'+Date.now()+'@advonmedia.com','DTSTAMP:'+new Date().toISOString().replace(/[-:]/g,'').slice(0,15)+'Z','DTSTART;TZID=Europe/Athens:'+s,'DTEND;TZID=Europe/Athens:'+en,'SUMMARY:'+t.calT,'DESCRIPTION:'+t.calD,'END:VEVENT','END:VCALENDAR'].join('\r\n');
+  $('ics').href='data:text/calendar;charset=utf-8,'+encodeURIComponent(ics);
+  show(2)}
+$('restart').onclick=function(){selT=null;show(0);drawCal();drawSlots()};
+
+function lang(l){L=l;document.documentElement.lang=l;var t=T[l];
+  document.querySelectorAll('[data-t]').forEach(function(n){var k=n.dataset.t;if(t[k]!=null)n.innerHTML=t[k]});
+  document.querySelectorAll('[data-ph]').forEach(function(n){n.placeholder=t[n.dataset.ph]});
+  document.querySelectorAll('[data-lang]').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.lang===l)});
+  document.title=l==='el'?'Κλείστε δωρεάν κλήση γνωριμίας | Advon Media':'Book a free intro call | Advon Media';
+  drawCal();drawSlots();if(!$('v2').hidden)chip();if(!$('v3').hidden)done()}
+document.querySelectorAll('[data-lang]').forEach(function(b){b.onclick=function(){lang(b.dataset.lang)}});
+
+var f=firstFree();if(f){view=new Date(f.getFullYear(),f.getMonth(),1)}
+drawCal();drawSlots();
+})();
+</script>
+</body>
+</html>

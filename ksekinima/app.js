@@ -35,3 +35,40 @@
     set: function (o) { try { sessionStorage.setItem('adv-start', JSON.stringify(o)); } catch (e) {} }
   };
 })();
+/* uploads: three drop boxes (photos / logo / docs), thumbnails with remove. Files stay in the browser — nothing is uploaded in the draft. */
+window.advUploads = function (form, thumbs, onCount) {
+  var store = { photos: [], logo: [], docs: [] };
+  function total() { return store.photos.length + store.logo.length + store.docs.length; }
+  function render() {
+    thumbs.innerHTML = '';
+    Object.keys(store).forEach(function (k) {
+      var box = form.querySelector('.up[data-k=' + k + ']');
+      box.classList.toggle('has', store[k].length > 0); box.querySelector('.cnt').textContent = store[k].length;
+      store[k].forEach(function (it, i) {
+        var fg = document.createElement('figure');
+        if (it.url) { var im = document.createElement('img'); im.src = it.url; im.alt = ''; fg.appendChild(im); }
+        else { var s = document.createElement('span'); s.className = 'doc'; s.textContent = (it.f.name.split('.').pop() || 'FILE').toUpperCase(); fg.appendChild(s); }
+        var c = document.createElement('figcaption'); c.textContent = it.f.name; fg.appendChild(c);
+        var x = document.createElement('button'); x.type = 'button'; x.setAttribute('aria-label', 'Αφαίρεση ' + it.f.name); x.textContent = '×';
+        x.onclick = function () { if (it.url) URL.revokeObjectURL(it.url); store[k].splice(i, 1); render(); };
+        fg.appendChild(x); thumbs.appendChild(fg);
+      });
+    });
+    if (onCount) onCount(total());
+  }
+  function add(k, files) {
+    [].forEach.call(files, function (f) {
+      if (total() >= 60) return;
+      store[k].push({ f: f, url: /^image\//.test(f.type) && !/heic/i.test(f.type) ? URL.createObjectURL(f) : null });
+    });
+    render();
+  }
+  [].forEach.call(form.querySelectorAll('.up'), function (box) {
+    var k = box.dataset.k, inp = box.querySelector('input');
+    inp.addEventListener('change', function () { add(k, inp.files); inp.value = ''; });
+    ['dragenter', 'dragover'].forEach(function (t) { box.addEventListener(t, function (e) { e.preventDefault(); box.classList.add('ov'); }); });
+    ['dragleave', 'drop'].forEach(function (t) { box.addEventListener(t, function (e) { e.preventDefault(); box.classList.remove('ov'); if (t === 'drop' && e.dataTransfer) add(k, e.dataTransfer.files); }); });
+  });
+  render();
+  return { counts: function () { return { photos: store.photos.length, logo: store.logo.length, docs: store.docs.length }; } };
+};

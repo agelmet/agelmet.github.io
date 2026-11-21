@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="color-scheme" content="light only">
+<title>Tesla Model 3 trip · Dionysos ⇄ Kalamata</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<style>
+:root{color-scheme:light only;--ink:#16181d;--mute:#5d6470;--line:#e4e6ea;--paper:#f6f7f9;--card:#fff;--blue:#1c6fd8;--green:#16a34a;--amber:#d97706;--red:#dc2626;--orange:#f97316;--purple:#7c3aed}
+*{box-sizing:border-box;min-width:0}
+html,body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;overflow-x:clip}
+header{padding:18px 16px 10px;max-width:1150px;margin:0 auto}
+h1{font-size:22px;margin:0 0 4px;letter-spacing:-.01em}
+.sub{color:var(--mute);font-size:13.5px}
+#map{height:62vh;min-height:380px;max-width:1150px;margin:6px auto 0;border-radius:14px;border:1px solid var(--line);overflow:hidden}
+@media(max-width:700px){#map{border-radius:0;border-left:0;border-right:0;height:56vh}}
+.wrap{max-width:1150px;margin:0 auto;padding:14px 14px 40px}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 14px}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:11px 14px;border-radius:10px;background:var(--blue);color:#fff;text-decoration:none;font-weight:600;font-size:14px;min-height:44px}
+.btn.alt{background:#fff;color:var(--ink);border:1px solid var(--line)}
+.key{display:flex;gap:14px;flex-wrap:wrap;font-size:12.5px;color:var(--mute);margin:0 0 14px}
+.key span{display:inline-flex;align-items:center;gap:6px}
+.key i{width:13px;height:13px;border-radius:50%;display:inline-block}
+.rules{background:#ecfdf3;border:1px solid #bbf0cf;border-radius:14px;padding:14px 16px;margin-bottom:16px}
+.rules b{display:block;margin-bottom:6px;font-size:15px}
+.rules ol{margin:0;padding-left:20px}.rules li{margin:3px 0}
+.cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px}
+@media(max-width:860px){.cols{grid-template-columns:minmax(0,1fr)}}
+.leg{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+.leg h2{font-size:17px;margin:0 0 2px}
+.leg .km{color:var(--mute);font-size:13px;margin-bottom:10px}
+.pt{display:grid;grid-template-columns:30px minmax(0,1fr);gap:10px;padding:11px 0;border-top:1px solid var(--line)}
+.pt:first-of-type{border-top:0}
+.num{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:700;font-size:13px}
+.name{font-weight:650}
+.meta{color:var(--mute);font-size:12.5px}
+.bar{position:relative;height:12px;background:#eef0f3;border-radius:6px;margin:7px 0 4px;overflow:hidden}
+.bar i{position:absolute;top:0;bottom:0;border-radius:6px}
+.bar .mid{position:absolute;top:-2px;bottom:-2px;width:2px;background:var(--ink)}
+.rng{font-weight:700;font-variant-numeric:tabular-nums}
+.chg{display:inline-block;margin:6px 0 2px;padding:5px 9px;border-radius:7px;background:#e8f1fc;color:#124a94;font-size:12.5px;font-weight:600}
+.tip{display:block;margin:5px 0 2px;padding:6px 9px;border-radius:7px;background:#fff7ed;color:#7c3d06;font-size:12.5px}
+.lnk{font-size:13px;color:var(--blue);text-decoration:none;font-weight:600;display:inline-block;padding:4px 0}
+.plans{margin-top:16px}
+.plans h2{font-size:18px;margin:0 0 4px}
+.plan{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-top:10px;display:grid;grid-template-columns:44px minmax(0,1fr);gap:12px;align-items:start}
+.tag{font-weight:800;font-size:13px;border-radius:8px;padding:6px 0;text-align:center;color:#fff}
+.plan .t{font-weight:650}
+.plan p{margin:3px 0 0;font-size:13.5px;color:#30353d}
+.note{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-top:16px;font-size:13.5px}
+.note b{display:block;margin-bottom:4px}
+.note ul{margin:6px 0 0;padding-left:18px}
+.leaflet-popup-content{font:13.5px/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+.pin{width:30px;height:30px;border-radius:50%;border:3px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.35);display:grid;place-items:center;color:#fff;font-weight:800;font-size:12px}
+.pin.small{width:24px;height:24px;font-size:10px;border-width:2px}
+</style>
+</head>
+<body>
+<header>
+  <div style="display:flex;justify-content:space-between;gap:10px;align-items:flex-start"><h1>Model 3 trip: Dionysos ⇄ Kalamata, with backup plans</h1><a href="./" class="btn alt" style="flex:none;min-height:38px;padding:8px 12px">Ελληνικά</a></div>
+  <div class="sub">Your car: 254 km at 60% → <b>~423 km shown at 100%</b> (a Model 3 RWD). Real motorway range in November ≈ <b>300 km</b>, so the numbers below use that, not the dashboard km. Leave at <b>100%</b>. Battery shown as a <b>safe range</b>: low = cold, rain, 130+ km/h · high = calm 110–120. Black line = most likely.</div>
+</header>
+<div id="map"></div>
+<div class="wrap">
+  <div class="btns">
+    <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Dionysos%2C+Attica&destination=Kalamata&waypoints=Kapandriti%7CEdrive+Cafe+Spartis+60+Tripoli%7C%CE%A3%CE%95%CE%91+%CE%91%CF%81%CF%86%CE%B1%CF%81%CF%8E%CE%BD&travelmode=driving">Google Maps: the way there</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Kalamata&destination=Dionysos%2C+Attica&waypoints=Edrive+Cafe+Spartis+60+Tripoli&travelmode=driving">Google Maps: the way back</a>
+    <a class="btn alt" target="_blank" rel="noopener" href="https://www.plugshare.com/">Check chargers live (PlugShare)</a>
+  </div>
+  <div class="key">
+    <span><i style="background:var(--blue)"></i>Plan A charger</span>
+    <span><i style="background:var(--orange)"></i>Plan B / C backup</span>
+    <span><i style="background:var(--purple)"></i>Emergency only</span>
+    <span><i style="background:#64748b"></i>Route points</span>
+  </div>
+
+  <div class="rules">
+    <b>The 5 rules that keep this stress-free</b>
+    <ol>
+      <li>Night before: set the charge limit to <b>100%</b> (fine for your battery type) and leave full.</li>
+      <li>Charge twice going (Tripoli + Αρφαρά, just before Kalamata) and once coming back (Tripoli). That way you <b>leave Kalamata nearly full</b>.</li>
+      <li><b>Never drive past a working charger when you are under 35%.</b> Stop, add 15 minutes, carry on.</li>
+      <li>Morning of the trip: open PlugShare and check Electrip Tripoli and ΣΕΑ Αρφαρών show as working.</li>
+      <li>Apps installed + card added before leaving: <b>Electrip</b>, <b>nrg incharge</b>, <b>ΔΕΗ blue</b>, <b>ElpeFuture</b>. Tesla roadside help: <b>2111 984867</b>.</li>
+    </ol>
+  </div>
+
+  <div class="cols">
+    <section class="leg" id="go"><h2>The way there</h2><div class="km">~285 km · ~3h10 driving + ~45 min charging (2 stops)</div></section>
+    <section class="leg" id="back"><h2>The way back</h2><div class="km">~270 km · ~3h driving + ~30 min charging (1 stop)</div></section>
+  </div>
+
+  <div class="plans">
+    <h2>If something goes wrong: going</h2>
+    <div class="plan"><div class="tag" style="background:var(--blue)">A</div><div><div class="t">Tripoli · Electrip 400 kW (Σπάρτης 60–62)</div><p>Charge to <b>80%</b> (~25 min). On the side of town facing Kalamata.</p></div></div>
+    <div class="plan"><div class="tag" style="background:var(--orange)">B</div><div><div class="t">Tripoli · ΔΕΗ Blue 300 kW (ΑΒ Ναυπλίου 39) or nrg 180 kW (Shell Ναυπλίου 56)</div><p>Electrip busy or broken? Both are 3 minutes away. Same plan: charge to 80%.</p></div></div>
+    <div class="plan"><div class="tag" style="background:var(--orange)">C</div><div><div class="t">All of Tripoli down → ΣΕΑ Αρφαρών 360 kW (towards Kalamata)</div><p>Only if you have <b>30% or more</b> when you leave Tripoli. It's ~65 km, mostly downhill, so you arrive with ~10–20%. Under 30%: take any working charger in Tripoli (even a slow one) up to 40% first.</p></div></div>
+    <div class="plan"><div class="tag" style="background:var(--orange)">✓</div><div><div class="t">Early safety valve · ΣΕΑ Σπαθοβουνίου (towards Kalamata, 50 kW)</div><p>~55 km before Tripoli. If you are <b>under 50%</b> there, stop 15 min (adds ~15%). Then Tripoli is relaxed.</p></div></div>
+    <div class="plan"><div class="tag" style="background:var(--orange)">!</div><div><div class="t">Αρφαρά top-up broken?</div><p>You'll still reach Kalamata with ~55%. Use the 50 kW charger at ΣΕΑ Αρφαρών on the way back (other side of the road, 25 km after Kalamata), 30 min to ~80%. Or plan E below.</p></div></div>
+    <div class="plan"><div class="tag" style="background:var(--purple)">E</div><div><div class="t">Emergency · ElpeFuture 150 kW, ΕΚΟ Ηρώων Πολυτεχνείου, Καλαμάτα</div><p>Public charger inside Kalamata. Not on your plan, but there if you ever need it.</p></div></div>
+
+    <h2 style="margin-top:20px">If something goes wrong: coming back</h2>
+    <div class="plan"><div class="tag" style="background:var(--blue)">A</div><div><div class="t">Tripoli · Electrip 400 kW</div><p>Arrive ~42–54%. Charge to <b>95%</b> (~30 min).</p></div></div>
+    <div class="plan"><div class="tag" style="background:var(--orange)">B</div><div><div class="t">Tripoli · ΔΕΗ Blue (ΑΒ Ναυπλίου 39) or nrg (Shell Ναυπλίου 56)</div><p>3 minutes away. Same plan.</p></div></div>
+    <div class="plan"><div class="tag" style="background:var(--orange)">C</div><div><div class="t">ΣΕΑ Νεστάνης (towards Athens, 50 kW)</div><p>~15 km after Tripoli. Slower: ~40 min to 85%.</p></div></div>
+    <div class="plan"><div class="tag" style="background:var(--orange)">D</div><div><div class="t">ΣΕΑ Σπαθοβουνίου (towards Korinthos, 360 kW)</div><p>~55 km after Tripoli, mostly downhill. Reachable from Tripoli with 40%+ (you arrive ~25%+). Fast: ~25 min to 90%.</p></div></div>
+    <div class="plan"><div class="tag" style="background:var(--orange)">+</div><div><div class="t">Extra cushion · ΣΕΑ Αρφαρών (towards Korinthos, 50 kW) and ΣΕΑ Μεγάρων (towards Athens, 50 kW)</div><p>Αρφαρά is 25 km after Kalamata, Μέγαρα ~60 km before home. Use either if the numbers ever look lower than this page.</p></div></div>
+  </div>
+
+  <div class="note">
+    <b>Good to know</b>
+    <ul>
+      <li>There are <b>no Tesla Superchargers</b> on this route (the nearest are near Patras). All stops here are other companies' fast chargers; your Model 3 plugs in normally (CCS).</li>
+      <li>Rest-stop charger power comes from a published list and can change. The pins at rest stops (ΣΕΑ) are approximate; the Google Maps links search the exact place.</li>
+      <li>Your car's own range estimate will drop faster than the km shown when you climb towards Tripoli and recover on the way down to Kalamata. That's normal.</li>
+      <li>Set the next charger as a stop in the car's navigation so the battery warms up and charges faster.</li>
+    </ul>
+  </div>
+  <p class="sub" style="margin-top:14px">Estimates, not exact. Distances approximate. Map © OpenStreetMap contributors · road route: OSRM.</p>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+{
+const Q = s => 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(s);
+const P = {
+  dio:{n:'Dionysos (start / home)', ll:[38.1067,23.8733], q:'Dionysos, Attica'},
+  kap:{n:'Kapandriti (your stop)', ll:[38.2167,23.8672], q:'Kapandriti'},
+  meg:{n:'ΣΕΑ Μεγάρων · 50 kW (both directions)', ll:[37.9930,23.3700], q:'ΣΕΑ Μεγάρων Ολυμπία Οδός'},
+  can:{n:'Corinth Canal', ll:[37.9339,22.9885], q:'Corinth Canal bridge A8'},
+  spa:{n:'ΣΕΑ Σπαθοβουνίου · 50 kW to Kalamata / 360 kW to Korinthos', ll:[37.8330,22.7960], q:'ΣΕΑ Σπαθοβουνίου'},
+  nes:{n:'ΣΕΑ Νεστάνης · 50 kW (towards Athens only)', ll:[37.6050,22.4400], q:'ΣΕΑ Νεστάνης'},
+  tri:{n:'Tripoli · Electrip 400 kW', ll:[37.4975,22.3790], q:'Edrive Cafe Spartis 60 Tripoli', a:'Σπάρτης 60–62, Τρίπολη (Edrive Café)'},
+  arf:{n:'ΣΕΑ Αρφαρών (Αγ. Φλώρος) · 360 kW to Kalamata / 50 kW to Korinthos', ll:[37.1600,22.0300], q:'ΣΕΑ Αρφαρών'},
+  kal:{n:'Kalamata', ll:[37.0389,22.1142], q:'Kalamata'}
+};
+const CHARGERS = [
+  {k:'tri', role:'A', c:'#1c6fd8'},
+  {k:'arf', role:'A', c:'#1c6fd8'},
+  {k:'spa', role:'B', c:'#f97316'},
+  {k:'nes', role:'C', c:'#f97316'},
+  {k:'meg', role:'+', c:'#f97316'}
+];
+const EXTRA = [
+  {n:'Plan B · ΔΕΗ Blue 300 kW', a:'ΑΒ Βασιλόπουλος, Ναυπλίου 39, Τρίπολη', ll:[37.5135,22.3830], q:'AB Vasilopoulos Nafpliou 39 Tripoli', c:'#f97316', l:'B'},
+  {n:'Plan B · nrg 180 kW', a:'Shell, Ναυπλίου 56, Τρίπολη', ll:[37.5150,22.3862], q:'Shell Nafpliou 56 Tripoli', c:'#f97316', l:'B'},
+  {n:'Emergency · ElpeFuture 150 kW', a:'ΕΚΟ, Ηρώων Πολυτεχνείου, Καλαμάτα', ll:[37.0480,22.1190], q:'EKO Iroon Polytechniou Kalamata', c:'#7c3aed', l:'E'}
+];
+// battery: [low, likely, high]
+const GO = [
+  {p:'dio', km:0,   b:[100,100,100], t:'Leave Dionysos'},
+  {p:'kap', km:15,  b:[94,95,96]},
+  {p:'meg', km:80,  b:[69,73,76], t:'ΣΕΑ Μεγάρων (pass by)'},
+  {p:'can', km:115, b:[57,61,65]},
+  {p:'spa', km:140, b:[48,53,57], t:'ΣΕΑ Σπαθοβουνίου', tip:'Under 50% here? Stop 15 min (safety valve).'},
+  {p:'tri', km:195, b:[22,29,34], t:'Tripoli · Electrip (Plan A)', c:'Charge ~25 min → 80%'},
+  {p:'arf', km:260, b:[58,63,67], t:'ΣΕΑ Αρφαρών (towards Kalamata)', c:'Top up ~20 min → 100%', tip:'This replaces charging in Kalamata.'},
+  {p:'kal', km:285, b:[89,92,94], t:'Arrive Kalamata'}
+];
+const BACK = [
+  {p:'kal', km:0,   b:[80,84,88], t:'Leave Kalamata', tip:'Assumes ≤25 km of driving around Kalamata.'},
+  {p:'arf', km:25,  b:[70,74,78], t:'ΣΕΑ Αρφαρών (towards Korinthos, 50 kW backup)'},
+  {p:'tri', km:90,  b:[42,48,54], t:'Tripoli · Electrip (Plan A)', c:'Charge ~30 min → 95%'},
+  {p:'nes', km:105, b:[88,90,92], t:'ΣΕΑ Νεστάνης (pass by)'},
+  {p:'spa', km:145, b:[76,80,83], t:'ΣΕΑ Σπαθοβουνίου (pass by)'},
+  {p:'can', km:175, b:[68,72,76]},
+  {p:'meg', km:210, b:[56,60,64], t:'ΣΕΑ Μεγάρων (pass by)'},
+  {p:'dio', km:270, b:[34,39,44], t:'Arrive Dionysos'}
+];
+const col = v => v>=50?'#16a34a':v>=25?'#d97706':'#dc2626';
+const rtxt = b => b[0]===b[2]?b[0]+'%':b[0]+'–'+b[2]+'%';
+function row(s,i){
+  const p=P[s.p];
+  return `<div class="pt"><div class="num" style="background:${col(s.b[0])}">${i+1}</div><div>
+    <div class="name">${s.t||p.n}</div>
+    <div class="meta">${s.km} km${p.a?' · '+p.a:''}</div>
+    <div class="bar"><i style="left:${s.b[0]}%;width:${Math.max(s.b[2]-s.b[0],1)}%;background:${col(s.b[0])}"></i><span class="mid" style="left:${s.b[1]}%"></span></div>
+    <div><span class="rng">${rtxt(s.b)}</span> <span class="meta">(most likely ~${s.b[1]}%)</span></div>
+    ${s.c?`<span class="chg">⚡ ${s.c}</span><br>`:''}
+    ${s.tip?`<span class="tip">${s.tip}</span>`:''}
+    <a class="lnk" target="_blank" rel="noopener" href="${Q(p.q)}">Open in Google Maps ↗</a>
+  </div></div>`;
+}
+document.getElementById('go').insertAdjacentHTML('beforeend', GO.map(row).join(''));
+document.getElementById('back').insertAdjacentHTML('beforeend', BACK.map(row).join(''));
+
+const map = L.map('map',{scrollWheelZoom:false}).setView([37.65,22.95],8);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'© OpenStreetMap'}).addTo(map);
+const pin=(label,color,small)=>L.divIcon({className:'',html:`<div class="pin${small?' small':''}" style="background:${color}">${label}</div>`,iconSize:small?[24,24]:[30,30],iconAnchor:small?[12,12]:[15,15]});
+function popup(k){
+  const p=P[k], g=GO.find(s=>s.p===k), b=BACK.find(s=>s.p===k);
+  let h=`<b>${p.n}</b>${p.a?'<br>'+p.a:''}`;
+  if(g) h+=`<br>Going: <b>${rtxt(g.b)}</b>${g.c?'<br>⚡ '+g.c:''}`;
+  if(b) h+=`<br>Coming back: <b>${rtxt(b.b)}</b>${b.c?'<br>⚡ '+b.c:''}`;
+  return h+`<br><a target="_blank" rel="noopener" href="${Q(p.q)}">Open in Google Maps ↗</a>`;
+}
+['dio','kap','can','kal'].forEach(k=>L.marker(P[k].ll,{icon:pin('•','#64748b',true)}).addTo(map).bindPopup(popup(k)));
+CHARGERS.forEach(x=>L.marker(P[x.k].ll,{icon:pin(x.role==='A'?'⚡':x.role,x.c,x.role!=='A')}).addTo(map).bindPopup(popup(x.k)));
+EXTRA.forEach(e=>L.marker(e.ll,{icon:pin(e.l,e.c,true)}).addTo(map).bindPopup(`<b>${e.n}</b><br>${e.a}<br><a target="_blank" rel="noopener" href="${Q(e.q)}">Open in Google Maps ↗</a>`));
+
+const fallback=[[38.1067,23.8733],[38.2167,23.8672],[38.142,23.858],[38.07,23.75],[38.04,23.54],[37.993,23.37],[37.9339,22.9885],[37.905,22.88],[37.833,22.796],[37.62,22.47],[37.4975,22.379],[37.40,22.14],[37.16,22.03],[37.0389,22.1142]];
+let line=L.polyline(fallback,{color:'#1c6fd8',weight:5,opacity:.7,dashArray:'6 8'}).addTo(map);
+map.fitBounds(line.getBounds(),{padding:[30,30]});
+const pts=['dio','kap','tri','kal'].map(k=>P[k].ll[1]+','+P[k].ll[0]).join(';');
+fetch('https://router.project-osrm.org/route/v1/driving/'+pts+'?overview=full&geometries=geojson')
+ .then(r=>r.json()).then(j=>{
+   if(!j.routes||!j.routes[0]) return;
+   const c=j.routes[0].geometry.coordinates.map(x=>[x[1],x[0]]);
+   map.removeLayer(line);
+   line=L.polyline(c,{color:'#1c6fd8',weight:5,opacity:.85}).addTo(map);
+   map.fitBounds(line.getBounds(),{padding:[30,30]});
+ }).catch(()=>{});
+}
+</script>
+</body>
+</html>

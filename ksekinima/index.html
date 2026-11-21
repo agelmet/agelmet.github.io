@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- «Ξεκινάμε τώρα» v3 · 21 Nov 2026 · no-call start, no payment on the page (paid at the first draft).
+<!-- «Ξεκινάμε τώρα» v4 · 21 Nov 2026 · no-call start, card payment at the end (Stripe of the Advon shop, Angelo absorbs the fee).
      VIDEO: the page reads https://drafts.advonmedia.com/advon-video/ksekinima.json — when that file exists the
      player appears by itself (0 Netlify credits to add or change the video). Until then the «Με μια ματιά» card shows. -->
 <html lang="el">
@@ -10,7 +10,7 @@
 <meta name="theme-color" content="#0A0F16">
 <meta name="robots" content="noindex,nofollow">
 <title>Ξεκινήστε την ιστοσελίδα σας τώρα, χωρίς ραντεβού | Advon Media</title>
-<meta name="description" content="Δείτε το σύντομο βίντεο, στείλτε τα στοιχεία και το υλικό σας, και ξεκινάμε σήμερα. Κατασκευή 0€, χωρίς προκαταβολή — πληρώνετε τη φιλοξενία όταν δείτε το πρώτο σχέδιο.">
+<meta name="description" content="Δείτε το σύντομο βίντεο, στείλτε τα στοιχεία και το υλικό σας, και ξεκινάμε σήμερα. Κατασκευή 0€ — μόνο 130€ + ΦΠΑ τον χρόνο για φιλοξενία & domain, με απεριόριστες αλλαγές.">
 <link rel="icon" href="img/advon-icon-32.png">
 <link rel="apple-touch-icon" href="img/advon-icon-180.png">
 <link rel="preload" href="fonts/manrope-greek-800-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -418,9 +418,9 @@ p{text-wrap:pretty}
 <!-- ===================== HERO ===================== -->
 <section class="hero"><i class="glow2" aria-hidden="true"></i><div class="wrap">
   <div class="hero-top">
-    <span class="pill rv"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></i>Χωρίς ραντεβού · χωρίς προκαταβολή</span>
+    <span class="pill rv"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></i>Χωρίς ραντεβού · ξεκινάμε σήμερα</span>
     <h1 class="rv">Η ιστοσελίδα σας ξεκινά <em>σήμερα</em>.<br>Χωρίς ραντεβού.</h1>
-    <p class="lead rv" id="heroLead">Όσα λέμε σε κάθε συνάντηση, τα βρίσκετε εδώ. Συμπληρώνετε τα στοιχεία σας, ανεβάζετε ό,τι έχετε και ξεκινάμε. Πληρώνετε μόνο όταν δείτε την ιστοσελίδα σας έτοιμη.</p>
+    <p class="lead rv" id="heroLead">Όσα λέμε σε κάθε συνάντηση, τα βρίσκετε εδώ. Συμπληρώνετε τα στοιχεία σας, ανεβάζετε ό,τι έχετε, και ξεκινάμε σήμερα. Οι αλλαγές είναι απεριόριστες, μέχρι να γίνει ακριβώς όπως τη φανταστήκατε.</p>
   </div>
 
   <!-- video (appears by itself when the video file exists) -->
@@ -447,7 +447,7 @@ p{text-wrap:pretty}
   <div class="hero-proof rv">
     <span><span class="stars" aria-hidden="true">★★★★★</span><b>140+</b> κριτικές στο Google, όλες 5 αστέρια</span>
     <span><b>250+</b> ιστοσελίδες online</span>
-    <span><b>0€</b> σήμερα</span>
+    <span><b>0€</b> κατασκευή</span>
   </div>
 </div></section>
 
@@ -460,10 +460,10 @@ p{text-wrap:pretty}
   </div>
   <div class="qa">
     <details class="q rv" open><summary><span class="n">1</span>Πόσο κοστίζει στ' αλήθεια;<span class="pl"></span></summary><div class="a"><p>Η κατασκευή <b>0€</b>. Πληρώνετε μόνο φιλοξενία και domain: <b>130€ + ΦΠΑ τον χρόνο (161,20€)</b>.</p><p>Μέσα είναι όλα: το domain, η ασφάλεια (SSL), η ταχύτητα και να είναι πάντα online. Κανένα άλλο υποχρεωτικό κόστος.</p></div></details>
-    <details class="q rv"><summary><span class="n">2</span>Πληρώνω κάτι για να ξεκινήσετε;<span class="pl"></span></summary><div class="a"><p><b>Όχι, καμία προκαταβολή.</b> Στέλνετε τα στοιχεία σας και ξεκινάμε. Πληρώνετε τη φιλοξενία όταν δείτε το πρώτο σχέδιο, με τιμολόγιο.</p></div></details>
+    <details class="q rv"><summary><span class="n">2</span>Πώς πληρώνω;<span class="pl"></span></summary><div class="a"><p>Με κάρτα, στο τέλος της φόρμας: <b>161,20€</b> (130€ + ΦΠΑ) για τον πρώτο χρόνο φιλοξενίας και domain. Χωρίς καμία επιπλέον χρέωση για την πληρωμή, και με παραστατικό.</p><p>Οι 365 ημέρες μετράνε από τη μέρα που η ιστοσελίδα σας βγαίνει online, όχι από σήμερα.</p></div></details>
     <details class="q rv"><summary><span class="n">3</span>Σε πόσο καιρό είναι έτοιμη;<span class="pl"></span></summary><div class="a"><p>Το πρώτο σχέδιο σε <b>2–7 ημέρες</b> από τη στιγμή που έχουμε το υλικό σας. Αν βιάζεστε, με την <b>express παράδοση</b> το βλέπετε σε 1–2 εργάσιμες και σας καλούμε την ίδια μέρα.</p></div></details>
     <details class="q rv"><summary><span class="n">4</span>Τι χρειάζεστε από εμένα;<span class="pl"></span></summary><div class="a"><p>Ό,τι έχετε: φωτογραφίες, λογότυπο ή κάρτα, κείμενα. Δεν χρειάζεται να είναι τέλεια.</p><p>Δεν έχετε τίποτα έτοιμο; Μας δίνετε το link ενός προφίλ σας (π.χ. doctoranytime, Facebook, Google) και <b>γράφουμε εμείς τα κείμενα</b>. Δεν έχετε λογότυπο; Σας φτιάχνουμε.</p></div></details>
-    <details class="q rv"><summary><span class="n">5</span>Κι αν δεν μου αρέσει;<span class="pl"></span></summary><div class="a"><p>Μας λέτε τι θέλετε να αλλάξει και το αλλάζουμε, <b>όσες φορές χρειαστεί</b>, μέχρι να γίνει ακριβώς όπως τη φανταστήκατε. Δεν βγαίνει online πριν πείτε εσείς «ναι».</p></div></details>
+    <details class="q rv"><summary><span class="n">5</span>Κι αν δεν μου αρέσει;<span class="pl"></span></summary><div class="a"><p>Μας λέτε τι θέλετε να αλλάξει και το αλλάζουμε, <b>όσες φορές χρειαστεί</b>, μέχρι να γίνει ακριβώς όπως τη φανταστήκατε — και καλύτερα. Δεν βγαίνει online πριν πείτε εσείς «ναι».</p></div></details>
     <details class="q rv"><summary><span class="n">6</span>Θα με βρίσκουν στο Google;<span class="pl"></span></summary><div class="a"><p>Κάθε ιστοσελίδα φτιάχνεται για να εμφανίζεται στο Google και στις αναζητήσεις μέσω AI (ChatGPT κ.ά.): με το όνομά σας, τις υπηρεσίες σας και την περιοχή σας.</p><p>Κανείς δεν μπορεί να υποσχεθεί την πρώτη θέση. Ένα σωστό προφίλ στο Google Maps και οι κριτικές σας βοηθούν πολύ, και σας τα στήνουμε κι αυτά αν θέλετε.</p></div></details>
     <details class="q rv"><summary><span class="n">7</span>Το domain (π.χ. onoma-epaggelma.gr);<span class="pl"></span></summary><div class="a"><p><b>Περιλαμβάνεται.</b> Μας λέτε ποιο θέλετε ή σας προτείνουμε εμείς. Αν έχετε ήδη δικό σας, το συνδέουμε στη νέα ιστοσελίδα.</p></div></details>
     <details class="q rv"><summary><span class="n">8</span>Και μετά τη δημοσίευση;<span class="pl"></span></summary><div class="a"><p>Μέχρι να βγει online οι αλλαγές είναι απεριόριστες. Αφού δημοσιευτεί, κάθε αίτημα αλλαγών κοστίζει <b>50€</b> (ένα αίτημα μπορεί να έχει πολλές αλλαγές, έτοιμες σε 3 εργάσιμες).</p><p>Ή παίρνετε τον <b>πίνακα διαχείρισης (180€ εφάπαξ)</b> και αλλάζετε μόνοι σας κείμενα και φωτογραφίες, όποτε θέλετε.</p></div></details>
@@ -474,9 +474,9 @@ p{text-wrap:pretty}
 <section class="sec alt" id="pos"><div class="wrap">
   <div class="sh c rv"><span class="kick">Πώς προχωράμε</span><h2>Τέσσερα βήματα. Το πρώτο παίρνει 5 λεπτά.</h2></div>
   <div class="steps" id="steps"><div class="rail" aria-hidden="true"><i></i></div>
-    <div class="st"><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/><path d="m7 9 5-5 5 5"/><path d="M12 4v12"/></svg></span><div><h3>Στέλνετε στοιχεία &amp; υλικό</h3><p>Από αυτή τη σελίδα, σε περίπου 5 λεπτά. Ό,τι έχετε, όπως το έχετε.</p><span class="tag">5 λεπτά</span></div></div>
+    <div class="st"><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/><path d="m7 9 5-5 5 5"/><path d="M12 4v12"/></svg></span><div><h3>Στέλνετε στοιχεία &amp; υλικό</h3><p>Από αυτή τη σελίδα, σε περίπου 5 λεπτά. Ό,τι έχετε, όπως το έχετε, και πληρώνετε με κάρτα.</p><span class="tag">5 λεπτά</span></div></div>
     <div class="st"><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 1 1 3 3L7 19l-4 1 1-4z"/></svg></span><div><h3>Ξεκινάμε την ίδια μέρα</h3><p>Γράφουμε τα κείμενα και στήνουμε όλη τη σελίδα. Αν λείπει κάτι, σας στέλνουμε μήνυμα.</p><span class="tag">ίδια μέρα</span></div></div>
-    <div class="st"><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="m9 11 2 2 4-4"/></svg></span><div><h3>Βλέπετε το πρώτο σχέδιο</h3><p>Σε κινητό και υπολογιστή. Τότε, και μόνο τότε, πληρώνετε τη φιλοξενία.</p><span class="tag">2–7 ημέρες</span></div></div>
+    <div class="st"><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="m9 11 2 2 4-4"/></svg></span><div><h3>Βλέπετε το πρώτο σχέδιο</h3><p>Σε κινητό και υπολογιστή. Μας λέτε τι σας αρέσει και τι θέλετε να αλλάξει.</p><span class="tag">2–7 ημέρες</span></div></div>
     <div class="st"><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span><div><h3>Αλλαγές, και online</h3><p>Όσες αλλαγές θέλετε, μέχρι να είναι τέλεια. Μετά τη βγάζουμε online με το δικό σας domain.</p><span class="tag ok">έτοιμη</span></div></div>
   </div>
 </div></section>
@@ -487,8 +487,8 @@ p{text-wrap:pretty}
   <div class="price">
     <div class="pcard rv">
       <span class="lbl">Ιστοσελίδα</span>
-      <div class="now"><b class="tnum">0€</b><span>σήμερα</span></div>
-      <p class="then">Μετά: <b>130€ + ΦΠΑ τον χρόνο</b> για φιλοξενία &amp; domain, πληρωτέα όταν δείτε το πρώτο σχέδιο.</p>
+      <div class="now"><b class="tnum">0€</b><span>κατασκευή</span></div>
+      <p class="then">Πληρώνετε μόνο <b>130€ + ΦΠΑ τον χρόνο (161,20€)</b> για φιλοξενία &amp; domain, με κάρτα, όταν στείλετε τα στοιχεία σας.</p>
       <ul class="inc">
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Σχεδιασμός από την αρχή, για εσάς — όχι έτοιμο πρότυπο</li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Κείμενα γραμμένα από εμάς, στα ελληνικά και στα αγγλικά</li>
@@ -501,7 +501,7 @@ p{text-wrap:pretty}
     </div>
     <div class="xcard rv">
       <h3>Προαιρετικά — μόνο αν τα θέλετε</h3>
-      <p>Τα επιλέγετε στη φόρμα. Δεν πληρώνεται τίποτα σήμερα.</p>
+      <p>Τα επιλέγετε στη φόρμα. Το express πληρώνεται μαζί με τη φιλοξενία· τα υπόλοιπα μόνο αν τα επιβεβαιώσετε αργότερα.</p>
       <ul class="xl">
         <li class="hl"><span><b>Express παράδοση</b><small>Πρώτο σχέδιο σε 1–2 εργάσιμες + κλήση την ίδια μέρα</small></span><span class="pr">+50€</span></li>
         <li><span><b>Πίνακας διαχείρισης</b><small>Αλλάζετε μόνοι σας κείμενα και φωτογραφίες</small></span><span class="pr">180€ εφάπαξ</span></li>
@@ -540,14 +540,14 @@ p{text-wrap:pretty}
 
 <!-- ===================== ORDER ===================== -->
 <section class="sec order" id="ksekiname"><div class="wrap">
-  <div class="sh c rv"><span class="kick">Ξεκινάμε</span><h2>Τέσσερα σύντομα βήματα και ξεκινάμε σήμερα.</h2><p>Σήμερα δεν πληρώνετε τίποτα. Ό,τι στείλετε έρχεται κατευθείαν σε εμάς.</p></div>
+  <div class="sh c rv"><span class="kick">Ξεκινάμε</span><h2>Τέσσερα σύντομα βήματα και ξεκινάμε σήμερα.</h2><p>Ό,τι στείλετε έρχεται κατευθείαν σε εμάς. Στο τέλος πληρώνετε με κάρτα, με ασφάλεια.</p></div>
   <div class="og">
     <div class="fcard" id="fcard">
       <div class="stepper" role="tablist" aria-label="Βήματα">
         <button type="button" class="on" data-s="1" role="tab" aria-selected="true"><i>1</i><span>Στοιχεία</span></button>
         <button type="button" data-s="2" role="tab" disabled><i>2</i><span>Υλικό</span></button>
         <button type="button" data-s="3" role="tab" disabled><i>3</i><span>Επιλογές</span></button>
-        <button type="button" data-s="4" role="tab" disabled><i>4</i><span>Αποστολή</span></button>
+        <button type="button" data-s="4" role="tab" disabled><i>4</i><span>Πληρωμή</span></button>
       </div>
 
       <form id="of" novalidate>
@@ -592,7 +592,7 @@ p{text-wrap:pretty}
         <!-- 3 -->
         <div class="pane" data-p="3">
           <h3>Επιλογές</h3>
-          <p class="ph">Όλα προαιρετικά. Τίποτα δεν πληρώνεται σήμερα.</p>
+          <p class="ph">Όλα προαιρετικά.</p>
           <label class="xp" id="xp"><input type="checkbox" id="f-express"><i><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></i><span><b>Express παράδοση</b><span>Πρώτο σχέδιο σε 1–2 εργάσιμες από τη στιγμή που έχουμε το υλικό σας, και σας καλούμε την ίδια μέρα.</span></span><span><span class="pr">+50€ + ΦΠΑ</span><span class="sw" aria-hidden="true"></span></span></label>
           <div class="grid2"><div class="fld full"><label for="f-domain">Ποιο domain θα θέλατε; <small>(προαιρετικό)</small></label><input id="f-domain" type="text" placeholder="π.χ. papadopoulou-psychologos.gr" autocapitalize="off"><span class="hint">Περιλαμβάνεται. Αν δεν ξέρετε, σας προτείνουμε εμείς.</span></div></div>
           <p class="subh">Θέλετε και κάτι από αυτά;<small>Σας ρωτάμε ξανά όταν δείτε την ιστοσελίδα — τα πληρώνετε μόνο αν τα επιβεβαιώσετε.</small></p>
@@ -614,17 +614,17 @@ p{text-wrap:pretty}
 
         <!-- 4 -->
         <div class="pane" data-p="4">
-          <h3>Έλεγχος &amp; αποστολή</h3>
-          <p class="ph">Δείτε ότι όλα είναι σωστά και πατήστε «Ξεκινήστε».</p>
+          <h3>Έλεγχος &amp; πληρωμή</h3>
+          <p class="ph">Δείτε ότι όλα είναι σωστά. Μετά πληρώνετε με κάρτα, στην ασφαλή σελίδα πληρωμής.</p>
           <dl class="recap" id="recap"></dl>
           <div class="grid2">
             <div class="fld"><label for="f-afm">ΑΦΜ <small>(για το τιμολόγιο · προαιρετικό τώρα)</small></label><input id="f-afm" type="text" inputmode="numeric" maxlength="9" placeholder="9 ψηφία"></div>
             <div class="fld"><label for="f-epo">Επωνυμία <small>(προαιρετικό τώρα)</small></label><input id="f-epo" type="text" placeholder="όπως στην εφορία"></div>
           </div>
-          <div class="zero"><b>Σήμερα πληρώνετε</b><strong class="tnum">0€</strong></div>
+          <div class="zero"><b>Πληρώνετε τώρα με κάρτα</b><strong class="tnum" id="payNow">161,20€</strong></div>
           <label class="consent" id="cons"><input type="checkbox" id="f-terms"><span>Συμφωνώ με τους <a class="tlink" href="#" id="openTerms">όρους συνεργασίας</a> και την <a class="tlink" href="https://advonmedia.com/privacy-policy" target="_blank" rel="noopener">πολιτική απορρήτου</a>.</span></label>
           <p class="fx" id="fx4"></p>
-          <div class="row-act"><button class="back" type="button" data-back="3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>Πίσω</button><button class="btn" type="submit" id="go4">Ξεκινήστε την ιστοσελίδα μου <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button></div>
+          <div class="row-act"><button class="back" type="button" data-back="3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>Πίσω</button><button class="btn" type="submit" id="go4"><span id="go4t">Πληρωμή 161,20€ & ξεκινάμε</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button></div>
         </div>
       </form>
 
@@ -645,12 +645,12 @@ p{text-wrap:pretty}
       <div id="sumX"></div>
       <div class="ln"><span>ΦΠΑ 24%</span><b class="tnum" id="sumV">31,20€</b></div>
       <div class="tot"><span>Σύνολο</span><b class="tnum" id="sumT">161,20€</b></div>
-      <p class="when">Πληρώνεται όταν δείτε το πρώτο σχέδιο, με τιμολόγιο.</p>
+      <p class="when">Με κάρτα, στο τέλος. Χωρίς επιπλέον χρέωση για την πληρωμή.</p>
       <div id="sumO"></div>
-      <div class="today"><span>Σήμερα</span><b class="tnum">0€</b></div>
+      <div class="today"><span>Πληρώνετε τώρα</span><b class="tnum" id="sumNow">161,20€</b></div>
       <p class="mo" id="sumMo" hidden></p>
       <ul>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Καμία προκαταβολή</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Ασφαλής πληρωμή με κάρτα · με παραστατικό</li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Απεριόριστες αλλαγές μέχρι να βγει online</li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Οι 365 ημέρες μετράνε από τη μέρα που βγαίνει online</li>
       </ul>
@@ -668,14 +668,14 @@ p{text-wrap:pretty}
 
 <footer class="ft"><div class="wrap"><span>© <span id="yr">2026</span> Advon Media · Κατασκευή ιστοσελίδων</span><span><a href="https://advonmedia.com/">advonmedia.com</a> · <a href="https://advonmedia.com/privacy-policy">Απόρρητο</a></span></div></footer>
 
-<div class="mbar" id="mbar"><a class="btn" href="#ksekiname" data-go>Ξεκινάω τώρα — 0€ σήμερα</a></div>
+<div class="mbar" id="mbar"><a class="btn" href="#ksekiname" data-go>Ξεκινάω τώρα</a></div>
 
 <div class="mod" id="terms" hidden role="dialog" aria-modal="true" aria-labelledby="termsH"><div class="box">
   <button class="cl" type="button" aria-label="Κλείσιμο" data-close>×</button>
   <h3 id="termsH">Όροι συνεργασίας, με απλά λόγια</h3>
   <ol>
     <li>Η κατασκευή της ιστοσελίδας δεν χρεώνεται. Πληρώνετε φιλοξενία και domain: 130€ + ΦΠΑ τον χρόνο.</li>
-    <li>Δεν υπάρχει προκαταβολή. Η πληρωμή γίνεται όταν σας παραδώσουμε το πρώτο σχέδιο, με τιμολόγιο.</li>
+    <li>Η φιλοξενία του πρώτου χρόνου (και η express παράδοση, αν τη διαλέξετε) πληρώνεται με κάρτα όταν στέλνετε τη φόρμα. Δεν υπάρχει καμία επιπλέον χρέωση για την πληρωμή με κάρτα. Λαμβάνετε παραστατικό.</li>
     <li>Το πρώτο σχέδιο είναι έτοιμο σε 2–7 ημέρες (με express σε 1–2 εργάσιμες) από τη στιγμή που έχουμε το υλικό σας.</li>
     <li>Μέχρι να βγει online, κάνουμε όσες αλλαγές θέλετε. Μετά τη δημοσίευση, κάθε αίτημα αλλαγών κοστίζει 50€ + ΦΠΑ (ένα αίτημα μπορεί να έχει πολλές αλλαγές, έτοιμες σε 3 εργάσιμες), εκτός αν έχετε πίνακα διαχείρισης.</li>
     <li>Οι 365 ημέρες της φιλοξενίας μετράνε από τη μέρα που η ιστοσελίδα βγαίνει online. Κάθε χρόνο μπορείτε να ανανεώσετε ή να σταματήσετε.</li>
@@ -691,7 +691,8 @@ var CFG = {
   // The video: when this JSON exists, the player appears by itself. Format in /advon-video/README on drafts.
   videoJson: 'https://drafts.advonmedia.com/advon-video/ksekinima.json',
   meetings: '',            // e.g. '500+' → kicker «Από 500+ συναντήσεις». Empty = «Από εκατοντάδες συναντήσεις».
-  api: '/api/intake'
+  api: '/api/intake',
+  shop: 'https://advonshop.netlify.app/api/start-checkout'   // the card payment (Stripe of the Advon shop)
 };
 /* ================================================= */
 (function(){
@@ -746,7 +747,7 @@ function showVideo(cfg){
   v.src=cfg.src;if(cfg.poster)v.poster=cfg.poster;
   if(cfg.captions){var tr=d.createElement('track');tr.kind='captions';tr.srclang='el';tr.label='Ελληνικά';tr.src=cfg.captions;tr.default=true;v.appendChild(tr)}
   stage.hidden=false;d.getElementById('glance').hidden=true;
-  d.getElementById('heroLead').textContent=cfg.lead||'Σε '+(cfg.length||'λίγα λεπτά')+' σας λέω όσα λέμε σε κάθε συνάντηση. Μετά συμπληρώνετε τα στοιχεία σας, ανεβάζετε ό,τι έχετε και ξεκινάμε. Πληρώνετε μόνο όταν δείτε την ιστοσελίδα σας έτοιμη.';
+  d.getElementById('heroLead').textContent=cfg.lead||'Σε '+(cfg.length||'λίγα λεπτά')+' σας λέω όσα λέμε σε κάθε συνάντηση. Μετά συμπληρώνετε τα στοιχεία σας, ανεβάζετε ό,τι έχετε, και ξεκινάμε σήμερα.';
   if(cfg.length)d.getElementById('vidLen').textContent='Δείτε το βίντεο · '+cfg.length;
   var C=Array.isArray(cfg.chapters)?cfg.chapters:[];
   if(!C.length){stage.classList.add('solo');ch.remove()}
@@ -863,6 +864,7 @@ function sum(){var base=130+(S.express?50:0),x=d.getElementById('sumX'),o=d.getE
   if(S.express)html+='<div class="ln"><span>Express παράδοση</span><b class="tnum">50,00€</b></div>';
   S.extras.forEach(function(k){oh+='<div class="ln"><span>'+XN[k][0]+'</span><b class="tnum">'+XN[k][1]+'€ + ΦΠΑ</b></div>'});
   x.innerHTML=html;d.getElementById('sumV').textContent=eur(base*.24);d.getElementById('sumT').textContent=eur(base*1.24);
+  var now=eur(base*1.24);d.getElementById('sumNow').textContent=now;d.getElementById('payNow').textContent=now;d.getElementById('go4t').textContent='Πληρωμή '+now+' & ξεκινάμε';
   o.innerHTML=oh?'<p class="when" style="margin-top:14px;color:#fff;font-weight:800">Θέλετε επίσης — μόνο αν το επιβεβαιώσετε:</p>'+oh:'';
   var mo=d.getElementById('sumMo');if(S.social){mo.hidden=false;mo.textContent='Social media · '+SN[S.social][0]+': '+SN[S.social][1]+'€ + ΦΠΑ τον μήνα, από τον μήνα που θα βγει online η ιστοσελίδα.'}else mo.hidden=true}
 sum();
@@ -886,22 +888,57 @@ form.addEventListener('submit',function(e){e.preventDefault();if(sending)return;
   var c=contact(),o=options(),b=d.getElementById('go4');
   var hasMat=S.files.some(function(f){return!f.gone&&f.st!=='bad'})||o.links||o.nothing||val('f-note');
   if(!hasMat){fx(4,'Ανεβάστε κάποιο υλικό, βάλτε ένα link προφίλ, ή τσεκάρετε «Δεν έχω υλικό τώρα» στο βήμα 2.');return}
-  sending=true;b.disabled=true;b.firstChild.textContent='Ανεβαίνουν τα αρχεία… ';
-  function finish(){pendingDone=null;b.firstChild.textContent='Αποστολή… ';
+  sending=true;b.disabled=true;b.querySelector('#go4t').textContent='Ανεβαίνουν τα αρχεία… ';
+  function finish(){pendingDone=null;b.querySelector('#go4t').textContent='Αποθήκευση… ';
     var files=S.files.filter(function(f){return!f.gone&&f.st==='ok'}).map(function(f){return{sha:f.res.sha,name:f.res.name,bytes:f.res.bytes,type:f.res.type,original:f.file.name,kind:f.k}});
-    var p=LIVE?post({kind:'start',contact:c,options:o,note:val('f-note'),files:files},'?id='+encodeURIComponent(S.id)+'&done=1'):new Promise(function(r){setTimeout(r,700)});
-    p.then(function(){showDone(o,files.length)}).catch(function(){sending=false;b.disabled=false;b.firstChild.textContent='Ξεκινήστε την ιστοσελίδα μου ';fx(4,'Κάτι δεν πήγε καλά με την αποστολή. Πατήστε ξανά — τα στοιχεία σας δεν χάθηκαν.')})}
+    // 1) save everything (so nothing is lost if they don't pay), 2) go to the card payment
+    var p=LIVE?post({kind:'start',contact:c,options:o,note:val('f-note'),files:files},'?id='+encodeURIComponent(S.id)+'&done=1'):new Promise(function(r){setTimeout(r,600)});
+    p.then(function(){try{localStorage.setItem('adv-ks-pay',JSON.stringify({at:Date.now(),id:S.id,c:c,express:S.express,afm:o.afm,epo:o.eponymia,files:files.length}))}catch(e){}return pay(S.id,c,S.express,o.afm,o.eponymia)})
+     .catch(function(err){sending=false;b.disabled=false;sum();fx(4,err&&err.pay?err.message:'Κάτι δεν πήγε καλά με την αποθήκευση. Πατήστε ξανά — τα στοιχεία σας δεν χάθηκαν.')})}
   if(busy||queue.length)pendingDone=finish;else finish();
 });
-function showDone(o,n){
+/* ---- card payment: the Advon shop creates the payment (fixed prices on its server) and sends them to the secure card page ---- */
+function pay(id,c,express,afm,epo){
+  if(!LIVE){return new Promise(function(r){setTimeout(function(){location.href=location.pathname+'?paid=1&id='+encodeURIComponent(id)+'&demo=1'},500);r()})}
+  var back=location.origin+'/ksekinima/';
+  return fetch(CFG.shop,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({intake:id,back:back,express:!!express,terms:true,customer:{name:c.name,email:c.email,phone:c.phone,afm:afm||'',company:epo||''}})})
+    .then(function(r){return r.json().catch(function(){return{}}).then(function(j){if(!r.ok||!j.url)throw Object.assign(new Error((j&&j.error?j.error+' ':'')+'Τα στοιχεία και το υλικό σας κρατήθηκαν — δοκιμάστε ξανά ή θα σας καλέσουμε εμείς.'),{pay:1});location.href=j.url})});
+}
+/* ---- back from the payment page ---- */
+(function(){
+  var paid=qs.get('paid')==='1',cancel=qs.get('cancel')==='1';if(!paid&&!cancel)return;
+  var keep={};try{keep=JSON.parse(localStorage.getItem('adv-ks-pay')||'{}')}catch(e){}
+  var id=qs.get('id')||keep.id;if(!id)return;
+  order.scrollIntoView();history.replaceState(null,'',location.pathname);
+  if(paid){
+    var dn=d.getElementById('done');form.hidden=true;d.querySelector('.stepper').hidden=true;dn.classList.add('on');
+    d.querySelector('#done h3').textContent='Επιβεβαιώνουμε την πληρωμή…';d.getElementById('doneP').textContent='Ένα δευτερόλεπτο.';d.getElementById('doneSteps').innerHTML='';
+    function ok(){showDone({express:!!keep.express},keep.files||0,(keep.c&&keep.c.email)||'');try{localStorage.removeItem('adv-ks-pay')}catch(e){}}
+    if(qs.get('demo')==='1'||!LIVE)return ok();
+    var tries=0;(function chk(){tries++;
+      post({o:qs.get('o'),k:qs.get('k'),sid:qs.get('sid')},'?id='+encodeURIComponent(id)+'&confirm=1').then(function(j){if(j.paid)ok();else if(tries<6)setTimeout(chk,2500);else{d.querySelector('#done h3').textContent='Η πληρωμή σας καταγράφεται';d.getElementById('doneP').textContent='Λάβαμε τα στοιχεία σας. Μόλις ολοκληρωθεί η επιβεβαίωση της πληρωμής, θα σας στείλουμε e-mail.'}})
+        .catch(function(){if(tries<6)setTimeout(chk,2500)})})();
+  }else{
+    // cancelled at the card page: everything is kept, one button to try again
+    S.id=id;go(4);if(keep.c){['name','job','phone','email','area'].forEach(function(k){if(keep.c[k])d.getElementById('f-'+k).value=keep.c[k]})}
+    if(keep.express&&!xpi.checked){xpi.checked=true;S.express=true;xp.classList.add('on');sum()}
+    d.getElementById('f-terms').checked=true;
+    fx(4,'Η πληρωμή δεν ολοκληρώθηκε. Τα στοιχεία και το υλικό σας κρατήθηκαν — πατήστε ξανά για να πληρώσετε.');
+    form.onsubmit=null;var b=d.getElementById('go4');
+    form.addEventListener('submit',function(e){e.preventDefault();e.stopImmediatePropagation();b.disabled=true;b.querySelector('#go4t').textContent='Μεταφορά στην πληρωμή… ';
+      pay(id,keep.c||contact(),S.express,val('f-afm')||keep.afm,val('f-epo')||keep.epo).catch(function(err){b.disabled=false;sum();fx(4,err.message)})},true);
+  }
+})();
+function showDone(o,n,email){
   try{localStorage.removeItem('adv-ks')}catch(e){}
+  d.querySelector('#done h3').textContent='Πληρώθηκε — ξεκινήσαμε!';
   form.hidden=true;d.querySelector('.stepper').hidden=true;d.querySelector('.sum').hidden=true;d.querySelector('.og').style.gridTemplateColumns='minmax(0,1fr)';d.getElementById('fcard').style.maxWidth='760px';d.getElementById('fcard').style.margin='0 auto';var dn=d.getElementById('done');dn.classList.add('on');
   var when=o.express?'1–2 εργάσιμες':'2–7 ημέρες';
-  d.getElementById('doneP').textContent='Λάβαμε τα πάντα'+(n?' — και τα '+n+' αρχεία σας':'')+'. Σας στείλαμε και e-mail επιβεβαίωσης στο '+val('f-email')+'.';
+  d.getElementById('doneP').textContent='Λάβαμε την πληρωμή και όλο το υλικό σας'+(n?' ('+n+' αρχεία)':'')+'. Σας στείλαμε e-mail επιβεβαίωσης'+((email||val('f-email'))?' στο '+(email||val('f-email')):'')+'.';
   var L=[o.express?'<b>Σας καλούμε σήμερα</b> για μια σύντομη επιβεβαίωση.':'<b>Ξεκινάμε σήμερα.</b> Αν χρειαστούμε κάτι, θα σας στείλουμε μήνυμα.',
     '<b>Σε '+when+'</b> σας στέλνουμε το πρώτο σχέδιο.',
     '<b>Μας λέτε τις αλλαγές</b> που θέλετε — όσες φορές χρειαστεί.',
-    '<b>Πληρώνετε τη φιλοξενία</b> όταν δείτε το πρώτο σχέδιο, και τη βγάζουμε online.'];
+    '<b>Τη βγάζουμε online</b> με το δικό σας domain, όταν πείτε εσείς «ναι».'];
   d.getElementById('doneSteps').innerHTML=L.map(function(x){return'<li><span>'+x+'</span></li>'}).join('');
   d.getElementById('fcard').scrollIntoView({behavior:'smooth',block:'start'});
 }

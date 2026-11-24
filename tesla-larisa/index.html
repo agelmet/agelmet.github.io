@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="color-scheme" content="light only">
+<title>Ταξίδι Tesla Model 3 · Διόνυσος ⇄ Λάρισα</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<style>
+:root{color-scheme:light only;--ink:#16181d;--mute:#5d6470;--line:#e4e6ea;--paper:#f6f7f9;--card:#fff;--blue:#1c6fd8;--red:#e31937;--green:#16a34a;--amber:#d97706;--orange:#f97316}
+*{box-sizing:border-box;min-width:0}
+html,body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;overflow-x:clip}
+header{padding:18px 16px 10px;max-width:1150px;margin:0 auto}
+h1{font-size:22px;margin:0 0 4px;letter-spacing:-.01em}
+.sub{color:var(--mute);font-size:13.5px}
+#map{height:60vh;min-height:360px;max-width:1150px;margin:6px auto 0;border-radius:14px;border:1px solid var(--line);overflow:hidden}
+@media(max-width:700px){#map{border-radius:0;border-left:0;border-right:0;height:54vh}}
+.wrap{max-width:1150px;margin:0 auto;padding:14px 14px 40px}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 14px}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:11px 14px;border-radius:10px;background:var(--blue);color:#fff;text-decoration:none;font-weight:600;font-size:14px;min-height:44px}
+.btn.alt{background:#fff;color:var(--ink);border:1px solid var(--line)}
+.box{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:16px}
+.box h2{font-size:18px;margin:0 0 8px}
+.good{background:#ecfdf3;border-color:#bbf0cf}
+.box ol,.box ul{margin:0;padding-left:20px}.box li{margin:4px 0}
+.cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;margin-bottom:16px}
+@media(max-width:860px){.cols{grid-template-columns:minmax(0,1fr)}}
+.leg{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+.leg h2{font-size:17px;margin:0 0 2px}
+.leg .km{color:var(--mute);font-size:13px;margin-bottom:10px}
+.pt{display:grid;grid-template-columns:30px minmax(0,1fr);gap:10px;padding:11px 0;border-top:1px solid var(--line)}
+.pt:first-of-type{border-top:0}
+.num{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:700;font-size:13px}
+.name{font-weight:650}
+.meta{color:var(--mute);font-size:12.5px}
+.bar{position:relative;height:12px;background:#eef0f3;border-radius:6px;margin:7px 0 4px;overflow:hidden}
+.bar i{position:absolute;top:0;bottom:0;border-radius:6px}
+.bar .mid{position:absolute;top:-2px;bottom:-2px;width:2px;background:var(--ink)}
+.rng{font-weight:700;font-variant-numeric:tabular-nums}
+.chg{display:inline-block;margin:6px 0 2px;padding:5px 9px;border-radius:7px;background:#fdecee;color:#9b1026;font-size:12.5px;font-weight:600}
+.tip{display:block;margin:5px 0 2px;padding:6px 9px;border-radius:7px;background:#fff7ed;color:#7c3d06;font-size:12.5px}
+.lnk{font-size:13px;color:var(--blue);text-decoration:none;font-weight:600;display:inline-block;padding:4px 0}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{padding:9px 8px;border-top:1px solid var(--line);text-align:left}
+th{font-size:12.5px;color:var(--mute);font-weight:600;border-top:0}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+tr.tot td{font-weight:800;border-top:2px solid var(--ink)}
+tr.grand td{font-weight:800;font-size:16px;background:#fdecee}
+.plan{border-top:1px solid var(--line);padding:11px 0;display:grid;grid-template-columns:40px minmax(0,1fr);gap:10px}
+.plan:first-of-type{border-top:0}
+.tag{font-weight:800;font-size:13px;border-radius:8px;padding:6px 0;text-align:center;color:#fff;background:var(--orange)}
+.plan .t{font-weight:650}
+.plan p{margin:3px 0 0;font-size:13.5px;color:#30353d}
+.leaflet-popup-content{font:13.5px/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+.pin{width:30px;height:30px;border-radius:50%;border:3px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.35);display:grid;place-items:center;color:#fff;font-weight:800;font-size:12px}
+.pin.small{width:24px;height:24px;font-size:10px;border-width:2px}
+</style>
+</head>
+<body>
+<header>
+  <h1>Ταξίδι με Model 3: Διόνυσος ⇄ κέντρο Λάρισας, με Tesla Superchargers</h1>
+  <div class="sub">Model 3 RWD, ξεκινάτε με <b>100%</b>. Πραγματική αυτονομία στον αυτοκινητόδρομο τον Νοέμβριο ≈ <b>300 km</b>. Η μπαταρία φαίνεται ως <b>ασφαλές εύρος</b>: χαμηλό = κρύο, βροχή, 130+ km/h · υψηλό = ήρεμη οδήγηση 110–120. Μαύρη γραμμή = το πιο πιθανό.</div>
+</header>
+<div id="map"></div>
+<div class="wrap">
+  <div class="btns">
+    <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Dionysos%2C+Attica&destination=%CE%9A%CE%B5%CE%BD%CF%84%CF%81%CE%B9%CE%BA%CE%AE+%CE%A0%CE%BB%CE%B1%CF%84%CE%B5%CE%AF%CE%B1+%CE%9B%CE%AC%CF%81%CE%B9%CF%83%CE%B1%CF%82&waypoints=Tesla+Supercharger+Atalanti%7CTesla+Supercharger+Larissa+Fashion+City+Outlet&travelmode=driving">Google Maps: πήγαινε</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=%CE%9A%CE%B5%CE%BD%CF%84%CF%81%CE%B9%CE%BA%CE%AE+%CE%A0%CE%BB%CE%B1%CF%84%CE%B5%CE%AF%CE%B1+%CE%9B%CE%AC%CF%81%CE%B9%CF%83%CE%B1%CF%82&destination=Dionysos%2C+Attica&waypoints=Tesla+Supercharger+Atalanti&travelmode=driving">Google Maps: επιστροφή</a>
+  </div>
+
+  <div class="box good">
+    <h2>Με μια ματιά</h2>
+    <ul>
+      <li><b>Πήγαινε:</b> μία στάση στον <b>Tesla Supercharger Αταλάντης</b> (~20′), μετά <b>Supercharger Λάρισας</b> (Fashion City Outlet), 5 λεπτά από το κέντρο.</li>
+      <li><b>Στη Λάρισα:</b> φορτίζετε στον Supercharger μέχρι <b>100%</b> (~40′, έχει καφέ και μαγαζιά) πριν πάτε στο κέντρο.</li>
+      <li><b>Επιστροφή:</b> μία στάση στον <b>Supercharger Αταλάντης</b> (~15′).</li>
+      <li><b>Διόδια:</b> 26,15 € κάθε διαδρομή · <b>52,30 € πήγαινε-έλα</b> (τιμές 2026, ΙΧ).</li>
+      <li>Superchargers = <b>όπως στα βίντεο στο YouTube</b>: τα βάζει μόνο του το αυτοκίνητο, ζεσταίνει μόνο του τη μπαταρία, απλά βάζετε το καλώδιο. Πληρωμή αυτόματα από τον λογαριασμό Tesla.</li>
+    </ul>
+  </div>
+
+  <div class="cols">
+    <section class="leg" id="go"><h2>Πήγαινε</h2><div class="km">~330 km · ~3ω30′ οδήγηση + ~20′ φόρτιση</div></section>
+    <section class="leg" id="back"><h2>Επιστροφή</h2><div class="km">~330 km · ~3ω30′ οδήγηση + ~15′ φόρτιση</div></section>
+  </div>
+
+  <div class="box">
+    <h2>Διόδια: ακριβές κόστος (ΙΧ, τιμές 2026)</h2>
+    <table>
+      <tr><th>Σταθμός διοδίων</th><th>Αυτοκινητόδρομος</th><th class="n">Πήγαινε</th><th class="n">Επιστροφή</th></tr>
+      <tr><td>Αφιδνών</td><td>Νέα Οδός</td><td class="n">3,90 €</td><td class="n">3,90 €</td></tr>
+      <tr><td>Θήβας</td><td>Νέα Οδός</td><td class="n">4,55 €</td><td class="n">4,55 €</td></tr>
+      <tr><td>Τραγάνας</td><td>Νέα Οδός</td><td class="n">4,55 €</td><td class="n">4,55 €</td></tr>
+      <tr><td>Αγίας Τριάδας</td><td>Κεντρική Οδός</td><td class="n">2,10 €</td><td class="n">2,10 €</td></tr>
+      <tr><td>Μαυρομαντήλας (Στυλίδα)</td><td>Κεντρική Οδός</td><td class="n">2,25 €</td><td class="n">2,25 €</td></tr>
+      <tr><td>Πελασγίας</td><td>Αυτοκ. Αιγαίου</td><td class="n">4,10 €</td><td class="n">4,10 €</td></tr>
+      <tr><td>Μοσχοχωρίου</td><td>Αυτοκ. Αιγαίου</td><td class="n">4,70 €</td><td class="n">4,70 €</td></tr>
+      <tr class="tot"><td colspan="2">Σύνολο ανά διαδρομή</td><td class="n">26,15 €</td><td class="n">26,15 €</td></tr>
+      <tr class="grand"><td colspan="3">Σύνολο πήγαινε-έλα</td><td class="n">52,30 €</td></tr>
+    </table>
+    <p class="sub" style="margin:10px 0 0">Μετωπικοί σταθμοί, Κατηγορία 2 (ΙΧ), από Άγιο Στέφανο μέχρι την έξοδο της Λάρισας. Με e-pass / πομποδέκτη μπορεί να πληρώσετε λιγότερο. Σε μερικές εισόδους/εξόδους υπάρχουν και μικρά πλευρικά διόδια.</p>
+  </div>
+
+  <div class="box">
+    <h2>Σχέδιο Β: αν κάτι πάει στραβά</h2>
+    <div class="plan"><div class="tag">Β</div><div><div class="t">Supercharger Αταλάντης γεμάτος ή εκτός;</div><p>Υπάρχει και στο απέναντι ρεύμα (4 θέσεις σε κάθε πλευρά), και στον ίδιο ΣΕΑ υπάρχουν και άλλοι ταχυφορτιστές 180 kW (δείτε στο PlugShare ποια εφαρμογή θέλουν).</p></div></div>
+    <div class="plan"><div class="tag">Β</div><div><div class="t">ΣΕΑ Μαλακάσας «Σείριος» (λίγο μετά τον Διόνυσο)</div><p>Αν φύγετε με λιγότερο από 100%: συμπληρώστε εδώ στο ξεκίνημα. Έχει γρήγορους φορτιστές και στα δύο ρεύματα.</p></div></div>
+    <div class="plan"><div class="tag">Β</div><div><div class="t">Λαμία · ταχυφορτιστές 180 kW</div><p>Ανάμεσα σε Αταλάντη και Λάρισα, αν χρειαστεί συμπλήρωμα.</p></div></div>
+    <div class="plan"><div class="tag">Β</div><div><div class="t">Λάρισα · ΔΕΗ blue 300 kW (εφαρμογή PPC blue)</div><p>Αν ο Supercharger της Λάρισας είναι γεμάτος.</p></div></div>
+  </div>
+
+  <div class="box">
+    <h2>Τι κάνετε, βήμα βήμα</h2>
+    <ol>
+      <li><b>Το βράδυ:</b> όριο φόρτισης <b>100%</b> και φόρτιση στο σπίτι (κλείστε το πρόγραμμα φόρτισης αν δεν προλαβαίνει).</li>
+      <li><b>Στο αυτοκίνητο:</b> πλοήγηση στο «Κεντρική Πλατεία Λάρισας» με το <b>Trip Planner ανοιχτό</b>. Θα βάλει μόνο του τον Supercharger Αταλάντης.</li>
+      <li><b>Στην Αταλάντη:</b> βάζετε το καλώδιο, ξεκινάει μόνο του. Φύγετε στο <b>90%</b> (το αυτοκίνητο θα σας δείξει πότε αρκεί).</li>
+      <li><b>Στη Λάρισα:</b> πρώτα στον Supercharger (Fashion City Outlet) μέχρι 100%, μετά στο κέντρο (5′).</li>
+      <li><b>Επιστροφή:</b> πλοήγηση «σπίτι», το αυτοκίνητο βάζει την Αταλάντη. Φύγετε από εκεί στο <b>80%</b>.</li>
+    </ol>
+    <p class="sub" style="margin:10px 0 0">Δεν χρειάζεστε άλλη εφαρμογή στους Superchargers. Οδική βοήθεια Tesla: 2111 984867.</p>
+  </div>
+  <p class="sub">Εκτιμήσεις, όχι ακριβή νούμερα. Αποστάσεις κατά προσέγγιση. Χάρτης © OpenStreetMap contributors · διαδρομή: OSRM.</p>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+{
+const Q = s => 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(s);
+const P = {
+  dio:{n:'Διόνυσος (αφετηρία / σπίτι)', ll:[38.1067,23.8733], q:'Dionysos, Attica'},
+  ata:{n:'Tesla Supercharger Αταλάντης', ll:[38.6600,23.0050], q:'Tesla Supercharger Atalanti', a:'ΣΕΑ Αταλάντης, 145ο km ΠΑΘΕ · 4 θέσεις σε κάθε ρεύμα, έως 250 kW'},
+  lsc:{n:'Tesla Supercharger Λάρισας', ll:[39.6040,22.4260], q:'Tesla Supercharger Larissa Fashion City Outlet', a:'Fashion City Outlet, 4ο km Παλαιάς Εθνικής · 8 θέσεις, έως 250 kW'},
+  cen:{n:'Κέντρο Λάρισας', ll:[39.6390,22.4190], q:'Κεντρική Πλατεία Λάρισας'}
+};
+const GO = [
+  {p:'dio', km:0,   b:[100,100,100], t:'Αναχώρηση από Διόνυσο'},
+  {p:'ata', km:128, b:[52,57,61], c:'Φόρτιση ~20′ → 90%'},
+  {p:'lsc', km:323, b:[22,27,31], c:'Φόρτιση ~40′ → 100% (καφές/μαγαζιά)'},
+  {p:'cen', km:330, b:[96,98,99], t:'Άφιξη στο κέντρο Λάρισας'}
+];
+const BACK = [
+  {p:'cen', km:0,   b:[90,94,97], t:'Αναχώρηση από κέντρο Λάρισας', tip:'Με την προϋπόθεση ≤15 km οδήγησης μέσα στη Λάρισα.'},
+  {p:'ata', km:202, b:[22,27,31], c:'Φόρτιση ~15′ → 80%'},
+  {p:'dio', km:330, b:[33,37,41], t:'Άφιξη στον Διόνυσο'}
+];
+const col = v => v>=50?'#16a34a':v>=25?'#d97706':'#dc2626';
+const rtxt = b => b[0]===b[2]?b[0]+'%':b[0]+'–'+b[2]+'%';
+function row(s,i){
+  const p=P[s.p];
+  return `<div class="pt"><div class="num" style="background:${col(s.b[0])}">${i+1}</div><div>
+    <div class="name">${s.t||p.n}</div>
+    <div class="meta">${s.km} km${p.a?' · '+p.a:''}</div>
+    <div class="bar"><i style="left:${s.b[0]}%;width:${Math.max(s.b[2]-s.b[0],1)}%;background:${col(s.b[0])}"></i><span class="mid" style="left:${s.b[1]}%"></span></div>
+    <div><span class="rng">${rtxt(s.b)}</span> <span class="meta">(πιο πιθανό ~${s.b[1]}%)</span></div>
+    ${s.c?`<span class="chg">⚡ ${s.c}</span><br>`:''}
+    ${s.tip?`<span class="tip">${s.tip}</span>`:''}
+    <a class="lnk" target="_blank" rel="noopener" href="${Q(p.q)}">Άνοιγμα στο Google Maps ↗</a>
+  </div></div>`;
+}
+document.getElementById('go').insertAdjacentHTML('beforeend', GO.map(row).join(''));
+document.getElementById('back').insertAdjacentHTML('beforeend', BACK.map(row).join(''));
+
+const map = L.map('map',{scrollWheelZoom:false}).setView([38.9,23.1],7);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'© OpenStreetMap'}).addTo(map);
+const pin=(label,color,small)=>L.divIcon({className:'',html:`<div class="pin${small?' small':''}" style="background:${color}">${label}</div>`,iconSize:small?[24,24]:[30,30],iconAnchor:small?[12,12]:[15,15]});
+const pop=k=>{const p=P[k];return `<b>${p.n}</b>${p.a?'<br>'+p.a:''}<br><a target="_blank" rel="noopener" href="${Q(p.q)}">Άνοιγμα στο Google Maps ↗</a>`};
+L.marker(P.dio.ll,{icon:pin('•','#64748b',true)}).addTo(map).bindPopup(pop('dio'));
+L.marker(P.cen.ll,{icon:pin('•','#64748b',true)}).addTo(map).bindPopup(pop('cen'));
+L.marker(P.ata.ll,{icon:pin('⚡','#e31937')}).addTo(map).bindPopup(pop('ata'));
+L.marker(P.lsc.ll,{icon:pin('⚡','#e31937')}).addTo(map).bindPopup(pop('lsc'));
+const fb=[P.dio.ll,[38.15,23.80],[38.32,23.40],[38.45,23.20],P.ata.ll,[38.80,22.75],[38.90,22.45],[39.10,22.40],[39.30,22.42],P.lsc.ll,P.cen.ll];
+let line=L.polyline(fb,{color:'#1c6fd8',weight:5,opacity:.7,dashArray:'6 8'}).addTo(map);
+map.fitBounds(line.getBounds(),{padding:[30,30]});
+const pts=['dio','ata','lsc','cen'].map(k=>P[k].ll[1]+','+P[k].ll[0]).join(';');
+fetch('https://router.project-osrm.org/route/v1/driving/'+pts+'?overview=full&geometries=geojson')
+ .then(r=>r.json()).then(j=>{
+   if(!j.routes||!j.routes[0]) return;
+   const c=j.routes[0].geometry.coordinates.map(x=>[x[1],x[0]]);
+   map.removeLayer(line);
+   line=L.polyline(c,{color:'#1c6fd8',weight:5,opacity:.85}).addTo(map);
+   map.fitBounds(line.getBounds(),{padding:[30,30]});
+ }).catch(()=>{});
+}
+</script>
+</body>
+</html>

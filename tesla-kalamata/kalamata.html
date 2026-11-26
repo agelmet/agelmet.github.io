@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="color-scheme" content="light only">
+<title>Ταξίδι Tesla Model 3 · Διόνυσος ⇄ Καλαμάτα</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<style>
+:root{color-scheme:light only;--ink:#16181d;--mute:#5d6470;--line:#e4e6ea;--paper:#f6f7f9;--card:#fff;--blue:#1c6fd8;--green:#16a34a;--amber:#d97706;--red:#dc2626;--orange:#f97316;--purple:#7c3aed}
+*{box-sizing:border-box;min-width:0}
+html,body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;overflow-x:clip}
+header{padding:18px 16px 10px;max-width:1150px;margin:0 auto}
+.top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+h1{font-size:22px;margin:0 0 4px;letter-spacing:-.01em}
+.sub{color:var(--mute);font-size:13.5px}
+#map{height:62vh;min-height:380px;max-width:1150px;margin:6px auto 0;border-radius:14px;border:1px solid var(--line);overflow:hidden}
+@media(max-width:700px){#map{border-radius:0;border-left:0;border-right:0;height:56vh}}
+.wrap{max-width:1150px;margin:0 auto;padding:14px 14px 40px}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 14px}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:11px 14px;border-radius:10px;background:var(--blue);color:#fff;text-decoration:none;font-weight:600;font-size:14px;min-height:44px}
+.btn.alt{background:#fff;color:var(--ink);border:1px solid var(--line)}
+.lang{flex:none;min-height:38px;padding:8px 12px}
+.key{display:flex;gap:14px;flex-wrap:wrap;font-size:12.5px;color:var(--mute);margin:0 0 14px}
+.key span{display:inline-flex;align-items:center;gap:6px}
+.key i{width:13px;height:13px;border-radius:50%;display:inline-block}
+.rules{background:#ecfdf3;border:1px solid #bbf0cf;border-radius:14px;padding:14px 16px;margin-bottom:16px}
+.rules b{display:block;margin-bottom:6px;font-size:15px}
+.rules ol{margin:0;padding-left:20px}.rules li{margin:3px 0}
+.cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px}
+@media(max-width:860px){.cols{grid-template-columns:minmax(0,1fr)}}
+.leg{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+.leg h2{font-size:17px;margin:0 0 2px}
+.leg .km{color:var(--mute);font-size:13px;margin-bottom:10px}
+.pt{display:grid;grid-template-columns:30px minmax(0,1fr);gap:10px;padding:11px 0;border-top:1px solid var(--line)}
+.pt:first-of-type{border-top:0}
+.num{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:700;font-size:13px}
+.name{font-weight:650}
+.meta{color:var(--mute);font-size:12.5px}
+.bar{position:relative;height:12px;background:#eef0f3;border-radius:6px;margin:7px 0 4px;overflow:hidden}
+.bar i{position:absolute;top:0;bottom:0;border-radius:6px}
+.bar .mid{position:absolute;top:-2px;bottom:-2px;width:2px;background:var(--ink)}
+.rng{font-weight:700;font-variant-numeric:tabular-nums}
+.chg{display:inline-block;margin:6px 0 2px;padding:5px 9px;border-radius:7px;background:#e8f1fc;color:#124a94;font-size:12.5px;font-weight:600}
+.tip{display:block;margin:5px 0 2px;padding:6px 9px;border-radius:7px;background:#fff7ed;color:#7c3d06;font-size:12.5px}
+.lnk{font-size:13px;color:var(--blue);text-decoration:none;font-weight:600;display:inline-block;padding:4px 0}
+.plans{margin-top:16px}
+.plans h2{font-size:18px;margin:0 0 4px}
+.plan{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-top:10px;display:grid;grid-template-columns:44px minmax(0,1fr);gap:12px;align-items:start}
+.tag{font-weight:800;font-size:13px;border-radius:8px;padding:6px 0;text-align:center;color:#fff}
+.plan .t{font-weight:650}
+.plan p{margin:3px 0 0;font-size:13.5px;color:#30353d}
+.note{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-top:16px;font-size:13.5px}
+.note b{display:block;margin-bottom:4px}
+.note ul{margin:6px 0 0;padding-left:18px}
+.leaflet-popup-content{font:13.5px/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+.pin{width:30px;height:30px;border-radius:50%;border:3px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.35);display:grid;place-items:center;color:#fff;font-weight:800;font-size:12px}
+.pin.small{width:24px;height:24px;font-size:10px;border-width:2px}
+.prep{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:16px}.prep h2{font-size:18px;margin:0 0 6px}.prep h3{font-size:14.5px;margin:12px 0 4px;color:#124a94}.prep ol{margin:0;padding-left:20px}.prep li{margin:3px 0;font-size:14px}.warn{background:#fff7ed;border:1px solid #fed7aa;border-radius:10px;padding:10px 12px;font-size:13.5px;margin:6px 0 4px}
+.appl{font-size:13px!important;background:#f6f7f9;border-radius:8px;padding:6px 8px;margin-top:6px!important}
+</style>
+</head>
+<body>
+<header>
+  <div class="top"><h1>Ταξίδι με Model 3: Διόνυσος ⇄ Καλαμάτα, με εναλλακτικά σχέδια</h1></div>
+  <div class="sub">Το αυτοκίνητό σας: 254 km στο 60% → <b>~423 km στο 100%</b> (Model 3 RWD). Στον αυτοκινητόδρομο τον Νοέμβριο η πραγματική αυτονομία είναι <b>~300 km</b>, γι’ αυτό τα νούμερα παρακάτω βασίζονται σε αυτή και όχι στα km της οθόνης. Ξεκινάτε με <b>100%</b>. Η μπαταρία φαίνεται ως <b>ασφαλές εύρος</b>: χαμηλό = κρύο, βροχή, 130+ km/h · υψηλό = ήρεμη οδήγηση 110–120. Μαύρη γραμμή = το πιο πιθανό.</div>
+</header>
+<div id="map"></div>
+<div class="wrap">
+  <div class="btns">
+    <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Dionysos%2C+Attica&destination=Kalamata&waypoints=Kapandriti%7CEdrive+Cafe+Spartis+60+Tripoli&travelmode=driving">Google Maps: πήγαινε</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Kalamata&destination=Dionysos%2C+Attica&waypoints=Edrive+Cafe+Spartis+60+Tripoli&travelmode=driving">Google Maps: επιστροφή</a>
+    <a class="btn alt" target="_blank" rel="noopener" href="https://www.plugshare.com/">Έλεγχος φορτιστών live (PlugShare)</a>
+  </div>
+  <div class="key">
+    <span><i style="background:var(--blue)"></i>Φορτιστής σχεδίου Α</span>
+    <span><i style="background:var(--orange)"></i>Εναλλακτικοί Β / Γ</span>
+    <span><i style="background:var(--purple)"></i>Μόνο για ανάγκη</span>
+    <span><i style="background:#64748b"></i>Σημεία διαδρομής</span>
+  </div>
+
+  <div class="rules">
+    <b>Οι 5 κανόνες για ταξίδι χωρίς άγχος</b>
+    <ol>
+      <li>Το προηγούμενο βράδυ: όριο φόρτισης στο <b>100%</b> (είναι εντάξει για τον τύπο της μπαταρίας σας) και φεύγετε γεμάτος.</li>
+      <li><b>Μία στάση κάθε φορά, στην Τρίπολη, και φόρτιση μέχρι 100%</b> (~40′). Στην Καλαμάτα κρατήστε την οδήγηση κάτω από 20 km.</li>
+      <li><b>Ποτέ μην προσπερνάτε φορτιστή που λειτουργεί όταν είστε κάτω από 35%.</b> Σταματάτε, βάζετε 15 λεπτά, συνεχίζετε.</li>
+      <li>Το πρωί του ταξιδιού: δείτε στην εφαρμογή Electrip ότι ο φορτιστής της Τρίπολης φαίνεται σε λειτουργία.</li>
+      <li>Εφαρμογές εγκατεστημένες + κάρτα περασμένη πριν φύγετε: <b>Electrip</b>, για εφεδρεία <b>PPC blue</b>, <b>nrg incharge</b>, <b>ElpeFuture ChargenGo</b> (δείτε Σχέδιο Β). Οδική βοήθεια Tesla: <b>2111 984867</b>.</li>
+    </ol>
+  </div>
+
+  <div class="prep" id="prep">
+    <h2>Τι ετοιμάζετε, βήμα βήμα</h2>
+    <div class="warn"><b>Σημαντικό:</b> σε αυτούς τους φορτιστές <b>δεν</b> χρησιμοποιείτε την εφαρμογή Tesla. Η εφαρμογή Tesla δουλεύει μόνο στους Tesla Superchargers. Εδώ ξεκινάτε τη φόρτιση από την εφαρμογή της εταιρείας του φορτιστή (Electrip, ΔΕΗ blue, nrg, ElpeFuture).</div>
+    <h3>Από σήμερα (μία φορά)</h3>
+    <ol>
+      <li><b>Electrip</b> με την κάρτα σας: έγινε ✓</li>
+            <li>Στην Electrip δείτε αν υπάρχει η επιλογή <b>Auto Charge</b>: αν ναι, ενεργοποιήστε την και περάστε το αυτοκίνητο, ώστε να ξεκινάει μόνο του μόλις βάλετε το καλώδιο.</li>
+      <li>Για εφεδρεία (3 λεπτά): κατεβάστε <b>PPC blue</b> (η εφαρμογή της ΔΕΗ blue), <b>nrg incharge</b> και <b>ElpeFuture ChargenGo</b>, με την κάρτα σας. Χρειάζονται μόνο για το Σχέδιο Β.</li>
+      <li>Αποθηκεύστε στο κινητό την οδική βοήθεια Tesla: <b>2111 984867</b>.</li>
+    </ol>
+    <h3>Το προηγούμενο βράδυ</h3>
+    <ol>
+      <li>Στο αυτοκίνητο: Controls → Charging → όριο φόρτισης <b>100%</b>, και φορτίστε στο σπίτι.</li>
+      <li>Ανοίξτε αυτή τη σελίδα μία φορά στο κινητό (για να είναι έτοιμη).</li>
+    </ol>
+    <h3>Το πρωί της αναχώρησης</h3>
+    <ol>
+      <li>Ελέγξτε ότι είστε στο <b>100%</b>.</li>
+      <li>Στην εφαρμογή Electrip: το «E-Drive Cafe» φαίνεται σε λειτουργία;</li>
+      <li>Αν κάνει κρύο, ζεστάνετε την καμπίνα από την εφαρμογή Tesla <b>όσο είναι ακόμα στην πρίζα</b> (το ρεύμα έρχεται από το σπίτι, όχι από τη μπαταρία).</li>
+      <li>Βάλτε στην πλοήγηση του αυτοκινήτου: Καπανδρίτι → Electrip Τρίπολη (Σπάρτης 60–62) → Καλαμάτα.</li>
+    </ol>
+    <h3>Στον δρόμο</h3>
+    <ol>
+      <li>Οδηγείτε κανονικά (110–120 km/h βοηθάει πολύ).</li>
+      <li>Αν η μπαταρία πέσει κάτω από 45% πριν την Τρίπολη (δεν αναμένεται): Σχέδιο Β, ΣΕΑ Σπαθοβουνίου.</li>
+      <li><b>~20–30 λεπτά πριν την Τρίπολη:</b> Controls → Charging → <b>«Precondition battery»</b> (αν το βλέπετε). Ζεσταίνει τη μπαταρία για να φορτίσει πιο γρήγορα. Αν δεν υπάρχει, κανένα πρόβλημα.</li>
+      <li>Ανοίξτε την εφαρμογή Electrip και δείτε ότι υπάρχει ελεύθερη θέση. Αν όχι, πάτε στο Σχέδιο Β.</li>
+    </ol>
+    <h3>Στον φορτιστή</h3>
+    <ol>
+      <li>Παρκάρετε, ανοίξτε το πορτάκι φόρτισης (πατήστε το ή από την οθόνη).</li>
+      <li>Βάλτε το καλώδιο <b>CCS</b> του φορτιστή στο αυτοκίνητο.</li>
+      <li>Στην εφαρμογή Electrip: διαλέξτε τον αριθμό του φορτιστή που γράφει το μηχάνημα → <b>Έναρξη</b>.</li>
+      <li>Δείτε στην οθόνη του αυτοκινήτου ότι ανεβαίνει το %. Αν δεν ξεκινήσει σε 1–2 λεπτά: βγάλτε το καλώδιο, ξαναβάλτε το, ξαναπατήστε έναρξη. Αν πάλι όχι: άλλη θέση ή Σχέδιο Β.</li>
+      <li>Στο <b>100%</b>: <b>Διακοπή</b> στην εφαρμογή, βγάζετε το καλώδιο, συνεχίζετε.</li>
+          </ol>
+  </div>
+
+  <div class="cols">
+    <section class="leg" id="go"><h2>Πήγαινε</h2><div class="km">~285 km · ~3ω10′ οδήγηση + ~40′ φόρτιση (1 στάση)</div></section>
+    <section class="leg" id="back"><h2>Επιστροφή</h2><div class="km">~270 km · ~3ω οδήγηση + ~40′ φόρτιση (1 στάση)</div></section>
+  </div>
+
+  <div class="plans">
+    <h2>Σχέδιο Β: όλοι οι κοντινοί φορτιστές</h2>
+    <p class="sub" style="margin:0 0 4px">Δεν είναι στάσεις. Τους χρησιμοποιείτε μόνο αν χρειαστεί. Η εφαρμογή Electrip δουλεύει μόνο στους φορτιστές της Electrip· για τους άλλους χρειάζεστε την εφαρμογή που γράφει δίπλα.</p>
+    <div class="plan"><div class="tag" style="background:var(--blue)">Α</div><div>
+      <div class="meta">Τρίπολη · 400 kW</div><div class="t">Electrip · «E-Drive Cafe»</div>
+      <p>Η κανονική σας στάση και στις δύο διαδρομές.</p>
+      <p class="appl"><b>Εφαρμογή:</b> Electrip ✓ &nbsp;·&nbsp; <b>Αναζήτηση στο Google Maps:</b> «E-Drive Cafe Τρίπολη» <span class="meta">(Σπάρτης 60–62)</span></p>
+      <a class="lnk" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=E-Drive+Cafe+%CE%A4%CF%81%CE%AF%CF%80%CE%BF%CE%BB%CE%B7">Άνοιγμα στο Google Maps ↗</a></div></div>
+    <div class="plan"><div class="tag" style="background:var(--orange)">Β</div><div>
+      <div class="meta">Τρίπολη · 300 kW</div><div class="t">ΔΕΗ blue · ΑΒ Βασιλόπουλος</div>
+      <p>Αν η Electrip είναι γεμάτη ή χαλασμένη. 3 λεπτά μακριά.</p>
+      <p class="appl"><b>Εφαρμογή:</b> PPC blue &nbsp;·&nbsp; <b>Αναζήτηση στο Google Maps:</b> «ΑΒ Βασιλόπουλος Ναυπλίου 39 Τρίπολη» <span class="meta">(Ναυπλίου 39)</span></p>
+      <a class="lnk" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%CE%91%CE%92+%CE%92%CE%B1%CF%83%CE%B9%CE%BB%CF%8C%CF%80%CE%BF%CF%85%CE%BB%CE%BF%CF%82+%CE%9D%CE%B1%CF%85%CF%80%CE%BB%CE%AF%CE%BF%CF%85+39+%CE%A4%CF%81%CE%AF%CF%80%CE%BF%CE%BB%CE%B7">Άνοιγμα στο Google Maps ↗</a></div></div>
+    <div class="plan"><div class="tag" style="background:var(--orange)">Β</div><div>
+      <div class="meta">Τρίπολη · 180 kW</div><div class="t">nrg · Shell</div>
+      <p>Δεύτερη εναλλακτική στην Τρίπολη. 3 λεπτά μακριά.</p>
+      <p class="appl"><b>Εφαρμογή:</b> nrg incharge &nbsp;·&nbsp; <b>Αναζήτηση στο Google Maps:</b> «Shell Ναυπλίου 56 Τρίπολη» <span class="meta">(Ναυπλίου 56)</span></p>
+      <a class="lnk" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Shell+%CE%9D%CE%B1%CF%85%CF%80%CE%BB%CE%AF%CE%BF%CF%85+56+%CE%A4%CF%81%CE%AF%CF%80%CE%BF%CE%BB%CE%B7">Άνοιγμα στο Google Maps ↗</a></div></div>
+    <div class="plan"><div class="tag" style="background:var(--orange)">Γ</div><div>
+      <div class="meta">Πήγαινε · πριν την Τρίπολη · 50 kW</div><div class="t">ΣΕΑ Σπαθοβουνίου (ρεύμα προς Καλαμάτα)</div>
+      <p>Μόνο αν η μπαταρία πέσει κάτω από 45% πριν την Τρίπολη. 15′ ≈ +15%.</p>
+      <p class="appl"><b>Εφαρμογή:</b> ElpeFuture ChargenGo &nbsp;·&nbsp; <b>Αναζήτηση στο Google Maps:</b> «ΣΕΑ Σπαθοβουνίου» <span class="meta">(Μορέας, ~55 km πριν την Τρίπολη)</span></p>
+      <a class="lnk" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%CE%A3%CE%95%CE%91+%CE%A3%CF%80%CE%B1%CE%B8%CE%BF%CE%B2%CE%BF%CF%85%CE%BD%CE%AF%CE%BF%CF%85">Άνοιγμα στο Google Maps ↗</a></div></div>
+    <div class="plan"><div class="tag" style="background:var(--orange)">Γ</div><div>
+      <div class="meta">Πήγαινε · μετά την Τρίπολη · 360 kW</div><div class="t">ΣΕΑ Αρφαρών (ρεύμα προς Καλαμάτα)</div>
+      <p>Αν όλη η Τρίπολη είναι εκτός και φεύγετε από εκεί με 30%+.</p>
+      <p class="appl"><b>Εφαρμογή:</b> nrg incharge &nbsp;·&nbsp; <b>Αναζήτηση στο Google Maps:</b> «ΣΕΑ Αρφαρών» <span class="meta">(Μορέας, ~25 km πριν την Καλαμάτα)</span></p>
+      <a class="lnk" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%CE%A3%CE%95%CE%91+%CE%91%CF%81%CF%86%CE%B1%CF%81%CF%8E%CE%BD">Άνοιγμα στο Google Maps ↗</a></div></div>
+    <div class="plan"><div class="tag" style="background:var(--purple)">Ε</div><div>
+      <div class="meta">Καλαμάτα · 150 kW</div><div class="t">ElpeFuture · ΕΚΟ</div>
+      <p>Έκτακτη ανάγκη μέσα στην πόλη.</p>
+      <p class="appl"><b>Εφαρμογή:</b> ElpeFuture ChargenGo &nbsp;·&nbsp; <b>Αναζήτηση στο Google Maps:</b> «ΕΚΟ Ηρώων Πολυτεχνείου Καλαμάτα» <span class="meta">(Ηρώων Πολυτεχνείου)</span></p>
+      <a class="lnk" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%CE%95%CE%9A%CE%9F+%CE%97%CF%81%CF%8E%CF%89%CE%BD+%CE%A0%CE%BF%CE%BB%CF%85%CF%84%CE%B5%CF%87%CE%BD%CE%B5%CE%AF%CE%BF%CF%85+%CE%9A%CE%B1%CE%BB%CE%B1%CE%BC%CE%AC%CF%84%CE%B1">Άνοιγμα στο Google Maps ↗</a></div></div>
+    <div class="plan"><div class="tag" style="background:var(--orange)">Γ</div><div>
+      <div class="meta">Επιστροφή · πριν την Τρίπολη · 50 kW</div><div class="t">ΣΕΑ Αρφαρών (ρεύμα προς Κόρινθο)</div>
+      <p>Αν φεύγετε από την Καλαμάτα κάτω από 60%: 15′ εδώ.</p>
+      <p class="appl"><b>Εφαρμογή:</b> nrg incharge &nbsp;·&nbsp; <b>Αναζήτηση στο Google Maps:</b> «ΣΕΑ Αρφαρών» <span class="meta">(Μορέας, ~25 km μετά την Καλαμάτα)</span></p>
+      <a class="lnk" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%CE%A3%CE%95%CE%91+%CE%91%CF%81%CF%86%CE%B1%CF%81%CF%8E%CE%BD">Άνοιγμα στο Google Maps ↗</a></div></div>
+    <div class="plan"><div class="tag" style="background:var(--orange)">Γ</div><div>
+      <div class="meta">Επιστροφή · μετά την Τρίπολη · 50 kW</div><div class="t">ΣΕΑ Νεστάνης (ρεύμα προς Αθήνα)</div>
+      <p>Αν όλη η Τρίπολη είναι εκτός. ~40′ μέχρι 85%.</p>
+      <p class="appl"><b>Εφαρμογή:</b> ElpeFuture ChargenGo &nbsp;·&nbsp; <b>Αναζήτηση στο Google Maps:</b> «ΣΕΑ Νεστάνης» <span class="meta">(Μορέας, ~15 km μετά την Τρίπολη)</span></p>
+      <a class="lnk" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%CE%A3%CE%95%CE%91+%CE%9D%CE%B5%CF%83%CF%84%CE%AC%CE%BD%CE%B7%CF%82">Άνοιγμα στο Google Maps ↗</a></div></div>
+    <div class="plan"><div class="tag" style="background:var(--orange)">Δ</div><div>
+      <div class="meta">Επιστροφή · μετά την Τρίπολη · 360 kW</div><div class="t">ΣΕΑ Σπαθοβουνίου (ρεύμα προς Κόρινθο)</div>
+      <p>Γρήγορος. Τον φτάνετε αν φύγετε από την Τρίπολη με 40%+.</p>
+      <p class="appl"><b>Εφαρμογή:</b> nrg incharge &nbsp;·&nbsp; <b>Αναζήτηση στο Google Maps:</b> «ΣΕΑ Σπαθοβουνίου» <span class="meta">(Μορέας, ~55 km μετά την Τρίπολη)</span></p>
+      <a class="lnk" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%CE%A3%CE%95%CE%91+%CE%A3%CF%80%CE%B1%CE%B8%CE%BF%CE%B2%CE%BF%CF%85%CE%BD%CE%AF%CE%BF%CF%85">Άνοιγμα στο Google Maps ↗</a></div></div>
+    <div class="plan"><div class="tag" style="background:var(--orange)">+</div><div>
+      <div class="meta">Ολυμπία Οδός · 50 kW</div><div class="t">ΣΕΑ Μεγάρων (και στα δύο ρεύματα)</div>
+      <p>Έξτρα περιθώριο, αν ποτέ χρειαστεί.</p>
+      <p class="appl"><b>Εφαρμογή:</b> nrg incharge &nbsp;·&nbsp; <b>Αναζήτηση στο Google Maps:</b> «ΣΕΑ Μεγάρων Ολυμπία Οδός» <span class="meta">(~60 km πριν το σπίτι)</span></p>
+      <a class="lnk" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%CE%A3%CE%95%CE%91+%CE%9C%CE%B5%CE%B3%CE%AC%CF%81%CF%89%CE%BD+%CE%9F%CE%BB%CF%85%CE%BC%CF%80%CE%AF%CE%B1+%CE%9F%CE%B4%CF%8C%CF%82">Άνοιγμα στο Google Maps ↗</a></div></div>
+  </div>
+
+  <div class="note">
+    <b>Καλό να ξέρετε</b>
+    <ul>
+      <li><b>Δεν υπάρχουν Tesla Superchargers</b> σε αυτή τη διαδρομή (οι πιο κοντινοί είναι κοντά στην Πάτρα). Όλες οι στάσεις εδώ είναι γρήγοροι φορτιστές άλλων εταιρειών· το Model 3 συνδέεται κανονικά (CCS).</li>
+      <li>Δεν χρειάζεται κράτηση: εξυπηρετούν με σειρά προτεραιότητας, όπως ένα πρατήριο. Πριν πάτε, δείτε στην εφαρμογή ότι ο φορτιστής είναι ελεύθερος.</li>
+      <li>Η ισχύς των φορτιστών στους ΣΕΑ προέρχεται από δημοσιευμένη λίστα και μπορεί να αλλάξει. Οι πινέζες των ΣΕΑ είναι κατά προσέγγιση· οι σύνδεσμοι Google Maps ψάχνουν το ακριβές σημείο.</li>
+      <li>Στην ανηφόρα προς την Τρίπολη η αυτονομία του αυτοκινήτου πέφτει πιο γρήγορα από τα km, και ανεβαίνει στην κατηφόρα προς την Καλαμάτα. Είναι φυσιολογικό.</li>
+      <li>Πατήστε <b>«Precondition battery»</b> στην οθόνη φόρτισης (Controls → Charging) ~20–30′ πριν φτάσετε σε κάθε φορτιστή, για να φορτίσει πιο γρήγορα.</li>
+    </ul>
+  </div>
+  <p class="sub" style="margin-top:14px">Εκτιμήσεις, όχι ακριβή νούμερα. Αποστάσεις κατά προσέγγιση. Χάρτης © OpenStreetMap contributors · διαδρομή: OSRM.</p>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+{
+const Q = s => 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(s);
+const P = {
+  dio:{n:'Διόνυσος (αφετηρία / σπίτι)', ll:[38.1067,23.8733], q:'Dionysos, Attica'},
+  kap:{n:'Καπανδρίτι (η στάση σας)', ll:[38.2167,23.8672], q:'Kapandriti'},
+  meg:{n:'ΣΕΑ Μεγάρων · 50 kW (και στα δύο ρεύματα)', ll:[37.9930,23.3700], q:'ΣΕΑ Μεγάρων Ολυμπία Οδός'},
+  can:{n:'Ισθμός Κορίνθου', ll:[37.9339,22.9885], q:'Corinth Canal bridge A8'},
+  spa:{n:'ΣΕΑ Σπαθοβουνίου · 50 kW προς Καλαμάτα / 360 kW προς Κόρινθο', ll:[37.8330,22.7960], q:'ΣΕΑ Σπαθοβουνίου'},
+  nes:{n:'ΣΕΑ Νεστάνης · 50 kW (μόνο προς Αθήνα)', ll:[37.6050,22.4400], q:'ΣΕΑ Νεστάνης'},
+  tri:{n:'Τρίπολη · Electrip 400 kW', ll:[37.4975,22.3790], q:'Edrive Cafe Spartis 60 Tripoli', a:'Σπάρτης 60–62, Τρίπολη (Edrive Café)'},
+  arf:{n:'ΣΕΑ Αρφαρών (Αγ. Φλώρος) · 360 kW προς Καλαμάτα / 50 kW προς Κόρινθο', ll:[37.1600,22.0300], q:'ΣΕΑ Αρφαρών'},
+  kal:{n:'Καλαμάτα', ll:[37.0389,22.1142], q:'Kalamata'}
+};
+const CHARGERS = [
+  {k:'tri', role:'A', c:'#1c6fd8'},
+  {k:'arf', role:'Γ', c:'#f97316'},
+  {k:'spa', role:'Β', c:'#f97316'},
+  {k:'nes', role:'Γ', c:'#f97316'},
+  {k:'meg', role:'+', c:'#f97316'}
+];
+const EXTRA = [
+  {n:'Σχέδιο Β · ΔΕΗ Blue 300 kW', a:'ΑΒ Βασιλόπουλος, Ναυπλίου 39, Τρίπολη', ll:[37.5135,22.3830], q:'AB Vasilopoulos Nafpliou 39 Tripoli', c:'#f97316', l:'Β'},
+  {n:'Σχέδιο Β · nrg 180 kW', a:'Shell, Ναυπλίου 56, Τρίπολη', ll:[37.5150,22.3862], q:'Shell Nafpliou 56 Tripoli', c:'#f97316', l:'Β'},
+  {n:'Έκτακτη ανάγκη · ElpeFuture 150 kW', a:'ΕΚΟ, Ηρώων Πολυτεχνείου, Καλαμάτα', ll:[37.0480,22.1190], q:'EKO Iroon Polytechniou Kalamata', c:'#7c3aed', l:'Ε'}
+];
+const GO = [
+  {p:'dio', km:0,   b:[100,100,100], t:'Αναχώρηση από Διόνυσο'},
+  {p:'kap', km:15,  b:[94,95,96]},
+  {p:'tri', km:195, b:[22,29,34], t:'Τρίπολη · Electrip «E-Drive Cafe»', c:'Η ΜΟΝΗ στάση: φόρτιση ~40′ → 100%'},
+  {p:'kal', km:285, b:[70,75,79], t:'Άφιξη στην Καλαμάτα'}
+];
+const BACK = [
+  {p:'kal', km:0,   b:[63,68,72], t:'Αναχώρηση από Καλαμάτα', tip:'Με ≤20 km οδήγησης μέσα στην Καλαμάτα.'},
+  {p:'tri', km:90,  b:[26,32,37], t:'Τρίπολη · Electrip «E-Drive Cafe»', c:'Η ΜΟΝΗ στάση: φόρτιση ~40′ → 100%'},
+  {p:'dio', km:270, b:[39,44,49], t:'Άφιξη στον Διόνυσο'}
+];
+const col = v => v>=50?'#16a34a':v>=25?'#d97706':'#dc2626';
+const rtxt = b => b[0]===b[2]?b[0]+'%':b[0]+'–'+b[2]+'%';
+function row(s,i){
+  const p=P[s.p];
+  return `<div class="pt"><div class="num" style="background:${col(s.b[0])}">${i+1}</div><div>
+    <div class="name">${s.t||p.n}</div>
+    <div class="meta">${s.km} km${p.a?' · '+p.a:''}</div>
+    <div class="bar"><i style="left:${s.b[0]}%;width:${Math.max(s.b[2]-s.b[0],1)}%;background:${col(s.b[0])}"></i><span class="mid" style="left:${s.b[1]}%"></span></div>
+    <div><span class="rng">${rtxt(s.b)}</span> <span class="meta">(πιο πιθανό ~${s.b[1]}%)</span></div>
+    ${s.c?`<span class="chg">⚡ ${s.c}</span><br>`:''}
+    ${s.tip?`<span class="tip">${s.tip}</span>`:''}
+    <a class="lnk" target="_blank" rel="noopener" href="${Q(p.q)}">Άνοιγμα στο Google Maps ↗</a>
+  </div></div>`;
+}
+document.getElementById('go').insertAdjacentHTML('beforeend', GO.map(row).join(''));
+document.getElementById('back').insertAdjacentHTML('beforeend', BACK.map(row).join(''));
+
+const map = L.map('map',{scrollWheelZoom:false}).setView([37.65,22.95],8);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'© OpenStreetMap'}).addTo(map);
+const pin=(label,color,small)=>L.divIcon({className:'',html:`<div class="pin${small?' small':''}" style="background:${color}">${label}</div>`,iconSize:small?[24,24]:[30,30],iconAnchor:small?[12,12]:[15,15]});
+function popup(k){
+  const p=P[k], g=GO.find(s=>s.p===k), b=BACK.find(s=>s.p===k);
+  let h=`<b>${p.n}</b>${p.a?'<br>'+p.a:''}`;
+  if(g) h+=`<br>Πήγαινε: <b>${rtxt(g.b)}</b>${g.c?'<br>⚡ '+g.c:''}`;
+  if(b) h+=`<br>Επιστροφή: <b>${rtxt(b.b)}</b>${b.c?'<br>⚡ '+b.c:''}`;
+  return h+`<br><a target="_blank" rel="noopener" href="${Q(p.q)}">Άνοιγμα στο Google Maps ↗</a>`;
+}
+['dio','kap','can','kal'].forEach(k=>L.marker(P[k].ll,{icon:pin('•','#64748b',true)}).addTo(map).bindPopup(popup(k)));
+CHARGERS.forEach(x=>L.marker(P[x.k].ll,{icon:pin(x.role==='A'?'⚡':x.role,x.c,x.role!=='A')}).addTo(map).bindPopup(popup(x.k)));
+EXTRA.forEach(e=>L.marker(e.ll,{icon:pin(e.l,e.c,true)}).addTo(map).bindPopup(`<b>${e.n}</b><br>${e.a}<br><a target="_blank" rel="noopener" href="${Q(e.q)}">Άνοιγμα στο Google Maps ↗</a>`));
+
+const fallback=[[38.1067,23.8733],[38.2167,23.8672],[38.142,23.858],[38.07,23.75],[38.04,23.54],[37.993,23.37],[37.9339,22.9885],[37.905,22.88],[37.833,22.796],[37.62,22.47],[37.4975,22.379],[37.40,22.14],[37.16,22.03],[37.0389,22.1142]];
+let line=L.polyline(fallback,{color:'#1c6fd8',weight:5,opacity:.7,dashArray:'6 8'}).addTo(map);
+map.fitBounds(line.getBounds(),{padding:[30,30]});
+const pts=['dio','kap','tri','kal'].map(k=>P[k].ll[1]+','+P[k].ll[0]).join(';');
+fetch('https://router.project-osrm.org/route/v1/driving/'+pts+'?overview=full&geometries=geojson')
+ .then(r=>r.json()).then(j=>{
+   if(!j.routes||!j.routes[0]) return;
+   const c=j.routes[0].geometry.coordinates.map(x=>[x[1],x[0]]);
+   map.removeLayer(line);
+   line=L.polyline(c,{color:'#1c6fd8',weight:5,opacity:.85}).addTo(map);
+   map.fitBounds(line.getBounds(),{padding:[30,30]});
+ }).catch(()=>{});
+}
+</script>
+</body>
+</html>

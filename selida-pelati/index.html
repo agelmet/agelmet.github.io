@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="el">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light only">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#F4F7FB">
+<title>Η ιστοσελίδα σας · Advon Media (δοκιμή)</title>
+<style>
+@font-face{font-family:'Manrope';font-style:normal;font-display:swap;font-weight:200 800;src:url(fonts/manrope-greek-wght-normal.woff2) format('woff2');unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF}
+@font-face{font-family:'Manrope';font-style:normal;font-display:swap;font-weight:200 800;src:url(fonts/manrope-latin-wght-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+:root{color-scheme:light only;--blue:#1C6FD8;--blue-d:#1559B0;--cy:#47C8F5;--ink:#12202F;--mut:#4F5F73;--line:#D9E2EC;--bg:#F4F7FB;--card:#fff;--green:#0B7A48;--green-d:#096339;--greenbg:#E6F5EC;--tint:#EAF3FE;--amber:#FFF3C4;--amber-ink:#5B4300;--red:#B3261E}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:500 18px/1.55 'Manrope',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;overflow-x:hidden}
+button,input,textarea,select{font:inherit;color:inherit}
+button{cursor:pointer;touch-action:manipulation}
+h1,h2,p{margin:0}
+.wrap{width:100%;max-width:560px;margin:0 auto;padding:0 18px}
+.demo{background:var(--amber);color:var(--amber-ink);font-size:14px;line-height:1.35;border-bottom:1px solid #E9D98A;position:sticky;top:0;z-index:20}
+.demo .wrap{padding-top:8px;padding-bottom:8px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.demo b{font-weight:800}
+.demo .sp{flex:1 1 150px;min-width:0}
+.demo button{border:1px solid #C9B45A;background:#fff;border-radius:999px;padding:8px 14px;font-weight:700;font-size:14px;min-height:40px}
+.demo button.go{background:var(--amber-ink);color:#fff;border-color:var(--amber-ink)}
+.demo button[disabled]{opacity:.45;cursor:default}
+.top{padding:18px 0 4px}
+.top .wrap{display:flex;align-items:center;justify-content:space-between}
+.brand{font-weight:800;font-size:17px;letter-spacing:.01em;color:var(--blue);text-decoration:none}
+.brand i{font-style:normal;color:var(--cy)}
+.who{font-size:14px;color:var(--mut)}
+main{padding:10px 0 44px}
+.hi{font-size:15px;color:var(--mut);font-weight:600;margin-bottom:4px}
+h1{font-size:25px;line-height:1.25;font-weight:800;letter-spacing:-.01em;text-wrap:balance}
+.sub{color:var(--mut);margin-top:8px;font-size:17px;text-wrap:pretty}
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin:20px 0 22px}
+.st{font-size:13px;font-weight:700;color:#8493A6;text-align:center}
+.st::before{content:"";display:block;height:8px;border-radius:4px;background:#D4DDE8;margin-bottom:7px;transition:background .5s}
+.st.done{color:var(--green)}.st.done::before{background:var(--green)}
+.st.now{color:var(--blue)}.st.now::before{background:var(--blue)}
+.btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:62px;padding:14px 18px;border-radius:16px;border:0;font-weight:800;font-size:19px;line-height:1.25;text-align:center;text-decoration:none;transition:transform .12s,background .2s}
+.btn:active{transform:scale(.985)}
+.btn.pri{background:var(--blue);color:#fff}
+.btn.pri:hover{background:var(--blue-d)}
+.btn.ok{background:var(--green);color:#fff}
+.btn.ok:hover{background:var(--green-d)}
+.btn.ghost{background:#fff;border:1.5px solid var(--line);color:var(--ink);font-weight:700}
+.btn svg{flex:none}
+.note{margin-top:22px;background:var(--amber);color:var(--amber-ink);border-radius:16px;padding:16px;font-size:16px;font-weight:600}
+.note .btn{margin-top:12px}
+.lab{font-size:15px;font-weight:700;color:var(--mut);margin:26px 0 10px}
+.opt{display:flex;align-items:center;gap:14px;width:100%;min-height:66px;padding:14px 16px;margin-bottom:10px;border-radius:16px;border:1.5px solid var(--line);background:#fff;text-align:left;font-weight:700;font-size:18px;line-height:1.3;transition:border-color .2s,transform .12s}
+.opt:hover{border-color:#A9BEDA}
+.opt:active{transform:scale(.985)}
+.opt .ic{flex:none;width:42px;height:42px;border-radius:12px;background:var(--tint);color:var(--blue);display:grid;place-items:center}
+.opt.good{border-color:#A6D8BD;background:var(--greenbg);color:var(--green-d)}
+.opt.good .ic{background:#fff;color:var(--green)}
+.opt small{display:block;font-size:14px;font-weight:600;color:var(--mut);margin-top:2px}
+.opt .ch{margin-left:auto;color:#9AA8BA;flex:none}
+.card{background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:16px;margin-top:22px}
+.card h2{font-size:18px;font-weight:800}
+.card p{font-size:16px;color:var(--mut);margin-top:4px}
+.card .btn{margin-top:12px;min-height:54px;font-size:17px}
+.card.paid{border-color:#A6D8BD;background:var(--greenbg)}
+.card.paid h2{color:var(--green-d)}
+.link{background:none;border:0;padding:12px 4px;color:var(--blue);font-weight:700;font-size:16px;text-decoration:underline;text-underline-offset:3px;min-height:44px}
+.conv{margin-top:8px}
+.m{max-width:88%;padding:12px 14px;border-radius:16px;margin:0 0 10px;font-size:16.5px;line-height:1.5;white-space:pre-wrap;overflow-wrap:anywhere}
+.m.a{background:var(--tint);border-bottom-left-radius:5px}
+.m.c{background:#fff;border:1.5px solid var(--line);margin-left:auto;border-bottom-right-radius:5px}
+.m .mt{display:block;font-size:12.5px;font-weight:700;color:#7C8A9C;margin-bottom:3px;white-space:normal}
+.thumbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(72px,1fr));gap:6px;margin-top:8px}
+.thumbs img,.thumbs .f{width:100%;aspect-ratio:1;border-radius:10px;object-fit:cover;background:#EEF2F7;display:block}
+.thumbs .f{display:grid;place-items:center;font-size:11px;font-weight:700;color:var(--mut);padding:4px;text-align:center;overflow:hidden}
+.back{display:inline-flex;align-items:center;gap:6px;background:none;border:0;padding:10px 6px 10px 0;margin:0 0 6px -2px;font-weight:700;font-size:17px;color:var(--blue);min-height:48px}
+textarea,input[type=text],input[type=tel]{display:block;width:100%;border:1.5px solid #B9C6D6;border-radius:14px;background:#fff;padding:14px 16px;font-size:18px;line-height:1.5;outline:0}
+textarea{min-height:190px;resize:vertical}
+textarea:focus,input:focus{border-color:var(--blue);box-shadow:0 0 0 4px rgba(28,111,216,.16)}
+.tip{font-size:15.5px;color:var(--mut);margin:10px 0 0}
+.err{color:var(--red);font-weight:700;font-size:16px;margin-top:10px;min-height:1px}
+.mt16{margin-top:16px}.mt22{margin-top:22px}
+.drop{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;min-height:150px;border:2px dashed #9DB6D8;border-radius:18px;background:#fff;color:var(--blue);font-weight:800;font-size:19px;text-align:center;padding:18px;cursor:pointer}
+.drop small{font-size:15px;font-weight:600;color:var(--mut)}
+.pick{display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:8px;margin-top:14px}
+.pk{position:relative}
+.pk img,.pk .f{width:100%;aspect-ratio:1;border-radius:12px;object-fit:cover;background:#EEF2F7;display:grid;place-items:center;font-size:12px;font-weight:700;color:var(--mut);padding:6px;text-align:center;overflow:hidden}
+.pk button{position:absolute;top:-12px;right:-12px;width:44px;height:44px;border-radius:50%;border:5px solid var(--bg);background:var(--ink);color:#fff;font-size:20px;line-height:1;display:grid;place-items:center;padding:0}
+.row{background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:12px 14px;margin-top:10px}
+.row span{display:block;font-size:13.5px;font-weight:700;color:var(--mut)}
+.row b{display:block;font-size:18px;font-weight:800;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
+.row button{margin-top:8px;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:9px 14px;font-weight:700;font-size:15.5px;min-height:44px}
+.sum{font-size:30px;font-weight:800;letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+.fin{text-align:center;padding:34px 0 10px}
+.tick{width:96px;height:96px;margin:0 auto 18px;border-radius:50%;background:var(--greenbg);display:grid;place-items:center}
+.tick path{stroke-dasharray:40;stroke-dashoffset:40;animation:dr .55s .15s ease-out forwards}
+@keyframes dr{to{stroke-dashoffset:0}}
+.view{animation:in .28s ease-out}
+@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.foot{font-size:14px;color:#7C8A9C;text-align:center;margin-top:30px}
+.foot a{color:inherit}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media (max-width:360px){body{font-size:17px}h1{font-size:23px}.btn{font-size:18px}}
+@media (prefers-reduced-motion:reduce){.view,.tick path{animation:none}.tick path{stroke-dashoffset:0}}
+</style>
+</head>
+<body>
+<div class="demo" role="region" aria-label="Δοκιμή"><div class="wrap">
+  <span class="sp"><b>Δοκιμή.</b> <span id="demoTxt"></span></span>
+  <button class="go" id="demoNext" type="button">Επόμενο βήμα της Advon</button>
+  <button id="demoReset" type="button">Από την αρχή</button>
+</div></div>
+<header class="top"><div class="wrap">
+  <span class="brand">Advon <i>Media</i></span>
+  <span class="who">Η ιστοσελίδα σας</span>
+</div></header>
+<main><div class="wrap" id="app" aria-live="polite"></div></main>
+<input type="file" id="file" class="sr" multiple accept="image/*,application/pdf,.doc,.docx,.txt" tabindex="-1" aria-hidden="true">
+<script>
+(function(){
+'use strict';
+var KEY='advon-pelatis-demo-v1';
+var C={sal:'κα Παπαδοπούλου',site:'https://evelina-apostolaki.gr/',domEx:'papadopoulou-psychologos.gr'};
+var REVIEW='https://g.co/kgs/wXBAZWP';
+var IBAN='GR7301401630163002002013569';
+var EPON='ΜΕΤΡΙΔΗΣ ΑΓΓΕΛΟΣ - ADVON MEDIA';
+var WELCOME='Καλώς ήρθατε. Εδώ βλέπετε πού βρίσκεται η ιστοσελίδα σας και μας στέλνετε ό,τι χρειάζεται.\n\nΓια να ξεκινήσουμε, στείλτε μας φωτογραφίες σας, το λογότυπο ή την κάρτα σας αν έχετε, και λίγα λόγια για εσάς.';
+var app=document.getElementById('app'),file=document.getElementById('file');
+var S,view='home',staged=[],doneInfo=null;
+
+function fresh(){return{stage:'yliko',msgs:[{f:'a',t:Date.now(),x:WELCOME}],sent:false,pend:false,round:0,paid:false,dom:''}}
+function load(){try{var s=JSON.parse(localStorage.getItem(KEY));if(s&&s.stage&&s.msgs)return s}catch(e){}return fresh()}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+function esc(s){return String(s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+function when(t){var d=new Date(t),n=new Date(),same=d.toDateString()===n.toDateString();var hm=d.toLocaleTimeString('el-GR',{hour:'2-digit',minute:'2-digit',hour12:false});return same?'Σήμερα '+hm:d.toLocaleDateString('el-GR',{day:'numeric',month:'short'})+' '+hm}
+function hello(){var h=new Date().getHours();return(h>=5&&h<12?'Καλημέρα σας':'Καλησπέρα σας')+', '+C.sal}
+function add(f,x,files){S.msgs.push({f:f,t:Date.now(),x:x||'',files:files||null})}
+
+var I={
+ photo:'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><circle cx="9" cy="10.5" r="1.8"/><path d="M4 17l4.5-4 3.5 3 3-2.5 5 4"/></svg>',
+ pen:'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16v4z"/><path d="M13.5 6.5l4 4"/></svg>',
+ check:'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>',
+ eye:'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/></svg>',
+ star:'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8L3.5 9.7l5.9-.8L12 3.5z"/></svg>',
+ ch:'<svg class="ch" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>',
+ back:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>'
+};
+function opt(act,ic,t,sm,cls){return'<button type="button" class="opt '+(cls||'')+'" data-act="'+act+'"><span class="ic">'+I[ic]+'</span><span>'+t+(sm?'<small>'+sm+'</small>':'')+'</span>'+I.ch+'</button>'}
+
+var IDX={yliko:0,yliko_wait:0,draft:1,changes_wait:2,changes:2,live_wait:3,live:4};
+function steps(){var n=IDX[S.stage],L=['Υλικό','Σχέδιο','Αλλαγές','Online'],h='<div class="steps" role="img" aria-label="Βήμα '+Math.min(n+1,4)+' από 4">';
+ for(var i=0;i<4;i++)h+='<div class="st '+(i<n?'done':i===n?'now':'')+'">'+L[i]+'</div>';return h+'</div>'}
+
+function payCard(){
+ if(IDX[S.stage]<1)return'';
+ if(S.paid)return'<div class="card paid"><h2>Λάβαμε το μήνυμά σας για την κατάθεση</h2><p>Σας ευχαριστούμε. Θα σας στείλουμε το τιμολόγιο.</p></div>';
+ return'<div class="card"><h2>Φιλοξενία και domain για έναν χρόνο</h2><p>161,20 € με κατάθεση σε τράπεζα. Γίνεται με την παράδοση του πρώτου σχεδίου.</p><button type="button" class="btn ghost" data-act="pay">Δείτε τα στοιχεία κατάθεσης</button></div>'}
+
+function conv(){var h='<p class="lab">Η συνομιλία μας · τα νεότερα πρώτα</p><div class="conv">';
+ S.msgs.slice().reverse().forEach(function(m){h+='<div class="m '+(m.f==='a'?'a':'c')+'"><span class="mt">'+(m.f==='a'?'Advon Media':'Εσείς')+' · '+when(m.t)+'</span>'+esc(m.x);
+  if(m.files&&m.files.length){h+='<div class="thumbs">';m.files.forEach(function(f){h+=f.th?'<img src="'+f.th+'" alt="'+esc(f.n)+'">':'<div class="f">'+esc(f.n)+'</div>'});h+='</div>'}
+  h+='</div>'});
+ return h+'</div>'}
+
+function home(){
+ var s=S.stage,h='<div class="view"><p class="hi">'+hello()+'</p>',T,sub,body='';
+ if(s==='yliko'){T='Για να ξεκινήσουμε, χρειαζόμαστε το υλικό σας.';sub='Φωτογραφίες, λογότυπο ή κάρτα, και λίγα λόγια για εσάς. Στείλτε ό,τι έχετε.';
+  body=opt('photos','photo','Στείλτε φωτογραφίες ή αρχεία')+opt('write','pen','Γράψτε μας λίγα λόγια','Ποιοι είστε, τι κάνετε, τι θέλετε να φαίνεται')+
+  '<p class="lab">Όταν τα στείλετε όλα</p><button type="button" class="btn ok" data-act="ready">'+I.check+'Τα έστειλα όλα, ξεκινήστε</button><button type="button" class="link" data-act="readymail">Τα έχω στείλει ήδη στο Viber ή με e-mail</button>'}
+ if(s==='yliko_wait'){T='Φτιάχνουμε την ιστοσελίδα σας.';sub='Το πρώτο σχέδιο θα είναι έτοιμο σε 1–5 ημέρες. Θα σας στείλουμε μήνυμα στο Viber μόλις ετοιμαστεί.';
+  body='<p class="lab">Θέλετε να προσθέσετε κάτι;</p>'+opt('photos','photo','Στείλτε κι άλλες φωτογραφίες')+opt('write','pen','Γράψτε μας ένα μήνυμα')}
+ if(s==='draft'){T='Το πρώτο σχέδιο της ιστοσελίδας σας είναι έτοιμο.';sub='Δείτε το με την ησυχία σας. Αν μπορείτε, ανοίξτε το και από υπολογιστή.';
+  body='<a class="btn pri" href="'+C.site+'" target="_blank" rel="noopener">'+I.eye+'Δείτε την ιστοσελίδα σας</a>'+pending()+
+  '<p class="lab">Τι θέλετε να κάνετε;</p>'+opt('write','pen','Γράψτε τις αλλαγές που θέλετε','Όσες θέλετε, χωρίς χρέωση')+opt('photos','photo','Στείλτε φωτογραφίες ή αρχεία')+opt('golive','check','Όλα καλά, πάμε online','','good')+payCard()}
+ if(s==='changes_wait'){T='Κάνουμε τις αλλαγές σας.';sub='Θα είναι έτοιμες μέσα σε 24 ώρες. Θα σας στείλουμε μήνυμα στο Viber.';
+  body='<p class="lab">Ξεχάσατε κάτι;</p>'+opt('write','pen','Γράψτε μας κι άλλη αλλαγή')+opt('photos','photo','Στείλτε φωτογραφίες ή αρχεία')+payCard()}
+ if(s==='changes'){T='Οι αλλαγές σας έγιναν.';sub='Δείτε ξανά όλη τη σελίδα και πείτε μας αν είναι όλα εντάξει.';
+  body='<a class="btn pri" href="'+C.site+'" target="_blank" rel="noopener">'+I.eye+'Δείτε ξανά την ιστοσελίδα σας</a>'+pending()+
+  '<p class="lab">Τι θέλετε να κάνετε;</p>'+opt('golive','check','Όλα καλά, πάμε online','','good')+opt('write','pen','Έχω κι άλλες αλλαγές')+opt('photos','photo','Στείλτε φωτογραφίες ή αρχεία')+payCard()}
+ if(s==='live_wait'){T='Βγάζουμε την ιστοσελίδα σας online.';sub='Θα είναι στον αέρα σε 1–2 ημέρες'+(S.dom?', στη διεύθυνση '+esc(S.dom):'')+'. Θα σας στείλουμε μήνυμα στο Viber.';
+  body='<p class="lab">Θέλετε να μας πείτε κάτι;</p>'+opt('write','pen','Γράψτε μας ένα μήνυμα')+payCard()}
+ if(s==='live'){T='Η ιστοσελίδα σας είναι online.';sub=S.dom?'Η διεύθυνσή της: '+esc(S.dom):'Μπορείτε να τη μοιραστείτε με όποιον θέλετε.';
+  body='<a class="btn pri" href="'+C.site+'" target="_blank" rel="noopener">'+I.eye+'Ανοίξτε την ιστοσελίδα σας</a>'+
+  '<div class="card"><h2>Μια κριτική στο Google μάς βοηθά πολύ</h2><p>Χρειάζεται ένα λεπτό και για εμάς σημαίνει πολλά.</p><a class="btn ghost" href="'+REVIEW+'" target="_blank" rel="noopener">'+I.star+'Γράψτε μια κριτική</a></div>'+
+  '<p class="lab">Χρειάζεστε κάτι;</p>'+opt('write','pen','Θέλω μια αλλαγή','Μετά τη δημοσίευση, 50 € ανά αίτημα')+payCard()}
+ h+='<h1>'+T+'</h1><p class="sub">'+sub+'</p>'+steps()+body+conv()+
+ '<p class="foot">Ό,τι στέλνετε εδώ το βλέπει μόνο η Advon Media. · <a href="https://advonmedia.com/privacy-policy" target="_blank" rel="noopener">Απόρρητο</a></p></div>';
+ return h}
+function pending(){return S.pend?'<div class="note">Γράψατε αλλαγές. Έχετε κι άλλες; Όταν τελειώσετε, πατήστε εδώ για να τις ξεκινήσουμε.<button type="button" class="btn ok" data-act="changesdone">'+I.check+'Έστειλα όλες τις αλλαγές</button></div>':''}
+
+function backBtn(){return'<button type="button" class="back" data-act="home">'+I.back+'Πίσω</button>'}
+function vWrite(){var ch=(S.stage==='draft'||S.stage==='changes'||S.stage==='changes_wait');
+ return'<div class="view">'+backBtn()+'<h1>'+(ch?'Γράψτε τις αλλαγές που θέλετε':S.stage==='yliko'?'Γράψτε μας λίγα λόγια':'Γράψτε μας ένα μήνυμα')+'</h1>'+
+ '<p class="sub">'+(ch?'Με δικά σας λόγια, μία αλλαγή σε κάθε γραμμή. Όσο πιο συγκεκριμένα, τόσο πιο κοντά σε αυτό που έχετε στο μυαλό σας.':'Γράψτε όπως θα το λέγατε σε εμάς.')+'</p>'+
+ '<label class="sr" for="tx">Το μήνυμά σας</label><textarea id="tx" class="mt16" placeholder="'+(ch?'Στο τηλέφωνο, αλλάξτε το 210 1234567 σε 210 7654321&#10;Στην πρώτη φωτογραφία, βάλτε αυτή που σας έστειλα':'Είμαι ψυχολόγος στο Παγκράτι και δέχομαι ενήλικες και εφήβους')+'"></textarea>'+
+ '<p class="tip">Μπορείτε και να το πείτε με τη φωνή σας: πατήστε το μικρόφωνο στο πληκτρολόγιο του κινητού.</p><p class="err" id="er" role="alert"></p>'+
+ '<button type="button" class="btn pri mt16" data-act="sendtext">Αποστολή</button></div>'}
+function vPhotos(){var h='<div class="view">'+backBtn()+'<h1>Στείλτε φωτογραφίες ή αρχεία</h1><p class="sub">Φωτογραφίες σας και του χώρου σας, το λογότυπο, την κάρτα σας ή ένα αρχείο Word.</p>'+
+ '<button type="button" class="drop mt16" data-act="pick" style="width:100%">'+I.photo+(staged.length?'Προσθέστε κι άλλες':'Επιλέξτε φωτογραφίες')+'<small>Από το κινητό ή τον υπολογιστή σας</small></button>';
+ if(staged.length){h+='<div class="pick">';staged.forEach(function(f,i){h+='<div class="pk">'+(f.th?'<img src="'+f.th+'" alt="'+esc(f.n)+'">':'<div class="f">'+esc(f.n)+'</div>')+'<button type="button" data-rm="'+i+'" aria-label="Αφαίρεση '+esc(f.n)+'">×</button></div>'});h+='</div>'}
+ h+='<p class="err" id="er" role="alert"></p><button type="button" class="btn pri mt22" data-act="sendfiles">'+(staged.length?'Αποστολή ('+staged.length+')':'Αποστολή')+'</button></div>';return h}
+function vPay(){return'<div class="view">'+backBtn()+'<h1>Στοιχεία κατάθεσης</h1><p class="sub">Φιλοξενία και domain για 365 ημέρες από την ημέρα που ολοκληρώνουμε.</p>'+
+ '<div class="row mt16"><span>Ποσό</span><b class="sum">161,20 €</b><span>130 € + ΦΠΑ 24% (31,20 €)</span></div>'+
+ '<div class="row"><span>Τράπεζα</span><b>Alpha Bank</b></div>'+
+ '<div class="row"><span>IBAN</span><b>'+IBAN.replace(/(.{4})/g,'$1 ').trim()+'</b><button type="button" data-copy="'+IBAN+'">Αντιγραφή IBAN</button></div>'+
+ '<div class="row"><span>Επωνυμία</span><b>'+EPON+'</b><button type="button" data-copy="'+EPON+'">Αντιγραφή επωνυμίας</button></div>'+
+ '<p class="lab">Για το τιμολόγιο</p><label class="sr" for="afm">Το ΑΦΜ σας</label><input id="afm" type="text" inputmode="numeric" autocomplete="off" maxlength="9" placeholder="Το ΑΦΜ σας (9 ψηφία)">'+
+ '<p class="err" id="er" role="alert"></p><button type="button" class="btn ok mt16" data-act="paid">'+I.check+'Έκανα την κατάθεση</button></div>'}
+function vDomain(){return'<div class="view">'+backBtn()+'<h1>Ποια διεύθυνση θέλετε για την ιστοσελίδα σας;</h1><p class="sub">Είναι αυτό που θα γράφει κάποιος για να σας βρει. Συνήθως το επώνυμο και το επάγγελμα, με λατινικούς χαρακτήρες.</p>'+
+ '<label class="sr" for="dom">Διεύθυνση ιστοσελίδας</label><input id="dom" class="mt16" type="text" autocapitalize="none" autocomplete="off" spellcheck="false" placeholder="'+C.domEx+'">'+
+ '<p class="tip">Θα ελέγξουμε αν είναι ελεύθερη και θα σας πούμε. Η διεύθυνση περιλαμβάνεται στην τιμή.</p><p class="err" id="er" role="alert"></p>'+
+ '<button type="button" class="btn ok mt16" data-act="senddom">'+I.check+'Αποστολή, πάμε online</button></div>'}
+function vDone(){return'<div class="view fin"><div class="tick"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#0B7A48" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>'+
+ '<h1>'+doneInfo.t+'</h1><p class="sub">'+doneInfo.s+'</p><button type="button" class="btn pri mt22" data-act="home">Εντάξει</button></div>'}
+
+function render(){
+ app.innerHTML=view==='write'?vWrite():view==='photos'?vPhotos():view==='pay'?vPay():view==='domain'?vDomain():view==='done'?vDone():home();
+ demo()}
+function go(v){view=v;render();window.scrollTo(0,0);var f=app.querySelector('textarea,#dom');if(f&&matchMedia('(min-width:700px)').matches)f.focus()}
+function done(t,s){doneInfo={t:t,s:s};save();go('done')}
+function err(x){var e=document.getElementById('er');if(e)e.textContent=x}
+
+var NEXT={yliko_wait:1,changes_wait:1,live_wait:1};
+function demo(){var b=document.getElementById('demoNext'),t=document.getElementById('demoTxt'),w=!!NEXT[S.stage];
+ b.disabled=!w;t.textContent=w?'Ο πελάτης περιμένει εσάς.':S.stage==='live'?'Τέλος διαδρομής.':'Τώρα παίζει ο πελάτης. Τίποτα δεν στέλνεται.'}
+document.getElementById('demoReset').addEventListener('click',function(){S=fresh();staged=[];save();go('home')});
+document.getElementById('demoNext').addEventListener('click',function(){
+ if(S.stage==='yliko_wait'){S.round++;S.stage='draft';add('a','Το πρώτο σχέδιο της ιστοσελίδας σας είναι έτοιμο. Εργαστήκαμε με τη δική σας ιστοσελίδα και οι 4 μας.\n\nΔείτε το και γράψτε μας όποια αλλαγή θέλετε. Οι αλλαγές είναι απεριόριστες μέχρι τη δημοσίευση.')}
+ else if(S.stage==='changes_wait'){var L=[];var hadF=false;S.msgs.forEach(function(m){if(m.f!=='c'||m.r!==S.round)return;if(m.files){hadF=true;return}if(m.x)m.x.split(/\n+/).forEach(function(l){l=l.trim();if(l)L.push(l.length>90?l.slice(0,88)+'…':l)})});if(hadF)L.push('Βάλαμε τις φωτογραφίες που μας στείλατε');
+  S.round++;S.stage='changes';add('a','Οι αλλαγές σας έγιναν:\n'+(L.length?L.map(function(l,i){return(i+1)+'. '+l}).join('\n'):'1. Όσα μας στείλατε')+'\n\nΕλέγξτε όλη τη σελίδα και πείτε μας αν είναι όλα εντάξει τώρα.')}
+ else if(S.stage==='live_wait'){S.stage='live';add('a','Η ιστοσελίδα σας είναι online'+(S.dom?' στο '+S.dom:'')+'. Καλή επιτυχία!')}
+ else return;
+ save();go('home')});
+
+app.addEventListener('click',function(e){
+ var rm=e.target.closest('[data-rm]');if(rm){staged.splice(+rm.getAttribute('data-rm'),1);render();return}
+ var cp=e.target.closest('[data-copy]');if(cp){var v=cp.getAttribute('data-copy'),o=cp.textContent;(navigator.clipboard?navigator.clipboard.writeText(v):Promise.reject()).catch(function(){var a=document.createElement('textarea');a.value=v;document.body.appendChild(a);a.select();try{document.execCommand('copy')}catch(x){}a.remove()});cp.textContent='Αντιγράφηκε';setTimeout(function(){cp.textContent=o},1800);return}
+ var b=e.target.closest('[data-act]');if(!b)return;var a=b.getAttribute('data-act');
+ if(a==='home')return go('home');
+ if(a==='write'||a==='photos'||a==='pay')return go(a);
+ if(a==='pick')return file.click();
+ if(a==='golive')return go('domain');
+ if(a==='ready'||a==='readymail'){
+  if(a==='ready'&&!S.sent){S.askedOnce=!S.askedOnce;if(S.askedOnce){var n=document.createElement('div');n.className='note';n.setAttribute('role','alert');n.textContent='Δεν μας έχετε στείλει κάτι από εδώ ακόμη. Αν τα στείλατε αλλού, πατήστε «Τα έχω στείλει ήδη στο Viber ή με e-mail».';b.before(n);return}}
+  add('c',a==='ready'?'Τα έστειλα όλα. Ξεκινήστε την ιστοσελίδα μου.':'Τα έχω στείλει ήδη στο Viber ή με e-mail. Ξεκινήστε την ιστοσελίδα μου.');S.stage='yliko_wait';S.askedOnce=false;
+  return done('Το λάβαμε, ξεκινάμε','Το πρώτο σχέδιο θα είναι έτοιμο σε 1–5 ημέρες. Θα σας στείλουμε μήνυμα στο Viber μόλις ετοιμαστεί.')}
+ if(a==='sendtext'){var x=document.getElementById('tx').value.trim();if(!x)return err('Γράψτε πρώτα το μήνυμά σας.');
+  var ch=(S.stage==='draft'||S.stage==='changes'||S.stage==='changes_wait');add('c',x);S.msgs[S.msgs.length-1].r=S.round;S.sent=true;
+  if(S.stage==='draft'||S.stage==='changes'){S.pend=true;return done('Το λάβαμε','Έχετε κι άλλες αλλαγές; Γράψτε τις όλες και μετά πατήστε «Έστειλα όλες τις αλλαγές».')}
+  return done('Το λάβαμε',ch?'Θα το κάνουμε μαζί με τις υπόλοιπες αλλαγές.':'Σας ευχαριστούμε. Το διαβάζουμε και συνεχίζουμε.')}
+ if(a==='sendfiles'){if(!staged.length)return err('Επιλέξτε πρώτα τουλάχιστον μία φωτογραφία ή ένα αρχείο.');
+  var n2=staged.length;add('c',n2===1?'Σας έστειλα 1 αρχείο.':'Σας έστειλα '+n2+' αρχεία.',staged.slice(0,12));S.msgs[S.msgs.length-1].r=S.round;staged=[];S.sent=true;
+  if(S.stage==='draft'||S.stage==='changes')S.pend=true;
+  return done(n2===1?'Λάβαμε το αρχείο σας':'Λάβαμε τα '+n2+' αρχεία σας',S.stage==='yliko'?'Έχετε κι άλλα; Όταν τα στείλετε όλα, πατήστε «Τα έστειλα όλα, ξεκινήστε».':'Σας ευχαριστούμε.')}
+ if(a==='changesdone'){S.pend=false;S.stage='changes_wait';add('c','Έστειλα όλες τις αλλαγές.');return done('Ξεκινάμε τις αλλαγές σας','Θα είναι έτοιμες μέσα σε 24 ώρες. Θα σας στείλουμε μήνυμα στο Viber.')}
+ if(a==='paid'){var f=document.getElementById('afm').value.replace(/\D/g,'');if(f.length!==9)return err('Γράψτε το ΑΦΜ σας με 9 ψηφία, για να κόψουμε το τιμολόγιο.');
+  S.paid=true;add('c','Έκανα την κατάθεση. Το ΑΦΜ μου: '+f);return done('Σας ευχαριστούμε','Μόλις δούμε την κατάθεση, σας στέλνουμε το τιμολόγιο.')}
+ if(a==='senddom'){var d=document.getElementById('dom').value.trim().toLowerCase().replace(/^https?:\/\//,'').replace(/^www\./,'').replace(/\/.*$/,'');
+  if(!d)return err('Γράψτε τη διεύθυνση που θέλετε, π.χ. '+C.domEx);
+  if(!/^[a-z0-9-]+(\.[a-z0-9-]+)+$/.test(d)){if(/^[a-z0-9-]+$/.test(d))d+='.gr';else return err('Χρησιμοποιήστε μόνο λατινικά γράμματα, αριθμούς και παύλες, π.χ. '+C.domEx)}
+  S.dom=d;S.pend=false;S.stage='live_wait';add('c','Όλα καλά, πάμε online. Η διεύθυνση που θέλω: '+d);
+  return done('Τέλεια, πάμε online','Ελέγχουμε τη διεύθυνση '+esc(d)+' και βγάζουμε την ιστοσελίδα σας στον αέρα σε 1–2 ημέρες.')}
+});
+
+function thumb(f){return new Promise(function(res){
+ if(!/^image\//.test(f.type))return res({n:f.name,th:''});
+ var u=URL.createObjectURL(f),im=new Image();
+ im.onload=function(){try{var m=220,r=Math.min(1,m/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.max(1,Math.round(im.width*r));c.height=Math.max(1,Math.round(im.height*r));c.getContext('2d').drawImage(im,0,0,c.width,c.height);res({n:f.name,th:c.toDataURL('image/jpeg',.7)})}catch(e){res({n:f.name,th:''})}URL.revokeObjectURL(u)};
+ im.onerror=function(){URL.revokeObjectURL(u);res({n:f.name,th:''})};im.src=u})}
+app.addEventListener('input',function(){err('')});
+file.addEventListener('change',function(){var fs=[].slice.call(file.files||[]);if(!fs.length)return;
+ Promise.all(fs.map(thumb)).then(function(a){staged=staged.concat(a);file.value='';if(view!=='photos')view='photos';render()})});
+
+S=load();render();
+})();
+</script>
+</body>
+</html>

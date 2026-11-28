@@ -10,6 +10,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="color-scheme" content="light only">
 <meta name="theme-color" content="#050608">
+<script>(function(){try{if(localStorage.getItem('advon-theme')==='light'){var d=document.documentElement;d.classList.add('light');d.style.colorScheme='light';var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('content','#f6f5f1')}}catch(e){}})()</script>
 <meta name="robots" content="noindex,nofollow">
 <title>Ξεκινήστε την ιστοσελίδα σας τώρα, χωρίς ραντεβού | Advon Media</title>
 <meta name="description" content="Δείτε το σύντομο βίντεο, στείλτε τα στοιχεία και το υλικό σας, και ξεκινάμε σήμερα. Κατασκευή 0€ — μόνο 130€ + ΦΠΑ τον χρόνο για φιλοξενία & domain, με απεριόριστες αλλαγές.">
@@ -954,17 +955,217 @@ body.demo-on .site-hd{top:26px}body.demo-on .scroll-progress{top:26px}body.demo-
 .rvh h2{font-size:clamp(1.7rem,7vw,3rem)}
 @media (max-width:420px){.work{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.wk span{padding:9px 10px;font-size:12px}}
 
+
+/* =====================================================================================================
+   v8 · light mode, the same as advonmedia.com (28 Nov 2026 — Angelo: «have the option to be in light mode as well»).
+   html.light is set before the first paint from localStorage «advon-theme» (the same key the site uses, so the
+   visitor's choice on the site carries over) and by the sun / moon switch in the header. Dark stays the default.
+   Values copied from app/globals.css «LIGHT MODE». The video player and the «no website» review panel stay dark.
+   ===================================================================================================== */
+.theme-toggle{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;flex:none;border-radius:10px;color:#47c8f5;background:rgba(71,200,245,.08);border:1px solid rgba(71,200,245,.35);transition:background-color .25s,color .25s,border-color .25s;cursor:pointer;position:relative}
+.theme-toggle::before{content:"";position:absolute;inset:-5px}
+.theme-toggle svg{width:17px;height:17px}
+.theme-toggle .tt-moon{display:none}
+@media (hover:hover){.theme-toggle:hover{background:#47c8f5;color:#050608}}
+.rr-beams{display:none}
+html.theme-anim,html.theme-anim *{transition:background-color .35s ease,color .35s ease,border-color .35s ease,box-shadow .35s ease!important}
+
+html.light{
+  --ink:#12151a;--ink-2:#262c34;--ink-3:#3b434d;--muted:#555e69;--muted-2:#6b7480;
+  --line:rgba(18,21,26,.10);--line-2:rgba(18,21,26,.16);--paper:#f6f5f1;--paper-2:#eeece6;--card:#fff;
+  --cy:#0a7fb0;--cy-2:#0a7fb0;--bl:#0a7fb0;--bl-2:#0a7fb0;--cy-soft:rgba(10,127,176,.08);--tint:rgba(10,127,176,.08);
+  --ok:#14a06b;--ok-t:rgba(20,160,107,.10);--err:#d6374a;
+  --lsh:0 24px 60px -30px rgba(16,24,40,.28),0 2px 6px -2px rgba(16,24,40,.06);
+  color-scheme:light;background:#f6f5f1
+}
+html.light body{background:var(--paper);color:var(--ink)}
+html.light ::selection{background:rgba(10,127,176,.2);color:var(--ink)}
+html.light ::placeholder{color:rgba(18,21,26,.38)}
+html.light .theme-toggle{color:var(--ink-2);background:var(--card);border-color:var(--line-2)}
+@media (hover:hover){html.light .theme-toggle:hover{background:var(--ink);color:#fff}}
+html.light .theme-toggle .tt-sun{display:none}
+html.light .theme-toggle .tt-moon{display:block}
+
+/* the day sky */
+html.light .rr-sky{background:var(--paper)}
+html.light .rr-vignette,html.light .grain{display:none}
+html.light .rr-sky-light{background:radial-gradient(70% 55% at 50% -14%,rgba(255,255,255,1) 0%,rgba(255,255,255,.6) 30%,transparent 62%),radial-gradient(130% 80% at 50% -20%,rgba(71,200,245,.24) 0%,rgba(71,200,245,.08) 42%,transparent 70%),radial-gradient(60% 50% at 8% 108%,rgba(214,170,90,.12) 0%,transparent 70%),radial-gradient(60% 50% at 94% 104%,rgba(71,200,245,.10) 0%,transparent 70%),linear-gradient(180deg,#eef6fa 0%,#f6f6f2 38%,var(--paper) 62%,#f0eee8 100%)}
+html.light .rr-beams{display:block;overflow:hidden}
+html.light .rr-beams i{position:absolute;top:-14vh;left:50%;width:var(--w);height:165vh;transform-origin:50% 0;transform:translateX(-50%) rotate(var(--r));background:linear-gradient(180deg,rgba(71,200,245,.40) 0%,rgba(71,200,245,.16) 34%,rgba(71,200,245,.04) 62%,transparent 82%);-webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 35%,#000 65%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0%,#000 35%,#000 65%,transparent 100%);opacity:var(--o);animation:rrBeam var(--d) ease-in-out infinite alternate;will-change:transform,opacity}
+html.light .rr-beams i.w{background:linear-gradient(180deg,rgba(255,206,120,.42) 0%,rgba(255,228,180,.18) 36%,rgba(255,240,215,.04) 62%,transparent 82%)}
+html.light .rr-beams i:nth-of-type(even){animation-delay:calc(var(--d) * -.5)}
+@keyframes rrBeam{0%{transform:translateX(-50%) rotate(var(--r));opacity:var(--o)}50%{opacity:calc(var(--o) * .45)}100%{transform:translateX(-50%) rotate(calc(var(--r) + 5deg));opacity:var(--o)}}
+html.light .rr-sun{position:absolute;left:50%;top:-34vh;width:120vw;height:70vh;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(255,255,255,.95) 0%,rgba(232,247,253,.55) 38%,rgba(71,200,245,.10) 70%,transparent 100%);animation:rrSun 9s ease-in-out infinite alternate}
+@keyframes rrSun{to{transform:translateX(-50%) scale(1.06);opacity:.82}}
+@media (prefers-reduced-motion:reduce){html.light .rr-beams i,html.light .rr-sun{animation:none}}
+html.light .hero .ceil{background:radial-gradient(60% 46% at 50% 0%,rgba(71,200,245,.10) 0%,transparent 70%)}
+
+/* header + footer */
+html.light .site-hd.is-scrolled{background:rgba(250,249,246,.94);border-bottom-color:var(--line);box-shadow:0 8px 30px -14px rgba(16,24,40,.18)}
+@media (max-width:767px){html.light .site-hd.is-scrolled{background:rgba(250,249,246,.985);box-shadow:0 1px 0 var(--line),0 6px 14px -10px rgba(16,24,40,.25)}}
+html.light .hd-logo .ring{opacity:.25}
+html.light .hd-proof{color:var(--muted)}html.light .hd-proof b{color:var(--cy)}html.light .hd-proof i{color:rgba(18,21,26,.25)}
+html.light .site-ft{background:var(--card);border-top-color:var(--line);color:var(--muted)}
+html.light .site-ft::before{background:linear-gradient(90deg,transparent,rgba(10,127,176,.35) 30%,rgba(90,140,0,.3) 70%,transparent)}
+html.light .ft-brand b{color:var(--ink)}html.light .ft-in p{color:var(--muted-2)}
+html.light .ft-soc a{color:var(--ink-3);border-color:var(--line-2)}
+@media (hover:hover){html.light .ft-soc a:hover{color:var(--cy);border-color:rgba(10,127,176,.4);background:var(--cy-soft)}}
+html.light .ft-bar{border-top-color:var(--line)}html.light .ft-bar nav{color:var(--cy)}html.light .ft-bar nav i{color:rgba(18,21,26,.25)}
+html.light .mbar{background:rgba(250,249,246,.95);border-top-color:var(--line)}
+
+/* buttons: the cyan stays; the white hover becomes ink */
+html.light .btn{box-shadow:0 8px 22px -10px rgba(10,127,176,.45)}
+@media (hover:hover){html.light .btn:hover{background:var(--ink);color:#fff;box-shadow:0 12px 28px -12px rgba(16,24,40,.45)}}
+html.light .buy .btn,html.light .pcard .btn,html.light #pay{animation:heroCTAPulseL 3s ease-in-out infinite}
+@keyframes heroCTAPulseL{0%,100%{box-shadow:0 8px 22px -10px rgba(10,127,176,.45)}50%{box-shadow:0 10px 34px -8px rgba(10,127,176,.6),0 0 0 6px rgba(71,200,245,.14)}}
+html.light .btn.ghost,html.light .btn.line,html.light .final .btn.line{background:transparent;color:var(--cy);box-shadow:inset 0 0 0 2px rgba(10,127,176,.75)}
+@media (hover:hover){html.light .btn.ghost:hover,html.light .btn.line:hover,html.light .final .btn.line:hover{background:var(--ink);color:#fff;box-shadow:inset 0 0 0 2px var(--ink)}}
+
+/* hero */
+html.light .pill{background:rgba(10,127,176,.06);box-shadow:inset 0 0 0 1px rgba(10,127,176,.3);color:var(--ink)}
+html.light .pill i{box-shadow:0 0 10px rgba(71,200,245,.8)}
+html.light .hb h1{background-image:linear-gradient(135deg,#0d1117 0%,#2a313b 55%,#59626e 100%)}
+html.light .hb h1 em{background-image:linear-gradient(to right,#0a7fb0 20%,#1c9fd6 50%,#0a7fb0 80%);filter:none}
+html.light .hero .lead,html.light .hb .lead{color:var(--ink-3)}
+html.light .player,html.light .vfall{box-shadow:0 0 0 1px rgba(16,24,40,.08),0 30px 70px -30px rgba(16,24,40,.45)}
+html.light .hb .chap button{background:var(--card);box-shadow:inset 0 0 0 1px var(--line-2);color:var(--ink-2)}
+html.light .hb .chap button .n{background:var(--cy-soft);color:var(--cy)}
+html.light .hb .chap button .t{color:var(--muted-2)}
+html.light .hb .chap button.on{background:rgba(71,200,245,.12);box-shadow:inset 0 0 0 1px rgba(10,127,176,.5);color:var(--ink)}
+html.light .hb .chap button.on .n{background:#47c8f5;color:#050608}
+html.light .hero-proof{color:var(--muted)}html.light .hero-proof b{color:var(--cy)}
+html.light .hb-facts li{background:var(--card);box-shadow:0 0 0 1px var(--line),0 12px 30px -20px rgba(16,24,40,.3);color:var(--ink-3)}
+html.light .hb-facts b{color:var(--ink)}
+html.light .hb-facts svg{background:var(--cy-soft);box-shadow:inset 0 0 0 1px rgba(10,127,176,.25);color:var(--cy)}
+
+/* the frosted plates become white cards */
+html.light .buy,html.light .pcard,html.light .xcard,html.light .fcard,html.light .sum,html.light .sumq,html.light .q,html.light .mod .box{background:var(--card);border-color:var(--line);box-shadow:var(--lsh);color:var(--ink)}
+html.light .buy::before,html.light .pcard::before,html.light .xcard::before,html.light .fcard::before,html.light .sum::before{background:radial-gradient(120% 70% at 0% 0%,rgba(71,200,245,.08),transparent 55%)}
+html.light .buy-p>div{border-bottom-color:var(--line);color:var(--ink-3)}
+html.light .buy-p b{color:var(--ink)}html.light .buy-p s{color:var(--muted-2)}html.light .buy-p small{color:var(--muted)}
+html.light .buy-p .t span{color:var(--ink)}
+html.light .buy-p div:first-child b,html.light .buy-p .t b{color:var(--ink);text-shadow:none}
+html.light .buy-w,html.light .buy-n{color:var(--muted)}
+html.light .buy-alt{color:var(--cy)}
+@media (hover:hover){html.light .buy-alt:hover{color:var(--ink);background:var(--cy-soft)}}
+
+/* sections */
+html.light .sec.alt::before,html.light .order::before{background:linear-gradient(90deg,transparent,rgba(10,127,176,.35) 30%,rgba(90,140,0,.3) 70%,transparent)}
+html.light .kick,html.light .rvh-label{color:var(--cy);background:var(--cy-soft);border-color:rgba(10,127,176,.22)}
+html.light .sh h2,html.light .order .sh h2,html.light .final h2,html.light .rvh h2{color:var(--ink)}
+html.light .sh p,html.light .order .sh p,html.light .final p{color:var(--ink-3)}
+html.light .order{color:var(--ink)}
+html.light .tlink{color:var(--cy);border-bottom-color:rgba(10,127,176,.35)}
+html.light .steps .rail{background:rgba(18,21,26,.1)}
+html.light .steps .rail i{background:linear-gradient(90deg,#0a7fb0,#7cb518)}
+html.light .st .dot{background:var(--card);box-shadow:inset 0 0 0 1px var(--line-2),0 8px 22px -14px rgba(16,24,40,.35);color:var(--muted-2)}
+html.light .st.lit .dot{background:var(--card);color:var(--cy);box-shadow:inset 0 0 0 1.5px rgba(10,127,176,.6),0 0 0 6px rgba(71,200,245,.12),0 12px 26px -14px rgba(10,127,176,.5)}
+html.light .st h3{color:var(--ink)}html.light .st p{color:var(--ink-3)}
+html.light .st .tag{background:var(--cy-soft);color:var(--cy);box-shadow:inset 0 0 0 1px rgba(10,127,176,.25)}
+html.light .st .tag.ok{background:rgba(20,160,107,.1);color:#0b7a52;box-shadow:inset 0 0 0 1px rgba(20,160,107,.3)}
+
+/* the order form */
+html.light .stepper{background:var(--paper);border-bottom-color:var(--line)}
+html.light .stepper button{color:var(--muted)}
+html.light .stepper button i{background:var(--card);box-shadow:inset 0 0 0 1px var(--line-2);color:var(--ink-3)}
+html.light .stepper button.on{color:var(--ink);border-bottom-color:#0a7fb0}
+html.light .stepper button.on i{background:#47c8f5;color:#050608}
+html.light .stepper button.done i{background:#14a06b;color:#fff}
+html.light .pane .ph{color:var(--muted)}
+html.light .fld label{color:var(--cy)}html.light .fld label small{color:var(--muted)}
+html.light .fld input,html.light .fld textarea,html.light .fld select{background:var(--card);border-color:var(--line-2);color:var(--ink)}
+html.light .fld input::placeholder,html.light .fld textarea::placeholder{color:rgba(18,21,26,.38)}
+html.light .fld input:focus,html.light .fld textarea:focus{border-color:#0a7fb0;box-shadow:0 0 0 3px rgba(10,127,176,.14)}
+html.light .fld input:-webkit-autofill{-webkit-text-fill-color:var(--ink);box-shadow:0 0 0 1000px #fff inset;caret-color:var(--ink)}
+html.light .fld .hint,html.light .safe,html.light .back{color:var(--muted)}
+@media (hover:hover){html.light .back:hover{color:var(--ink)}}
+html.light .up{border-color:rgba(10,127,176,.35);background:rgba(71,200,245,.05)}
+html.light .up i{background:var(--card);box-shadow:0 0 0 1px var(--line),0 6px 16px -10px rgba(16,24,40,.3);color:var(--cy)}
+html.light .up b{color:var(--ink)}html.light .up span{color:var(--muted)}
+html.light .up.has{border-color:rgba(20,160,107,.6);background:rgba(20,160,107,.07)}html.light .up .cnt{background:#14a06b;color:#fff}
+html.light .up.ov{border-color:#0a7fb0;background:rgba(71,200,245,.1)}
+html.light .th{background:var(--paper-2)}html.light .th .doc{color:var(--cy)}
+html.light .chk{background:var(--paper);box-shadow:inset 0 0 0 1px var(--line);color:var(--ink-3)}html.light .chk b{color:var(--ink)}
+html.light .chk input,html.light .tick input,html.light .consent input{accent-color:#0a7fb0}
+html.light .xp{background:linear-gradient(135deg,rgba(251,188,5,.14),#fff 70%);box-shadow:inset 0 0 0 1px rgba(196,140,0,.35);color:var(--ink)}
+html.light .xp.on{box-shadow:inset 0 0 0 2px #e0a800,0 18px 40px -18px rgba(196,140,0,.45)}
+html.light .xp i{background:rgba(251,188,5,.18);color:#a87800}
+html.light .xp span{color:var(--ink-3)}html.light .xp .pr{color:var(--ink)}
+html.light .xp .sw{background:rgba(18,21,26,.16)}html.light .xp.on .sw{background:#e0a800}
+html.light .tick,html.light .soc label{border-color:var(--line-2);background:var(--card)}
+html.light .tick b,html.light .soc b,html.light .tick .pr,html.light .subh{color:var(--ink)}
+html.light .tick small,html.light .soc small,html.light .subh small{color:var(--muted)}
+html.light .tick:has(input:checked),html.light .soc label:has(input:checked){border-color:#0a7fb0;background:rgba(71,200,245,.08);box-shadow:0 0 0 3px rgba(10,127,176,.1)}
+html.light .recap{background:var(--paper);box-shadow:inset 0 0 0 1px var(--line)}
+html.light .recap div{border-bottom-color:var(--line)}
+html.light .recap dt{color:var(--muted)}html.light .recap dd{color:var(--ink)}html.light .recap .ed{color:var(--cy)}
+html.light .zero{background:rgba(20,160,107,.1);box-shadow:inset 0 0 0 1px rgba(20,160,107,.3);color:#0b6b47}
+html.light .consent{color:var(--ink-3)}html.light .consent a{color:var(--cy)}
+html.light .sum h3{color:var(--cy)}
+html.light .sum .ln{color:var(--ink-3);border-bottom-color:var(--line)}
+html.light .sum .ln b,html.light .sum .tot{color:var(--ink)}html.light .sum .ln.gift b{color:var(--cy)}
+html.light .sum .when,html.light .sum .mo{color:var(--muted)}
+html.light .sum .today{background:rgba(71,200,245,.1);box-shadow:inset 0 0 0 1px rgba(10,127,176,.3)}
+html.light .sum .today span{color:var(--cy)}html.light .sum .today b{color:var(--ink)}
+html.light .sum ul{color:var(--ink-3)}html.light .sum li svg{color:var(--cy)}
+html.light .sumq p{color:var(--ink-2)}html.light .sumq figcaption{color:var(--muted)}
+html.light .done>p,html.light .nexts li{color:var(--ink-3)}html.light .nexts b{color:var(--ink)}
+html.light .nexts li::before{background:var(--cy-soft);box-shadow:inset 0 0 0 1px rgba(10,127,176,.25);color:var(--cy)}
+
+/* work, price, questions */
+html.light .wk{background:var(--card);border-color:var(--line);box-shadow:0 18px 44px -26px rgba(16,24,40,.35)}
+html.light .wk img{background:var(--paper-2)}html.light .wk span{color:var(--ink-3)}
+@media (hover:hover){html.light .wk:hover{border-color:rgba(10,127,176,.4);box-shadow:0 24px 54px -26px rgba(16,24,40,.4),0 0 0 1px rgba(10,127,176,.1)}}
+html.light .pcard .lbl,html.light .xcard h3{color:var(--cy)}
+html.light .pcard .now b{color:var(--ink);text-shadow:none;animation:none}
+html.light .pcard .now span,html.light .pcard .then{color:var(--ink-3)}html.light .pcard .then b{color:var(--ink)}
+html.light .inc{border-top-color:var(--line)}html.light .inc li{color:var(--ink-2)}
+html.light .inc li svg{background:var(--cy-soft);box-shadow:inset 0 0 0 1px rgba(10,127,176,.25);color:var(--cy)}
+html.light .xcard>p,html.light .xcard .foot,html.light .xl li small{color:var(--muted)}
+html.light .xl li{border-bottom-color:var(--line);color:var(--ink-2)}html.light .xl li b,html.light .xl li .pr{color:var(--ink)}
+html.light .xl li.hl{background:linear-gradient(90deg,rgba(251,188,5,.16),transparent)}
+html.light .q[open]{border-color:rgba(10,127,176,.35)}
+html.light .q summary{color:var(--ink)}
+html.light .q summary .n{background:var(--cy-soft);box-shadow:inset 0 0 0 1px rgba(10,127,176,.25);color:var(--cy)}
+html.light .q summary .pl::before,html.light .q summary .pl::after{background:#0a7fb0}
+html.light .q .a{color:var(--ink-3)}html.light .q .a b{color:var(--ink)}
+
+/* reviews (the home page's own light rules) */
+html.light .rvh-sum{box-shadow:0 12px 34px -14px rgba(16,24,40,.28),0 0 0 1px var(--line)}
+html.light .rvh-btn a{box-shadow:0 10px 26px -12px rgba(16,24,40,.3),0 0 0 1px var(--line)}
+html.light .rvh-note{color:var(--muted)}
+html.light .rvsec::before{background:linear-gradient(90deg,transparent,rgba(10,127,176,.35),transparent)}
+html.light .rvsec-glow{background:radial-gradient(closest-side,rgba(71,200,245,.10),transparent)}
+html.light .rvs-frame { background: linear-gradient(180deg, #fff, #f6f8fb); border-color: var(--line); box-shadow: 0 40px 90px -45px rgba(16,24,40,.35), 0 2px 8px -2px rgba(16,24,40,.06); }
+html.light .rvs-chrome { background: #eef1f5; border-color: var(--line); }
+html.light .rvs-chrome i { background: rgba(16,24,40,.18); }
+html.light .rvs-url { background: #fff; color: #3c4043; }
+html.light .rvs-chrome em { color: #0f7a3d; }
+html.light .rvs-shot { border-color: var(--line); background: #eef1f5; }
+html.light .rvs-slide { box-shadow: 0 12px 34px -14px rgba(16,24,40,.3), 0 0 0 1px var(--line); }
+html.light .rvs-count { color: var(--ink-3); }
+html.light .rvs-count b { color: var(--ink); }
+html.light .rvs-btns button { color: var(--ink); background: #fff; border-color: var(--line-2); }
+html.light .rvs-thumb { border-color: var(--line); background: #eef1f5; }
+html.light .rvs-thumb.is-on { box-shadow: 0 0 0 2px #1C8FD0, 0 10px 26px -10px rgba(28,143,208,.55); }
+html.light .rvs-others-t { color: var(--ink); }
+html.light .rvs-gpanel { border-color: var(--line); }
+
+/* the window */
+html.light .mod{background:rgba(16,24,40,.45)}
+html.light .mod ol{color:var(--ink-3)}html.light .mod .cl{color:var(--muted)}
 </style>
 </head>
 <body>
 <div class="demo" id="demo" hidden><b>Δοκιμαστική προβολή</b> · σε αυτή τη διεύθυνση τίποτα δεν στέλνεται και τίποτα δεν αποθηκεύεται.</div>
 
-<div class="rr-sky" aria-hidden="true"><div class="rr-sky-light"></div><canvas id="skyDust"></canvas><canvas id="skyStars"></canvas><div class="rr-vignette"></div><div class="grain"></div></div>
+<div class="rr-sky" aria-hidden="true"><div class="rr-sky-light"></div><div class="rr-beams"><b class="rr-sun"></b><i style="--r:-34deg;--w:9vw;--d:19s;--o:.75"></i><i class="w" style="--r:-21deg;--w:5vw;--d:15s;--o:.9"></i><i style="--r:-9deg;--w:13vw;--d:23s;--o:.55"></i><i class="w" style="--r:4deg;--w:6vw;--d:17s;--o:.85"></i><i style="--r:16deg;--w:10vw;--d:21s;--o:.7"></i><i class="w" style="--r:28deg;--w:4.5vw;--d:14s;--o:.9"></i><i style="--r:39deg;--w:8vw;--d:25s;--o:.6"></i></div><canvas id="skyDust"></canvas><canvas id="skyStars"></canvas><div class="rr-vignette"></div><div class="grain"></div></div>
 <div class="scroll-progress" id="sprog" aria-hidden="true"></div>
 <header class="site-hd" id="siteHd"><div class="hd-bar">
   <a class="hd-logo" href="https://advonmedia.com/" aria-label="Advon Media — αρχική σελίδα"><span class="ring"></span><span class="halo"></span><span class="hd-logo-c"><img src="img/advon-logo-116.webp" srcset="img/advon-logo-116.webp 1x, img/advon-logo-232.webp 2x" width="116" height="116" alt="Advon Media" fetchpriority="high" decoding="async"></span></a>
   <div class="hd-r">
     <span class="hd-proof"><b>260+</b> ιστοσελίδες <i>·</i> <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5l2.9 5.88 6.49.94-4.7 4.58 1.11 6.46L12 17.3l-5.8 3.06 1.11-6.46-4.7-4.58 6.49-.94L12 2.5z"/></svg> <b>140+</b> κριτικές στο Google</span>
+    <button type="button" class="theme-toggle" id="themeToggle" aria-label="Φωτεινό θέμα" title="Φωτεινό θέμα" aria-pressed="false"><svg class="tt-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg><svg class="tt-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></button>
     <a class="btn sm" href="#ksekiname" data-go>Ξεκινάω τώρα <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
   </div>
 </div></header>
@@ -1337,38 +1538,66 @@ function onScroll(){ticking=false;
 }
 addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(onScroll)}},{passive:true});onScroll();
 
-/* ---- the site's chrome: header that darkens after 40px, reading hairline, the «Starlight» sky (Background.jsx, dark) ---- */
+/* ---- the site's chrome: header that darkens after 40px, reading hairline, light/dark switch,
+   and the «Starlight» sky (Background.jsx: white stars at night, fine ink stars in daylight) ---- */
 (function(){
   var hd=d.getElementById('siteHd'),bar=d.getElementById('sprog'),tk=false;
   function onS(){tk=false;var y=window.scrollY;if(hd)hd.classList.toggle('is-scrolled',y>40);
     if(bar){var m=d.documentElement.scrollHeight-innerHeight;bar.style.transform='scaleX('+(m>0?Math.min(1,y/m):0)+')'}}
   addEventListener('scroll',function(){if(!tk){tk=true;requestAnimationFrame(onS)}},{passive:true});onS();
 
+  // light / dark — the same key as advonmedia.com, so the visitor's choice there carries over
+  var tt=d.getElementById('themeToggle');
+  function isLight(){return h.classList.contains('light')}
+  function label(){if(!tt)return;var l=isLight();tt.setAttribute('aria-pressed',l?'true':'false');var t=l?'Σκούρο θέμα':'Φωτεινό θέμα';tt.setAttribute('aria-label',t);tt.title=t}
+  function setTheme(t){h.classList.add('theme-anim');h.classList.toggle('light',t==='light');h.style.colorScheme=t==='light'?'light':'dark';
+    try{localStorage.setItem('advon-theme',t)}catch(e){}
+    var mt=d.querySelector('meta[name="theme-color"]');if(mt)mt.setAttribute('content',t==='light'?'#f6f5f1':'#050608');
+    label();window.dispatchEvent(new Event('advon-theme'));setTimeout(function(){h.classList.remove('theme-anim')},450)}
+  if(tt){tt.addEventListener('click',function(){setTheme(isLight()?'dark':'light')});label()}
+
   var dust=d.getElementById('skyDust'),canvas=d.getElementById('skyStars');if(!dust||!canvas)return;
   var ctx=canvas.getContext('2d',{alpha:true}),dctx=dust.getContext('2d',{alpha:true});
   var reduced=matchMedia('(prefers-reduced-motion: reduce)').matches,coarse=matchMedia('(pointer: coarse)').matches,dpr=Math.min(window.devicePixelRatio||1,2);
-  var TINTS=['255,246,232','255,255,255','232,238,255'];
-  function makeGlow(rgb,size){var c=d.createElement('canvas');c.width=c.height=size;var g=c.getContext('2d'),r=size/2,grad=g.createRadialGradient(r,r,0,r,r,r);
+  var TINTS=['255,246,232','255,255,255','232,238,255'],TINTS_L=['12,15,22','38,44,58','150,112,52'];
+  function cv(size){var c=d.createElement('canvas');c.width=c.height=size;return c}
+  function makeGlow(rgb,size){var c=cv(size),g=c.getContext('2d'),r=size/2,grad=g.createRadialGradient(r,r,0,r,r,r);
     grad.addColorStop(0,'rgba('+rgb+',1)');grad.addColorStop(.18,'rgba('+rgb+',0.85)');grad.addColorStop(.45,'rgba('+rgb+',0.18)');grad.addColorStop(1,'rgba('+rgb+',0)');g.fillStyle=grad;g.fillRect(0,0,size,size);return c}
-  var glow=TINTS.map(function(t){return makeGlow(t,32)});
+  function makeStarL(rgb,size){var c=cv(size),g=c.getContext('2d'),r=size/2;[true,false].forEach(function(hz){
+    var lg=hz?g.createLinearGradient(0,r,size,r):g.createLinearGradient(r,0,r,size);lg.addColorStop(0,'rgba('+rgb+',0)');lg.addColorStop(.5,'rgba('+rgb+',1)');lg.addColorStop(1,'rgba('+rgb+',0)');
+    g.fillStyle=lg;g.beginPath();var w=r*.045;if(hz){g.moveTo(0,r);g.lineTo(r,r-w);g.lineTo(size,r);g.lineTo(r,r+w)}else{g.moveTo(r,0);g.lineTo(r+w,r);g.lineTo(r,size);g.lineTo(r-w,r)}g.closePath();g.fill()});return c}
+  function makeDot(rgb,size){var c=cv(size),g=c.getContext('2d'),r=size/2,grad=g.createRadialGradient(r,r,0,r,r,r);
+    grad.addColorStop(0,'rgba('+rgb+',1)');grad.addColorStop(.5,'rgba('+rgb+',1)');grad.addColorStop(.72,'rgba('+rgb+',0.35)');grad.addColorStop(1,'rgba('+rgb+',0)');g.fillStyle=grad;g.fillRect(0,0,size,size);return c}
+  var glowD=TINTS.map(function(t){return makeGlow(t,32)}),starL=TINTS_L.map(function(t){return makeStarL(t,96)}),dotL=TINTS_L.map(function(t){return makeDot(t,16)}),halo=makeGlow('200,164,96',64);
+  var light=isLight(),tints=light?TINTS_L:TINTS,dustN=0;
   var W=0,H=0,stars=[],raf=0,last=0,running=false,shot=null,nextShot=performance.now()+6000+Math.random()*8000,sy=window.scrollY;
   function paintDust(n){dctx.clearRect(0,0,W,H);var B=[0,1,2].map(function(){return [[],[],[],[],[],[]]});
     for(var i=0;i<n;i++){var t=Math.random()>.82?2:Math.random()>.45?0:1,b=.14+Math.random()*.46;B[t][Math.min(5,(b*10-1.4)|0)].push(Math.random()*W,Math.random()*H,.3+Math.pow(Math.random(),2.4)*.55)}
-    for(var t2=0;t2<3;t2++){dctx.fillStyle='rgb('+TINTS[t2]+')';for(var k=0;k<6;k++){var L=B[t2][k];if(!L.length)continue;dctx.globalAlpha=.16+k*.08;dctx.beginPath();
+    for(var t2=0;t2<3;t2++){dctx.fillStyle='rgb('+tints[t2]+')';for(var k=0;k<6;k++){var L=B[t2][k];if(!L.length)continue;dctx.globalAlpha=light?.07+k*.05:.16+k*.08;dctx.beginPath();
       for(var j=0;j<L.length;j+=3){dctx.moveTo(L[j]+L[j+2],L[j+1]);dctx.arc(L[j],L[j+1],L[j+2],0,6.2832)}dctx.fill()}}dctx.globalAlpha=1}
   function init(){W=innerWidth;H=innerHeight;[canvas,dust].forEach(function(c){c.width=Math.round(W*dpr);c.height=Math.round(H*dpr)});
-    ctx.setTransform(dpr,0,0,dpr,0,0);dctx.setTransform(dpr,0,0,dpr,0,0);var area=W*H;paintDust(Math.floor(area/(coarse?1100:700)));
+    ctx.setTransform(dpr,0,0,dpr,0,0);dctx.setTransform(dpr,0,0,dpr,0,0);var area=W*H;dustN=Math.floor(area/(coarse?1100:700));paintDust(dustN);
     var n=Math.floor(area/(coarse?5200:3400));stars=[];
     for(var i=0;i<n;i++){var big=Math.random()>.9;stars.push({x:Math.random()*W,y:Math.random()*H*1.6,d:.25+Math.random()*.75,s:big?1.2+Math.random()*.6:.75+Math.random()*.35,b:big?.95:.7+Math.random()*.3,w:.35+Math.random()*1.3,p:Math.random()*6.283,t:Math.random()>.82?2:Math.random()>.45?0:1,big:big})}
     if(reduced)draw(performance.now())}
   function draw(now){ctx.clearRect(0,0,W,H);var sec=now/1000,H2=H*1.6;
-    for(var i=0;i<stars.length;i++){var st=stars[i],y=(st.y-sy*.05*st.d)%H2;if(y<0)y+=H2;if(y>H+4)continue;
-      var a=reduced?st.b:st.b*(.55+.45*Math.sin(sec*st.w+st.p));ctx.globalAlpha=Math.max(0,Math.min(1,a));var z=st.s*(st.big?9:5);ctx.drawImage(glow[st.t],st.x-z/2,y-z/2,z,z)}
+    if(light){drawLight(sec,H2)}else{
+      for(var i=0;i<stars.length;i++){var st=stars[i],y=(st.y-sy*.05*st.d)%H2;if(y<0)y+=H2;if(y>H+4)continue;
+        var a=reduced?st.b:st.b*(.55+.45*Math.sin(sec*st.w+st.p));ctx.globalAlpha=Math.max(0,Math.min(1,a));var z=st.s*(st.big?9:5);ctx.drawImage(glowD[st.t],st.x-z/2,y-z/2,z,z)}}
     if(!reduced)drawShot(now);ctx.globalAlpha=1}
+  // daylight: fine crisp ink points; one in ten opens a hairline four-point flare with a champagne breath
+  function drawLight(sec,H2){for(var i=0;i<stars.length;i++){var st=stars[i],y=(st.y-sy*.05*st.d)%H2;if(y<0)y+=H2;if(y>H+14)continue;
+      var tw=reduced?1:.55+.45*Math.sin(sec*st.w+st.p);
+      if(!st.big){ctx.globalAlpha=Math.min(1,st.b*tw*.9);var z=st.s*2.3;ctx.drawImage(dotL[st.t],st.x-z/2,y-z/2,z,z);continue}
+      var gl=reduced?.25:Math.pow(Math.max(0,Math.sin(sec*.5*st.w+st.p)),10);
+      if(gl>.03){var hz=st.s*15*(.7+gl);ctx.globalAlpha=.34*gl;ctx.drawImage(halo,st.x-hz/2,y-hz/2,hz,hz)}
+      var z2=st.s*(5.5+8.5*gl);ctx.globalAlpha=.5+.5*gl;ctx.drawImage(starL[st.t],st.x-z2/2,y-z2/2,z2,z2);
+      var dd=st.s*2.4;ctx.globalAlpha=.95;ctx.drawImage(dotL[st.t],st.x-dd/2,y-dd/2,dd,dd)}}
   function drawShot(now){if(!shot&&now>nextShot){var ltr=Math.random()>.5;shot={x:ltr?W*(.05+Math.random()*.4):W*(.55+Math.random()*.4),y:H*(.05+Math.random()*.35),vx:(ltr?1:-1)*(4.8+Math.random()*2.4),vy:1.6+Math.random()*1.3,life:1}}
-    if(!shot)return;var s=shot,len=18,c='255,246,232',g=ctx.createLinearGradient(s.x,s.y,s.x-s.vx*len,s.y-s.vy*len);
-    g.addColorStop(0,'rgba('+c+','+(.85*s.life)+')');g.addColorStop(1,'rgba('+c+',0)');ctx.globalAlpha=1;ctx.strokeStyle=g;ctx.lineWidth=1.1;ctx.lineCap='round';
-    ctx.beginPath();ctx.moveTo(s.x,s.y);ctx.lineTo(s.x-s.vx*len,s.y-s.vy*len);ctx.stroke();ctx.globalAlpha=s.life;ctx.drawImage(glow[0],s.x-5,s.y-5,10,10);
+    if(!shot)return;var s=shot,len=light?22:18,c=light?'14,20,32':'255,246,232',g=ctx.createLinearGradient(s.x,s.y,s.x-s.vx*len,s.y-s.vy*len);
+    g.addColorStop(0,'rgba('+c+','+(.85*s.life)+')');g.addColorStop(1,'rgba('+c+',0)');ctx.globalAlpha=1;ctx.strokeStyle=g;ctx.lineWidth=light?.9:1.1;ctx.lineCap='round';
+    ctx.beginPath();ctx.moveTo(s.x,s.y);ctx.lineTo(s.x-s.vx*len,s.y-s.vy*len);ctx.stroke();ctx.globalAlpha=s.life;
+    if(light)ctx.drawImage(starL[0],s.x-6,s.y-6,12,12);else ctx.drawImage(glowD[0],s.x-5,s.y-5,10,10);
     s.x+=s.vx;s.y+=s.vy;s.life-=.011;if(s.life<=0||s.x<-60||s.x>W+60||s.y>H+60){shot=null;nextShot=now+12000+Math.random()*14000}}
   function frame(now){raf=requestAnimationFrame(frame);if(now-last<50)return;last=now;draw(now)}
   function start(){if(!running&&!reduced&&!d.hidden){running=true;raf=requestAnimationFrame(frame)}}
@@ -1378,6 +1607,7 @@ addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationF
   var rs=0;addEventListener('resize',function(){clearTimeout(rs);rs=setTimeout(init,150)});
   addEventListener('scroll',function(){sy=window.scrollY;if(reduced)draw(performance.now())},{passive:true});
   d.addEventListener('visibilitychange',function(){d.hidden?stop():start()});
+  addEventListener('advon-theme',function(){light=isLight();tints=light?TINTS_L:TINTS;paintDust(dustN);draw(performance.now());start()});
 })();
 
 /* ---- reviews: the same show as the home page (ReviewsColumns.jsx → Spotlight), in plain JS.

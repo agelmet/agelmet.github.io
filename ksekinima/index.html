@@ -497,6 +497,205 @@ p{text-wrap:pretty}
   .hb-facts{grid-template-columns:minmax(0,1fr);gap:8px}.hb-facts li{padding:12px 14px}
   #pos.sec{padding:52px 0 56px}
 }
+
+/* ===== v6 · reviews = the home page's own reviews show (components/Reviews.jsx + ReviewsColumns.jsx → Spotlight), in plain CSS/JS ===== */
+.rvsec{position:relative;overflow:hidden;padding:112px 0 96px;background:var(--night);scroll-margin-top:68px}
+.rvsec::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:linear-gradient(90deg,transparent,rgba(71,200,245,.45),transparent)}
+.rvsec-glow{position:absolute;left:50%;top:50%;width:90%;height:70%;transform:translate(-50%,-50%);border-radius:50%;pointer-events:none;background:radial-gradient(closest-side,rgba(71,200,245,.07),transparent)}
+.rvsec-w{position:relative;z-index:1;max-width:1280px;margin:0 auto;padding:0 24px}
+.rvh{text-align:center;margin-bottom:48px}
+.rvh-label{display:inline-block;font-size:.65rem;font-weight:800;letter-spacing:.3em;text-transform:uppercase;color:#47c8f5;padding:.35rem 1rem;border:1px solid rgba(71,200,245,.25);border-radius:999px;background:rgba(71,200,245,.06);margin-bottom:1.25rem}
+.rvh h2{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;color:#fff;font-weight:800;font-size:clamp(34px,4.2vw,48px);letter-spacing:-.025em;margin-bottom:24px}
+.rvh h2 svg{width:40px;height:40px;flex:none}
+@media (min-width:768px){.rvh h2 svg{width:48px;height:48px}}
+.rvh-sum{display:inline-flex;align-items:center;gap:16px;background:#fff;border-radius:16px;padding:16px 28px;box-shadow:0 4px 24px rgba(0,0,0,.45);text-align:left}
+.rvh-n{font-size:48px;line-height:1;font-weight:800;color:#202124;font-variant-numeric:tabular-nums}
+.rvh-sum>div{display:flex;flex-direction:column;align-items:flex-start;gap:4px}
+.rvh-st{display:flex;gap:2px;color:#FBBC05;filter:drop-shadow(0 0 6px rgba(251,188,5,.45))}
+.rvh-st svg{width:24px;height:24px}
+.rvh-sum small{color:#5f6368;font-weight:600;font-size:14px}
+.rvh-btn{margin-top:28px}
+.rvh-btn a{display:inline-flex;align-items:center;gap:12px;padding:14px 28px;background:#fff;color:#1a73e8;border-radius:999px;font-weight:800;font-size:14px;text-decoration:none;box-shadow:0 4px 20px rgba(0,0,0,.4);transition:box-shadow .3s,transform .3s var(--ease)}
+.rvh-btn a svg:first-child{width:18px;height:18px}.rvh-btn a svg:last-child{width:16px;height:16px}
+@media (hover:hover){.rvh-btn a:hover{box-shadow:0 6px 28px rgba(66,133,244,.35);transform:translateY(-1px)}}
+.rvh-note{text-align:center;margin-top:32px;color:#6b7280;font-size:12px}
+.rvsec .cta-row{margin-top:36px}
+/* small utilities the React version gets from Tailwind */
+.rvs button{font:inherit}
+.rvs-img{position:absolute;inset:0;width:100%;height:100%;max-width:none}
+.rvs-pre img{width:1px;height:1px}
+.rvs-site{text-decoration:none;color:inherit}
+.rvs-hd{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:16px}
+.rvs-hd>div{display:flex;align-items:center;gap:12px;min-width:0}
+.rvs-hd>div>div{min-width:0}
+.rvs-hd>svg{width:24px;height:24px;flex:none;margin-top:4px}
+.rvs-av{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;font-weight:500;flex:none;user-select:none}
+.rvs-name{color:#202124;font-weight:600;font-size:16px;line-height:1.25;letter-spacing:0}
+.rvs-stars{display:flex;gap:2px;color:#FBBC05}
+.rvs-hd .rvs-stars{margin-top:6px}.rvs-hd .rvs-stars svg{width:18px;height:18px}
+.rvs-text p{white-space:pre-line}
+.rvs-staronly>div{display:flex;gap:4px;color:#FBBC05}.rvs-staronly>div svg{width:36px;height:36px}
+.rvs-gpanel>svg{width:56px;height:56px}.rvs-gpanel .rvs-stars{gap:4px}.rvs-gpanel .rvs-stars svg{width:28px;height:28px}
+@media (min-width:768px){.rvs-gpanel>svg{width:64px;height:64px}.rvs-gpanel .rvs-stars svg{width:32px;height:32px}}
+.rvs-cap-b svg{width:14px;height:14px}
+.rvs-thumb{padding:0;cursor:pointer}
+.rvs-thumb-in svg{width:14px;height:14px}
+.rvs-count{letter-spacing:0}
+@media (max-width:640px){.rvsec{padding:76px 0 68px}.rvsec-w{padding:0 16px}.rvh{margin-bottom:36px}.rvh-sum{padding:14px 20px}.rvh-n{font-size:42px}.rvh-btn a{padding:12px 15px;font-size:13px;gap:8px}}
+@media (min-width:360px){.rvh-btn a{white-space:nowrap}}
+/* — from app/globals.css, as it is — */
+/* ═══ Reviews spotlight (27 Nov 2026): each Google review next to the website we built for that person ═══ */
+.rvs-ph { min-height: 760px; }
+.rvs-frame { position: relative; overflow: hidden; border-radius: 1.75rem; border: 1px solid rgba(255,255,255,.12);
+  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.14), 0 50px 110px -40px rgba(0,0,0,.95), 0 0 80px rgba(71,200,245,.07); }
+.rvs-bar { position: absolute; z-index: 3; left: 0; top: 0; height: 3px; width: 100%; transform-origin: 0 50%; transform: scaleX(0);
+  background: linear-gradient(90deg, #47C8F5, #c9ff00); animation: rvsBar linear forwards; animation-play-state: paused; }
+.rvs.is-running .rvs-bar { animation-play-state: running; }
+@keyframes rvsBar { to { transform: scaleX(1); } }
+.rvs-grid { display: grid; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 1024px) { .rvs-grid { grid-template-columns: minmax(0, 1.28fr) minmax(0, 1fr); } }
+
+/* the website, in a small browser window */
+.rvs-site { display: flex; flex-direction: column; min-width: 0; padding: 1.1rem 1.1rem 1.1rem; }
+@media (min-width: 1024px) { .rvs-site { padding: 1.5rem 0 1.5rem 1.5rem; } }
+.rvs-chrome { display: flex; align-items: center; gap: .4rem; height: 2.4rem; padding: 0 .9rem; border-radius: .9rem .9rem 0 0;
+  background: #14171d; border: 1px solid rgba(255,255,255,.1); border-bottom: 0; }
+.rvs-chrome i { width: .6rem; height: .6rem; border-radius: 50%; background: rgba(255,255,255,.18); }
+.rvs-url { flex: 1; min-width: 0; margin: 0 .5rem; padding: .22rem .8rem; border-radius: 999px; background: rgba(255,255,255,.07);
+  font: 600 .74rem/1.2 ui-monospace, SFMono-Regular, Menlo, monospace; color: rgba(255,255,255,.78); text-align: center;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; animation: rvsFade .5s ease both; }
+.rvs-chrome em { font-style: normal; font-size: .62rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: #7CFFB2; display: inline-flex; align-items: center; gap: .35rem; }
+.rvs-chrome em::before { content: ''; width: .42rem; height: .42rem; border-radius: 50%; background: #3ddc84; box-shadow: 0 0 8px #3ddc84; }
+.rvs-shot { position: relative; display: block; aspect-ratio: 4 / 3; overflow: hidden; border-radius: 0 0 .9rem .9rem; background: #0b0d12;
+  border: 1px solid rgba(255,255,255,.1); border-top: 0; }
+.rvs-img { object-fit: cover; object-position: top center; }
+.rvs-in { animation: rvsImgIn .8s cubic-bezier(.22,.8,.2,1) both; }
+.rvs-out { animation: rvsImgOut .8s ease both; }
+.rvs-next { opacity: 0; pointer-events: none; }
+@keyframes rvsImgIn { from { opacity: 0; transform: scale(1.045); } to { opacity: 1; transform: none; } }
+@keyframes rvsImgOut { from { opacity: 1; } to { opacity: 0; } }
+@keyframes rvsFade { from { opacity: 0; } to { opacity: 1; } }
+.rvs-cap { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; display: flex; align-items: flex-end; justify-content: space-between; gap: .75rem;
+  padding: 2.6rem 1rem .9rem; background: linear-gradient(180deg, transparent, rgba(5,6,8,.9)); animation: rvsUp .6s .12s cubic-bezier(.22,.8,.2,1) both; }
+.rvs-cap-t { color: #fff; font-weight: 800; font-size: .9rem; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.rvs-cap-b { flex: none; display: inline-flex; align-items: center; gap: .35rem; padding: .45rem .8rem; border-radius: 999px; font-size: .72rem; font-weight: 800;
+  color: #050608; background: #47C8F5; transition: translate .25s ease, background-color .25s ease; }
+@media (hover: hover) { .rvs-site:hover .rvs-cap-b { translate: 0 -2px; background: #7fdcff; } }
+@keyframes rvsUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+
+/* the review, as on Google */
+.rvs-review { display: flex; flex-direction: column; min-width: 0; padding: 0 1.1rem 1.1rem; }
+@media (min-width: 1024px) { .rvs-review { padding: 1.5rem; } }
+.rvs-slide { flex: 1; min-height: 0; display: flex; flex-direction: column; background: #fff; border-radius: 1.1rem; padding: 1.35rem 1.35rem 1.1rem;
+  box-shadow: 0 10px 34px rgba(0,0,0,.45); animation: rvsUp .55s cubic-bezier(.22,.8,.2,1) both; }
+@media (min-width: 1024px) { .rvs-slide { padding: 1.75rem 1.75rem 1.35rem; } }
+.rvs-stars svg { animation: rvsStar .45s calc(var(--s) * 70ms + 150ms) cubic-bezier(.34,1.56,.64,1) both; }
+@keyframes rvsStar { from { opacity: 0; transform: scale(.4); } to { opacity: 1; transform: none; } }
+.rvs-text { position: relative; overflow: hidden; color: #3c4043; font-size: .98rem; line-height: 1.7; height: 11.9rem; }
+@media (min-width: 1024px) { .rvs-text { flex: 1; min-height: 0; height: auto; font-size: 1.04rem; } }
+.rvs-text.is-long::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 3.2rem; background: linear-gradient(180deg, rgba(255,255,255,0), #fff); pointer-events: none; }
+.rvs-text.is-open { overflow-y: auto; overscroll-behavior: contain; }
+@media (max-width: 1023px) { .rvs-text.is-open { height: auto; max-height: 60vh; } }
+.rvs-staronly { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .9rem; text-align: center; color: #5f6368; font-weight: 600; }
+.rvs-more { align-self: flex-start; margin-top: .5rem; color: #1a73e8; font-size: .9rem; font-weight: 600; }
+.rvs-more:hover { text-decoration: underline; }
+.rvs-ctrl { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-top: 1rem; }
+.rvs-count { color: rgba(255,255,255,.55); font-size: .85rem; font-weight: 600; font-variant-numeric: tabular-nums; }
+.rvs-count b { color: #fff; font-size: 1.15rem; font-weight: 800; }
+.rvs-btns { display: inline-flex; gap: .5rem; }
+.rvs-btns button { width: 2.75rem; height: 2.75rem; border-radius: 999px; display: grid; place-items: center; color: #fff;
+  background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.16); transition: background-color .2s ease, border-color .2s ease, scale .15s ease; }
+.rvs-btns button svg { width: 1.1rem; height: 1.1rem; }
+.rvs-btns button:active { scale: .94; }
+@media (hover: hover) { .rvs-btns button:hover { background: rgba(71,200,245,.18); border-color: rgba(71,200,245,.55); } }
+
+/* every site in one strip */
+.rvs-rail-wrap { margin-top: 1.1rem; -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
+.rvs-rail { display: flex; gap: .6rem; overflow-x: auto; padding: .5rem 6% .7rem; scrollbar-width: none; scroll-snap-type: none; }
+.rvs-rail::-webkit-scrollbar { display: none; }
+.rvs-thumb { flex: none; width: 5.6rem; aspect-ratio: 4 / 3; border-radius: .6rem; overflow: hidden; opacity: .5; border: 1px solid rgba(255,255,255,.12); background: #0b0d12;
+  transition: opacity .3s ease, scale .3s ease, box-shadow .3s ease; }
+@media (min-width: 768px) { .rvs-thumb { width: 7.2rem; } }
+.rvs-thumb img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+.rvs-thumb.is-on { opacity: 1; scale: 1.08; box-shadow: 0 0 0 2px #47C8F5, 0 10px 26px -8px rgba(71,200,245,.6); }
+@media (hover: hover) { .rvs-thumb:hover { opacity: 1; } }
+.rvs-others-t { margin: 4rem 0 1.5rem; text-align: center; color: #fff; font-weight: 800; font-size: 1.35rem; letter-spacing: -.01em; }
+
+@media (prefers-reduced-motion: reduce) { .rvs-bar { display: none; } }
+@media (max-width: 1023px) {
+  .rvs-chrome { height: 2.05rem; }
+  .rvs-site { padding: .8rem .8rem .8rem; }
+  .rvs-review { padding: 0 .8rem .8rem; }
+  .rvs-slide { padding: 1.1rem 1.15rem .9rem; }
+  .rvs-slide > .rvs-hd { margin-bottom: .7rem; }
+  .rvs-text { height: 8.35rem; font-size: .95rem; line-height: 1.67; }
+  .rvs-ctrl { padding-top: .75rem; }
+  .rvs-cap { padding: 2rem .8rem .7rem; }
+  .rvs-cap-t { font-size: .8rem; }
+  .rvs-ph { min-height: 820px; }
+}
+.rvs-name { white-space: nowrap !important; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+@media (max-width: 639px) {
+  .rvs-cap-l { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .rvs-cap-b { width: 2.3rem; height: 2.3rem; padding: 0; justify-content: center; }
+}
+/* short laptop screens (e.g. 1366×657): a narrower frame so the whole spotlight fits under the header */
+@media (min-width: 1024px) and (max-height: 760px) { .rvs-frame { max-width: 1040px; margin-inline: auto; } }
+
+/* Reviews spotlight v2 (27 Nov 2026, later): websites shown whole, faster, swipe on phones, the reviews with no website at the end */
+.rvs-frame { touch-action: pan-y; }
+.rvs-shot { background: #0d1016; }
+.rvs-img { object-fit: contain; object-position: top center; }
+.rvs-in { animation: rvsImgIn .5s cubic-bezier(.22,.8,.2,1) both; }
+.rvs-out { animation: rvsImgOut .5s ease both; }
+@keyframes rvsImgIn { from { opacity: 0; transform: translateX(calc(var(--rvd, 1) * 26px)); } to { opacity: 1; transform: none; } }
+.rvs.from-left { --rvd: -1; }
+.rvs.from-right { --rvd: 1; }
+.rvs-slide { animation: rvsSlide .42s cubic-bezier(.22,.8,.2,1) both; }
+@keyframes rvsSlide { from { opacity: 0; transform: translateX(calc(var(--rvd, 1) * 30px)); } to { opacity: 1; transform: none; } }
+.rvs-cap { animation-duration: .4s; animation-delay: .06s; }
+.rvs-stars svg { animation-duration: .32s; animation-delay: calc(var(--s) * 45ms + 80ms); }
+.rvs-pre { position: absolute; width: 1px; height: 1px; overflow: hidden; opacity: 0; pointer-events: none; }
+.rvs-thumb img { object-fit: cover; }
+
+/* a review with no website: a Google panel the same size as the browser window, so nothing jumps */
+.rvs-nosite { justify-content: stretch; }
+.rvs-gpanel { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .7rem; text-align: center;
+  aspect-ratio: 4 / 3.24; border-radius: .9rem; border: 1px solid rgba(255,255,255,.1);
+  background: radial-gradient(80% 70% at 50% 0%, rgba(71,200,245,.14), transparent 70%), #0d1016; animation: rvsSlide .42s cubic-bezier(.22,.8,.2,1) both; }
+.rvs-gscore { color: #fff; font-weight: 900; font-size: clamp(2.6rem, 6vw, 4rem); line-height: 1; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+.rvs-gtext { color: rgba(255,255,255,.72); font-weight: 600; font-size: .95rem; }
+.rvs-gbtn { margin-top: .5rem; width: auto !important; height: auto !important; padding: .5rem .95rem !important; }
+.rvs-thumb-g { background: #fff !important; }
+.rvs-thumb-in { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; gap: .35rem; }
+.rvs-thumb-in i { width: 1.9rem; height: 1.9rem; border-radius: 50%; display: grid; place-items: center; color: #fff; font-style: normal; font-weight: 600; font-size: .95rem; }
+.rvs-gpanel { aspect-ratio: 4 / 3; box-sizing: content-box; padding-top: 2.4rem; flex: none; }
+@media (max-width: 1023px) { .rvs-gpanel { padding-top: 2.05rem; } }
+.rvs-more-row { min-height: 1.95rem; display: flex; align-items: flex-end; }
+.rvs-more-row .rvs-more { margin-top: 0; }
+
+/* Reviews spotlight v3 (27 Nov 2026, 16:00): no empty band under a website picture on a computer.
+   The window is wider there (16:10); a wide picture is shown whole, a 4:3 one fills it from the top (sides never cut).
+   The Google panel of a review with no website follows the same shape, so the frame never changes height. */
+.rvs-frame { --rvr: 4 / 3; }
+.rvs-shot, .rvs-gpanel { aspect-ratio: var(--rvr); }
+.rvs-img[data-fit="cover"] { object-fit: cover; object-position: top center; }
+@media (min-width: 1024px) {
+  .rvs-frame { --rvr: 16 / 10; }
+  .rvs-grid { grid-template-columns: minmax(0, 1.42fr) minmax(0, 1fr); }
+  .rvs-cap { padding-top: 3.2rem; background: linear-gradient(180deg, rgba(13,16,22,0) 0%, rgba(13,16,22,.8) 44%, #0d1016 78%); }
+  /* the website window alone decides the height of the frame: a long review never makes it taller (it gets «Περισσότερα») */
+  .rvs-text { flex: 1 1 0; height: 0; min-height: 0; }
+  .rvs-staronly { flex: 1 1 0; min-height: 0; }
+}
+@media (min-width: 1024px) and (max-height: 760px) { .rvs-frame { max-width: 1160px; } }
+
+/* the name on the video (preview slot and the real player, until it plays) */
+.player .vwho{transition:opacity .35s}
+.player.playing .vwho{opacity:0;pointer-events:none}
+.player .vwho{left:22px;top:22px;bottom:auto}
+@media (max-width:640px){.player .vwho{display:flex;left:12px;top:12px;font-size:12px;padding:5px 10px 5px 5px}.player .vwho i{width:24px;height:24px;font-size:11px}}
 </style>
 </head>
 <body>
@@ -529,6 +728,7 @@ p{text-wrap:pretty}
         <div class="player" id="player">
           <video id="vid" playsinline preload="metadata" controlslist="nodownload" crossorigin="anonymous"></video>
           <button class="big" id="bigPlay" type="button" aria-label="Παίξτε το βίντεο"><span><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.8v14.4c0 .8.9 1.3 1.6.8l11-7.2a1 1 0 0 0 0-1.6l-11-7.2C7.9 3.5 7 4 7 4.8z"/></svg></span><small id="vidLen">Δείτε το βίντεο</small></button>
+          <span class="slot-who vwho" aria-hidden="true"><i>AM</i>Angelos M · Advon Media</span>
         </div>
         <div class="chap" id="chap"><h3>Κεφάλαια</h3></div>
       </div>
@@ -537,7 +737,7 @@ p{text-wrap:pretty}
         <div class="player slot">
           <span class="slot-tag">Θέση βίντεο · μόνο στην προεπισκόπηση</span>
           <div class="slot-in"><span class="pl"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.8v14.4c0 .8.9 1.3 1.6.8l11-7.2a1 1 0 0 0 0-1.6l-11-7.2C7.9 3.5 7 4 7 4.8z"/></svg></span><b>Εδώ μπαίνει το βίντεο του Άγγελου</b><span>Οριζόντιο (16:9) · περίπου 3 λεπτά · με ελληνικούς υπότιτλους. Από κάτω, τα κεφάλαια — ο επισκέπτης πατάει και πάει κατευθείαν εκεί.</span></div>
-          <span class="slot-who"><i>ΑΜ</i>Άγγελος Μετρίδης · Advon Media</span>
+          <span class="slot-who"><i>AM</i>Angelos M · Advon Media</span>
         </div>
         <div class="chap demo-ch" aria-hidden="true"><button type="button" tabindex="-1" class="on"><span class="n">1</span><span>Ποιος είμαι</span><span class="t tnum">0:00</span></button><button type="button" tabindex="-1"><span class="n">2</span><span>Τι κάνουμε</span><span class="t tnum">0:20</span></button><button type="button" tabindex="-1"><span class="n">3</span><span>Πώς δουλεύουμε</span><span class="t tnum">0:50</span></button><button type="button" tabindex="-1"><span class="n">4</span><span>Τι κοστίζει</span><span class="t tnum">1:30</span></button><button type="button" tabindex="-1"><span class="n">5</span><span>Αν βιάζεστε</span><span class="t tnum">2:00</span></button><button type="button" tabindex="-1"><span class="n">6</span><span>Επιπλέον</span><span class="t tnum">2:20</span></button><button type="button" tabindex="-1"><span class="n">7</span><span>Ξεκινάμε</span><span class="t tnum">2:45</span></button></div>
       </div>
@@ -726,13 +926,21 @@ p{text-wrap:pretty}
   <p class="more rv"><a class="tlink" href="https://advonmedia.com/kataskevi-istoselidas#portfolio">Δείτε όλο το portfolio →</a></p>
 </div></section>
 
-<!-- ===================== REVIEWS ===================== -->
-<section class="sec" id="kritikes"><div class="wrap">
-  <div class="sh c rv"><span class="kick">Κριτικές</span><h2>Τι λένε όσοι το έκαναν ήδη.</h2></div>
-  <div class="rv-head rv"><a class="gbadge" href="https://g.co/kgs/wXBAZWP" target="_blank" rel="noopener"><svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>5,0 <span class="stars" aria-hidden="true">★★★★★</span> <small>140+ κριτικές στο Google ↗</small></a></div>
-  <div class="revs" id="revs"></div>
-  <div class="cta-row rv"><a class="btn" href="#ksekiname" data-go>Ξεκινάω τώρα <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a></div>
-</div></section>
+<!-- ===================== REVIEWS (the home page's own reviews show) ===================== -->
+<section class="rvsec" id="kritikes">
+  <div class="rvsec-glow" aria-hidden="true"></div>
+  <div class="rvsec-w">
+    <div class="rvh rv">
+      <span class="rvh-label">Αξιολογήσεις</span>
+      <h2><svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg> Αξιολογήσεις στη Google</h2>
+      <div class="rvh-sum"><span class="rvh-n">5.0</span><div><span class="rvh-st" aria-label="5 στα 5"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></span><small>140+ αξιολογήσεις στη Google</small></div></div>
+      <div class="rvh-btn"><a href="https://www.google.com/search?client=safari&amp;hs=cWIB&amp;sca_esv=ca3cb6d5ce7709a9&amp;rls=en&amp;biw=1728&amp;bih=996&amp;sxsrf=APpeQnvw25Zk17vi1Ku_Q1-Rhok7aYiJLg:1789387772691&amp;q=Advon+Media&amp;si=APenkKm7iecQ4G6P-TsbSMFKIQtv3EFIqRAFw-i8uEbk55Z-_7Zmd9uIvy1KrauaY43R5SW5HNU0CXtvhh_9NhsusY85yTu7LjuAM20R7LfQRfeIHidgK5U%3D&amp;uds=AJ5uw18gNhEE-1kkRZFnq5lN2SLiuA_cJg5q1iWUWMs1Rr8heiTQ1riiW0vzDrZsrl2STZ2kGzOeostF8WtuKFowoRD0cKIc1cnYFViXYLvERbcn_8m0jP8&amp;sa=X&amp;ved=2ahUKEwjWyrn0hO6WAxXtgf0HHcX0CRQQ3PALegQINBAF" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg> Δείτε όλες τις αξιολογήσεις στη Google <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg></a></div>
+    </div>
+    <div class="rvs from-right" id="rvs"><div class="rvs-ph" aria-hidden="true"></div></div>
+    <p class="rvh-note" id="rvsNote">Εμφανίζονται 140+ πραγματικές αξιολογήσεις από τη Google</p>
+    <div class="cta-row rv"><a class="btn" href="#ksekiname" data-go>Ξεκινάω τώρα <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a></div>
+  </div>
+</section>
 
 <!-- ===================== PRICE ===================== -->
 <section class="sec alt" id="kostos"><div class="wrap">
@@ -861,21 +1069,122 @@ function onScroll(){ticking=false;
 }
 addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(onScroll)}},{passive:true});onScroll();
 
-/* ---- reviews (verbatim from Google) ---- */
-var R=[
- ['nikolia savvopoulou','Η συνεργασία μας για την κατασκευή της σελίδας ως ψυχολόγου ήταν άψογη, με εξαιρετική και άμεση επικοινωνία και ένα άκρως επαγγελματικό αποτέλεσμα! Όλη η διαδικασία επεξηγήθηκε με λεπτομέρεια και ο χρόνος κατασκευής της σελίδας ήταν πολύ γρήγορος!'],
- ['Σάντυ Λιανέρη','Άμεση εξυπηρέτηση και εξαιρετικό αποτέλεσμα, ακριβώς όπως το είχα σκεφτεί για την επαγγελματική μου σελίδα. Θα πρότεινα τον κ. Μετρίδη ανεπιφύλακτα. Σας ευχαριστώ πολύ.'],
- ['Thanos Mariolis','Εξαιρετική δουλειά και άψογη, ταχύτατη επικοινωνία. Χωρίς ίχνος υπερβολής, η πιο άνετη και ανεμπόδιστη συνεργασία που είχα ποτέ. Σας ευχαριστώ πολύ'],
- ['Sotirios K','Εξαιρετικοί επαγγελματίες, ταχύτατοι, άμεση ανταπόκριση (σε όλα) και ανάληψη πρωτοβουλιών που σε γλιτώνει απο πολύ χρόνο! Εξαιρετικοί!'],
- ['Zoe Triantafyllidou','Εξαιρετική συνεργασία! Αμεσότητα,  επαγγελματισμός και ωραίες ιδέες. Πολύ ωραίο τελικό αποτέλεσμα που ξεπέρασε τις προσδοκίες μας.'],
- ['Αδαμαντία Γκίκα','Έμεινα απόλυτα ευχαριστημένη από την συνεργασία μας! Η ιστοσελίδα που μου παρέδωσαν ήταν ακριβώς αυτό που είχε ζητηθεί! Τους συνιστώ ανεπιφύλακτα!'],
- ['maria laiou','Εξαιρετική ομάδα! Παρέλαβα το site ακριβώς όπως το χρειαζόμουν, εύχρηστο, αισθητικά άρτιο και με έμφαση στη λεπτομέρεια. Η συνεργασια μας ήταν άψογη και η ομάδα πάντα διαθέσιμη με συνέπεια για οποιαδήποτε προσθήκη/διευκρινηση.'],
- ['Εβελίνα Αποστολάκη','Πολύ καλή συνεργασία. Ο Άγγελος απαντά πάντα άμεσα και ανταποκρίνεται σε οποιοδήποτε προβληματισμό. Έμεινα απόλυτα ευχαριστημένη από την ιστοσελίδα που μου έφτιαξε.']
-];
-var rb=d.getElementById('revs');
-R.forEach(function(r){var c=d.createElement('figure');c.className='rc rv in';
-  c.innerHTML='<span class="stars" aria-label="5 αστέρια">★★★★★</span><p></p><figcaption class="who"><i></i><span></span></figcaption>';
-  c.querySelector('p').textContent=r[1];c.querySelector('.who i').textContent=r[0].charAt(0).toUpperCase();c.querySelector('.who span').textContent=r[0];rb.appendChild(c)});
+/* ---- reviews: the same show as the home page (ReviewsColumns.jsx → Spotlight), in plain JS.
+   Every Google review, word for word, next to the website we built for that person; data = reviews.json
+   (written from lib/reviews.js by scripts/ksekinima-reviews.mjs before every build). ---- */
+(function(){
+  var root=d.getElementById('rvs');if(!root)return;
+  var RM=matchMedia('(prefers-reduced-motion: reduce)').matches,SLIDE_MS=3200;
+  var IMGBASE=LIVE?'':'https://advonmedia.com';
+  var STAR='<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>',GG='<svg viewBox="0 0 48 48" class="" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>';
+  var COLORS=['#F44336','#E91E63','#9C27B0','#673AB7','#3F51B5','#2196F3','#039BE5','#0097A7','#00796B','#43A047','#7CB342','#EF6C00','#F4511E','#795548','#607D8B'];
+  function color(n){var h=0;for(var k=0;k<n.length;k++)h=(h*31+n.charCodeAt(k))>>>0;return COLORS[h%COLORS.length]}
+  function host(u){return u.replace(/^https?:\/\//,'').replace(/^www\./,'').replace(/\/$/,'')}
+  function pic(u,w){return IMGBASE+'/_next/image?url='+encodeURIComponent(u)+'&w='+w+'&q=75'}
+  function sset(u){return [640,828,1200,1920].map(function(w){return pic(u,w)+' '+w+'w'}).join(', ')}
+  function stars(){var o='';for(var k=1;k<=5;k++)o+=STAR.replace('<svg ','<svg style="--s:'+k+'" ');return o}
+  function el(tag,cls,html){var n=d.createElement(tag);if(cls)n.className=cls;if(html)n.innerHTML=html;return n}
+  var ARROW='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg>';
+  function fitOf(src){return src.indexOf('/img/portfolio/')===0?'cover':'contain'}
+  function fitImg(img){var box=img.parentElement;if(!img.naturalWidth||!box||!box.clientHeight)return;
+    img.dataset.fit=(img.naturalWidth/img.naturalHeight)>=(box.clientWidth/box.clientHeight)*1.01?'contain':'cover'}
+  function shot(site,cls){var im=new Image();im.className='rvs-img '+cls;im.alt=cls==='rvs-in'?site.n:'';im.decoding='async';im.dataset.fit=fitOf(site.i);
+    im.onload=function(){fitImg(im)};im.sizes='(max-width: 1023px) 92vw, 700px';im.srcset=sset(site.i);im.src=pic(site.i,828);return im}
+
+  function build(DATA){
+    var S=DATA.slides,n=S.length,i=0,prev=null,open=false,paused=false,seen=false;
+    root.innerHTML='<div class="rvs-frame"><div class="rvs-grid">'
+      +'<a class="rvs-site" target="_blank" rel="noopener noreferrer"><span class="rvs-chrome" aria-hidden="true"><i></i><i></i><i></i><b class="rvs-url"></b><em>Live</em></span><span class="rvs-shot"></span></a>'
+      +'<a class="rvs-site rvs-nosite" target="_blank" rel="noopener noreferrer" aria-label="Δείτε την αξιολόγηση στη Google" hidden></a>'
+      +'<span class="rvs-pre" aria-hidden="true"></span>'
+      +'<div class="rvs-review"><div class="rvs-slot"></div><div class="rvs-ctrl"><span class="rvs-count"><b>1</b> / 140+</span><span class="rvs-btns">'
+      +'<button type="button" data-a="prev" aria-label="Προηγούμενη αξιολόγηση"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>'
+      +(RM?'':'<button type="button" data-a="pause" aria-label="Παύση" aria-pressed="false"></button>')
+      +'<button type="button" data-a="next" aria-label="Επόμενη αξιολόγηση"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>'
+      +'</span></div></div></div></div>'
+      +'<div class="rvs-rail-wrap"><div class="rvs-rail" role="group" aria-label="Όλες οι αξιολογήσεις"></div></div>';
+    var frame=root.querySelector('.rvs-frame'),siteA=root.querySelector('.rvs-site'),noA=root.querySelector('.rvs-nosite'),shotBox=root.querySelector('.rvs-shot'),
+        pre=root.querySelector('.rvs-pre'),slot=root.querySelector('.rvs-slot'),count=root.querySelector('.rvs-count b'),rail=root.querySelector('.rvs-rail'),
+        pauseB=root.querySelector('[data-a=pause]'),bar=null,textEl=null;
+    slot.style.cssText='flex:1;min-height:0;display:flex;flex-direction:column';
+    noA.href=DATA.url;
+    var PAUSE='<svg viewBox="0 0 24 24" fill="currentColor"><rect x="6.5" y="5" width="4" height="14" rx="1"/><rect x="13.5" y="5" width="4" height="14" rx="1"/></svg>',
+        PLAY='<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>';
+    if(pauseB)pauseB.innerHTML=PAUSE;
+
+    // every site in one strip
+    var thumbs=S.map(function(x,k){var b=el('button','rvs-thumb'+(x.s?'':' rvs-thumb-g'));b.type='button';
+      b.setAttribute('aria-label',x.s?x.n+' — '+host(x.s.u):x.n);
+      if(x.s){var im=new Image();im.alt='';im.loading='lazy';im.decoding='async';im.draggable=false;im.width=160;im.height=120;im.src=pic(x.s.i,256);b.appendChild(im)}
+      else{var w=el('span','rvs-thumb-in');var a=el('i');a.style.backgroundColor=color(x.n);a.textContent=x.n.charAt(0).toUpperCase();w.appendChild(a);w.insertAdjacentHTML('beforeend',GG);b.appendChild(w)}
+      b.onclick=function(){go(k)};rail.appendChild(b);return b});
+
+    function running(){return seen&&!open&&!paused&&!RM}
+    function sync(){root.classList.toggle('is-running',running())}
+    function go(to,dir){var next=((to%n)+n)%n;if(next!==i){prev=i;root.classList.toggle('from-left',(dir||(to>=i?1:-1))<0);root.classList.toggle('from-right',(dir||(to>=i?1:-1))>=0);i=next}open=false;render()}
+
+    function render(first){
+      var x=S[i],before=prev!=null?S[prev]:null,after=S[(i+1)%n];
+      // the bar that fills = the time left
+      if(bar)bar.remove();bar=el('span','rvs-bar');bar.setAttribute('aria-hidden','true');bar.style.animationDuration=SLIDE_MS+'ms';
+      bar.addEventListener('animationend',function(){go(i+1,1)});frame.insertBefore(bar,frame.firstChild);
+      // the website, or the Google panel
+      if(x.s){
+        noA.hidden=true;siteA.hidden=false;siteA.href=x.s.u;siteA.setAttribute('aria-label',x.s.n+' — '+host(x.s.u));
+        var u=siteA.querySelector('.rvs-url'),u2=el('b','rvs-url');u2.textContent=host(x.s.u);u.replaceWith(u2);
+        var olds=[].slice.call(shotBox.querySelectorAll('.rvs-img')),cap0=shotBox.querySelector('.rvs-cap');
+        olds.forEach(function(o,k){if(k===olds.length-1&&before&&before.s&&before.s!==x.s&&o.classList.contains('rvs-in')){o.className='rvs-img rvs-out';o.alt='';setTimeout(function(){o.remove()},560)}else o.remove()});
+        shotBox.appendChild(shot(x.s,'rvs-in'));
+        if(cap0)cap0.remove();
+        var cap=el('span','rvs-cap','<span class="rvs-cap-t"></span><span class="rvs-cap-b"><span class="rvs-cap-l">Δείτε την ιστοσελίδα</span>'+ARROW+'</span>');
+        cap.firstChild.textContent=x.s.n;shotBox.appendChild(cap);
+      }else{
+        siteA.hidden=true;noA.hidden=false;
+        noA.innerHTML='<span class="rvs-gpanel">'+GG+'<span class="rvs-gscore">5,0</span><span class="rvs-stars">'+stars()+'</span><span class="rvs-gtext">Αξιολόγηση στη Google</span><span class="rvs-cap-b rvs-gbtn"><span>Δείτε τη στη Google</span>'+ARROW+'</span></span>';
+      }
+      // the next website is fetched quietly so the switch is instant
+      pre.innerHTML='';if(after.s){var p=new Image();p.alt='';p.sizes='(max-width: 1023px) 92vw, 700px';p.srcset=sset(after.s.i);p.src=pic(after.s.i,828);pre.appendChild(p)}
+      // the review, as it is on Google
+      var card=el('div','rvs-slide','<div class="rvs-hd"><div><div class="rvs-av" aria-hidden="true"></div><div><h3 class="rvs-name"></h3><div class="rvs-stars" aria-label="Βαθμολογία 5 στα 5">'+stars()+'</div></div></div>'+GG+'</div>');
+      var av=card.querySelector('.rvs-av');av.style.backgroundColor=color(x.n);av.textContent=x.n.charAt(0).toUpperCase();
+      card.querySelector('.rvs-name').textContent=x.n;
+      if(x.t){textEl=el('div','rvs-text');var pp=el('p');pp.textContent=x.t;textEl.appendChild(pp)}
+      else{textEl=el('div','rvs-text rvs-staronly','<div>'+STAR+STAR+STAR+STAR+STAR+'</div><p>Αξιολόγηση 5 αστέρων στη Google</p>')}
+      card.appendChild(textEl);
+      var row=el('div','rvs-more-row');card.appendChild(row);
+      slot.innerHTML='';slot.appendChild(card);
+      if(x.t&&textEl.scrollHeight>textEl.clientHeight+4){textEl.classList.add('is-long');
+        var mb=el('button','rvs-more');mb.type='button';mb.textContent='Περισσότερα';
+        mb.onclick=function(){open=!open;textEl.classList.toggle('is-open',open);textEl.classList.toggle('is-long',!open);mb.textContent=open?'Λιγότερα':'Περισσότερα';
+          if(open)textEl.tabIndex=0;else{textEl.removeAttribute('tabindex');textEl.scrollTop=0}sync()};
+        row.appendChild(mb)}
+      count.textContent=i+1;
+      thumbs.forEach(function(t,k){t.classList.toggle('is-on',k===i);if(k===i)t.setAttribute('aria-current','true');else t.removeAttribute('aria-current')});
+      var cur=thumbs[i];rail.scrollTo({left:cur.offsetLeft-rail.clientWidth/2+cur.clientWidth/2,behavior:RM||first?'auto':'smooth'});
+      sync();
+    }
+
+    root.querySelector('[data-a=prev]').onclick=function(){go(i-1)};
+    root.querySelector('[data-a=next]').onclick=function(){go(i+1)};
+    if(pauseB)pauseB.onclick=function(){paused=!paused;pauseB.innerHTML=paused?PLAY:PAUSE;pauseB.setAttribute('aria-label',paused?'Συνέχεια':'Παύση');pauseB.setAttribute('aria-pressed',paused?'true':'false');sync()};
+    // phones: swipe left / right over the frame to change review
+    var touch=null,swipedAt=0;
+    frame.addEventListener('touchstart',function(e){var t=e.touches[0];touch={x:t.clientX,y:t.clientY}},{passive:true});
+    frame.addEventListener('touchend',function(e){var from=touch;touch=null;if(!from)return;var t=e.changedTouches[0],dx=t.clientX-from.x,dy=t.clientY-from.y;
+      if(Math.abs(dx)<42||Math.abs(dx)<Math.abs(dy)*1.3)return;swipedAt=Date.now();if(dx<0)go(i+1,1);else go(i-1,-1)},{passive:true});
+    frame.addEventListener('click',function(e){if(Date.now()-swipedAt<450){e.preventDefault();e.stopPropagation()}},true);
+    // only run while the show is on screen
+    if('IntersectionObserver' in window)new IntersectionObserver(function(es){seen=es[0].isIntersecting;sync()},{threshold:.25}).observe(root);else seen=true;
+    render(true);
+  }
+
+  // the list is fetched only when the reviews are about 700px away
+  var asked=false;
+  function load(){if(asked)return;asked=true;
+    fetch('reviews.json').then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(j){if(!j||!j.slides||!j.slides.length)throw 0;build(j)})
+      .catch(function(){root.hidden=true;var nn=d.getElementById('rvsNote');if(nn)nn.hidden=true})}
+  if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){if(es[0].isIntersecting){io.disconnect();load()}},{rootMargin:'700px 0px'});io.observe(root)}else load();
+})();
 
 /* ---- video: appears when the JSON exists (or ?video=<mp4 url> to test) ---- */
 function fmt(t){t=Math.max(0,Math.round(t));return Math.floor(t/60)+':'+String(t%60).padStart(2,'0')}

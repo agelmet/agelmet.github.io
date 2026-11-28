@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<!-- «Ξεκινάμε τώρα» v4 · 21 Nov 2026 · no-call start, card payment at the end (Stripe of the Advon shop, Angelo absorbs the fee).
+<!-- «Ξεκινάμε τώρα» v5 · 28 Nov 2026 (v4 · 21 Nov 2026) · no-call start, card payment at the end (Stripe of the Advon shop, Angelo absorbs the fee).
      VIDEO: the page reads https://drafts.advonmedia.com/advon-video/ksekinima.json — when that file exists the
-     player appears by itself (0 Netlify credits to add or change the video). Until then the «Με μια ματιά» card shows. -->
+     player appears by itself (0 Netlify credits to add or change the video). Until then the live page shows three of our
+     sites in the video's place; a preview (drafts, or ?slot=1) shows the marked «video slot».
+     ORDER (v5): video + buy box → 4 steps → order form → work → reviews → price → questions → final. -->
 <html lang="el">
 <head>
 <meta charset="utf-8">
@@ -399,6 +401,102 @@ p{text-wrap:pretty}
 }
 @media (max-width:420px){.glance{grid-template-columns:minmax(0,1fr)}.work,.revs{grid-template-columns:minmax(0,1fr)}.hero-cta .btn{width:100%}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.js .rv{opacity:1;transform:none}html{scroll-behavior:auto}}
+
+/* ============ v5 · hero = video + buy box ============ */
+.hero{padding:40px 0 60px}
+.hero>.wrap{max-width:1340px}
+.hb{display:grid;grid-template-columns:minmax(0,1.34fr) minmax(0,1fr);grid-template-areas:"media head" "media buy" "facts buy";grid-template-rows:auto auto 1fr;column-gap:clamp(28px,3.6vw,60px);row-gap:22px;align-items:start}
+.hb-head{grid-area:head;display:grid;gap:14px;justify-items:start;text-align:left}
+.hb-media{grid-area:media;align-self:start;min-width:0}
+.hb-buy{grid-area:buy;min-width:0}
+.hb-facts{grid-area:facts;align-self:start;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;list-style:none;margin-top:-4px}
+.hb-facts li{display:grid;grid-template-columns:22px minmax(0,1fr);gap:10px;align-items:start;padding:14px 16px;border-radius:16px;background:rgba(255,255,255,.045);box-shadow:inset 0 0 0 1px rgba(255,255,255,.07);font-size:14.5px;line-height:1.4;color:rgba(255,255,255,.86)}
+.hb-facts svg{width:18px;height:18px;color:var(--cy);margin-top:2px}
+.hb-facts b{color:#fff;font-weight:800}
+.hb .pill{justify-self:start}
+.hb h1{font-size:clamp(31px,3.35vw,50px)}
+.hb .lead{margin:0;font-size:clamp(16px,1.25vw,18px);max-width:none}
+.vstage{display:grid;gap:14px}
+.hb .chap{background:none;box-shadow:none;padding:0;border-radius:0;flex-direction:row;flex-wrap:wrap;gap:8px}
+.hb .chap h3{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.hb .chap button{display:inline-flex;grid-template-columns:none;gap:8px;padding:8px 14px 8px 8px;border-radius:999px;font-size:13.5px;min-height:40px;background:rgba(255,255,255,.05);box-shadow:inset 0 0 0 1px rgba(255,255,255,.07);white-space:nowrap}
+.hb .chap button .t{margin-left:2px}
+.hb .chap button.on{box-shadow:inset 0 0 0 1px rgba(71,200,245,.5)}
+/* video slot — preview only */
+.player.slot{display:grid;place-items:center;text-align:center;background:repeating-linear-gradient(135deg,rgba(255,255,255,.028) 0 14px,rgba(255,255,255,0) 14px 28px),radial-gradient(120% 90% at 30% 20%,#12283A 0%,#0A141D 55%,#05080C 100%)}
+.player.slot::after{content:"";position:absolute;inset:14px;border:2px dashed rgba(71,200,245,.42);border-radius:14px;pointer-events:none}
+.slot-in{display:grid;justify-items:center;gap:12px;padding:24px;max-width:520px}
+.slot-in .pl{display:grid;place-items:center;width:84px;height:84px;border-radius:50%;background:var(--cy);color:var(--night);box-shadow:0 0 0 10px rgba(71,200,245,.16)}
+.slot-in .pl svg{width:32px;height:32px;margin-left:5px}
+.slot-in b{font-size:clamp(19px,2vw,26px);font-weight:800;letter-spacing:-.02em}
+.slot-in span{font-size:14.5px;color:rgba(255,255,255,.72)}
+.slot-tag{position:absolute;left:26px;top:26px;z-index:2;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;background:#FFE08A;color:#3B2A00;padding:5px 9px;border-radius:7px}
+.slot-who{position:absolute;left:26px;bottom:26px;z-index:2;display:flex;align-items:center;gap:10px;font-size:13.5px;font-weight:700;color:#fff;background:rgba(5,8,12,.6);padding:7px 12px 7px 7px;border-radius:999px}
+.slot-who i{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--bl),var(--cy));font-style:normal;font-weight:800;font-size:12px}
+.chap.demo-ch button{cursor:default}
+/* live, until the video exists: three of our sites */
+.vfall{position:relative;aspect-ratio:16/9;border-radius:var(--r);overflow:hidden;background:radial-gradient(120% 90% at 30% 20%,#12283A 0%,#0A141D 55%,#05080C 100%);box-shadow:0 0 0 1px rgba(255,255,255,.08),0 40px 90px -30px rgba(0,0,0,.8)}
+.vfall img{position:absolute;width:52%;height:auto;aspect-ratio:4/3;object-fit:cover;object-position:top;border-radius:12px;box-shadow:0 24px 50px -18px rgba(0,0,0,.85),0 0 0 1px rgba(255,255,255,.1)}
+.vfall img:nth-child(1){left:6%;top:16%;transform:rotate(-4deg)}
+.vfall img:nth-child(2){right:6%;top:9%;transform:rotate(3.5deg)}
+.vfall img:nth-child(3){left:24%;top:30%;width:54%;z-index:2}
+.vfall figcaption{position:absolute;left:0;right:0;bottom:0;z-index:3;padding:34px 20px 16px;text-align:center;font-size:14px;font-weight:700;color:#fff;background:linear-gradient(180deg,rgba(5,8,12,0),rgba(5,8,12,.86))}
+.hb .hero-proof{justify-content:flex-start;margin-top:16px}
+/* buy box */
+.buy{background:linear-gradient(180deg,rgba(255,255,255,.075),rgba(255,255,255,.03));box-shadow:inset 0 0 0 1px rgba(255,255,255,.1),0 30px 70px -40px rgba(0,0,0,.9);border-radius:var(--r);padding:22px}
+.buy-p{display:grid;gap:0}
+.buy-p>div{display:flex;align-items:baseline;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed rgba(255,255,255,.14);font-size:15px;color:rgba(255,255,255,.8)}
+.buy-p b{font-weight:800;color:#fff;white-space:nowrap}
+.buy-p s{color:rgba(255,255,255,.42);font-weight:700;margin-right:8px}
+.buy-p small{font-size:.78em;font-weight:700;color:rgba(255,255,255,.6)}
+.buy-p .t{border-bottom:0;padding:14px 0 2px;align-items:center}
+.buy-p .t span{font-weight:800;color:#fff}
+.buy-p .t b{font-size:clamp(30px,2.7vw,38px);letter-spacing:-.03em;color:var(--cy)}
+.buy-w{font-size:13.5px;color:rgba(255,255,255,.66);margin:4px 0 16px}
+.buy-l{list-style:none;display:grid;gap:8px;margin:0 0 18px}
+.buy-l li{display:grid;grid-template-columns:20px minmax(0,1fr);gap:10px;font-size:15px;color:rgba(255,255,255,.9)}
+.buy-l svg{width:18px;height:18px;color:var(--cy);margin-top:3px}
+.buy-n{margin-top:12px;font-size:13px;color:rgba(255,255,255,.62);text-align:center}
+.buy-alt{display:block;margin-top:10px;text-align:center;font-size:14px;font-weight:700;color:rgba(255,255,255,.82);text-decoration:none;padding:10px;border-radius:10px}
+@media (hover:hover){.buy-alt:hover{color:#fff;background:rgba(255,255,255,.05)}}
+/* tighter steps band, CTA rows, quote beside the form, phone bar */
+#pos.sec{padding:64px 0 70px}
+#pos .sh{margin-bottom:34px}
+.cta-row{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:40px}
+.sumq{margin-top:16px;background:var(--night-2);border-radius:var(--r);padding:20px 22px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.07)}
+.sumq p{margin-top:8px;font-size:14.5px;color:rgba(255,255,255,.86)}
+.sumq figcaption{margin-top:10px;font-size:13px;color:rgba(255,255,255,.55);font-weight:700}
+.og>div:last-child{min-width:0}
+.sticky-side{position:sticky;top:92px}
+.sticky-side .sum{position:static}
+.final .btn.line{box-shadow:inset 0 0 0 1.5px var(--line)}
+.mbar .btn small{font-weight:800;opacity:.72;margin-left:2px}
+@media (min-width:1061px) and (max-height:780px){.hero{padding-top:26px}.hb{row-gap:16px}.hb-head{gap:10px}.hb h1{font-size:clamp(30px,2.9vw,40px)}.buy{padding:18px 22px}.buy-p>div{padding:7px 0}.buy-p .t{padding:10px 0 0}}
+@media (max-width:1060px){
+  .hb{grid-template-columns:minmax(0,1fr);grid-template-areas:"head" "media" "buy" "facts";grid-template-rows:none;row-gap:24px}
+  .hb-facts{max-width:620px;width:100%;margin:0 auto}
+  .hb-head{justify-items:center;text-align:center}
+  .hb .pill{justify-self:center}
+  .hb h1{font-size:clamp(32px,6vw,52px)}
+  .hb .lead{max-width:640px}
+  .hb .chap{display:flex;grid-template-columns:none;justify-content:center}
+  .hb .hero-proof{justify-content:center}
+  .hb-buy{max-width:620px;width:100%;margin:0 auto}
+  .sticky-side{position:static}
+}
+@media (max-width:760px){
+  .hero{padding:26px 0 46px}
+  .hb{row-gap:20px}
+  .hb .chap{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;scrollbar-width:none;margin:0 -22px;padding:2px 22px;-webkit-overflow-scrolling:touch}
+  .hb .chap::-webkit-scrollbar{display:none}
+  .slot-in{gap:8px;padding:34px 18px 10px}.slot-in>span:last-child{display:none}.slot-in b{font-size:16px}.slot-in .pl{width:50px;height:50px;box-shadow:0 0 0 7px rgba(71,200,245,.16)}.slot-in .pl svg{width:20px;height:20px;margin-left:3px}
+  .slot-tag{left:22px;top:22px;font-size:9.5px;padding:4px 7px}.slot-who{display:none}
+  .hb .hero-proof{font-size:13px;gap:6px 16px}
+  .buy-p>div{font-size:14px}.buy-p .h-m{display:none}
+  .buy{padding:18px}
+  .hb-facts{grid-template-columns:minmax(0,1fr);gap:8px}.hb-facts li{padding:12px 14px}
+  #pos.sec{padding:52px 0 56px}
+}
 </style>
 </head>
 <body>
@@ -407,66 +505,74 @@ p{text-wrap:pretty}
 <header class="hd"><div class="wrap">
   <a class="brand" href="https://advonmedia.com/" aria-label="Advon Media — αρχική"><img src="img/advon-logo.webp" width="94" height="30" alt="Advon Media"></a>
   <nav>
-    <a class="hlink" href="#erotiseis">Ερωτήσεις</a>
+    <a class="hlink" href="#douleies">Δουλειές μας</a>
     <a class="hlink" href="#kostos">Κόστος</a>
-    <a class="hlink" href="https://advonmedia.com/rantevou/">Προτιμώ ραντεβού</a>
+    <a class="hlink" href="#erotiseis">Ερωτήσεις</a>
+    <a class="hlink" href="/rantevou/">Προτιμώ ραντεβού</a>
     <a class="btn sm" href="#ksekiname" data-go>Ξεκινάω τώρα <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
   </nav>
 </div></header>
 
 <main id="top">
-<!-- ===================== HERO ===================== -->
+<!-- ===================== HERO: video + buy box ===================== -->
 <section class="hero"><i class="glow2" aria-hidden="true"></i><div class="wrap">
-  <div class="hero-top">
-    <span class="pill rv"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></i>Χωρίς ραντεβού · ξεκινάμε σήμερα</span>
-    <h1 class="rv">Η ιστοσελίδα σας ξεκινά <em>σήμερα</em>.<br>Χωρίς ραντεβού.</h1>
-    <p class="lead rv" id="heroLead">Όσα λέμε σε κάθε συνάντηση, τα βρίσκετε εδώ. Συμπληρώνετε τα στοιχεία σας, ανεβάζετε ό,τι έχετε, και ξεκινάμε σήμερα. Οι αλλαγές είναι απεριόριστες, μέχρι να γίνει ακριβώς όπως τη φανταστήκατε.</p>
-  </div>
-
-  <!-- video (appears by itself when the video file exists) -->
-  <div class="hero-stage rv" id="stage" hidden>
-    <div class="player" id="player">
-      <video id="vid" playsinline preload="metadata" controlslist="nodownload" crossorigin="anonymous"></video>
-      <button class="big" id="bigPlay" type="button" aria-label="Παίξτε το βίντεο"><span><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.8v14.4c0 .8.9 1.3 1.6.8l11-7.2a1 1 0 0 0 0-1.6l-11-7.2C7.9 3.5 7 4 7 4.8z"/></svg></span><small id="vidLen">Δείτε το βίντεο</small></button>
+  <div class="hb">
+    <div class="hb-head">
+      <span class="pill rv"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></i>Χωρίς ραντεβού · ξεκινάμε σήμερα</span>
+      <h1 class="rv">Η ιστοσελίδα σας ξεκινά <em>σήμερα</em>. Χωρίς ραντεβού.</h1>
+      <p class="lead rv" id="heroLead">Στέλνετε τα στοιχεία σας και ό,τι υλικό έχετε, και ξεκινάμε την ίδια μέρα. Το πρώτο σχέδιο το βλέπετε σε 2–7 ημέρες.</p>
     </div>
-    <div class="chap" id="chap"><h3>Κεφάλαια</h3></div>
-  </div>
 
-  <!-- shown until the video exists -->
-  <div class="glance" id="glance">
-    <div class="gl rv"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></i><b>Κατασκευή 0€</b><span>Φτιαγμένη από την αρχή για εσάς — όχι έτοιμο πρότυπο.</span></div>
-    <div class="gl rv"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></i><b>130€ + ΦΠΑ / χρόνο</b><span>Φιλοξενία και domain. Όλα μέσα, κανένα άλλο υποχρεωτικό κόστος.</span></div>
-    <div class="gl rv"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></i><b>Σε 2–7 ημέρες</b><span>βλέπετε το πρώτο σχέδιο. Με express, σε 1–2 εργάσιμες.</span></div>
-    <div class="gl rv"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg></i><b>Απεριόριστες αλλαγές</b><span>μέχρι να γίνει ακριβώς όπως τη φανταστήκατε. Και καλύτερα.</span></div>
-  </div>
+    <div class="hb-media rv">
+      <!-- 1 · the real video (appears by itself when the video file exists) -->
+      <div class="vstage" id="stage" hidden>
+        <div class="player" id="player">
+          <video id="vid" playsinline preload="metadata" controlslist="nodownload" crossorigin="anonymous"></video>
+          <button class="big" id="bigPlay" type="button" aria-label="Παίξτε το βίντεο"><span><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.8v14.4c0 .8.9 1.3 1.6.8l11-7.2a1 1 0 0 0 0-1.6l-11-7.2C7.9 3.5 7 4 7 4.8z"/></svg></span><small id="vidLen">Δείτε το βίντεο</small></button>
+        </div>
+        <div class="chap" id="chap"><h3>Κεφάλαια</h3></div>
+      </div>
+      <!-- 2 · the marked video slot: previews only (drafts, or ?slot=1) — never shown to visitors -->
+      <div class="vstage" id="slot" hidden>
+        <div class="player slot">
+          <span class="slot-tag">Θέση βίντεο · μόνο στην προεπισκόπηση</span>
+          <div class="slot-in"><span class="pl"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.8v14.4c0 .8.9 1.3 1.6.8l11-7.2a1 1 0 0 0 0-1.6l-11-7.2C7.9 3.5 7 4 7 4.8z"/></svg></span><b>Εδώ μπαίνει το βίντεο του Άγγελου</b><span>Οριζόντιο (16:9) · περίπου 3 λεπτά · με ελληνικούς υπότιτλους. Από κάτω, τα κεφάλαια — ο επισκέπτης πατάει και πάει κατευθείαν εκεί.</span></div>
+          <span class="slot-who"><i>ΑΜ</i>Άγγελος Μετρίδης · Advon Media</span>
+        </div>
+        <div class="chap demo-ch" aria-hidden="true"><button type="button" tabindex="-1" class="on"><span class="n">1</span><span>Ποιος είμαι</span><span class="t tnum">0:00</span></button><button type="button" tabindex="-1"><span class="n">2</span><span>Τι κάνουμε</span><span class="t tnum">0:20</span></button><button type="button" tabindex="-1"><span class="n">3</span><span>Πώς δουλεύουμε</span><span class="t tnum">0:50</span></button><button type="button" tabindex="-1"><span class="n">4</span><span>Τι κοστίζει</span><span class="t tnum">1:30</span></button><button type="button" tabindex="-1"><span class="n">5</span><span>Αν βιάζεστε</span><span class="t tnum">2:00</span></button><button type="button" tabindex="-1"><span class="n">6</span><span>Επιπλέον</span><span class="t tnum">2:20</span></button><button type="button" tabindex="-1"><span class="n">7</span><span>Ξεκινάμε</span><span class="t tnum">2:45</span></button></div>
+      </div>
+      <!-- 3 · the live page until the video exists -->
+      <figure class="vfall" id="glance">
+        <img src="img/salakou.webp" width="720" height="540" alt="Ιστοσελίδα ψυχολόγου, φτιαγμένη από την Advon Media">
+        <img src="img/dionvilla.webp" width="720" height="540" alt="Ιστοσελίδα καταλύματος, φτιαγμένη από την Advon Media">
+        <img src="img/vogiatzis.webp" width="720" height="540" alt="Ιστοσελίδα οδοντιατρείου, φτιαγμένη από την Advon Media" fetchpriority="high">
+        <figcaption>260+ ιστοσελίδες online — κάθε μία φτιαγμένη από την αρχή</figcaption>
+      </figure>
+      <div class="hero-proof">
+        <span><span class="stars" aria-hidden="true">★★★★★</span><b>140+</b> κριτικές 5 αστέρων στο Google</span>
+        <span><b>260+</b> ιστοσελίδες online</span>
+      </div>
+    </div>
 
-  <div class="hero-cta rv">
-    <a class="btn" href="#ksekiname" data-go>Ξεκινάω τώρα <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg></a>
-    <a class="btn ghost" href="https://advonmedia.com/rantevou/">Θέλω πρώτα να μιλήσουμε</a>
-  </div>
-  <div class="hero-proof rv">
-    <span><span class="stars" aria-hidden="true">★★★★★</span><b>140+</b> κριτικές στο Google, όλες 5 αστέρια</span>
-    <span><b>250+</b> ιστοσελίδες online</span>
-    <span><b>0€</b> κατασκευή</span>
-  </div>
-</div></section>
+    <div class="hb-buy rv">
+      <div class="buy">
+        <div class="buy-p">
+          <div><span>Κατασκευή<span class="h-m"> ιστοσελίδας</span></span><b class="tnum"><s>500€ – 5.000€</s>0€</b></div>
+          <div><span>Φιλοξενία &amp; domain<span class="h-m"> · 1ος χρόνος</span></span><b class="tnum">130€ <small>+ ΦΠΑ</small></b></div>
+          <div class="t"><span>Σήμερα, με κάρτα</span><b class="tnum">161,20€</b></div>
+        </div>
+        <p class="buy-w">Κείμενα, λογότυπο, domain και ασφάλεια (SSL) — όλα μέσα. Κανένα άλλο υποχρεωτικό κόστος.</p>
+        <a class="btn wide" href="#ksekiname" data-go>Ξεκινάω τώρα <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+        <p class="buy-n">Περίπου 5 λεπτά · Ασφαλής πληρωμή με κάρτα · Με παραστατικό</p>
+      </div>
+      <a class="buy-alt" href="/rantevou/">Προτιμώ πρώτα να μιλήσουμε →</a>
+    </div>
 
-<!-- ===================== THE MEETING, IN WRITING ===================== -->
-<section class="sec" id="erotiseis"><div class="wrap">
-  <div class="sh c rv">
-    <span class="kick" id="meetKick">Από εκατοντάδες συναντήσεις</span>
-    <h2>Οι ίδιες ερωτήσεις, σε κάθε συνάντηση. Εδώ είναι όλες.</h2>
-    <p>Αν θέλετε ιστοσελίδα και απλώς θέλετε να ξέρετε πώς δουλεύουμε, δεν χρειάζεται να κλείσετε ραντεβού. Οι απαντήσεις είναι ακριβώς αυτές που θα σας δίναμε στο τηλέφωνο.</p>
-  </div>
-  <div class="qa">
-    <details class="q rv" open><summary><span class="n">1</span>Πόσο κοστίζει στ' αλήθεια;<span class="pl"></span></summary><div class="a"><p>Η κατασκευή <b>0€</b>. Πληρώνετε μόνο φιλοξενία και domain: <b>130€ + ΦΠΑ τον χρόνο (161,20€)</b>.</p><p>Μέσα είναι όλα: το domain, η ασφάλεια (SSL), η ταχύτητα και να είναι πάντα online. Κανένα άλλο υποχρεωτικό κόστος.</p></div></details>
-    <details class="q rv"><summary><span class="n">2</span>Πώς πληρώνω;<span class="pl"></span></summary><div class="a"><p>Με κάρτα, στο τέλος της φόρμας: <b>161,20€</b> (130€ + ΦΠΑ) για τον πρώτο χρόνο φιλοξενίας και domain. Χωρίς καμία επιπλέον χρέωση για την πληρωμή, και με παραστατικό.</p><p>Οι 365 ημέρες μετράνε από τη μέρα που η ιστοσελίδα σας βγαίνει online, όχι από σήμερα.</p></div></details>
-    <details class="q rv"><summary><span class="n">3</span>Σε πόσο καιρό είναι έτοιμη;<span class="pl"></span></summary><div class="a"><p>Το πρώτο σχέδιο σε <b>2–7 ημέρες</b> από τη στιγμή που έχουμε το υλικό σας. Αν βιάζεστε, με την <b>express παράδοση</b> το βλέπετε σε 1–2 εργάσιμες και σας καλούμε την ίδια μέρα.</p></div></details>
-    <details class="q rv"><summary><span class="n">4</span>Τι χρειάζεστε από εμένα;<span class="pl"></span></summary><div class="a"><p>Ό,τι έχετε: φωτογραφίες, λογότυπο ή κάρτα, κείμενα. Δεν χρειάζεται να είναι τέλεια.</p><p>Δεν έχετε τίποτα έτοιμο; Μας δίνετε το link ενός προφίλ σας (π.χ. doctoranytime, Facebook, Google) και <b>γράφουμε εμείς τα κείμενα</b>. Δεν έχετε λογότυπο; Σας φτιάχνουμε.</p></div></details>
-    <details class="q rv"><summary><span class="n">5</span>Κι αν δεν μου αρέσει;<span class="pl"></span></summary><div class="a"><p>Μας λέτε τι θέλετε να αλλάξει και το αλλάζουμε, <b>όσες φορές χρειαστεί</b>, μέχρι να γίνει ακριβώς όπως τη φανταστήκατε — και καλύτερα. Δεν βγαίνει online πριν πείτε εσείς «ναι».</p></div></details>
-    <details class="q rv"><summary><span class="n">6</span>Θα με βρίσκουν στο Google;<span class="pl"></span></summary><div class="a"><p>Κάθε ιστοσελίδα φτιάχνεται για να εμφανίζεται στο Google και στις αναζητήσεις μέσω AI (ChatGPT κ.ά.): με το όνομά σας, τις υπηρεσίες σας και την περιοχή σας.</p><p>Κανείς δεν μπορεί να υποσχεθεί την πρώτη θέση. Ένα σωστό προφίλ στο Google Maps και οι κριτικές σας βοηθούν πολύ, και σας τα στήνουμε κι αυτά αν θέλετε.</p></div></details>
-    <details class="q rv"><summary><span class="n">7</span>Το domain (π.χ. onoma-epaggelma.gr);<span class="pl"></span></summary><div class="a"><p><b>Περιλαμβάνεται.</b> Μας λέτε ποιο θέλετε ή σας προτείνουμε εμείς. Αν έχετε ήδη δικό σας, το συνδέουμε στη νέα ιστοσελίδα.</p></div></details>
-    <details class="q rv"><summary><span class="n">8</span>Και μετά τη δημοσίευση;<span class="pl"></span></summary><div class="a"><p>Μέχρι να βγει online οι αλλαγές είναι απεριόριστες. Αφού δημοσιευτεί, κάθε αίτημα αλλαγών κοστίζει <b>50€</b> (ένα αίτημα μπορεί να έχει πολλές αλλαγές, έτοιμες σε 3 εργάσιμες).</p><p>Ή παίρνετε τον <b>πίνακα διαχείρισης (180€ εφάπαξ)</b> και αλλάζετε μόνοι σας κείμενα και φωτογραφίες, όποτε θέλετε.</p></div></details>
+    <ul class="hb-facts rv">
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Πρώτο σχέδιο σε <b>2–7 ημέρες</b>. Με express, σε 1–2 εργάσιμες.</span></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span><b>Απεριόριστες αλλαγές</b>, μέχρι να γίνει όπως τη φανταστήκατε.</span></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Οι <b>365 ημέρες</b> μετράνε από τη μέρα που βγαίνει online.</span></li>
+    </ul>
   </div>
 </div></section>
 
@@ -481,66 +587,9 @@ p{text-wrap:pretty}
   </div>
 </div></section>
 
-<!-- ===================== PRICE ===================== -->
-<section class="sec" id="kostos"><div class="wrap">
-  <div class="sh c rv"><span class="kick">Το κόστος, καθαρά</span><h2>Ό,τι πληρώνετε, γραμμένο εδώ. Χωρίς ψιλά γράμματα.</h2></div>
-  <div class="price">
-    <div class="pcard rv">
-      <span class="lbl">Ιστοσελίδα</span>
-      <div class="now"><b class="tnum">0€</b><span>κατασκευή</span></div>
-      <p class="then">Πληρώνετε μόνο <b>130€ + ΦΠΑ τον χρόνο (161,20€)</b> για φιλοξενία &amp; domain, με κάρτα, όταν στείλετε τα στοιχεία σας.</p>
-      <ul class="inc">
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Σχεδιασμός από την αρχή, για εσάς — όχι έτοιμο πρότυπο</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Κείμενα γραμμένα από εμάς, στα ελληνικά και στα αγγλικά</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Τέλεια στο κινητό, γρήγορη, με SEO για Google και AI</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Domain, φιλοξενία, ασφάλεια (SSL) — όλα μέσα</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Απεριόριστες αλλαγές μέχρι να βγει online</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Λογότυπο, αν δεν έχετε</li>
-      </ul>
-      <a class="btn" href="#ksekiname" data-go>Ξεκινάω τώρα <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
-    </div>
-    <div class="xcard rv">
-      <h3>Προαιρετικά — μόνο αν τα θέλετε</h3>
-      <p>Τα επιλέγετε στη φόρμα. Το express πληρώνεται μαζί με τη φιλοξενία· τα υπόλοιπα μόνο αν τα επιβεβαιώσετε αργότερα.</p>
-      <ul class="xl">
-        <li class="hl"><span><b>Express παράδοση</b><small>Πρώτο σχέδιο σε 1–2 εργάσιμες + κλήση την ίδια μέρα</small></span><span class="pr">+50€</span></li>
-        <li><span><b>Πίνακας διαχείρισης</b><small>Αλλάζετε μόνοι σας κείμενα και φωτογραφίες</small></span><span class="pr">180€ εφάπαξ</span></li>
-        <li><span><b>Google Business Profile</b><small>Στήσιμο του προφίλ σας στο Google Maps</small></span><span class="pr">90€ εφάπαξ</span></li>
-        <li><span><b>Ενότητα άρθρων</b><small>Γράφετε και ανεβάζετε άρθρα μόνοι σας</small></span><span class="pr">70€ εφάπαξ</span></li>
-        <li><span><b>Φόρμα επικοινωνίας</b><small>Τα μηνύματα έρχονται στο e-mail σας</small></span><span class="pr">50€ εφάπαξ</span></li>
-        <li><span><b>Instagram &amp; Facebook</b><small>Τα διαχειριζόμαστε εμείς, 8–16 posts τον μήνα</small></span><span class="pr">από 49€/μήνα</span></li>
-      </ul>
-      <p class="foot">Όλες οι τιμές + ΦΠΑ 24%. Αλλαγές μετά τη δημοσίευση: 50€ ανά αίτημα.</p>
-    </div>
-  </div>
-</div></section>
-
-<!-- ===================== WORK ===================== -->
-<section class="sec alt" id="douleies"><div class="wrap">
-  <div class="sh c rv"><span class="kick">Δουλειές μας</span><h2>Κάθε μία, φτιαγμένη από την αρχή.</h2></div>
-  <div class="work">
-    <a class="wk rv" href="https://vogiatzis-dent.gr" target="_blank" rel="noopener"><img src="img/vogiatzis.webp" width="720" height="540" loading="lazy" alt="Ιστοσελίδα Βογιατζής Οδοντίατροι"><span>Βογιατζής · Οδοντίατροι</span></a>
-    <a class="wk rv" href="https://georgia-salakou-psychologist.gr" target="_blank" rel="noopener"><img src="img/salakou.webp" width="720" height="540" loading="lazy" alt="Ιστοσελίδα Γεωργία Σαλάκου Ψυχολόγος"><span>Σαλάκου · Ψυχολόγος</span></a>
-    <a class="wk rv" href="https://selfiehair.gr" target="_blank" rel="noopener"><img src="img/selfiehair.webp" width="720" height="540" loading="lazy" alt="Ιστοσελίδα Selfie Hair κομμωτήριο"><span>Selfie Hair · Κομμωτήριο</span></a>
-    <a class="wk rv" href="https://lamproueye.gr" target="_blank" rel="noopener"><img src="img/lamprou.webp" width="720" height="540" loading="lazy" alt="Ιστοσελίδα Δρ. Λάμπρος Λάμπρου Οφθαλμίατρος"><span>Λάμπρου · Οφθαλμίατρος</span></a>
-    <a class="wk rv" href="https://kk-dental.gr" target="_blank" rel="noopener"><img src="img/kdental.webp" width="720" height="540" loading="lazy" alt="Ιστοσελίδα Κωνσταντινίδης Οδοντίατρος"><span>Κωνσταντινίδης · Οδοντίατρος</span></a>
-    <a class="wk rv" href="https://bogiatzi-psychologist.gr" target="_blank" rel="noopener"><img src="img/bogiatzi.webp" width="720" height="540" loading="lazy" alt="Ιστοσελίδα Κωνσταντίνα Μπογιατζή Ψυχολόγος"><span>Μπογιατζή · Κλινική Ψυχολόγος</span></a>
-    <a class="wk rv" href="https://dionvillazakynthos.com" target="_blank" rel="noopener"><img src="img/dionvilla.webp" width="720" height="540" loading="lazy" alt="Ιστοσελίδα Dion Villa Ζάκυνθος"><span>Dion Villa · Κατάλυμα</span></a>
-    <a class="wk rv" href="https://psychotherapeia-pallini.gr" target="_blank" rel="noopener"><img src="img/psychologein.webp" width="720" height="540" loading="lazy" alt="Ιστοσελίδα Ψυχολογείν Παλλήνη"><span>Ψυχολογείν · Ψυχολόγοι</span></a>
-  </div>
-  <p class="more rv"><a class="tlink" href="https://advonmedia.com/kataskevi-istoselidas#portfolio">Δείτε όλο το portfolio →</a></p>
-</div></section>
-
-<!-- ===================== REVIEWS ===================== -->
-<section class="sec" id="kritikes"><div class="wrap">
-  <div class="sh c rv"><span class="kick">Κριτικές</span><h2>Τι λένε όσοι το έκαναν ήδη.</h2></div>
-  <div class="rv-head rv"><a class="gbadge" href="https://g.co/kgs/wXBAZWP" target="_blank" rel="noopener"><svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>5,0 <span class="stars" aria-hidden="true">★★★★★</span> <small>140+ κριτικές στο Google ↗</small></a></div>
-  <div class="revs" id="revs"></div>
-</div></section>
-
 <!-- ===================== ORDER ===================== -->
 <section class="sec order" id="ksekiname"><div class="wrap">
-  <div class="sh c rv"><span class="kick">Ξεκινάμε</span><h2>Τέσσερα σύντομα βήματα και ξεκινάμε σήμερα.</h2><p>Ό,τι στείλετε έρχεται κατευθείαν σε εμάς. Στο τέλος πληρώνετε με κάρτα, με ασφάλεια.</p></div>
+  <div class="sh c rv"><span class="kick">Ξεκινάμε</span><h2>Συμπληρώστε τα στοιχεία σας. Παίρνει 5 λεπτά.</h2><p>Ό,τι στείλετε έρχεται κατευθείαν σε εμάς. Στο τέλος πληρώνετε με κάρτα, σε ασφαλή σελίδα.</p></div>
   <div class="og">
     <div class="fcard" id="fcard">
       <div class="stepper" role="tablist" aria-label="Βήματα">
@@ -597,10 +646,10 @@ p{text-wrap:pretty}
           <div class="grid2"><div class="fld full"><label for="f-domain">Ποιο domain θα θέλατε; <small>(προαιρετικό)</small></label><input id="f-domain" type="text" placeholder="π.χ. papadopoulou-psychologos.gr" autocapitalize="off"><span class="hint">Περιλαμβάνεται. Αν δεν ξέρετε, σας προτείνουμε εμείς.</span></div></div>
           <p class="subh">Θέλετε και κάτι από αυτά;<small>Σας ρωτάμε ξανά όταν δείτε την ιστοσελίδα — τα πληρώνετε μόνο αν τα επιβεβαιώσετε.</small></p>
           <div class="ticks">
-            <label class="tick"><input type="checkbox" name="extra" value="admin"><span><b>Πίνακας διαχείρισης</b><small>αλλάζετε μόνοι σας κείμενα &amp; φωτογραφίες</small></span><span class="pr">180€</span></label>
+            <label class="tick"><input type="checkbox" name="extra" value="admin"><span><b>Πλήρης πίνακας διαχείρισης</b><small>αλλάζετε μόνοι σας όλα τα κείμενα &amp; τις φωτογραφίες</small></span><span class="pr">130€</span></label>
             <label class="tick"><input type="checkbox" name="extra" value="gbp"><span><b>Google Business Profile</b><small>το προφίλ σας στο Google Maps</small></span><span class="pr">90€</span></label>
-            <label class="tick"><input type="checkbox" name="extra" value="articles"><span><b>Ενότητα άρθρων</b><small>γράφετε άρθρα μόνοι σας</small></span><span class="pr">70€</span></label>
-            <label class="tick"><input type="checkbox" name="extra" value="form"><span><b>Φόρμα επικοινωνίας</b><small>μηνύματα στο e-mail σας</small></span><span class="pr">50€</span></label>
+            <label class="tick"><input type="checkbox" name="extra" value="articles"><span><b>Απλή ενότητα</b><small>άρθρα, σεμινάρια ή φωτογραφίες που αλλάζετε μόνοι σας</small></span><span class="pr">70€</span></label>
+            <label class="tick"><input type="checkbox" name="extra" value="form"><span><b>Φόρμα επικοινωνίας</b><small>μηνύματα στο e-mail σας</small></span><span class="pr">20€</span></label>
           </div>
           <p class="subh">Και τα social σας; <small>Instagram &amp; Facebook, με τα χρώματα της ιστοσελίδας σας. Ξεκινάει όταν βγει online.</small></p>
           <div class="soc">
@@ -638,6 +687,7 @@ p{text-wrap:pretty}
       </div>
     </div>
 
+    <div class="sticky-side">
     <aside class="sum" aria-label="Σύνοψη">
       <h3>Σύνοψη</h3>
       <div class="ln gift"><span>Κατασκευή ιστοσελίδας</span><b>0€</b></div>
@@ -655,20 +705,100 @@ p{text-wrap:pretty}
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Οι 365 ημέρες μετράνε από τη μέρα που βγαίνει online</li>
       </ul>
     </aside>
+    <figure class="sumq"><span class="stars" aria-label="5 αστέρια">★★★★★</span><p>«Εξαιρετική συνεργασία από την αρχή μέχρι το τέλος. Επαγγελματισμός, άμεση εξυπηρέτηση και πολύ όμορφο αποτέλεσμα στο website μου. Τους προτείνω ανεπιφύλακτα!»</p><figcaption>Tonia Kapsanaki · κριτική στο Google</figcaption></figure>
+    </div>
   </div>
+</div></section>
+
+<!-- ===================== WORK ===================== -->
+<section class="sec alt" id="douleies"><div class="wrap">
+  <div class="sh c rv"><span class="kick">Δουλειές μας</span><h2>Κάθε μία, φτιαγμένη από την αρχή.</h2><p>Ανοίξτε όποια θέλετε — είναι όλες online, με πραγματικούς πελάτες.</p></div>
+  <div class="work">
+    <a class="wk rv" href="https://vogiatzis-dent.gr" target="_blank" rel="noopener"><img src="img/vogiatzis.webp" width="720" height="540" loading="lazy" alt="Ιστοσελίδα Βογιατζής Οδοντίατροι"><span>Βογιατζής · Οδοντίατροι</span></a>
+    <a class="wk rv" href="https://georgia-salakou-psychologist.gr" target="_blank" rel="noopener"><img src="img/salakou.webp" width="720" height="540" loading="lazy" alt="Ιστοσελίδα Γεωργία Σαλάκου Ψυχολόγος"><span>Σαλάκου · Ψυχολόγος</span></a>
+    <a class="wk rv" href="https://selfiehair.gr" target="_blank" rel="noopener"><img src="img/selfiehair.webp" width="720" height="540" loading="lazy" alt="Ιστοσελίδα Selfie Hair κομμωτήριο"><span>Selfie Hair · Κομμωτήριο</span></a>
+    <a class="wk rv" href="https://lamproueye.gr" target="_blank" rel="noopener"><img src="img/lamprou.webp" width="720" height="540" loading="lazy" alt="Ιστοσελίδα Δρ. Λάμπρος Λάμπρου Οφθαλμίατρος"><span>Λάμπρου · Οφθαλμίατρος</span></a>
+    <a class="wk rv" href="https://kk-dental.gr" target="_blank" rel="noopener"><img src="img/kdental.webp" width="720" height="540" loading="lazy" alt="Ιστοσελίδα Κωνσταντινίδης Οδοντίατρος"><span>Κωνσταντινίδης · Οδοντίατρος</span></a>
+    <a class="wk rv" href="https://bogiatzi-psychologist.gr" target="_blank" rel="noopener"><img src="img/bogiatzi.webp" width="720" height="540" loading="lazy" alt="Ιστοσελίδα Κωνσταντίνα Μπογιατζή Ψυχολόγος"><span>Μπογιατζή · Κλινική Ψυχολόγος</span></a>
+    <a class="wk rv" href="https://dionvillazakynthos.com" target="_blank" rel="noopener"><img src="img/dionvilla.webp" width="720" height="540" loading="lazy" alt="Ιστοσελίδα Dion Villa Ζάκυνθος"><span>Dion Villa · Κατάλυμα</span></a>
+    <a class="wk rv" href="https://psychotherapeia-pallini.gr" target="_blank" rel="noopener"><img src="img/psychologein.webp" width="720" height="540" loading="lazy" alt="Ιστοσελίδα Ψυχολογείν Παλλήνη"><span>Ψυχολογείν · Ψυχολόγοι</span></a>
+  </div>
+  <p class="more rv"><a class="tlink" href="https://advonmedia.com/kataskevi-istoselidas#portfolio">Δείτε όλο το portfolio →</a></p>
+</div></section>
+
+<!-- ===================== REVIEWS ===================== -->
+<section class="sec" id="kritikes"><div class="wrap">
+  <div class="sh c rv"><span class="kick">Κριτικές</span><h2>Τι λένε όσοι το έκαναν ήδη.</h2></div>
+  <div class="rv-head rv"><a class="gbadge" href="https://g.co/kgs/wXBAZWP" target="_blank" rel="noopener"><svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>5,0 <span class="stars" aria-hidden="true">★★★★★</span> <small>140+ κριτικές στο Google ↗</small></a></div>
+  <div class="revs" id="revs"></div>
+  <div class="cta-row rv"><a class="btn" href="#ksekiname" data-go>Ξεκινάω τώρα <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a></div>
+</div></section>
+
+<!-- ===================== PRICE ===================== -->
+<section class="sec alt" id="kostos"><div class="wrap">
+  <div class="sh c rv"><span class="kick">Το κόστος, καθαρά</span><h2>Ό,τι πληρώνετε, γραμμένο εδώ. Χωρίς ψιλά γράμματα.</h2><p>Σήμερα πληρώνετε μόνο τη φιλοξενία του πρώτου χρόνου. Όλα τα υπόλοιπα είναι προαιρετικά.</p></div>
+  <div class="price">
+    <div class="pcard rv">
+      <span class="lbl">Ιστοσελίδα</span>
+      <div class="now"><b class="tnum">0€</b><span>κατασκευή</span></div>
+      <p class="then">Πληρώνετε μόνο <b>130€ + ΦΠΑ τον χρόνο (161,20€)</b> για φιλοξενία &amp; domain, με κάρτα, όταν στείλετε τα στοιχεία σας.</p>
+      <ul class="inc">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Σχεδιασμός από την αρχή, για εσάς — όχι έτοιμο πρότυπο</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Κείμενα γραμμένα από εμάς, στα ελληνικά και στα αγγλικά</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Τέλεια στο κινητό, γρήγορη, με SEO για Google και AI</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Domain, φιλοξενία, ασφάλεια (SSL) — όλα μέσα</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Απεριόριστες αλλαγές μέχρι να βγει online</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Λογότυπο, αν δεν έχετε</li>
+      </ul>
+      <a class="btn" href="#ksekiname" data-go>Ξεκινάω τώρα <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    </div>
+    <div class="xcard rv">
+      <h3>Προαιρετικά — μόνο αν τα θέλετε</h3>
+      <p>Τα επιλέγετε στη φόρμα. Το express πληρώνεται μαζί με τη φιλοξενία· τα υπόλοιπα μόνο αν τα επιβεβαιώσετε αργότερα.</p>
+      <ul class="xl">
+        <li class="hl"><span><b>Express παράδοση</b><small>Πρώτο σχέδιο σε 1–2 εργάσιμες + κλήση την ίδια μέρα</small></span><span class="pr">+50€</span></li>
+        <li><span><b>Πλήρης πίνακας διαχείρισης</b><small>Αλλάζετε μόνοι σας όλα τα κείμενα και τις φωτογραφίες</small></span><span class="pr">130€ εφάπαξ</span></li>
+        <li><span><b>Απλή ενότητα</b><small>Άρθρα, σεμινάρια ή φωτογραφίες που αλλάζετε μόνοι σας</small></span><span class="pr">70€ εφάπαξ</span></li>
+        <li><span><b>Google Business Profile</b><small>Στήσιμο του προφίλ σας στο Google Maps</small></span><span class="pr">90€ εφάπαξ</span></li>
+        <li><span><b>Φόρμα επικοινωνίας</b><small>Τα μηνύματα έρχονται στο e-mail σας</small></span><span class="pr">+20€ εφάπαξ</span></li>
+        <li><span><b>Instagram &amp; Facebook</b><small>Τα διαχειριζόμαστε εμείς, 8–16 posts τον μήνα</small></span><span class="pr">από 49€/μήνα</span></li>
+      </ul>
+      <p class="foot">Όλες οι τιμές + ΦΠΑ 24%. Αλλαγές μετά τη δημοσίευση: 50€ + ΦΠΑ ανά αίτημα.</p>
+    </div>
+  </div>
+</div></section>
+
+<!-- ===================== THE MEETING, IN WRITING ===================== -->
+<section class="sec" id="erotiseis"><div class="wrap">
+  <div class="sh c rv">
+    <span class="kick" id="meetKick">Από εκατοντάδες συναντήσεις</span>
+    <h2>Οι ερωτήσεις που ακούμε σε κάθε συνάντηση.</h2>
+    <p>Οι απαντήσεις είναι ακριβώς αυτές που θα σας δίναμε στο τηλέφωνο.</p>
+  </div>
+  <div class="qa">
+    <details class="q rv" open><summary><span class="n">1</span>Πόσο κοστίζει στ' αλήθεια;<span class="pl"></span></summary><div class="a"><p>Η κατασκευή <b>0€</b>. Πληρώνετε μόνο φιλοξενία και domain: <b>130€ + ΦΠΑ τον χρόνο (161,20€)</b>.</p><p>Μέσα είναι όλα: το domain, η ασφάλεια (SSL), η ταχύτητα και να είναι πάντα online. Κανένα άλλο υποχρεωτικό κόστος.</p></div></details>
+    <details class="q rv"><summary><span class="n">2</span>Πώς πληρώνω;<span class="pl"></span></summary><div class="a"><p>Με κάρτα, στο τέλος της φόρμας: <b>161,20€</b> (130€ + ΦΠΑ) για τον πρώτο χρόνο φιλοξενίας και domain. Χωρίς καμία επιπλέον χρέωση για την πληρωμή, και με παραστατικό.</p><p>Οι 365 ημέρες μετράνε από τη μέρα που η ιστοσελίδα σας βγαίνει online, όχι από σήμερα.</p></div></details>
+    <details class="q rv"><summary><span class="n">3</span>Σε πόσο καιρό είναι έτοιμη;<span class="pl"></span></summary><div class="a"><p>Το πρώτο σχέδιο σε <b>2–7 ημέρες</b> από τη στιγμή που έχουμε το υλικό σας. Αν βιάζεστε, με την <b>express παράδοση</b> το βλέπετε σε 1–2 εργάσιμες και σας καλούμε την ίδια μέρα.</p></div></details>
+    <details class="q rv"><summary><span class="n">4</span>Τι χρειάζεστε από εμένα;<span class="pl"></span></summary><div class="a"><p>Ό,τι έχετε: φωτογραφίες, λογότυπο ή κάρτα, κείμενα. Δεν χρειάζεται να είναι τέλεια.</p><p>Δεν έχετε τίποτα έτοιμο; Μας δίνετε το link ενός προφίλ σας (π.χ. doctoranytime, Facebook, Google) και <b>γράφουμε εμείς τα κείμενα</b>. Δεν έχετε λογότυπο; Σας φτιάχνουμε.</p></div></details>
+    <details class="q rv"><summary><span class="n">5</span>Κι αν δεν μου αρέσει;<span class="pl"></span></summary><div class="a"><p>Μας λέτε τι θέλετε να αλλάξει και το αλλάζουμε, <b>όσες φορές χρειαστεί</b>, μέχρι να γίνει ακριβώς όπως τη φανταστήκατε — και καλύτερα. Δεν βγαίνει online πριν πείτε εσείς «ναι».</p></div></details>
+    <details class="q rv"><summary><span class="n">6</span>Θα με βρίσκουν στο Google;<span class="pl"></span></summary><div class="a"><p>Κάθε ιστοσελίδα φτιάχνεται για να εμφανίζεται στο Google και στις αναζητήσεις μέσω AI (ChatGPT κ.ά.): με το όνομά σας, τις υπηρεσίες σας και την περιοχή σας.</p><p>Κανείς δεν μπορεί να υποσχεθεί την πρώτη θέση. Ένα σωστό προφίλ στο Google Maps και οι κριτικές σας βοηθούν πολύ, και σας τα στήνουμε κι αυτά αν θέλετε.</p></div></details>
+    <details class="q rv"><summary><span class="n">7</span>Το domain (π.χ. onoma-epaggelma.gr);<span class="pl"></span></summary><div class="a"><p><b>Περιλαμβάνεται.</b> Μας λέτε ποιο θέλετε ή σας προτείνουμε εμείς. Αν έχετε ήδη δικό σας, το συνδέουμε στη νέα ιστοσελίδα.</p></div></details>
+    <details class="q rv"><summary><span class="n">8</span>Και μετά τη δημοσίευση;<span class="pl"></span></summary><div class="a"><p>Μέχρι να βγει online οι αλλαγές είναι απεριόριστες. Αφού δημοσιευτεί, κάθε αίτημα αλλαγών κοστίζει <b>50€</b> (ένα αίτημα μπορεί να έχει πολλές αλλαγές, έτοιμες σε 3 εργάσιμες).</p><p>Ή παίρνετε τον <b>πίνακα διαχείρισης (130€ εφάπαξ)</b> και αλλάζετε μόνοι σας κείμενα και φωτογραφίες, όποτε θέλετε.</p></div></details>
+  </div>
+  <div class="cta-row rv"><a class="btn" href="#ksekiname" data-go>Ξεκινάω τώρα <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a></div>
 </div></section>
 
 <!-- ===================== FINAL ===================== -->
 <section class="final" id="final"><div class="wrap">
-  <h2 class="rv">Θέλετε πρώτα να μιλήσουμε; Κανένα πρόβλημα.</h2>
-  <p class="rv">Κλείστε μια δωρεάν κλήση 15 λεπτών με τον Άγγελο, στο τηλέφωνο ή στο Google Meet.</p>
-  <div class="hero-cta rv"><a class="btn dark" href="https://advonmedia.com/rantevou/">Κλείστε δωρεάν κλήση</a><a class="btn ghost" href="#ksekiname" data-go>Ή ξεκινήστε τώρα</a></div>
+  <h2 class="rv">Ξεκινάμε σήμερα — ή τα λέμε πρώτα, αν προτιμάτε.</h2>
+  <p class="rv">Συμπληρώστε τα στοιχεία σας και ξεκινάμε την ίδια μέρα. Αν θέλετε πρώτα να μιλήσουμε, κλείστε μια δωρεάν κλήση 15 λεπτών με τον Άγγελο, στο τηλέφωνο ή στο Google Meet.</p>
+  <div class="hero-cta rv"><a class="btn dark" href="#ksekiname" data-go>Ξεκινάω τώρα <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a><a class="btn line" href="/rantevou/">Κλείστε δωρεάν κλήση</a></div>
 </div></section>
 </main>
 
 <footer class="ft"><div class="wrap"><span>© <span id="yr">2026</span> Advon Media · Κατασκευή ιστοσελίδων</span><span><a href="https://advonmedia.com/">advonmedia.com</a> · <a href="https://advonmedia.com/privacy-policy">Απόρρητο</a></span></div></footer>
 
-<div class="mbar" id="mbar"><a class="btn" href="#ksekiname" data-go>Ξεκινάω τώρα</a></div>
+<div class="mbar" id="mbar"><a class="btn" href="#ksekiname" data-go>Ξεκινάω τώρα <small>· 161,20€</small></a></div>
 
 <div class="mod" id="terms" hidden role="dialog" aria-modal="true" aria-labelledby="termsH"><div class="box">
   <button class="cl" type="button" aria-label="Κλείσιμο" data-close>×</button>
@@ -703,6 +833,14 @@ d.getElementById('yr').textContent=new Date().getFullYear();
 if(CFG.meetings)d.getElementById('meetKick').textContent='Από '+CFG.meetings+' συναντήσεις';
 var qs=new URLSearchParams(location.search);
 
+/* ---- Meta pixel: only on the live page, only after «Αποδοχή» on advonmedia.com (same 12-month choice), never for ?me=1 browsers ---- */
+function pixel(){if(!LIVE)return;try{if(localStorage.getItem('advon_me')==='1')return;var raw=localStorage.getItem('advon-consent'),v=null,tm=0;if(!raw)return;try{var j=JSON.parse(raw);v=j&&(j.stats!=null?j.stats:(j.v!=null?j.v:j.all));tm=+(j&&(j.t||j.at))||0}catch(e){v=raw}
+  if(tm&&Date.now()-tm>365*864e5)return;if(!(v===true||v==='yes'||v==='all'||v==='granted'))return}catch(e){return}
+  var f=window,n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=true;n.version='2.0';n.queue=[];
+  var sc=document.createElement('script');sc.async=true;sc.src='https://connect.facebook.net/en_US/fbevents.js';document.head.appendChild(sc);fbq('init','1294424308606812');fbq('track','PageView')}
+function px(ev,data,id){try{if(window.fbq)fbq('track',ev,data||{},id?{eventID:id}:undefined)}catch(e){}}
+pixel();
+
 /* ---- reveals ---- */
 var rv=[].slice.call(d.querySelectorAll('.rv'));
 if('IntersectionObserver' in window&&!d.hidden){
@@ -713,13 +851,13 @@ if('IntersectionObserver' in window&&!d.hidden){
 
 /* ---- steps line drawn by scroll + phone bar ---- */
 var steps=d.getElementById('steps'),rail=steps.querySelector('.rail i'),sts=[].slice.call(steps.querySelectorAll('.st'));
-var mbar=d.getElementById('mbar'),order=d.getElementById('ksekiname'),ticking=false;
+var mbar=d.getElementById('mbar'),order=d.getElementById('ksekiname'),buyBtn=d.querySelector('.buy .btn'),ticking=false;
 function onScroll(){ticking=false;
   var r=steps.getBoundingClientRect(),vh=innerHeight,p=Math.min(1,Math.max(0,(vh*.75-r.top)/(r.height+vh*.25)));
   rail.style.setProperty('--p',p.toFixed(3));
   sts.forEach(function(s,i){s.classList.toggle('lit',p>=(i/(sts.length-1))*.92)});
   var o=order.getBoundingClientRect();
-  mbar.classList.toggle('show',scrollY>vh*.8&&!(o.top<vh&&o.bottom>0));
+  var bb=buyBtn?buyBtn.getBoundingClientRect():null;mbar.classList.toggle('show',scrollY>vh*.5&&!(o.top<vh&&o.bottom>0)&&!(bb&&bb.top<vh&&bb.bottom>0));
 }
 addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(onScroll)}},{passive:true});onScroll();
 
@@ -742,12 +880,12 @@ R.forEach(function(r){var c=d.createElement('figure');c.className='rc rv in';
 /* ---- video: appears when the JSON exists (or ?video=<mp4 url> to test) ---- */
 function fmt(t){t=Math.max(0,Math.round(t));return Math.floor(t/60)+':'+String(t%60).padStart(2,'0')}
 function showVideo(cfg){
-  if(!cfg||!cfg.src)return;
+  if(!cfg||!cfg.src){if(!LIVE||qs.has('slot')){d.getElementById('slot').hidden=false;d.getElementById('glance').hidden=true}return}
   var v=d.getElementById('vid'),stage=d.getElementById('stage'),pl=d.getElementById('player'),big=d.getElementById('bigPlay'),ch=d.getElementById('chap');
   v.src=cfg.src;if(cfg.poster)v.poster=cfg.poster;
   if(cfg.captions){var tr=d.createElement('track');tr.kind='captions';tr.srclang='el';tr.label='Ελληνικά';tr.src=cfg.captions;tr.default=true;v.appendChild(tr)}
-  stage.hidden=false;d.getElementById('glance').hidden=true;
-  d.getElementById('heroLead').textContent=cfg.lead||'Σε '+(cfg.length||'λίγα λεπτά')+' σας λέω όσα λέμε σε κάθε συνάντηση. Μετά συμπληρώνετε τα στοιχεία σας, ανεβάζετε ό,τι έχετε, και ξεκινάμε σήμερα.';
+  stage.hidden=false;d.getElementById('glance').hidden=true;d.getElementById('slot').hidden=true;
+  d.getElementById('heroLead').textContent=cfg.lead||'Δείτε σε '+(cfg.length||'λίγα λεπτά')+' όσα λέμε σε κάθε συνάντηση. Μετά στέλνετε τα στοιχεία σας και ξεκινάμε την ίδια μέρα.';
   if(cfg.length)d.getElementById('vidLen').textContent='Δείτε το βίντεο · '+cfg.length;
   var C=Array.isArray(cfg.chapters)?cfg.chapters:[];
   if(!C.length){stage.classList.add('solo');ch.remove()}
@@ -762,7 +900,7 @@ function showVideo(cfg){
 var qv=qs.get('video');
 if(qv&&/^https:\/\//.test(qv))showVideo({src:qv,chapters:[{t:0,title:'Δοκιμή'}]});
 else{var ac=window.AbortController?new AbortController():null;var tm=setTimeout(function(){ac&&ac.abort()},4000);
-  fetch(CFG.videoJson+'?t='+Math.floor(Date.now()/6e5),{cache:'no-store',signal:ac&&ac.signal}).then(function(r){return r.ok?r.json():null}).then(function(j){clearTimeout(tm);showVideo(j)}).catch(function(){})}
+  fetch(CFG.videoJson+'?t='+Math.floor(Date.now()/6e5),{cache:'no-store',signal:ac&&ac.signal}).then(function(r){return r.ok?r.json():null}).then(function(j){clearTimeout(tm);showVideo(j)}).catch(function(){showVideo(null)})}
 
 /* ---- every «Ξεκινάω τώρα» scrolls to the form and focuses the first field ---- */
 [].forEach.call(d.querySelectorAll('[data-go]'),function(a){a.addEventListener('click',function(e){e.preventDefault();order.scrollIntoView({behavior:'smooth'});setTimeout(function(){var f=d.querySelector('.pane.on input:not([type=checkbox]):not([type=radio])');f&&f.focus({preventScroll:true})},700)})});
@@ -800,7 +938,7 @@ d.getElementById('go1').onclick=function(){
   if(S.id){go(2);return}
   if(!LIVE){S.id='demo-'+Date.now();go(2);flush();return}
   b.disabled=true;b.firstChild.textContent='Μια στιγμή… ';
-  post({action:'start',kind:'start',contact:c,options:options(),website_url:val('hp')}).then(function(j){S.id=j.id;go(2);flush()}).catch(function(e){
+  post({action:'start',kind:'start',contact:c,options:options(),website_url:val('hp')}).then(function(j){S.id=j.id;px('Lead',{content_name:'ksekinima'},'ks-l-'+j.id);go(2);flush()}).catch(function(e){
     fx(1,e.message==='too many submissions, try later'?'Πολλές προσπάθειες από αυτή τη σύνδεση. Δοκιμάστε ξανά σε λίγο.':'Δεν μπορέσαμε να σώσουμε τα στοιχεία. Ελέγξτε τη σύνδεσή σας και πατήστε ξανά.');
   }).then(function(){b.disabled=false;b.firstChild.textContent='Συνέχεια στο υλικό '});
 };
@@ -858,13 +996,13 @@ var xp=d.getElementById('xp'),xpi=d.getElementById('f-express');
 xpi.addEventListener('change',function(){S.express=xpi.checked;xp.classList.toggle('on',S.express);sum()});
 [].forEach.call(d.querySelectorAll('input[name=extra]'),function(c){c.addEventListener('change',function(){S.extras=[].slice.call(d.querySelectorAll('input[name=extra]:checked')).map(function(x){return x.value});sum()})});
 [].forEach.call(d.querySelectorAll('input[name=social]'),function(c){c.addEventListener('change',function(){S.social=c.value;sum()})});
-var XN={admin:['Πίνακας διαχείρισης',180],gbp:['Google Business Profile',90],articles:['Ενότητα άρθρων',70],form:['Φόρμα επικοινωνίας',50]},SN={s49:['Βασικό',49],s79:['Ανάπτυξη',79],s99:['Pro',99]};
+var XN={admin:['Πλήρης πίνακας διαχείρισης',130],gbp:['Google Business Profile',90],articles:['Απλή ενότητα',70],form:['Φόρμα επικοινωνίας',20]},SN={s49:['Βασικό',49],s79:['Ανάπτυξη',79],s99:['Pro',99]};
 function eur(n){return n.toFixed(2).replace('.',',')+'€'}
 function sum(){var base=130+(S.express?50:0),x=d.getElementById('sumX'),o=d.getElementById('sumO'),html='',oh='';
   if(S.express)html+='<div class="ln"><span>Express παράδοση</span><b class="tnum">50,00€</b></div>';
   S.extras.forEach(function(k){oh+='<div class="ln"><span>'+XN[k][0]+'</span><b class="tnum">'+XN[k][1]+'€ + ΦΠΑ</b></div>'});
   x.innerHTML=html;d.getElementById('sumV').textContent=eur(base*.24);d.getElementById('sumT').textContent=eur(base*1.24);
-  var now=eur(base*1.24);d.getElementById('sumNow').textContent=now;d.getElementById('payNow').textContent=now;d.getElementById('go4t').textContent='Πληρωμή '+now+' & ξεκινάμε';
+  var now=eur(base*1.24);d.getElementById('sumNow').textContent=now;d.getElementById('payNow').textContent=now;d.getElementById('go4t').textContent='Πληρωμή '+now+' & ξεκινάμε';var mbs=d.querySelector('#mbar small');if(mbs)mbs.textContent='· '+now;
   o.innerHTML=oh?'<p class="when" style="margin-top:14px;color:#fff;font-weight:800">Θέλετε επίσης — μόνο αν το επιβεβαιώσετε:</p>'+oh:'';
   var mo=d.getElementById('sumMo');if(S.social){mo.hidden=false;mo.textContent='Social media · '+SN[S.social][0]+': '+SN[S.social][1]+'€ + ΦΠΑ τον μήνα, από τον μήνα που θα βγει online η ιστοσελίδα.'}else mo.hidden=true}
 sum();
@@ -900,7 +1038,7 @@ form.addEventListener('submit',function(e){e.preventDefault();if(sending)return;
 /* ---- card payment: the Advon shop creates the payment (fixed prices on its server) and sends them to the secure card page ---- */
 function pay(id,c,express,afm,epo){
   if(!LIVE){return new Promise(function(r){setTimeout(function(){location.href=location.pathname+'?paid=1&id='+encodeURIComponent(id)+'&demo=1'},500);r()})}
-  var back=location.origin+'/ksekinima/';
+  var back=location.origin+'/ksekinima/';px('InitiateCheckout',{content_name:'ksekinima',value:express?223.2:161.2,currency:'EUR'},'ks-c-'+id);
   return fetch(CFG.shop,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({intake:id,back:back,express:!!express,terms:true,customer:{name:c.name,email:c.email,phone:c.phone,afm:afm||'',company:epo||''}})})
     .then(function(r){return r.json().catch(function(){return{}}).then(function(j){if(!r.ok||!j.url)throw Object.assign(new Error((j&&j.error?j.error+' ':'')+'Τα στοιχεία και το υλικό σας κρατήθηκαν — δοκιμάστε ξανά ή θα σας καλέσουμε εμείς.'),{pay:1});location.href=j.url})});
 }
@@ -913,7 +1051,7 @@ function pay(id,c,express,afm,epo){
   if(paid){
     var dn=d.getElementById('done');form.hidden=true;d.querySelector('.stepper').hidden=true;dn.classList.add('on');
     d.querySelector('#done h3').textContent='Επιβεβαιώνουμε την πληρωμή…';d.getElementById('doneP').textContent='Ένα δευτερόλεπτο.';d.getElementById('doneSteps').innerHTML='';
-    function ok(){showDone({express:!!keep.express},keep.files||0,(keep.c&&keep.c.email)||'');try{localStorage.removeItem('adv-ks-pay')}catch(e){}}
+    function ok(){if(qs.get('demo')!=='1')px('Purchase',{content_name:'ksekinima',value:keep.express?223.2:161.2,currency:'EUR'},'ks-p-'+id);showDone({express:!!keep.express},keep.files||0,(keep.c&&keep.c.email)||'');try{localStorage.removeItem('adv-ks-pay')}catch(e){}}
     if(qs.get('demo')==='1'||!LIVE)return ok();
     var tries=0;(function chk(){tries++;
       post({o:qs.get('o'),k:qs.get('k'),sid:qs.get('sid')},'?id='+encodeURIComponent(id)+'&confirm=1').then(function(j){if(j.paid)ok();else if(tries<6)setTimeout(chk,2500);else{d.querySelector('#done h3').textContent='Η πληρωμή σας καταγράφεται';d.getElementById('doneP').textContent='Λάβαμε τα στοιχεία σας. Μόλις ολοκληρωθεί η επιβεβαίωση της πληρωμής, θα σας στείλουμε e-mail.'}})

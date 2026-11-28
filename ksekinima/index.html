@@ -1154,6 +1154,64 @@ html.light .rvs-gpanel { border-color: var(--line); }
 /* the window */
 html.light .mod{background:rgba(16,24,40,.45)}
 html.light .mod ol{color:var(--ink-3)}html.light .mod .cl{color:var(--muted)}
+
+/* ===== v9 — add-ons you pay with the hosting (28 Nov 2026) ===== */
+.a-form{--ac:#10B981;--ad:#0b8a5f}.a-admin{--ac:#8B5CF6;--ad:#6b3fd6}.a-gbp{--ac:#4285F4;--ad:#1a62d6}.a-articles{--ac:#F43F5E;--ad:#cc2547}
+.addh{margin-top:30px}
+.addh .k{display:inline-block;font-size:11.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--cy)}
+.addh h4{margin-top:6px;font-size:21px;font-weight:800;letter-spacing:-.01em;line-height:1.25}
+.addh p{margin-top:4px;font-size:14px;color:var(--ink-3)}
+.adds{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:16px}
+.add{position:relative;display:flex;flex-direction:column;gap:14px;padding:20px 18px 16px;border-radius:20px;cursor:pointer;overflow:hidden;
+  background:linear-gradient(160deg,color-mix(in srgb,var(--ac) 15%,transparent),rgba(255,255,255,.025) 62%);
+  border:1px solid color-mix(in srgb,var(--ac) 32%,transparent);transition:border-color .25s,box-shadow .3s var(--ease),transform .3s var(--ease)}
+.add::before{content:"";position:absolute;inset:-40% -30% auto auto;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--ac) 38%,transparent),transparent 65%);opacity:.55;pointer-events:none;transition:opacity .3s}
+.add input{position:absolute;opacity:0;pointer-events:none}
+.add .tg{position:absolute;top:14px;right:14px;font-style:normal;font-size:11px;font-weight:800;letter-spacing:.02em;padding:4px 9px;border-radius:999px;color:#fff;background:color-mix(in srgb,var(--ac) 30%,transparent);border:1px solid color-mix(in srgb,var(--ac) 50%,transparent)}
+.add .ai{display:grid;place-items:center;width:46px;height:46px;border-radius:14px;color:#fff;background:linear-gradient(140deg,var(--ac),color-mix(in srgb,var(--ac) 60%,#000));box-shadow:0 10px 24px -10px var(--ac)}
+.add .ai svg{width:23px;height:23px}
+.add .ab b{display:block;font-size:17px;font-weight:800;line-height:1.3;padding-right:4px}
+.add .sb{display:block;margin-top:4px;font-size:14px;line-height:1.5;color:rgba(255,255,255,.75)}
+.add ul{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:6px}
+.add li{position:relative;padding-left:22px;font-size:13.5px;line-height:1.45;color:rgba(255,255,255,.82)}
+.add li::before{content:"";position:absolute;left:2px;top:4px;width:12px;height:7px;border-left:2px solid var(--ac);border-bottom:2px solid var(--ac);transform:rotate(-45deg)}
+.add .af{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:10px;padding-top:14px;border-top:1px solid rgba(255,255,255,.1)}
+.add .ap{font-size:12.5px;color:rgba(255,255,255,.62)}.add .ap b{font-size:20px;font-weight:800;color:#fff;margin-right:2px}
+.add .ag em{font-style:normal;display:inline-flex;align-items:center;gap:6px;padding:9px 15px;border-radius:999px;font-size:13.5px;font-weight:800;white-space:nowrap;transition:background .2s,color .2s}
+.add .a0{color:var(--ac);border:1.5px solid color-mix(in srgb,var(--ac) 70%,transparent)}
+.add .a1{display:none!important;background:var(--ac);color:#06110c}.add .a1 svg{width:15px;height:15px}
+.add.on{border-color:var(--ac);box-shadow:0 0 0 1.5px var(--ac),0 22px 50px -22px var(--ac)}
+.add.on::before{opacity:1}.add.on .a0{display:none}.add.on .a1{display:inline-flex!important}
+@media (hover:hover){.add:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--ac) 65%,transparent)}.add:hover .a0{background:color-mix(in srgb,var(--ac) 16%,transparent)}}
+.add:focus-within{outline:2px solid var(--ac);outline-offset:3px}
+.add.pop .ai{animation:addPop .5s var(--ease)}
+@keyframes addPop{0%{transform:scale(1)}40%{transform:scale(1.18) rotate(-6deg)}100%{transform:scale(1)}}
+.addt{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:14px;padding:14px 18px;border-radius:16px;background:rgba(71,200,245,.08);border:1px solid rgba(71,200,245,.22)}
+.addt span{font-size:14px;font-weight:700;color:rgba(255,255,255,.8)}.addt b{font-size:22px;font-weight:800;color:#fff}
+.bump{margin-top:22px;padding:16px;border-radius:18px;border:1.5px dashed rgba(71,200,245,.35);background:rgba(71,200,245,.05)}
+.bump .bh{font-size:15px;font-weight:800;margin-bottom:10px}
+.bi{display:grid;grid-template-columns:42px minmax(0,1fr) auto auto;gap:12px;align-items:center;padding:10px 0}
+.bi+.bi{border-top:1px solid rgba(255,255,255,.08)}
+.bi .ai{display:grid;place-items:center;width:42px;height:42px;border-radius:12px;color:#fff;background:linear-gradient(140deg,var(--ac),color-mix(in srgb,var(--ac) 60%,#000))}
+.bi .ai svg{width:20px;height:20px}
+.bi b{display:block;font-size:15px;font-weight:800}.bi small{display:block;font-size:12.5px;color:rgba(255,255,255,.65)}
+.bi .bp{font-weight:800;font-size:16px;white-space:nowrap}.bi .bp small{display:inline;font-weight:600;font-size:11.5px}
+.bi .ba{cursor:pointer;font:inherit;font-size:13px;font-weight:800;padding:9px 14px;border-radius:999px;border:0;background:var(--ac);color:#06110c;white-space:nowrap}
+@media (max-width:640px){.adds{grid-template-columns:minmax(0,1fr)}.addh h4{font-size:19px}
+  .bi{grid-template-columns:38px minmax(0,1fr) auto;row-gap:8px}.bi .ai{width:38px;height:38px}.bi .ba{grid-column:2/4;justify-self:start}.bi .bp{grid-column:3;grid-row:1}}
+@media (prefers-reduced-motion:reduce){.add,.add .ai{transition:none;animation:none!important}.add:hover{transform:none}}
+html.light .addh .k{color:#0a7fb0}html.light .addh h4{color:var(--ink)}html.light .addh p{color:var(--muted)}
+html.light .add{background:#fff;border:1px solid var(--line-2);box-shadow:var(--lsh)}
+html.light .add::after{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:var(--ac)}
+html.light .add::before{background:radial-gradient(circle,color-mix(in srgb,var(--ac) 16%,transparent),transparent 65%);opacity:.8}
+html.light .add .tg{color:var(--ad);background:color-mix(in srgb,var(--ac) 12%,#fff);border-color:color-mix(in srgb,var(--ac) 35%,#fff)}
+html.light .add .ab b,html.light .add .ap b{color:var(--ink)}html.light .add .sb{color:var(--ink-3)}html.light .add li{color:var(--ink-2)}
+html.light .add li::before{border-color:var(--ad)}html.light .add .ap{color:var(--muted)}html.light .add .af{border-top-color:var(--line)}
+html.light .add .a0{color:var(--ad);border-color:color-mix(in srgb,var(--ac) 55%,#fff)}html.light .add .a1{color:#fff;background:var(--ad)}
+html.light .add.on{border-color:var(--ac);background:linear-gradient(170deg,color-mix(in srgb,var(--ac) 9%,#fff),#fff 70%);box-shadow:0 0 0 1.5px var(--ac),0 22px 50px -26px var(--ac)}
+html.light .addt{background:rgba(10,127,176,.06);border-color:rgba(10,127,176,.2)}html.light .addt span{color:var(--ink-2)}html.light .addt b{color:var(--ink)}
+html.light .bump{border-color:rgba(10,127,176,.35);background:rgba(10,127,176,.04)}html.light .bump .bh,html.light .bi b,html.light .bi .bp{color:var(--ink)}
+html.light .bi small{color:var(--muted)}html.light .bi+.bi{border-top-color:var(--line)}html.light .bi .ba{background:var(--ad);color:#fff}
 </style>
 </head>
 <body>
@@ -1302,13 +1360,14 @@ html.light .mod ol{color:var(--ink-3)}html.light .mod .cl{color:var(--muted)}
           <p class="ph">Όλα προαιρετικά.</p>
           <label class="xp" id="xp"><input type="checkbox" id="f-express"><i><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></i><span><b>Express παράδοση</b><span>Πρώτο σχέδιο σε 1–2 εργάσιμες από τη στιγμή που έχουμε το υλικό σας, και σας καλούμε την ίδια μέρα.</span></span><span><span class="pr">+50€ + ΦΠΑ</span><span class="sw" aria-hidden="true"></span></span></label>
           <div class="grid2"><div class="fld full"><label for="f-domain">Ποιο domain θα θέλατε; <small>(προαιρετικό)</small></label><input id="f-domain" type="text" placeholder="π.χ. papadopoulou-psychologos.gr" autocapitalize="off"><span class="hint">Περιλαμβάνεται. Αν δεν ξέρετε, σας προτείνουμε εμείς.</span></div></div>
-          <p class="subh">Θέλετε και κάτι από αυτά;<small>Σας ρωτάμε ξανά όταν δείτε την ιστοσελίδα — τα πληρώνετε μόνο αν τα επιβεβαιώσετε.</small></p>
-          <div class="ticks">
-            <label class="tick"><input type="checkbox" name="extra" value="admin"><span><b>Πλήρης πίνακας διαχείρισης</b><small>αλλάζετε μόνοι σας όλα τα κείμενα &amp; τις φωτογραφίες</small></span><span class="pr">130€</span></label>
-            <label class="tick"><input type="checkbox" name="extra" value="gbp"><span><b>Google Business Profile</b><small>το προφίλ σας στο Google Maps</small></span><span class="pr">90€</span></label>
-            <label class="tick"><input type="checkbox" name="extra" value="articles"><span><b>Απλή ενότητα</b><small>άρθρα, σεμινάρια ή φωτογραφίες που αλλάζετε μόνοι σας</small></span><span class="pr">70€</span></label>
-            <label class="tick"><input type="checkbox" name="extra" value="form"><span><b>Φόρμα επικοινωνίας</b><small>μηνύματα στο e-mail σας</small></span><span class="pr">20€</span></label>
-          </div>
+          <div class="addh"><span class="k">Προσθέστε στην ιστοσελίδα σας</span><h4>Κάντε την πιο δυνατή από την πρώτη μέρα</h4><p>Πληρώνονται μία φορά, μαζί με τη φιλοξενία. Χωρίς μηνιαία χρέωση.</p></div>
+<div class="adds">
+<label class="add a-form"><input type="checkbox" name="extra" value="form"><i class="tg">Μόνο 20€</i><span class="ai"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.5 7.5 8.5 6 8.5-6"/></svg></span><span class="ab"><b>Φόρμα επικοινωνίας</b><span class="sb">Τα μηνύματα των επισκεπτών έρχονται κατευθείαν στο e-mail σας.</span><ul><li>Σας γράφουν και όταν δεν μπορούν να τηλεφωνήσουν</li><li>Με προστασία από spam</li></ul></span><span class="af"><span class="ap"><b class="tnum">+20€</b> + ΦΠΑ · εφάπαξ</span><span class="ag"><em class="a0">+ Προσθήκη</em><em class="a1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Προστέθηκε</em></span></span></label>
+<label class="add a-admin"><input type="checkbox" name="extra" value="admin"><i class="tg">Χωρίς χρέωση αλλαγών</i><span class="ai"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></span><span class="ab"><b>Πλήρης πίνακας διαχείρισης</b><span class="sb">Αλλάζετε μόνοι σας όλα τα κείμενα και τις φωτογραφίες, όποτε θέλετε.</span><ul><li>Δεν χρειάζεται να μας περιμένετε</li><li>Γλιτώνετε τα 50€ + ΦΠΑ ανά αλλαγή μετά τη δημοσίευση</li></ul></span><span class="af"><span class="ap"><b class="tnum">+130€</b> + ΦΠΑ · εφάπαξ</span><span class="ag"><em class="a0">+ Προσθήκη</em><em class="a1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Προστέθηκε</em></span></span></label>
+<label class="add a-gbp"><input type="checkbox" name="extra" value="gbp"><i class="tg">Google Maps</i><span class="ai"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span><span class="ab"><b>Google Business Profile</b><span class="sb">Στήνουμε το προφίλ σας στο Google, για να σας βρίσκουν στον χάρτη.</span><ul><li>Τηλέφωνο, ωράριο και οδηγίες με ένα πάτημα</li><li>Μαζεύετε κριτικές στο Google</li></ul></span><span class="af"><span class="ap"><b class="tnum">+90€</b> + ΦΠΑ · εφάπαξ</span><span class="ag"><em class="a0">+ Προσθήκη</em><em class="a1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Προστέθηκε</em></span></span></label>
+<label class="add a-articles"><input type="checkbox" name="extra" value="articles"><i class="tg">Για το Google</i><span class="ai"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h12a2 2 0 0 1 2 2v14H6a2 2 0 0 1-2-2Z"/><path d="M18 8h2v10a2 2 0 0 1-2 2"/><path d="M8 8h6M8 12h6M8 16h4"/></svg></span><span class="ab"><b>Ενότητα που αλλάζετε μόνοι σας</b><span class="sb">Άρθρα, σεμινάρια ή φωτογραφίες που ανεβάζετε εσείς.</span><ul><li>Νέο περιεχόμενο όποτε θέλετε</li><li>Βοηθά να σας βρίσκουν στις αναζητήσεις</li></ul></span><span class="af"><span class="ap"><b class="tnum">+70€</b> + ΦΠΑ · εφάπαξ</span><span class="ag"><em class="a0">+ Προσθήκη</em><em class="a1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Προστέθηκε</em></span></span></label>
+</div>
+<p class="addt" id="addT"><span>Σήμερα πληρώνετε</span><b class="tnum">161,20€</b></p>
           <p class="subh">Και τα social σας; <small>Instagram &amp; Facebook, με τα χρώματα της ιστοσελίδας σας. Ξεκινάει όταν βγει online.</small></p>
           <div class="soc">
             <label><input type="radio" name="social" value="" checked><b>Όχι τώρα</b><small>&nbsp;</small></label>
@@ -1328,6 +1387,7 @@ html.light .mod ol{color:var(--ink-3)}html.light .mod .cl{color:var(--muted)}
             <div class="fld"><label for="f-afm">ΑΦΜ <small>(για το τιμολόγιο · προαιρετικό τώρα)</small></label><input id="f-afm" type="text" inputmode="numeric" maxlength="9" placeholder="9 ψηφία"></div>
             <div class="fld"><label for="f-epo">Επωνυμία <small>(προαιρετικό τώρα)</small></label><input id="f-epo" type="text" placeholder="όπως στην εφορία"></div>
           </div>
+          <div class="bump" id="bump" hidden></div>
           <div class="zero"><b>Πληρώνετε τώρα με κάρτα</b><strong class="tnum" id="payNow">161,20€</strong></div>
           <label class="consent" id="cons"><input type="checkbox" id="f-terms"><span>Συμφωνώ με τους <a class="tlink" href="#" id="openTerms">όρους συνεργασίας</a> και την <a class="tlink" href="https://advonmedia.com/privacy-policy" target="_blank" rel="noopener">πολιτική απορρήτου</a>.</span></label>
           <p class="fx" id="fx4"></p>
@@ -1420,13 +1480,13 @@ html.light .mod ol{color:var(--ink-3)}html.light .mod .cl{color:var(--muted)}
     </div>
     <div class="xcard rv">
       <h3>Προαιρετικά — μόνο αν τα θέλετε</h3>
-      <p>Τα επιλέγετε στη φόρμα. Το express πληρώνεται μαζί με τη φιλοξενία· τα υπόλοιπα μόνο αν τα επιβεβαιώσετε αργότερα.</p>
+      <p>Τα επιλέγετε στη φόρμα και πληρώνονται μία φορά, μαζί με τη φιλοξενία. Τα social ξεκινούν όταν βγει online η ιστοσελίδα.</p>
       <ul class="xl">
         <li class="hl"><span><b>Express παράδοση</b><small>Πρώτο σχέδιο σε 1–2 εργάσιμες + κλήση την ίδια μέρα</small></span><span class="pr">+50€</span></li>
         <li><span><b>Πλήρης πίνακας διαχείρισης</b><small>Αλλάζετε μόνοι σας όλα τα κείμενα και τις φωτογραφίες</small></span><span class="pr">130€ εφάπαξ</span></li>
         <li><span><b>Απλή ενότητα</b><small>Άρθρα, σεμινάρια ή φωτογραφίες που αλλάζετε μόνοι σας</small></span><span class="pr">70€ εφάπαξ</span></li>
         <li><span><b>Google Business Profile</b><small>Στήσιμο του προφίλ σας στο Google Maps</small></span><span class="pr">90€ εφάπαξ</span></li>
-        <li><span><b>Φόρμα επικοινωνίας</b><small>Τα μηνύματα έρχονται στο e-mail σας</small></span><span class="pr">+20€ εφάπαξ</span></li>
+        <li><span><b>Φόρμα επικοινωνίας</b><small>Τα μηνύματα έρχονται στο e-mail σας</small></span><span class="pr">20€ εφάπαξ</span></li>
         <li><span><b>Instagram &amp; Facebook</b><small>Τα διαχειριζόμαστε εμείς, 8–16 posts τον μήνα</small></span><span class="pr">από 49€/μήνα</span></li>
       </ul>
       <p class="foot">Όλες οι τιμές + ΦΠΑ 24%. Αλλαγές μετά τη δημοσίευση: 50€ + ΦΠΑ ανά αίτημα.</p>
@@ -1443,7 +1503,7 @@ html.light .mod ol{color:var(--ink-3)}html.light .mod .cl{color:var(--muted)}
   </div>
   <div class="qa">
     <details class="q rv" open><summary><span class="n">1</span>Πόσο κοστίζει στ' αλήθεια;<span class="pl"></span></summary><div class="a"><p>Η κατασκευή <b>0€</b>. Πληρώνετε μόνο φιλοξενία και domain: <b>130€ + ΦΠΑ τον χρόνο (161,20€)</b>.</p><p>Μέσα είναι όλα: το domain, η ασφάλεια (SSL), η ταχύτητα και να είναι πάντα online. Κανένα άλλο υποχρεωτικό κόστος.</p></div></details>
-    <details class="q rv"><summary><span class="n">2</span>Πώς πληρώνω;<span class="pl"></span></summary><div class="a"><p>Με κάρτα, στο τέλος της φόρμας: <b>161,20€</b> (130€ + ΦΠΑ) για τον πρώτο χρόνο φιλοξενίας και domain. Χωρίς καμία επιπλέον χρέωση για την πληρωμή, και με παραστατικό.</p><p>Οι 365 ημέρες μετράνε από τη μέρα που η ιστοσελίδα σας βγαίνει online, όχι από σήμερα.</p></div></details>
+    <details class="q rv"><summary><span class="n">2</span>Πώς πληρώνω;<span class="pl"></span></summary><div class="a"><p>Με κάρτα, στο τέλος της φόρμας: <b>161,20€</b> (130€ + ΦΠΑ) για τον πρώτο χρόνο φιλοξενίας και domain, συν ό,τι προαιρετικό διαλέξετε (π.χ. φόρμα επικοινωνίας ή πίνακα διαχείρισης). Χωρίς καμία επιπλέον χρέωση για την πληρωμή, και με παραστατικό.</p><p>Οι 365 ημέρες μετράνε από τη μέρα που η ιστοσελίδα σας βγαίνει online, όχι από σήμερα.</p></div></details>
     <details class="q rv"><summary><span class="n">3</span>Σε πόσο καιρό είναι έτοιμη;<span class="pl"></span></summary><div class="a"><p>Το πρώτο σχέδιο σε <b>2–7 ημέρες</b> από τη στιγμή που έχουμε το υλικό σας. Αν βιάζεστε, με την <b>express παράδοση</b> το βλέπετε σε 1–2 εργάσιμες και σας καλούμε την ίδια μέρα.</p></div></details>
     <details class="q rv"><summary><span class="n">4</span>Τι χρειάζεστε από εμένα;<span class="pl"></span></summary><div class="a"><p>Ό,τι έχετε: φωτογραφίες, λογότυπο ή κάρτα, κείμενα. Δεν χρειάζεται να είναι τέλεια.</p><p>Δεν έχετε τίποτα έτοιμο; Μας δίνετε το link ενός προφίλ σας (π.χ. doctoranytime, Facebook, Google) και <b>γράφουμε εμείς τα κείμενα</b>. Δεν έχετε λογότυπο; Σας φτιάχνουμε.</p></div></details>
     <details class="q rv"><summary><span class="n">5</span>Κι αν δεν μου αρέσει;<span class="pl"></span></summary><div class="a"><p>Μας λέτε τι θέλετε να αλλάξει και το αλλάζουμε, <b>όσες φορές χρειαστεί</b>, μέχρι να γίνει ακριβώς όπως τη φανταστήκατε — και καλύτερα. Δεν βγαίνει online πριν πείτε εσείς «ναι».</p></div></details>
@@ -1482,11 +1542,11 @@ html.light .mod ol{color:var(--ink-3)}html.light .mod .cl{color:var(--muted)}
   <h3 id="termsH">Όροι συνεργασίας, με απλά λόγια</h3>
   <ol>
     <li>Η κατασκευή της ιστοσελίδας δεν χρεώνεται. Πληρώνετε φιλοξενία και domain: 130€ + ΦΠΑ τον χρόνο.</li>
-    <li>Η φιλοξενία του πρώτου χρόνου (και η express παράδοση, αν τη διαλέξετε) πληρώνεται με κάρτα όταν στέλνετε τη φόρμα. Δεν υπάρχει καμία επιπλέον χρέωση για την πληρωμή με κάρτα. Λαμβάνετε παραστατικό.</li>
+    <li>Η φιλοξενία του πρώτου χρόνου, μαζί με ό,τι προαιρετικό διαλέξετε (express παράδοση, πίνακα διαχείρισης, φόρμα κ.λπ.), πληρώνεται με κάρτα όταν στέλνετε τη φόρμα. Δεν υπάρχει καμία επιπλέον χρέωση για την πληρωμή με κάρτα. Λαμβάνετε παραστατικό.</li>
     <li>Το πρώτο σχέδιο είναι έτοιμο σε 2–7 ημέρες (με express σε 1–2 εργάσιμες) από τη στιγμή που έχουμε το υλικό σας.</li>
     <li>Μέχρι να βγει online, κάνουμε όσες αλλαγές θέλετε. Μετά τη δημοσίευση, κάθε αίτημα αλλαγών κοστίζει 50€ + ΦΠΑ (ένα αίτημα μπορεί να έχει πολλές αλλαγές, έτοιμες σε 3 εργάσιμες), εκτός αν έχετε πίνακα διαχείρισης.</li>
     <li>Οι 365 ημέρες της φιλοξενίας μετράνε από τη μέρα που η ιστοσελίδα βγαίνει online. Κάθε χρόνο μπορείτε να ανανεώσετε ή να σταματήσετε.</li>
-    <li>Οι προαιρετικές υπηρεσίες χρεώνονται μόνο αν τις επιβεβαιώσετε εσείς.</li>
+    <li>Οι προαιρετικές υπηρεσίες χρεώνονται μόνο αν τις επιλέξετε εσείς. Τα social media χρεώνονται κάθε μήνα, από τον μήνα που η ιστοσελίδα βγαίνει online.</li>
     <li>Οι φωτογραφίες, τα κείμενα και το λογότυπο που μας στέλνετε είναι δικά σας ή έχετε δικαίωμα να τα χρησιμοποιείτε.</li>
     <li>Μπορούμε να δείχνουμε την ιστοσελίδα σας στο portfolio και στα social μας, ως δείγμα δουλειάς.</li>
   </ol>
@@ -1844,16 +1904,20 @@ function flush(){
 /* ---- options ---- */
 var xp=d.getElementById('xp'),xpi=d.getElementById('f-express');
 xpi.addEventListener('change',function(){S.express=xpi.checked;xp.classList.toggle('on',S.express);sum()});
-[].forEach.call(d.querySelectorAll('input[name=extra]'),function(c){c.addEventListener('change',function(){S.extras=[].slice.call(d.querySelectorAll('input[name=extra]:checked')).map(function(x){return x.value});sum()})});
+function setX(){S.extras=[].slice.call(d.querySelectorAll('input[name=extra]:checked')).map(function(x){return x.value});
+  [].forEach.call(d.querySelectorAll('.add'),function(l){l.classList.toggle('on',l.querySelector('input').checked)});sum();if(S.step===4){recap()}}
+[].forEach.call(d.querySelectorAll('input[name=extra]'),function(c){c.addEventListener('change',function(){setX();if(c.checked){var l=c.closest('.add');l.classList.remove('pop');void l.offsetWidth;l.classList.add('pop')}})});
 [].forEach.call(d.querySelectorAll('input[name=social]'),function(c){c.addEventListener('change',function(){S.social=c.value;sum()})});
-var XN={admin:['Πλήρης πίνακας διαχείρισης',130],gbp:['Google Business Profile',90],articles:['Απλή ενότητα',70],form:['Φόρμα επικοινωνίας',20]},SN={s49:['Βασικό',49],s79:['Ανάπτυξη',79],s99:['Pro',99]};
+var XN={form:['Φόρμα επικοινωνίας',20,'Τα μηνύματα έρχονται στο e-mail σας'],admin:['Πίνακας διαχείρισης',130,'Αλλάζετε μόνοι σας κείμενα & φωτογραφίες'],gbp:['Google Business Profile',90,'Σας βρίσκουν στο Google Maps'],articles:['Ενότητα που αλλάζετε μόνοι σας',70,'Άρθρα, σεμινάρια ή φωτογραφίες']},SN={s49:['Βασικό',49],s79:['Ανάπτυξη',79],s99:['Pro',99]};
 function eur(n){return n.toFixed(2).replace('.',',')+'€'}
-function sum(){var base=130+(S.express?50:0),x=d.getElementById('sumX'),o=d.getElementById('sumO'),html='',oh='';
+function xsum(){return S.extras.reduce(function(a,k){return a+XN[k][1]},0)}
+function tot(){return Math.round((130+(S.express?50:0)+xsum())*124)/100}
+function sum(){var base=130+(S.express?50:0)+xsum(),x=d.getElementById('sumX'),o=d.getElementById('sumO'),html='',oh='';
   if(S.express)html+='<div class="ln"><span>Express παράδοση</span><b class="tnum">50,00€</b></div>';
-  S.extras.forEach(function(k){oh+='<div class="ln"><span>'+XN[k][0]+'</span><b class="tnum">'+XN[k][1]+'€ + ΦΠΑ</b></div>'});
+  S.extras.forEach(function(k){html+='<div class="ln"><span>'+XN[k][0]+'</span><b class="tnum">'+eur(XN[k][1])+'</b></div>'});
   x.innerHTML=html;d.getElementById('sumV').textContent=eur(base*.24);d.getElementById('sumT').textContent=eur(base*1.24);
   var now=eur(base*1.24);d.getElementById('sumNow').textContent=now;d.getElementById('payNow').textContent=now;d.getElementById('go4t').textContent='Πληρωμή '+now+' & ξεκινάμε';var mbs=d.querySelector('#mbar small');if(mbs)mbs.textContent='· '+now;
-  o.innerHTML=oh?'<p class="when" style="margin-top:14px;color:#fff;font-weight:800">Θέλετε επίσης — μόνο αν το επιβεβαιώσετε:</p>'+oh:'';
+  o.innerHTML='';var at=d.querySelector('#addT b');if(at)at.textContent=now;
   var mo=d.getElementById('sumMo');if(S.social){mo.hidden=false;mo.textContent='Social media · '+SN[S.social][0]+': '+SN[S.social][1]+'€ + ΦΠΑ τον μήνα, από τον μήνα που θα βγει online η ιστοσελίδα.'}else mo.hidden=true}
 sum();
 
@@ -1863,10 +1927,16 @@ function recap(){var c=contact(),o=options(),n=S.files.filter(function(f){return
     ['Υλικό',(n?n+' αρχεία':'Κανένα αρχείο')+(o.links?' · links':'')+(o.nothing?' · ξεκινήστε από τα προφίλ μου':'')+(o.more?' · θα στείλω κι άλλα':''),2],
     ['Παράδοση',S.express?'Express · 1–2 εργάσιμες (+50€)':'Κανονική · 2–7 ημέρες',3]];
   if(o.domain)rows.push(['Domain',o.domain,3]);
-  if(S.extras.length)rows.push(['Επίσης',S.extras.map(function(k){return XN[k][0]}).join(', '),3]);
+  if(S.extras.length)rows.push(['Επίσης',S.extras.map(function(k){return XN[k][0]+' (+'+XN[k][1]+'€)'}).join(', '),3]);
   if(S.social)rows.push(['Social','Πακέτο '+SN[S.social][0]+' · '+SN[S.social][1]+'€/μήνα',3]);
   var r=d.getElementById('recap');r.innerHTML='';
-  rows.forEach(function(x){var w=d.createElement('div');w.innerHTML='<dt></dt><dd></dd><button type="button" class="ed">Αλλαγή</button>';w.children[0].textContent=x[0];w.children[1].textContent=x[1];w.children[2].onclick=function(){go(x[2])};r.appendChild(w)})}
+  rows.forEach(function(x){var w=d.createElement('div');w.innerHTML='<dt></dt><dd></dd><button type="button" class="ed">Αλλαγή</button>';w.children[0].textContent=x[0];w.children[1].textContent=x[1];w.children[2].onclick=function(){go(x[2])};r.appendChild(w)});bump()}
+/* one-tap «add this too» on the last step: up to two add-ons they have not picked, the cheapest first */
+function bump(){var bx=d.getElementById('bump'),left=['form','admin','gbp','articles'].filter(function(k){return S.extras.indexOf(k)<0}).slice(0,2);
+  if(!left.length){bx.hidden=true;bx.innerHTML='';return}bx.hidden=false;
+  bx.innerHTML='<p class="bh">Θέλετε να προσθέσετε και…</p>'+left.map(function(k){var ic=d.querySelector('.a-'+k+' .ai').innerHTML;
+    return '<div class="bi a-'+k+'"><span class="ai">'+ic+'</span><span class="bt"><b>'+XN[k][0]+'</b><small>'+XN[k][2]+'</small></span><span class="bp tnum">+'+XN[k][1]+'€ <small>+ ΦΠΑ</small></span><button type="button" class="ba" data-x="'+k+'">+ Προσθήκη</button></div>'}).join('');
+  [].forEach.call(bx.querySelectorAll('.ba'),function(btn){btn.onclick=function(){var i=d.querySelector('input[name=extra][value="'+btn.dataset.x+'"]');i.checked=true;setX()}})}
 
 var pendingDone=null,sending=false;
 d.getElementById('f-terms').addEventListener('change',function(){d.getElementById('cons').classList.remove('err');fx(4,'')});
@@ -1881,15 +1951,15 @@ form.addEventListener('submit',function(e){e.preventDefault();if(sending)return;
     var files=S.files.filter(function(f){return!f.gone&&f.st==='ok'}).map(function(f){return{sha:f.res.sha,name:f.res.name,bytes:f.res.bytes,type:f.res.type,original:f.file.name,kind:f.k}});
     // 1) save everything (so nothing is lost if they don't pay), 2) go to the card payment
     var p=LIVE?post({kind:'start',contact:c,options:o,note:val('f-note'),files:files},'?id='+encodeURIComponent(S.id)+'&done=1'):new Promise(function(r){setTimeout(r,600)});
-    p.then(function(){try{localStorage.setItem('adv-ks-pay',JSON.stringify({at:Date.now(),id:S.id,c:c,express:S.express,afm:o.afm,epo:o.eponymia,files:files.length}))}catch(e){}return pay(S.id,c,S.express,o.afm,o.eponymia)})
+    p.then(function(){try{localStorage.setItem('adv-ks-pay',JSON.stringify({at:Date.now(),id:S.id,c:c,express:S.express,extras:S.extras,tot:tot(),afm:o.afm,epo:o.eponymia,files:files.length}))}catch(e){}return pay(S.id,c,S.express,o.afm,o.eponymia)})
      .catch(function(err){sending=false;b.disabled=false;sum();fx(4,err&&err.pay?err.message:'Κάτι δεν πήγε καλά με την αποθήκευση. Πατήστε ξανά — τα στοιχεία σας δεν χάθηκαν.')})}
   if(busy||queue.length)pendingDone=finish;else finish();
 });
 /* ---- card payment: the Advon shop creates the payment (fixed prices on its server) and sends them to the secure card page ---- */
 function pay(id,c,express,afm,epo){
   if(!LIVE){return new Promise(function(r){setTimeout(function(){location.href=location.pathname+'?paid=1&id='+encodeURIComponent(id)+'&demo=1'},500);r()})}
-  var back=location.origin+'/ksekinima/';px('InitiateCheckout',{content_name:'ksekinima',value:express?223.2:161.2,currency:'EUR'},'ks-c-'+id);
-  return fetch(CFG.shop,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({intake:id,back:back,express:!!express,terms:true,customer:{name:c.name,email:c.email,phone:c.phone,afm:afm||'',company:epo||''}})})
+  var back=location.origin+'/ksekinima/';px('InitiateCheckout',{content_name:'ksekinima',value:tot(),currency:'EUR'},'ks-c-'+id);
+  return fetch(CFG.shop,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({intake:id,back:back,express:!!express,extras:S.extras,terms:true,customer:{name:c.name,email:c.email,phone:c.phone,afm:afm||'',company:epo||''}})})
     .then(function(r){return r.json().catch(function(){return{}}).then(function(j){if(!r.ok||!j.url)throw Object.assign(new Error((j&&j.error?j.error+' ':'')+'Τα στοιχεία και το υλικό σας κρατήθηκαν — δοκιμάστε ξανά ή θα σας καλέσουμε εμείς.'),{pay:1});location.href=j.url})});
 }
 /* ---- back from the payment page ---- */
@@ -1901,7 +1971,7 @@ function pay(id,c,express,afm,epo){
   if(paid){
     var dn=d.getElementById('done');form.hidden=true;d.querySelector('.stepper').hidden=true;dn.classList.add('on');
     d.querySelector('#done h3').textContent='Επιβεβαιώνουμε την πληρωμή…';d.getElementById('doneP').textContent='Ένα δευτερόλεπτο.';d.getElementById('doneSteps').innerHTML='';
-    function ok(){if(qs.get('demo')!=='1')px('Purchase',{content_name:'ksekinima',value:keep.express?223.2:161.2,currency:'EUR'},'ks-p-'+id);showDone({express:!!keep.express},keep.files||0,(keep.c&&keep.c.email)||'');try{localStorage.removeItem('adv-ks-pay')}catch(e){}}
+    function ok(){if(qs.get('demo')!=='1')px('Purchase',{content_name:'ksekinima',value:keep.tot||(keep.express?223.2:161.2),currency:'EUR'},'ks-p-'+id);showDone({express:!!keep.express},keep.files||0,(keep.c&&keep.c.email)||'');try{localStorage.removeItem('adv-ks-pay')}catch(e){}}
     if(qs.get('demo')==='1'||!LIVE)return ok();
     var tries=0;(function chk(){tries++;
       post({o:qs.get('o'),k:qs.get('k'),sid:qs.get('sid')},'?id='+encodeURIComponent(id)+'&confirm=1').then(function(j){if(j.paid)ok();else if(tries<6)setTimeout(chk,2500);else{d.querySelector('#done h3').textContent='Η πληρωμή σας καταγράφεται';d.getElementById('doneP').textContent='Λάβαμε τα στοιχεία σας. Μόλις ολοκληρωθεί η επιβεβαίωση της πληρωμής, θα σας στείλουμε e-mail.'}})
@@ -1910,6 +1980,7 @@ function pay(id,c,express,afm,epo){
     // cancelled at the card page: everything is kept, one button to try again
     S.id=id;go(4);if(keep.c){['name','job','phone','email','area'].forEach(function(k){if(keep.c[k])d.getElementById('f-'+k).value=keep.c[k]})}
     if(keep.express&&!xpi.checked){xpi.checked=true;S.express=true;xp.classList.add('on');sum()}
+    (keep.extras||[]).forEach(function(k){var i=d.querySelector('input[name=extra][value="'+k+'"]');if(i)i.checked=true});setX();
     d.getElementById('f-terms').checked=true;
     fx(4,'Η πληρωμή δεν ολοκληρώθηκε. Τα στοιχεία και το υλικό σας κρατήθηκαν — πατήστε ξανά για να πληρώσετε.');
     form.onsubmit=null;var b=d.getElementById('go4');
